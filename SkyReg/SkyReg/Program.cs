@@ -28,7 +28,7 @@ namespace SkyReg
                 //        return;
                 //    }
 
-                AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+               // AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
                 Application.ApplicationExit += Application_ApplicationExit;
                 FirstTimeRun.CheckAndAdd();
                 FrmLogin frm = new FrmLogin();
@@ -52,11 +52,11 @@ namespace SkyReg
                 Application.ExitThread();
         }
 
-        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            //ExceptionLogger.UnhandledException(e, "Program - Main()");
-            Msg.Show("Wystąpił błąd - zresetuj połączenie sieciowe i spróbuj ponownie uruchomić program", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            return;
-        }
+        //private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        //{
+        //    //ExceptionLogger.UnhandledException(e, "Program - Main()");
+        //    Msg.Show("Wystąpił błąd - zresetuj połączenie sieciowe i spróbuj ponownie uruchomić program", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //    return;
+        //}
     }
 }

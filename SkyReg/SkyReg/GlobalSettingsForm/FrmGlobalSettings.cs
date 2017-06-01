@@ -27,10 +27,10 @@ namespace SkyReg
 
         private void childSizeToParentSizeSet()
         {
-            //Size s = new Size();
-            //s.Height = this.Parent.Size.Height - 10;
-            //s.Width = this.Parent.Size.Width - 10;
-            //this.Size = s;
+            Size s = new Size();
+            s.Height = this.Parent.Size.Height - 10;
+            s.Width = this.Parent.Size.Width - 10;
+            this.Size = s;
         }
 
         private void loadGlobalSettingsFields()

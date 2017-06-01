@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.kryptonPanelEx1 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.kryptonHeaderGroup2 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.chkWednesday = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
@@ -60,8 +61,8 @@
             this.grdPayment = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.btnPaymentsDelete = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnPaymentAdd = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.kryptonPanelEx1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2.Panel)).BeginInit();
             this.kryptonHeaderGroup2.Panel.SuspendLayout();
@@ -76,7 +77,6 @@
             this.headerGroupPaymentSet.Panel.SuspendLayout();
             this.headerGroupPaymentSet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPayment)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonPanelEx1
@@ -104,6 +104,18 @@
             this.kryptonPanelEx1.PersistentColors = false;
             this.kryptonPanelEx1.Size = new System.Drawing.Size(1001, 614);
             this.kryptonPanelEx1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::SkyReg.Properties.Resources.Setting_VF1;
+            this.pictureBox1.Location = new System.Drawing.Point(637, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
             // 
             // kryptonHeaderGroup2
             // 
@@ -438,18 +450,6 @@
             this.btnPaymentAdd.Values.Text = "Dodaj";
             this.btnPaymentAdd.Click += new System.EventHandler(this.btnPaymentAdd_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::SkyReg.Properties.Resources.Setting_VF1;
-            this.pictureBox1.Location = new System.Drawing.Point(637, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 16;
-            this.pictureBox1.TabStop = false;
-            // 
             // FrmGlobalSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -462,13 +462,12 @@
             this.MinimumSize = new System.Drawing.Size(1000, 650);
             this.Name = "FrmGlobalSettings";
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ustawienia";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmGlobalSettings_Load);
             this.Shown += new System.EventHandler(this.FrmGlobalSettings_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
             this.kryptonPanelEx1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2.Panel)).EndInit();
             this.kryptonHeaderGroup2.Panel.ResumeLayout(false);
             this.kryptonHeaderGroup2.Panel.PerformLayout();
@@ -484,7 +483,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.headerGroupPaymentSet)).EndInit();
             this.headerGroupPaymentSet.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPayment)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
