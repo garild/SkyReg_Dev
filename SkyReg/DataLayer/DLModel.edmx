@@ -1,0 +1,734 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DLModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DLModelStoreContainer">
+    <EntitySet Name="PaymentsSetting" EntityType="DLModel.Store.PaymentsSetting" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GlobalSetting" EntityType="DLModel.Store.GlobalSetting" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Operator" EntityType="DLModel.Store.Operator" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UsersType" EntityType="DLModel.Store.UsersType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="DLModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Airplane" EntityType="DLModel.Store.Airplane" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Order" EntityType="DLModel.Store.Order" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Flight" EntityType="DLModel.Store.Flight" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FlightsElem" EntityType="DLModel.Store.FlightsElem" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Parachute" EntityType="DLModel.Store.Parachute" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Group" EntityType="DLModel.Store.Group" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserUsersType" Association="DLModel.Store.UserUsersType">
+      <End Role="User" EntitySet="User" />
+      <End Role="UsersType" EntitySet="UsersType" />
+    </AssociationSet>
+    <AssociationSet Name="UserOperator" Association="DLModel.Store.UserOperator">
+      <End Role="User" EntitySet="User" />
+      <End Role="Operator" EntitySet="Operator" />
+    </AssociationSet>
+    <AssociationSet Name="FlightAirplane" Association="DLModel.Store.FlightAirplane">
+      <End Role="Flight" EntitySet="Flight" />
+      <End Role="Airplane" EntitySet="Airplane" />
+    </AssociationSet>
+    <AssociationSet Name="ParachuteUser" Association="DLModel.Store.ParachuteUser">
+      <End Role="Parachute" EntitySet="Parachute" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FlightsElemFlight" Association="DLModel.Store.FlightsElemFlight">
+      <End Role="FlightsElem" EntitySet="FlightsElem" />
+      <End Role="Flight" EntitySet="Flight" />
+    </AssociationSet>
+    <AssociationSet Name="FlightsElemUser" Association="DLModel.Store.FlightsElemUser">
+      <End Role="FlightsElem" EntitySet="FlightsElem" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FlightsElemParachute" Association="DLModel.Store.FlightsElemParachute">
+      <End Role="FlightsElem" EntitySet="FlightsElem" />
+      <End Role="Parachute" EntitySet="Parachute" />
+    </AssociationSet>
+    <AssociationSet Name="UserOrder" Association="DLModel.Store.UserOrder">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="GroupUser" Association="DLModel.Store.GroupUser">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="PaymentsSetting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="smallint" Nullable="false" />
+    <Property Name="Value" Type="decimal" Nullable="true" Precision="8" Scale="2" />
+    <Property Name="Count" Type="decimal" Nullable="true" />
+  </EntityType>
+  <EntityType Name="GlobalSetting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TimeBefore" Type="time" Nullable="true" />
+    <Property Name="TimeAfter" Type="time" Nullable="true" />
+    <Property Name="AirportsName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="CertExpired" Type="smallint" Nullable="true" />
+    <Property Name="CountPerHour" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="CamPrice" Type="decimal" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Operator">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="smallint" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsersType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Value" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+    <Property Name="IsCam" Type="bit" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Certificate" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="CertDate" Type="datetime" Nullable="true" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SurName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ZipCode" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Street" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="StreetNr" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FaceBook" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IdNr" Type="int" Nullable="true" />
+    <Property Name="Group_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Airplane">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RegNr" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Seats" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderTime" Type="datetime" Nullable="false" />
+    <Property Name="IsUser" Type="bit" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Flight">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FlyDateTime" Type="datetime" Nullable="false" />
+    <Property Name="FlyNr" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FlyStatus" Type="smallint" Nullable="false" />
+    <Property Name="Altitude" Type="int" Nullable="false" DefaultValue="4000" />
+    <Property Name="Airplane_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="FlightsElem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsUser" Type="bit" Nullable="false" />
+    <Property Name="AssemblySelf" Type="bit" Nullable="false" />
+    <Property Name="Flight_Id" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Parachute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdNr" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RentValue" Type="decimal" Nullable="true" Precision="8" Scale="2" />
+    <Property Name="AssemblyValue" Type="decimal" Nullable="true" Precision="8" Scale="2" />
+    <Property Name="User_Id" Type="int" Nullable="true" />
+    <Property Name="FlightsElem_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Color" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AllowDelete" Type="bit" Nullable="true" />
+  </EntityType>
+  <Association Name="UserUsersType">
+    <End Role="User" Type="DLModel.Store.User" Multiplicity="0..1" />
+    <End Role="UsersType" Type="DLModel.Store.UsersType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsersType">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserOperator">
+    <End Role="User" Type="DLModel.Store.User" Multiplicity="1" />
+    <End Role="Operator" Type="DLModel.Store.Operator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Operator">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FlightAirplane">
+    <End Role="Flight" Type="DLModel.Store.Flight" Multiplicity="*" />
+    <End Role="Airplane" Type="DLModel.Store.Airplane" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Airplane">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="Airplane_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ParachuteUser">
+    <End Role="Parachute" Type="DLModel.Store.Parachute" Multiplicity="*" />
+    <End Role="User" Type="DLModel.Store.User" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Parachute">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FlightsElemFlight">
+    <End Role="FlightsElem" Type="DLModel.Store.FlightsElem" Multiplicity="*" />
+    <End Role="Flight" Type="DLModel.Store.Flight" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Flight">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FlightsElem">
+        <PropertyRef Name="Flight_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FlightsElemUser">
+    <End Role="FlightsElem" Type="DLModel.Store.FlightsElem" Multiplicity="*" />
+    <End Role="User" Type="DLModel.Store.User" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FlightsElem">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FlightsElemParachute">
+    <End Role="FlightsElem" Type="DLModel.Store.FlightsElem" Multiplicity="0..1" />
+    <End Role="Parachute" Type="DLModel.Store.Parachute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FlightsElem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Parachute">
+        <PropertyRef Name="FlightsElem_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserOrder">
+    <End Role="User" Type="DLModel.Store.User" Multiplicity="0..1" />
+    <End Role="Order" Type="DLModel.Store.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GroupUser">
+    <End Role="Group" Type="DLModel.Store.Group" Multiplicity="0..1" />
+    <End Role="User" Type="DLModel.Store.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Group_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DLModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DLModelContainer" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="PaymentsSetting" EntityType="DLModel.PaymentsSetting" />
+          <EntitySet Name="GlobalSetting" EntityType="DLModel.GlobalSetting" />
+          <EntitySet Name="Operator" EntityType="DLModel.Operator" />
+          <EntitySet Name="UsersType" EntityType="DLModel.UsersType" />
+          <EntitySet Name="User" EntityType="DLModel.User" />
+          <AssociationSet Name="UserUsersType" Association="DLModel.UserUsersType">
+            <End Role="User" EntitySet="User" />
+            <End Role="UsersType" EntitySet="UsersType" />
+          </AssociationSet>
+          <AssociationSet Name="UserOperator" Association="DLModel.UserOperator">
+            <End Role="User" EntitySet="User" />
+            <End Role="Operator" EntitySet="Operator" />
+          </AssociationSet>
+          <EntitySet Name="Airplane" EntityType="DLModel.Airplane" />
+          <EntitySet Name="Order" EntityType="DLModel.Order" />
+          <EntitySet Name="Flight" EntityType="DLModel.Flight" />
+          <AssociationSet Name="FlightAirplane" Association="DLModel.FlightAirplane">
+            <End Role="Flight" EntitySet="Flight" />
+            <End Role="Airplane" EntitySet="Airplane" />
+          </AssociationSet>
+          <EntitySet Name="FlightsElem" EntityType="DLModel.FlightsElem" />
+          <EntitySet Name="Parachute" EntityType="DLModel.Parachute" />
+          <AssociationSet Name="ParachuteUser" Association="DLModel.ParachuteUser">
+            <End Role="Parachute" EntitySet="Parachute" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FlightsElemFlight" Association="DLModel.FlightsElemFlight">
+            <End Role="FlightsElem" EntitySet="FlightsElem" />
+            <End Role="Flight" EntitySet="Flight" />
+          </AssociationSet>
+          <AssociationSet Name="FlightsElemUser" Association="DLModel.FlightsElemUser">
+            <End Role="FlightsElem" EntitySet="FlightsElem" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FlightsElemParachute" Association="DLModel.FlightsElemParachute">
+            <End Role="FlightsElem" EntitySet="FlightsElem" />
+            <End Role="Parachute" EntitySet="Parachute" />
+          </AssociationSet>
+          <AssociationSet Name="UserOrder" Association="DLModel.UserOrder">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <EntitySet Name="Group" EntityType="DLModel.Group" />
+          <AssociationSet Name="GroupUser" Association="DLModel.GroupUser">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="PaymentsSetting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Type" Type="Int16" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Nullable="true" Precision="8" Scale="2" />
+          <Property Name="Count" Type="Decimal" Nullable="true" />
+        </EntityType>
+        <EntityType Name="GlobalSetting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeBefore" Type="Time" Nullable="true" />
+          <Property Name="TimeAfter" Type="Time" Nullable="true" />
+          <Property Name="AirportsName" Type="String" Nullable="true" />
+          <Property Name="CertExpired" Type="Int16" Nullable="true" />
+          <Property Name="CountPerHour" Type="String" Nullable="true" />
+          <Property Name="CamPrice" Type="Decimal" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Operator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="DLModel.UserOperator" FromRole="Operator" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UsersType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <NavigationProperty Name="User" Relationship="DLModel.UserUsersType" FromRole="UsersType" ToRole="User" />
+          <Property Name="IsCam" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="true" />
+          <Property Name="Password" Type="String" Nullable="true" />
+          <Property Name="Certificate" Type="String" Nullable="true" />
+          <Property Name="CertDate" Type="DateTime" Nullable="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="SurName" Type="String" Nullable="false" />
+          <Property Name="City" Type="String" Nullable="true" />
+          <Property Name="ZipCode" Type="String" Nullable="true" />
+          <Property Name="Street" Type="String" Nullable="true" />
+          <Property Name="StreetNr" Type="String" Nullable="true" />
+          <Property Name="Phone" Type="String" Nullable="true" />
+          <Property Name="Email" Type="String" Nullable="true" />
+          <Property Name="FaceBook" Type="String" Nullable="true" />
+          <NavigationProperty Name="UsersType" Relationship="DLModel.UserUsersType" FromRole="User" ToRole="UsersType" />
+          <NavigationProperty Name="Operator" Relationship="DLModel.UserOperator" FromRole="User" ToRole="Operator" />
+          <Property Name="IdNr" Type="Int32" Nullable="true" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Parachute" Relationship="DLModel.ParachuteUser" FromRole="User" ToRole="Parachute" />
+          <NavigationProperty Name="FlightsElem" Relationship="DLModel.FlightsElemUser" FromRole="User" ToRole="FlightsElem" />
+          <NavigationProperty Name="Order" Relationship="DLModel.UserOrder" FromRole="User" ToRole="Order" />
+          <NavigationProperty Name="Group" Relationship="DLModel.GroupUser" FromRole="User" ToRole="Group" />
+        </EntityType>
+        <Association Name="UserUsersType">
+          <End Type="DLModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="DLModel.UsersType" Role="UsersType" Multiplicity="*" />
+        </Association>
+        <Association Name="UserOperator">
+          <End Type="DLModel.User" Role="User" Multiplicity="1" />
+          <End Type="DLModel.Operator" Role="Operator" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Airplane">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegNr" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Seats" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Flight" Relationship="DLModel.FlightAirplane" FromRole="Airplane" ToRole="Flight" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderTime" Type="DateTime" Nullable="false" />
+          <Property Name="IsUser" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="DLModel.UserOrder" FromRole="Order" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Flight">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Airplane" Relationship="DLModel.FlightAirplane" FromRole="Flight" ToRole="Airplane" />
+          <Property Name="FlyDateTime" Type="DateTime" Nullable="false" />
+          <Property Name="FlyNr" Type="String" Nullable="false" />
+          <Property Name="FlyStatus" Type="Int16" Nullable="false" />
+          <Property Name="Altitude" Type="Int32" Nullable="false" DefaultValue="4000" />
+          <NavigationProperty Name="FlightsElem" Relationship="DLModel.FlightsElemFlight" FromRole="Flight" ToRole="FlightsElem" />
+        </EntityType>
+        <Association Name="FlightAirplane">
+          <End Type="DLModel.Flight" Role="Flight" Multiplicity="*" />
+          <End Type="DLModel.Airplane" Role="Airplane" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="FlightsElem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Flight" Relationship="DLModel.FlightsElemFlight" FromRole="FlightsElem" ToRole="Flight" />
+          <Property Name="IsUser" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="DLModel.FlightsElemUser" FromRole="FlightsElem" ToRole="User" />
+          <Property Name="AssemblySelf" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Parachute" Relationship="DLModel.FlightsElemParachute" FromRole="FlightsElem" ToRole="Parachute" />
+        </EntityType>
+        <EntityType Name="Parachute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdNr" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="RentValue" Type="Decimal" Nullable="true" Scale="2" Precision="8" />
+          <NavigationProperty Name="User" Relationship="DLModel.ParachuteUser" FromRole="Parachute" ToRole="User" />
+          <NavigationProperty Name="FlightsElem" Relationship="DLModel.FlightsElemParachute" FromRole="Parachute" ToRole="FlightsElem" />
+          <Property Name="AssemblyValue" Type="Decimal" Nullable="true" Precision="8" Scale="2" />
+        </EntityType>
+        <Association Name="ParachuteUser">
+          <End Type="DLModel.Parachute" Role="Parachute" Multiplicity="*" />
+          <End Type="DLModel.User" Role="User" Multiplicity="0..1" />
+        </Association>
+        <Association Name="FlightsElemFlight">
+          <End Type="DLModel.FlightsElem" Role="FlightsElem" Multiplicity="*" />
+          <End Type="DLModel.Flight" Role="Flight" Multiplicity="1" />
+        </Association>
+        <Association Name="FlightsElemUser">
+          <End Type="DLModel.FlightsElem" Role="FlightsElem" Multiplicity="*" />
+          <End Type="DLModel.User" Role="User" Multiplicity="1" />
+        </Association>
+        <Association Name="FlightsElemParachute">
+          <End Type="DLModel.FlightsElem" Role="FlightsElem" Multiplicity="0..1" />
+          <End Type="DLModel.Parachute" Role="Parachute" Multiplicity="0..1" />
+        </Association>
+        <Association Name="UserOrder">
+          <End Type="DLModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="DLModel.Order" Role="Order" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="true" />
+          <NavigationProperty Name="User" Relationship="DLModel.GroupUser" FromRole="Group" ToRole="User" />
+          <Property Name="Color" Type="String" Nullable="false" />
+          <Property Name="AllowDelete" Type="Boolean" Nullable="true" />
+        </EntityType>
+        <Association Name="GroupUser">
+          <End Type="DLModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="DLModel.User" Role="User" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DLModelStoreContainer" CdmEntityContainer="DLModelContainer">
+    <EntitySetMapping Name="PaymentsSetting">
+      <EntityTypeMapping TypeName="IsTypeOf(DLModel.PaymentsSetting)">
+        <MappingFragment StoreEntitySet="PaymentsSetting">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GlobalSetting">
+      <EntityTypeMapping TypeName="IsTypeOf(DLModel.GlobalSetting)">
+        <MappingFragment StoreEntitySet="GlobalSetting">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TimeBefore" ColumnName="TimeBefore" />
+          <ScalarProperty Name="TimeAfter" ColumnName="TimeAfter" />
+          <ScalarProperty Name="AirportsName" ColumnName="AirportsName" />
+          <ScalarProperty Name="CertExpired" ColumnName="CertExpired" />
+          <ScalarProperty Name="CountPerHour" ColumnName="CountPerHour" />
+          <ScalarProperty Name="CamPrice" ColumnName="CamPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Operator">
+      <EntityTypeMapping TypeName="IsTypeOf(DLModel.Operator)">
+        <MappingFragment StoreEntitySet="Operator">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersType">
+      <EntityTypeMapping TypeName="IsTypeOf(DLModel.UsersType)">
+        <MappingFragment StoreEntitySet="UsersType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="IsCam" ColumnName="IsCam" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="IsTypeOf(DLModel.User)">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Certificate" ColumnName="Certificate" />
+          <ScalarProperty Name="CertDate" ColumnName="CertDate" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SurName" ColumnName="SurName" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="StreetNr" ColumnName="StreetNr" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FaceBook" ColumnName="FaceBook" />
+          <ScalarProperty Name="IdNr" ColumnName="IdNr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Airplane">
+      <EntityTypeMapping TypeName="IsTypeOf(DLModel.Airplane)">
+        <MappingFragment StoreEntitySet="Airplane">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RegNr" ColumnName="RegNr" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Seats" ColumnName="Seats" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="IsTypeOf(DLModel.Order)">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+          <ScalarProperty Name="IsUser" ColumnName="IsUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Flight">
+      <EntityTypeMapping TypeName="IsTypeOf(DLModel.Flight)">
+        <MappingFragment StoreEntitySet="Flight">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FlyDateTime" ColumnName="FlyDateTime" />
+          <ScalarProperty Name="FlyNr" ColumnName="FlyNr" />
+          <ScalarProperty Name="FlyStatus" ColumnName="FlyStatus" />
+          <ScalarProperty Name="Altitude" ColumnName="Altitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FlightsElem">
+      <EntityTypeMapping TypeName="IsTypeOf(DLModel.FlightsElem)">
+        <MappingFragment StoreEntitySet="FlightsElem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsUser" ColumnName="IsUser" />
+          <ScalarProperty Name="AssemblySelf" ColumnName="AssemblySelf" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Parachute">
+      <EntityTypeMapping TypeName="IsTypeOf(DLModel.Parachute)">
+        <MappingFragment StoreEntitySet="Parachute">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdNr" ColumnName="IdNr" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RentValue" ColumnName="RentValue" />
+          <ScalarProperty Name="AssemblyValue" ColumnName="AssemblyValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Group">
+      <EntityTypeMapping TypeName="IsTypeOf(DLModel.Group)">
+        <MappingFragment StoreEntitySet="Group">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="AllowDelete" ColumnName="AllowDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserUsersType" TypeName="DLModel.UserUsersType" StoreEntitySet="UsersType">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="UsersType">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="User_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserOperator" TypeName="DLModel.UserOperator" StoreEntitySet="Operator">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Operator">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FlightAirplane" TypeName="DLModel.FlightAirplane" StoreEntitySet="Flight">
+      <EndProperty Name="Airplane">
+        <ScalarProperty Name="Id" ColumnName="Airplane_Id" />
+      </EndProperty>
+      <EndProperty Name="Flight">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Airplane_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ParachuteUser" TypeName="DLModel.ParachuteUser" StoreEntitySet="Parachute">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Parachute">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="User_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FlightsElemFlight" TypeName="DLModel.FlightsElemFlight" StoreEntitySet="FlightsElem">
+      <EndProperty Name="Flight">
+        <ScalarProperty Name="Id" ColumnName="Flight_Id" />
+      </EndProperty>
+      <EndProperty Name="FlightsElem">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FlightsElemUser" TypeName="DLModel.FlightsElemUser" StoreEntitySet="FlightsElem">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="FlightsElem">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FlightsElemParachute" TypeName="DLModel.FlightsElemParachute" StoreEntitySet="Parachute">
+      <EndProperty Name="FlightsElem">
+        <ScalarProperty Name="Id" ColumnName="FlightsElem_Id" />
+      </EndProperty>
+      <EndProperty Name="Parachute">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="FlightsElem_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserOrder" TypeName="DLModel.UserOrder" StoreEntitySet="Order">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Order">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="User_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GroupUser" TypeName="DLModel.GroupUser" StoreEntitySet="User">
+      <EndProperty Name="Group">
+        <ScalarProperty Name="Id" ColumnName="Group_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Group_Id" IsNull="false" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

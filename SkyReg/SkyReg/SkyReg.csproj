@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{303D3A81-A0D9-4137-9407-9147A5E1BFA0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SkyReg</RootNamespace>
+    <AssemblyName>SkyReg</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AC.ExtendedRenderer.Toolkit, Version=4.4.0.2, Culture=neutral, PublicKeyToken=2f7c2ef04fde3964, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AC.ExtendedRenderer.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.4.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AirplanesForm\AirplanesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AirplanesForm\AirplanesForm.Designer.cs">
+      <DependentUpon>AirplanesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AirplanesForm\AirPlanesFormAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AirplanesForm\AirPlanesFormAddEdit.Designer.cs">
+      <DependentUpon>AirPlanesFormAddEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\Login\ILoginRepository.cs" />
+    <Compile Include="BLL\Login\LoginRepository.cs" />
+    <Compile Include="Enums\Enum_FormState.cs" />
+    <Compile Include="Enums\Enum_OperatorTypes.cs" />
+    <Compile Include="Enums\Enum_paymentsTypes.cs" />
+    <Compile Include="Extensions\BaseModel.cs" />
+    <Compile Include="FirstTimeRun.cs" />
+    <Compile Include="GlobalSettingsForm\FrmGlobalSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GlobalSettingsForm\FrmGlobalSettings.Designer.cs">
+      <DependentUpon>FrmGlobalSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\Colors.cs" />
+    <Compile Include="MainForm\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSettingsForm\FrmOperatorAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GlobalSettingsForm\FrmOperatorAdd.Designer.cs">
+      <DependentUpon>FrmOperatorAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSettingsForm\FrmPaymentAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GlobalSettingsForm\FrmPaymentAdd.Designer.cs">
+      <DependentUpon>FrmPaymentAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSettingsForm\UserOnComboBox.cs" />
+    <Compile Include="LoginForm\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParachutesForm\IParachuteListElem.cs" />
+    <Compile Include="ParachutesForm\ParachuteFormAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ParachutesForm\ParachuteFormAddEdit.Designer.cs">
+      <DependentUpon>ParachuteFormAddEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParachutesForm\ParachuteListElem.cs" />
+    <Compile Include="ParachutesForm\ParachutesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ParachutesForm\ParachutesForm.Designer.cs">
+      <DependentUpon>ParachutesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extensions\CommonMethods.cs" />
+    <Compile Include="Test\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsersForm\UsersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsersForm\UsersForm.Designer.cs">
+      <DependentUpon>UsersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsersTypesForm\IUserTypeListElem.cs" />
+    <Compile Include="UsersTypesForm\UsersTypesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsersTypesForm\UsersTypesForm.Designer.cs">
+      <DependentUpon>UsersTypesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsersTypesForm\UserTypeAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsersTypesForm\UserTypeAddEdit.Designer.cs">
+      <DependentUpon>UserTypeAddEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsersTypesForm\UserTypeListElem.cs" />
+    <EmbeddedResource Include="AirplanesForm\AirplanesForm.resx">
+      <DependentUpon>AirplanesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AirplanesForm\AirPlanesFormAddEdit.resx">
+      <DependentUpon>AirPlanesFormAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalSettingsForm\FrmGlobalSettings.resx">
+      <DependentUpon>FrmGlobalSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalSettingsForm\FrmOperatorAdd.resx">
+      <DependentUpon>FrmOperatorAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalSettingsForm\FrmPaymentAdd.resx">
+      <DependentUpon>FrmPaymentAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParachutesForm\ParachuteFormAddEdit.resx">
+      <DependentUpon>ParachuteFormAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParachutesForm\ParachutesForm.resx">
+      <DependentUpon>ParachutesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Test\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersForm\UsersForm.resx">
+      <DependentUpon>UsersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersTypesForm\UsersTypesForm.resx">
+      <DependentUpon>UsersTypesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersTypesForm\UserTypeAddEdit.resx">
+      <DependentUpon>UserTypeAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppData\AC.ExtendedRenderer.Toolkit.dll" />
+    <None Include="AppData\userstypes.png" />
+    <None Include="AppData\airplane.png" />
+    <Content Include="AppData\ComponentFactory.Krypton.Toolkit.dll" />
+    <None Include="AppData\Setting VF1.png" />
+    <None Include="AppData\parachute.png" />
+    <None Include="AppData\parachute2.png" />
+    <None Include="AppData\skydiver.png" />
+    <Content Include="AppData\SkyReg.ico" />
+    <None Include="Resources\logo_opacity.png" />
+    <None Include="Resources\logo_.png" />
+    <None Include="Resources\Login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
+      <Project>{5cb51742-7c31-4d1a-bd08-f783a0aa485b}</Project>
+      <Name>DataLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BLL\Repository\" />
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
