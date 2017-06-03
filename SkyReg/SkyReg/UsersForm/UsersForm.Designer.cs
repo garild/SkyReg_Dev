@@ -135,6 +135,7 @@
             this.btnDeleteGroup.Size = new System.Drawing.Size(79, 25);
             this.btnDeleteGroup.TabIndex = 1;
             this.btnDeleteGroup.Values.Text = "&Usuń grupę";
+            this.btnDeleteGroup.Click += new System.EventHandler(this.btnDeleteGroup_Click);
             // 
             // btnAddGroup
             // 
@@ -144,6 +145,7 @@
             this.btnAddGroup.Size = new System.Drawing.Size(79, 25);
             this.btnAddGroup.TabIndex = 0;
             this.btnAddGroup.Values.Text = "&Dodaj grupę";
+            this.btnAddGroup.Click += new System.EventHandler(this.btnAddGroup_Click);
             // 
             // kryptonHeaderGroup1
             // 
@@ -218,6 +220,7 @@
             this.grdGroups.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdGroups.Location = new System.Drawing.Point(0, 0);
             this.grdGroups.Name = "grdGroups";
+            this.grdGroups.RowHeadersWidth = 30;
             this.grdGroups.Size = new System.Drawing.Size(198, 502);
             this.grdGroups.TabIndex = 0;
             // 

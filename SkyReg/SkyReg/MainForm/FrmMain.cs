@@ -37,8 +37,13 @@ namespace SkyReg
                         FrmGlobalSettings fgs = new FrmGlobalSettings();
                         fgs.MdiParent = this;
                         fgs.ControlBox = true;
-                        fgs.Show();
+                        Size s = new Size();
+                        s.Height = fgs.Parent.Size.Height - 10;
+                        s.Width = fgs.Parent.Size.Width - 10;
+                        fgs.Size = s;
+                        fgs.StartPosition = FormStartPosition.Manual;
                         fgs.Location = new Point(0, 0);
+                        fgs.Show();
                     }
                     else
                     {
@@ -60,8 +65,13 @@ namespace SkyReg
                         AirplanesForm af = new AirplanesForm();
                         af.MdiParent = this;
                         af.ControlBox = true;
-                        af.Show();
+                        Size s = new Size();
+                        s.Height = af.Parent.Size.Height - 10;
+                        s.Width = af.Parent.Size.Width - 10;
+                        af.Size = s;
+                        af.StartPosition = FormStartPosition.Manual;
                         af.Location = new Point(0, 0);
+                        af.Show();
                     }
                     else
                     {
@@ -83,8 +93,13 @@ namespace SkyReg
                         ParachutesForm af = new ParachutesForm();
                         af.MdiParent = this;
                         af.ControlBox = true;
-                        af.Show();
+                        Size s = new Size();
+                        s.Height = af.Parent.Size.Height - 10;
+                        s.Width = af.Parent.Size.Width - 10;
+                        af.Size = s;
+                        af.StartPosition = FormStartPosition.Manual;
                         af.Location = new Point(0, 0);
+                        af.Show();
                     }
                     else
                     {
@@ -106,8 +121,13 @@ namespace SkyReg
                         UsersTypesForm af = new UsersTypesForm();
                         af.MdiParent = this;
                         af.ControlBox = true;
-                        af.Show();
+                        Size s = new Size();
+                        s.Height = af.Parent.Size.Height - 10;
+                        s.Width = af.Parent.Size.Width - 10;
+                        af.Size = s;
+                        af.StartPosition = FormStartPosition.Manual;
                         af.Location = new Point(0, 0);
+                        af.Show();
                     }
                     else
                     {
@@ -129,8 +149,15 @@ namespace SkyReg
                         UsersForm af = new UsersForm();
                         af.MdiParent = this;
                         af.ControlBox = true;
-                        af.Show();
+
+                        Size s = new Size();
+                        s.Height = af.Parent.Size.Height - 10;
+                        s.Width = af.Parent.Size.Width - 10;
+                        af.Size = s;
+                        af.StartPosition = FormStartPosition.Manual;
                         af.Location = new Point(0, 0);
+                        af.Show();
+                        
                     }
                     else
                     {
