@@ -159,7 +159,7 @@
             // 
             this.txtBoxName.Location = new System.Drawing.Point(60, 9);
             this.txtBoxName.Name = "txtBoxName";
-            this.txtBoxName.Size = new System.Drawing.Size(283, 23);
+            this.txtBoxName.Size = new System.Drawing.Size(283, 20);
             this.txtBoxName.TabIndex = 0;
             // 
             // kryptonLabel1
@@ -181,7 +181,9 @@
             this.ClientSize = new System.Drawing.Size(371, 184);
             this.Controls.Add(this.kryptonPanelEx1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.IsMdiContainer = true;
             this.Name = "FrmPaymentAdd";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Dodaj płatność / pakiet";
             this.Load += new System.EventHandler(this.FrmPaymentAdd_Load);
             this.kryptonPanelEx1.ResumeLayout(false);

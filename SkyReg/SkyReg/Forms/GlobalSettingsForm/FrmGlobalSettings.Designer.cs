@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGlobalSettings));
             this.kryptonPanelEx1 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.kryptonHeaderGroup4 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.kryptonHeaderGroup2 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
-            this.btnGenerate = new System.Windows.Forms.Button();
+            this.btn_Generate = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.chkWednesday = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.chkSunday = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
@@ -45,28 +46,33 @@
             this.chkTuesday = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.kryptonLabel6 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.chkMonday = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.numCamPrice = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.numDaysExpiredCert = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtAirportId = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.btnCloseSettings = new System.Windows.Forms.Button();
-            this.btnSaveSettings = new System.Windows.Forms.Button();
+            this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.kryptonHeaderGroup1 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
-            this.btnOperatorDelete = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.buttonSpecHeaderGroup1 = new ComponentFactory.Krypton.Toolkit.ButtonSpecHeaderGroup();
+            this.buttonSpecHeaderGroup2 = new ComponentFactory.Krypton.Toolkit.ButtonSpecHeaderGroup();
             this.grdOperators = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.btnOperatorAdd = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.headerGroupPaymentSet = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
+            this.btnHeader_Add = new ComponentFactory.Krypton.Toolkit.ButtonSpecHeaderGroup();
+            this.btnHeader_Delete = new ComponentFactory.Krypton.Toolkit.ButtonSpecHeaderGroup();
             this.grdPayment = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.btnPaymentsDelete = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnPaymentAdd = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonPanelEx1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup4.Panel)).BeginInit();
+            this.kryptonHeaderGroup4.Panel.SuspendLayout();
+            this.kryptonHeaderGroup4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2.Panel)).BeginInit();
             this.kryptonHeaderGroup2.Panel.SuspendLayout();
             this.kryptonHeaderGroup2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.kryptonPanelEx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).BeginInit();
             this.kryptonHeaderGroup1.Panel.SuspendLayout();
@@ -81,18 +87,8 @@
             // 
             // kryptonPanelEx1
             // 
-            this.kryptonPanelEx1.Controls.Add(this.pictureBox1);
-            this.kryptonPanelEx1.Controls.Add(this.kryptonHeaderGroup2);
-            this.kryptonPanelEx1.Controls.Add(this.kryptonLabel3);
-            this.kryptonPanelEx1.Controls.Add(this.numCamPrice);
-            this.kryptonPanelEx1.Controls.Add(this.numDaysExpiredCert);
-            this.kryptonPanelEx1.Controls.Add(this.kryptonLabel2);
-            this.kryptonPanelEx1.Controls.Add(this.txtAirportId);
-            this.kryptonPanelEx1.Controls.Add(this.kryptonLabel1);
-            this.kryptonPanelEx1.Controls.Add(this.btnCloseSettings);
-            this.kryptonPanelEx1.Controls.Add(this.btnSaveSettings);
-            this.kryptonPanelEx1.Controls.Add(this.kryptonHeaderGroup1);
-            this.kryptonPanelEx1.Controls.Add(this.headerGroupPaymentSet);
+            this.kryptonPanelEx1.Controls.Add(this.kryptonHeaderGroup4);
+            this.kryptonPanelEx1.Controls.Add(this.kryptonPanelEx2);
             this.kryptonPanelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonPanelEx1.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.kryptonPanelEx1.GradientToogleColors = false;
@@ -102,31 +98,44 @@
             this.kryptonPanelEx1.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanelEx1.Name = "kryptonPanelEx1";
             this.kryptonPanelEx1.PersistentColors = false;
-            this.kryptonPanelEx1.Size = new System.Drawing.Size(1001, 614);
+            this.kryptonPanelEx1.Size = new System.Drawing.Size(1552, 614);
             this.kryptonPanelEx1.TabIndex = 0;
             // 
-            // pictureBox1
+            // kryptonHeaderGroup4
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::SkyReg.Properties.Resources.Setting_VF1;
-            this.pictureBox1.Location = new System.Drawing.Point(637, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 16;
-            this.pictureBox1.TabStop = false;
+            this.kryptonHeaderGroup4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.kryptonHeaderGroup4.HeaderStylePrimary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Form;
+            this.kryptonHeaderGroup4.HeaderStyleSecondary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Primary;
+            this.kryptonHeaderGroup4.HeaderVisibleSecondary = false;
+            this.kryptonHeaderGroup4.Location = new System.Drawing.Point(968, 0);
+            this.kryptonHeaderGroup4.Name = "kryptonHeaderGroup4";
+            this.kryptonHeaderGroup4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Black;
+            // 
+            // kryptonHeaderGroup4.Panel
+            // 
+            this.kryptonHeaderGroup4.Panel.Controls.Add(this.kryptonHeaderGroup2);
+            this.kryptonHeaderGroup4.Panel.Controls.Add(this.pictureBox1);
+            this.kryptonHeaderGroup4.Panel.Controls.Add(this.kryptonLabel3);
+            this.kryptonHeaderGroup4.Panel.Controls.Add(this.numCamPrice);
+            this.kryptonHeaderGroup4.Panel.Controls.Add(this.numDaysExpiredCert);
+            this.kryptonHeaderGroup4.Panel.Controls.Add(this.kryptonLabel2);
+            this.kryptonHeaderGroup4.Panel.Controls.Add(this.txtAirportId);
+            this.kryptonHeaderGroup4.Panel.Controls.Add(this.kryptonLabel1);
+            this.kryptonHeaderGroup4.Size = new System.Drawing.Size(584, 614);
+            this.kryptonHeaderGroup4.TabIndex = 18;
+            this.kryptonHeaderGroup4.ValuesPrimary.Heading = "Pozostałe ustawienia";
+            this.kryptonHeaderGroup4.ValuesPrimary.Image = null;
             // 
             // kryptonHeaderGroup2
             // 
             this.kryptonHeaderGroup2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonHeaderGroup2.HeaderVisibleSecondary = false;
-            this.kryptonHeaderGroup2.Location = new System.Drawing.Point(535, 320);
+            this.kryptonHeaderGroup2.Location = new System.Drawing.Point(28, 133);
             this.kryptonHeaderGroup2.Name = "kryptonHeaderGroup2";
             // 
             // kryptonHeaderGroup2.Panel
             // 
-            this.kryptonHeaderGroup2.Panel.Controls.Add(this.btnGenerate);
+            this.kryptonHeaderGroup2.Panel.Controls.Add(this.btn_Generate);
             this.kryptonHeaderGroup2.Panel.Controls.Add(this.chkWednesday);
             this.kryptonHeaderGroup2.Panel.Controls.Add(this.chkSunday);
             this.kryptonHeaderGroup2.Panel.Controls.Add(this.kryptonLabel4);
@@ -140,18 +149,21 @@
             this.kryptonHeaderGroup2.Panel.Controls.Add(this.chkTuesday);
             this.kryptonHeaderGroup2.Panel.Controls.Add(this.kryptonLabel6);
             this.kryptonHeaderGroup2.Panel.Controls.Add(this.chkMonday);
-            this.kryptonHeaderGroup2.Size = new System.Drawing.Size(454, 251);
-            this.kryptonHeaderGroup2.TabIndex = 4;
+            this.kryptonHeaderGroup2.Size = new System.Drawing.Size(497, 427);
+            this.kryptonHeaderGroup2.TabIndex = 30;
             this.kryptonHeaderGroup2.ValuesPrimary.Heading = "Generator wylotów";
             // 
-            // btnGenerate
+            // btn_Generate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(374, 193);
-            this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(75, 23);
-            this.btnGenerate.TabIndex = 10;
-            this.btnGenerate.Text = "&Generuj";
-            this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btn_Generate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Generate.Location = new System.Drawing.Point(414, 348);
+            this.btn_Generate.Name = "btn_Generate";
+            this.btn_Generate.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btn_Generate.Size = new System.Drawing.Size(78, 25);
+            this.btn_Generate.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
+            this.btn_Generate.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btn_Generate.TabIndex = 0;
+            this.btn_Generate.Values.Text = "Generuj";
             // 
             // chkWednesday
             // 
@@ -273,206 +285,226 @@
             this.chkMonday.Text = "Poniedziałek";
             this.chkMonday.Values.Text = "Poniedziałek";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(438, 10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(133, 117);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 34;
+            this.pictureBox1.TabStop = false;
+            // 
             // kryptonLabel3
             // 
             this.kryptonLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonLabel3.Location = new System.Drawing.Point(627, 289);
+            this.kryptonLabel3.Location = new System.Drawing.Point(96, 84);
             this.kryptonLabel3.Name = "kryptonLabel3";
             this.kryptonLabel3.Size = new System.Drawing.Size(131, 20);
-            this.kryptonLabel3.TabIndex = 13;
+            this.kryptonLabel3.TabIndex = 33;
             this.kryptonLabel3.Values.Text = "Cena za montaż filmu:";
             // 
             // numCamPrice
             // 
             this.numCamPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.numCamPrice.DecimalPlaces = 2;
-            this.numCamPrice.Location = new System.Drawing.Point(764, 287);
+            this.numCamPrice.Location = new System.Drawing.Point(233, 82);
             this.numCamPrice.Name = "numCamPrice";
             this.numCamPrice.Size = new System.Drawing.Size(120, 22);
-            this.numCamPrice.TabIndex = 3;
+            this.numCamPrice.TabIndex = 29;
             this.numCamPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // numDaysExpiredCert
             // 
             this.numDaysExpiredCert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.numDaysExpiredCert.Location = new System.Drawing.Point(764, 259);
+            this.numDaysExpiredCert.Location = new System.Drawing.Point(233, 54);
             this.numDaysExpiredCert.Name = "numDaysExpiredCert";
             this.numDaysExpiredCert.Size = new System.Drawing.Size(120, 22);
-            this.numDaysExpiredCert.TabIndex = 2;
+            this.numDaysExpiredCert.TabIndex = 28;
             this.numDaysExpiredCert.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // kryptonLabel2
             // 
             this.kryptonLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonLabel2.Location = new System.Drawing.Point(546, 261);
+            this.kryptonLabel2.Location = new System.Drawing.Point(45, 56);
             this.kryptonLabel2.Name = "kryptonLabel2";
-            this.kryptonLabel2.Size = new System.Drawing.Size(212, 20);
-            this.kryptonLabel2.TabIndex = 10;
-            this.kryptonLabel2.Values.Text = "Ilość dni przed wygaśnięciem licencji:";
+            this.kryptonLabel2.Size = new System.Drawing.Size(182, 20);
+            this.kryptonLabel2.TabIndex = 32;
+            this.kryptonLabel2.Values.Text = "Okres wygaśnięcia licencji (dni):";
             // 
             // txtAirportId
             // 
             this.txtAirportId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAirportId.Location = new System.Drawing.Point(764, 230);
+            this.txtAirportId.Location = new System.Drawing.Point(233, 25);
             this.txtAirportId.Name = "txtAirportId";
-            this.txtAirportId.Size = new System.Drawing.Size(225, 23);
-            this.txtAirportId.TabIndex = 1;
+            this.txtAirportId.Size = new System.Drawing.Size(168, 20);
+            this.txtAirportId.TabIndex = 27;
             // 
             // kryptonLabel1
             // 
             this.kryptonLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonLabel1.Location = new System.Drawing.Point(637, 233);
+            this.kryptonLabel1.Location = new System.Drawing.Point(106, 28);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(121, 20);
-            this.kryptonLabel1.TabIndex = 8;
+            this.kryptonLabel1.TabIndex = 31;
             this.kryptonLabel1.Values.Text = "Oznaczenie lotniska:";
             // 
-            // btnCloseSettings
+            // kryptonPanelEx2
             // 
-            this.btnCloseSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCloseSettings.Location = new System.Drawing.Point(914, 579);
-            this.btnCloseSettings.Name = "btnCloseSettings";
-            this.btnCloseSettings.Size = new System.Drawing.Size(75, 23);
-            this.btnCloseSettings.TabIndex = 6;
-            this.btnCloseSettings.Text = "Z&amknij";
-            this.btnCloseSettings.UseVisualStyleBackColor = true;
-            this.btnCloseSettings.Click += new System.EventHandler(this.btnCloseSettings_Click);
-            // 
-            // btnSaveSettings
-            // 
-            this.btnSaveSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveSettings.Location = new System.Drawing.Point(833, 579);
-            this.btnSaveSettings.Name = "btnSaveSettings";
-            this.btnSaveSettings.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveSettings.TabIndex = 5;
-            this.btnSaveSettings.Text = "&Zapisz";
-            this.btnSaveSettings.UseVisualStyleBackColor = true;
-            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
+            this.kryptonPanelEx2.Controls.Add(this.kryptonHeaderGroup1);
+            this.kryptonPanelEx2.Controls.Add(this.headerGroupPaymentSet);
+            this.kryptonPanelEx2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.kryptonPanelEx2.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.kryptonPanelEx2.GradientToogleColors = false;
+            this.kryptonPanelEx2.GradientUseBlend = false;
+            this.kryptonPanelEx2.Image = null;
+            this.kryptonPanelEx2.ImageLocation = new System.Drawing.Point(4, 4);
+            this.kryptonPanelEx2.Location = new System.Drawing.Point(0, 0);
+            this.kryptonPanelEx2.Name = "kryptonPanelEx2";
+            this.kryptonPanelEx2.PersistentColors = false;
+            this.kryptonPanelEx2.Size = new System.Drawing.Size(968, 614);
+            this.kryptonPanelEx2.TabIndex = 17;
             // 
             // kryptonHeaderGroup1
             // 
-            this.kryptonHeaderGroup1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonHeaderGroup1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
+            this.kryptonHeaderGroup1.ButtonSpecs.AddRange(new ComponentFactory.Krypton.Toolkit.ButtonSpecHeaderGroup[] {
+            this.buttonSpecHeaderGroup1,
+            this.buttonSpecHeaderGroup2});
+            this.kryptonHeaderGroup1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.kryptonHeaderGroup1.HeaderStylePrimary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Form;
+            this.kryptonHeaderGroup1.HeaderStyleSecondary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Primary;
             this.kryptonHeaderGroup1.HeaderVisibleSecondary = false;
-            this.kryptonHeaderGroup1.Location = new System.Drawing.Point(3, 320);
+            this.kryptonHeaderGroup1.Location = new System.Drawing.Point(0, 310);
             this.kryptonHeaderGroup1.Name = "kryptonHeaderGroup1";
+            this.kryptonHeaderGroup1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Black;
             // 
             // kryptonHeaderGroup1.Panel
             // 
-            this.kryptonHeaderGroup1.Panel.Controls.Add(this.btnOperatorDelete);
             this.kryptonHeaderGroup1.Panel.Controls.Add(this.grdOperators);
-            this.kryptonHeaderGroup1.Panel.Controls.Add(this.btnOperatorAdd);
-            this.kryptonHeaderGroup1.Size = new System.Drawing.Size(526, 291);
-            this.kryptonHeaderGroup1.TabIndex = 5;
+            this.kryptonHeaderGroup1.Size = new System.Drawing.Size(968, 304);
+            this.kryptonHeaderGroup1.TabIndex = 7;
             this.kryptonHeaderGroup1.ValuesPrimary.Heading = "Operatorzy";
+            this.kryptonHeaderGroup1.ValuesPrimary.Image = null;
             // 
-            // btnOperatorDelete
+            // buttonSpecHeaderGroup1
             // 
-            this.btnOperatorDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOperatorDelete.Location = new System.Drawing.Point(419, 226);
-            this.btnOperatorDelete.Name = "btnOperatorDelete";
-            this.btnOperatorDelete.Size = new System.Drawing.Size(90, 25);
-            this.btnOperatorDelete.TabIndex = 2;
-            this.btnOperatorDelete.Values.Text = "Usuń";
-            this.btnOperatorDelete.Click += new System.EventHandler(this.btnOperatorDelete_Click);
+            this.buttonSpecHeaderGroup1.Image = ((System.Drawing.Image)(resources.GetObject("buttonSpecHeaderGroup1.Image")));
+            this.buttonSpecHeaderGroup1.Text = "Dodaj";
+            this.buttonSpecHeaderGroup1.UniqueName = "3791ADC79ED9406FABA277FB8CF89149";
+            // 
+            // buttonSpecHeaderGroup2
+            // 
+            this.buttonSpecHeaderGroup2.Image = ((System.Drawing.Image)(resources.GetObject("buttonSpecHeaderGroup2.Image")));
+            this.buttonSpecHeaderGroup2.Text = "Usuń";
+            this.buttonSpecHeaderGroup2.UniqueName = "798591BE76BC404FE8A7DF1EC712C0B1";
             // 
             // grdOperators
             // 
+            this.grdOperators.AllowUserToAddRows = false;
+            this.grdOperators.AllowUserToDeleteRows = false;
             this.grdOperators.AllowUserToResizeRows = false;
-            this.grdOperators.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grdOperators.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdOperators.Location = new System.Drawing.Point(3, 3);
+            this.grdOperators.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.grdOperators.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdOperators.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdOperators.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.grdOperators.Location = new System.Drawing.Point(0, 0);
+            this.grdOperators.MultiSelect = false;
             this.grdOperators.Name = "grdOperators";
-            this.grdOperators.Size = new System.Drawing.Size(518, 217);
-            this.grdOperators.TabIndex = 0;
-            this.grdOperators.DataSourceChanged += new System.EventHandler(this.grdOperators_DataSourceChanged);
-            // 
-            // btnOperatorAdd
-            // 
-            this.btnOperatorAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOperatorAdd.Location = new System.Drawing.Point(323, 226);
-            this.btnOperatorAdd.Name = "btnOperatorAdd";
-            this.btnOperatorAdd.Size = new System.Drawing.Size(90, 25);
-            this.btnOperatorAdd.TabIndex = 1;
-            this.btnOperatorAdd.Values.Text = "Dodaj";
-            this.btnOperatorAdd.Click += new System.EventHandler(this.btnOperatorAdd_Click);
+            this.grdOperators.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleBlue;
+            this.grdOperators.ReadOnly = true;
+            this.grdOperators.RowHeadersVisible = false;
+            this.grdOperators.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.grdOperators.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdOperators.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdOperators.ShowRowErrors = false;
+            this.grdOperators.Size = new System.Drawing.Size(966, 281);
+            this.grdOperators.TabIndex = 50;
             // 
             // headerGroupPaymentSet
             // 
-            this.headerGroupPaymentSet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.headerGroupPaymentSet.ButtonSpecs.AddRange(new ComponentFactory.Krypton.Toolkit.ButtonSpecHeaderGroup[] {
+            this.btnHeader_Add,
+            this.btnHeader_Delete});
+            this.headerGroupPaymentSet.Dock = System.Windows.Forms.DockStyle.Top;
+            this.headerGroupPaymentSet.HeaderStylePrimary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Form;
+            this.headerGroupPaymentSet.HeaderStyleSecondary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Primary;
             this.headerGroupPaymentSet.HeaderVisibleSecondary = false;
-            this.headerGroupPaymentSet.Location = new System.Drawing.Point(3, 3);
+            this.headerGroupPaymentSet.Location = new System.Drawing.Point(0, 0);
             this.headerGroupPaymentSet.Name = "headerGroupPaymentSet";
+            this.headerGroupPaymentSet.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Black;
             // 
             // headerGroupPaymentSet.Panel
             // 
             this.headerGroupPaymentSet.Panel.Controls.Add(this.grdPayment);
-            this.headerGroupPaymentSet.Panel.Controls.Add(this.btnPaymentsDelete);
-            this.headerGroupPaymentSet.Panel.Controls.Add(this.btnPaymentAdd);
-            this.headerGroupPaymentSet.Size = new System.Drawing.Size(526, 311);
-            this.headerGroupPaymentSet.TabIndex = 0;
+            this.headerGroupPaymentSet.Size = new System.Drawing.Size(968, 310);
+            this.headerGroupPaymentSet.TabIndex = 6;
             this.headerGroupPaymentSet.ValuesPrimary.Heading = "Typy płatności / pakiety";
+            this.headerGroupPaymentSet.ValuesPrimary.Image = null;
+            // 
+            // btnHeader_Add
+            // 
+            this.btnHeader_Add.Image = ((System.Drawing.Image)(resources.GetObject("btnHeader_Add.Image")));
+            this.btnHeader_Add.Text = "Dodaj";
+            this.btnHeader_Add.UniqueName = "3791ADC79ED9406FABA277FB8CF89149";
+            this.btnHeader_Add.Click += new System.EventHandler(this.btnHeader_Add_Click);
+            // 
+            // btnHeader_Delete
+            // 
+            this.btnHeader_Delete.Image = ((System.Drawing.Image)(resources.GetObject("btnHeader_Delete.Image")));
+            this.btnHeader_Delete.Text = "Usuń";
+            this.btnHeader_Delete.UniqueName = "798591BE76BC404FE8A7DF1EC712C0B1";
             // 
             // grdPayment
             // 
+            this.grdPayment.AllowUserToAddRows = false;
+            this.grdPayment.AllowUserToDeleteRows = false;
             this.grdPayment.AllowUserToResizeRows = false;
-            this.grdPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grdPayment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdPayment.Location = new System.Drawing.Point(3, 3);
+            this.grdPayment.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.grdPayment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdPayment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdPayment.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.grdPayment.Location = new System.Drawing.Point(0, 0);
+            this.grdPayment.MultiSelect = false;
             this.grdPayment.Name = "grdPayment";
-            this.grdPayment.Size = new System.Drawing.Size(518, 242);
-            this.grdPayment.TabIndex = 0;
-            // 
-            // btnPaymentsDelete
-            // 
-            this.btnPaymentsDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPaymentsDelete.Location = new System.Drawing.Point(419, 250);
-            this.btnPaymentsDelete.Name = "btnPaymentsDelete";
-            this.btnPaymentsDelete.Size = new System.Drawing.Size(90, 25);
-            this.btnPaymentsDelete.TabIndex = 1;
-            this.btnPaymentsDelete.Values.Text = "Usuń";
-            this.btnPaymentsDelete.Click += new System.EventHandler(this.btnPaymentsDelete_Click);
-            // 
-            // btnPaymentAdd
-            // 
-            this.btnPaymentAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPaymentAdd.Location = new System.Drawing.Point(323, 250);
-            this.btnPaymentAdd.Name = "btnPaymentAdd";
-            this.btnPaymentAdd.Size = new System.Drawing.Size(90, 25);
-            this.btnPaymentAdd.TabIndex = 0;
-            this.btnPaymentAdd.Values.Text = "Dodaj";
-            this.btnPaymentAdd.Click += new System.EventHandler(this.btnPaymentAdd_Click);
+            this.grdPayment.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleBlue;
+            this.grdPayment.ReadOnly = true;
+            this.grdPayment.RowHeadersVisible = false;
+            this.grdPayment.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.grdPayment.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdPayment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdPayment.ShowRowErrors = false;
+            this.grdPayment.Size = new System.Drawing.Size(966, 287);
+            this.grdPayment.TabIndex = 51;
             // 
             // FrmGlobalSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1001, 614);
+            this.ClientSize = new System.Drawing.Size(1552, 614);
             this.Controls.Add(this.kryptonPanelEx1);
-            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.ImeMode = System.Windows.Forms.ImeMode.On;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1000, 650);
             this.Name = "FrmGlobalSettings";
             this.ShowIcon = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Ustawienia";
-            this.Load += new System.EventHandler(this.FrmGlobalSettings_Load);
-            this.Shown += new System.EventHandler(this.FrmGlobalSettings_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
-            this.kryptonPanelEx1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup4.Panel)).EndInit();
+            this.kryptonHeaderGroup4.Panel.ResumeLayout(false);
+            this.kryptonHeaderGroup4.Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup4)).EndInit();
+            this.kryptonHeaderGroup4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2.Panel)).EndInit();
             this.kryptonHeaderGroup2.Panel.ResumeLayout(false);
             this.kryptonHeaderGroup2.Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2)).EndInit();
             this.kryptonHeaderGroup2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.kryptonPanelEx2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).EndInit();
             this.kryptonHeaderGroup1.Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).EndInit();
@@ -490,37 +522,37 @@
         #endregion
 
         private AC.ExtendedRenderer.Toolkit.KryptonPanelEx kryptonPanelEx1;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView grdPayment;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnPaymentsDelete;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnPaymentAdd;
-        private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup headerGroupPaymentSet;
+        private AC.ExtendedRenderer.Toolkit.KryptonPanelEx kryptonPanelEx2;
         private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup kryptonHeaderGroup1;
+        private ComponentFactory.Krypton.Toolkit.ButtonSpecHeaderGroup buttonSpecHeaderGroup1;
+        private ComponentFactory.Krypton.Toolkit.ButtonSpecHeaderGroup buttonSpecHeaderGroup2;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView grdOperators;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnOperatorDelete;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnOperatorAdd;
-        private System.Windows.Forms.Button btnGenerate;
-        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkSunday;
-        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkSaturday;
-        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkFriday;
-        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox cmbThursday;
+        private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup headerGroupPaymentSet;
+        private ComponentFactory.Krypton.Toolkit.ButtonSpecHeaderGroup btnHeader_Add;
+        private ComponentFactory.Krypton.Toolkit.ButtonSpecHeaderGroup btnHeader_Delete;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView grdPayment;
+        private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup kryptonHeaderGroup4;
+        private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup kryptonHeaderGroup2;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_Generate;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkWednesday;
-        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkTuesday;
-        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkMonday;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
-        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numFlightsPerDay;
-        private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker dateTermTo;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel5;
-        private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker dateTermSince;
+        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkSunday;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel4;
+        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkSaturday;
+        private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker dateTermSince;
+        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkFriday;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel5;
+        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox cmbThursday;
+        private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker dateTermTo;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numFlightsPerDay;
+        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkTuesday;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
+        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkMonday;
+        private System.Windows.Forms.PictureBox pictureBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
         private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numCamPrice;
         private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numDaysExpiredCert;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtAirportId;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
-        private System.Windows.Forms.Button btnCloseSettings;
-        private System.Windows.Forms.Button btnSaveSettings;
-        private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup kryptonHeaderGroup2;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

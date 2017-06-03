@@ -23,21 +23,15 @@ namespace SkyReg
             switch (outlookBar1.Buttons[outlookBar1.SelectedIndex].BuddyPage1)
             {
                 case "Settings":
-                    if (FrmGlobalSettings == null)
-                    {
                         FrmGlobalSettings = FormsOpened<FrmGlobalSettings>.IsOpened(FrmGlobalSettings);
                         FrmGlobalSettings.MdiParent = this;
                         FrmGlobalSettings.WindowState = FormWindowState.Maximized;
                         FrmGlobalSettings.FormClosed += FrmGlobalSettings_FormClosed;
-                        FrmGlobalSettings.BringToFront();
-                        FrmGlobalSettings.TopLevel = false;
                         FrmGlobalSettings.Show();
+                        FrmGlobalSettings.BringToFront();
                         FrmGlobalSettings.Activate();
-                    }
                     break;
                 case "Airplanes":
-                    if (AirplanesForm == null)
-                    {
                         AirplanesForm = FormsOpened<AirplanesForm>.IsOpened(AirplanesForm);
                         AirplanesForm.MdiParent = this;
                         AirplanesForm.WindowState = FormWindowState.Maximized;
@@ -46,12 +40,8 @@ namespace SkyReg
                         AirplanesForm.TopLevel = false;
                         AirplanesForm.Show();
                         AirplanesForm.Activate();
-
-                    }
                     break;
                 case "Parachutes":
-                    if (ParachutesForm == null)
-                    {
                         ParachutesForm = FormsOpened<ParachutesForm>.IsOpened(ParachutesForm);
                         ParachutesForm.MdiParent = this;
                         ParachutesForm.WindowState = FormWindowState.Maximized;
@@ -60,11 +50,8 @@ namespace SkyReg
                         ParachutesForm.TopLevel = false;
                         ParachutesForm.Show();
                         ParachutesForm.Activate();
-                    }
                     break;
                 case "Jumpers_types":
-                    if (UsersTypesForm == null)
-                    {
                         UsersTypesForm = FormsOpened<UsersTypesForm>.IsOpened(UsersTypesForm);
                         UsersTypesForm.MdiParent = this;
                         UsersTypesForm.WindowState = FormWindowState.Maximized;
@@ -73,11 +60,8 @@ namespace SkyReg
                         UsersTypesForm.TopLevel = false;
                         UsersTypesForm.Show();
                         UsersTypesForm.Activate();
-                    }
                     break;
                 case "Jumpers":
-                    if (UsersForm == null)
-                    {
                         UsersForm = FormsOpened<UsersForm>.IsOpened(UsersForm);
                         UsersForm.MdiParent = this;
                         UsersForm.WindowState = FormWindowState.Maximized;
@@ -86,7 +70,6 @@ namespace SkyReg
                         UsersForm.TopLevel = false;
                         UsersForm.Show();
                         UsersForm.Activate();
-                    }
                     break;
             }
         }

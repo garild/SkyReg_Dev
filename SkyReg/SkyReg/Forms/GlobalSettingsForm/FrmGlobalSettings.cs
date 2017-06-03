@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DataLayer;
+using SkyReg.Common.Extensions;
 
 namespace SkyReg
 {
@@ -18,20 +19,16 @@ namespace SkyReg
         public FrmGlobalSettings()
         {
             InitializeComponent();
-
+            PaymentsTypesLoad();
+            grdPaymentViewSettings();
+            OperatorsLoad();
+            loadGlobalSettingsFields();
+            grdOperatorsViewSettings();
         }
 
         #endregion
 
         #region Metody prywatne
-
-        private void childSizeToParentSizeSet()
-        {
-            Size s = new Size();
-            s.Height = this.Parent.Size.Height - 10;
-            s.Width = this.Parent.Size.Width - 10;
-            this.Size = s;
-        }
 
         private void loadGlobalSettingsFields()
         {
@@ -202,12 +199,9 @@ namespace SkyReg
 
         private void PaymentsSetAdd()
         {
-            FrmPaymentAdd fpa = new FrmPaymentAdd();
-            //fpa.MdiParent = this.ParentForm;
-            ////TODO sprawdzać czy nie ma wywołanego tego okna
-            //fpa.Size = new Size(250, 350);
-            fpa.FormaAccept += RefreshPaymentSetGrid;
-            fpa.Show();
+            FrmPaymentAdd = FormsOpened<FrmPaymentAdd>.IsOpened(FrmPaymentAdd);
+            FrmPaymentAdd.TopMost = true;
+            FrmPaymentAdd.ShowDialog();
         }
 
         private void RefreshPaymentSetGrid(object sender, EventArgs e)
@@ -249,20 +243,6 @@ namespace SkyReg
 
         #region Zdarzenia
 
-        private void FrmGlobalSettings_Shown(object sender, EventArgs e)
-        {
-            PaymentsTypesLoad();
-            grdPaymentViewSettings();
-            OperatorsLoad();
-            
-            loadGlobalSettingsFields();
-        }
-
-        private void FrmGlobalSettings_Load(object sender, EventArgs e)
-        {
-            childSizeToParentSizeSet();
-        }
-
         private void btnOperatorDelete_Click(object sender, EventArgs e)
         {
             OperatorDelete();
@@ -297,11 +277,24 @@ namespace SkyReg
             foa.Show();
         }
 
+
         #endregion
 
-        private void grdOperators_DataSourceChanged(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            grdOperatorsViewSettings();
+            this.Close();
         }
+
+        private void btnHeader_Add_Click(object sender, EventArgs e)
+        {
+            PaymentsSetAdd();
+        }
+
+        #region Form
+
+        private FrmPaymentAdd FrmPaymentAdd = null;
+
+        #endregion
+
     }
 }

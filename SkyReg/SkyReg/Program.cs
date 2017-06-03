@@ -3,6 +3,7 @@ using SkyReg.MainForm;
 using SkyReg.Utils;
 using System;
 using System.Windows.Forms;
+using SkyReg.Common.Extensions;
 
 namespace SkyReg
 {
@@ -35,7 +36,8 @@ namespace SkyReg
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     frm.Close();
-                    Application.Run(new FrmMain());
+                    FrmMain = FormsOpened<FrmMain>.IsOpened(FrmMain);
+                    Application.Run(FrmMain);
                     
                 }
                 else
@@ -52,6 +54,8 @@ namespace SkyReg
                 Application.ExitThread();
         }
 
+
+        public static FrmMain FrmMain = null;
         //private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         //{
         //    //ExceptionLogger.UnhandledException(e, "Program - Main()");

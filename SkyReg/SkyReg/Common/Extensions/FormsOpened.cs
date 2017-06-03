@@ -10,7 +10,7 @@ namespace SkyReg.Common.Extensions
         public static TFrom IsOpened(TFrom form)
         {
             if (form == default(TFrom))
-                return new TFrom();
+                return Activator.CreateInstance<TFrom>();
             return form;
         }
     }
