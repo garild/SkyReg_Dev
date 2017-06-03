@@ -15,6 +15,8 @@ using System.IO;
 using System.Xml.Serialization;
 using SkyReg.Extensions;
 using SkyReg.Utils;
+using SkyReg.Common.FluentValidator;
+using FluentValidation.Results;
 
 namespace SkyReg.MainForm
 {
@@ -23,7 +25,7 @@ namespace SkyReg.MainForm
         private LoginRepository _loginRepository = new LoginRepository();
         private readonly string documentsPath = Environment.GetFolderPath((Environment.SpecialFolder.LocalApplicationData)) + @"\SkyReg";
         private ErrorProvider validateControl = new ErrorProvider();
-
+        private ValidationResult _validator = null;
         public FrmLogin()
         {
             InitializeComponent();
@@ -32,7 +34,6 @@ namespace SkyReg.MainForm
 
         private bool ValidateControls()
         {
-
             bool result = true;
             validateControl.Clear();
             validateControl.BlinkRate = 250;
@@ -99,6 +100,8 @@ namespace SkyReg.MainForm
 
             try
             {
+                var us = new User();
+                _validator = new UserValidator().Validate(us);
 
                 if (ValidateControls())
                 {

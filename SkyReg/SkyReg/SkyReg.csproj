@@ -47,6 +47,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Common\AppData\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=6.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.2.0.0\lib\portable-net40+sl50+wp80+win8+wpa81\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -61,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Extensions\FormsOpened.cs" />
+    <Compile Include="Common\FluentValidator\UserValidator.cs" />
     <Compile Include="Forms\AirplanesForm\AirplanesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,16 +224,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Common\AppData\AC.ExtendedRenderer.Toolkit.dll" />
-    <Content Include="Common\AppData\airplane.png" />
     <Content Include="Common\AppData\ComponentFactory.Krypton.Toolkit.dll" />
     <Content Include="Common\AppData\EntityFramework.dll" />
     <Content Include="Common\AppData\EntityFramework.SqlServer.dll" />
-    <Content Include="Common\AppData\parachute.png" />
-    <Content Include="Common\AppData\parachute2.png" />
-    <Content Include="Common\AppData\Setting VF1.png" />
-    <Content Include="Common\AppData\skydiver.png" />
     <Content Include="Common\AppData\SkyReg.ico" />
-    <Content Include="Common\AppData\userstypes.png" />
     <Content Include="Common\Resources\access.png" />
     <Content Include="Common\Resources\access1.png" />
     <Content Include="Common\Resources\add %282%29.png" />
@@ -329,6 +328,9 @@
   <ItemGroup>
     <Folder Include="BLL\Repository\" />
     <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,16 +9,13 @@
 
 namespace DataLayer
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class Parachute
     {
         public int Id { get; set; }
         public string IdNr { get; set; }
         public string Name { get; set; }
-        public Nullable<decimal> RentValue { get; set; }
-        public Nullable<decimal> AssemblyValue { get; set; }
+        public decimal? RentValue { get; set; }
+        public decimal? AssemblyValue { get; set; }
     
         public virtual User User { get; set; }
         public virtual FlightsElem FlightsElem { get; set; }
