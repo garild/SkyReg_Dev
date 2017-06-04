@@ -23,11 +23,16 @@ namespace SkyReg.MainForm
     public partial class FrmLogin : KryptonForm
     {
         private LoginRepository _loginRepository = new LoginRepository();
-        private readonly string documentsPath = Environment.GetFolderPath((Environment.SpecialFolder.LocalApplicationData)) + @"\SkyReg";
+     
         private ErrorProvider validateControl = new ErrorProvider();
         private ValidationResult _validator = null;
+
         public FrmLogin()
         {
+            SkyRegUser.GlobalPathFile = Environment.GetFolderPath((Environment.SpecialFolder.LocalApplicationData)) + @"\SkyReg";
+            SkyRegUser.DatabaseConfigFile = string.Format("{0}\\DatabaseConfig.xml", SkyRegUser.GlobalPathFile);
+            SkyRegUser.UserConfigFile = string.Format("{0}\\UserConfig.xml", SkyRegUser.GlobalPathFile);
+
             InitializeComponent();
             LoadSettings();
         }
@@ -153,6 +158,23 @@ namespace SkyReg.MainForm
         {
             if(e.KeyCode == Keys.Enter)
                 LogIn();
+        }
+
+        private void CheckDatabaseConfig()
+        {
+            if (!File.Exists(SkyRegUser.DatabaseConfigFile))
+            {
+                KryptonMessageBox.Show("Nie znaleziono pliku kofiguracyjnego do bazy danych. Proszę skofigurować base SQL!", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+        private void CreateSkyregFolder()
+        {
+            if (!Directory.Exists(SkyRegUser.GlobalPathFile))
+            {
+                Directory.CreateDirectory(SkyRegUser.GlobalPathFile);
+            }
+
         }
     }
 }

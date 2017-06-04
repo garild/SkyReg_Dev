@@ -85,6 +85,12 @@
     <Compile Include="Common\Enums\Enum_paymentsTypes.cs" />
     <Compile Include="Common\Extensions\BaseModel.cs" />
     <Compile Include="FirstTimeRun.cs" />
+    <Compile Include="Forms\DatabaseConfiguration\FrmDataBaseConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DatabaseConfiguration\FrmDataBaseConfig.Designer.cs">
+      <DependentUpon>FrmDataBaseConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\GlobalSettingsForm\FrmGlobalSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AirplanesForm\AirPlanesFormAddEdit.resx">
       <DependentUpon>AirPlanesFormAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DatabaseConfiguration\FrmDataBaseConfig.resx">
+      <DependentUpon>FrmDataBaseConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GlobalSettingsForm\FrmGlobalSettings.resx">
       <DependentUpon>FrmGlobalSettings.cs</DependentUpon>
@@ -315,6 +324,8 @@
     <Content Include="Common\Resources\version.png" />
     <Content Include="Common\Resources\versions.png" />
     <Content Include="Common\Resources\view.png" />
+    <None Include="Resources\Create_DataBase.sql" />
+    <None Include="Resources\dlmodel.edmx.sql" />
     <None Include="Common\Resources\logo_opacity.png" />
     <None Include="Common\Resources\logo_.png" />
     <None Include="Common\Resources\Login.png" />
