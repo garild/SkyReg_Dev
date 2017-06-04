@@ -20,7 +20,7 @@ namespace SkyReg
 
         private void UsersTypesForm_Load(object sender, EventArgs e)
         {
-            ParentFormSizeFromParentsWorkSpaceSize();
+            //ParentFormSizeFromParentsWorkSpaceSize();
         }
 
         private void ParentFormSizeFromParentsWorkSpaceSize()

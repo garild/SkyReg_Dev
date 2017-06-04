@@ -102,7 +102,7 @@
             // kryptonLabel1
             // 
             this.kryptonLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonLabel1.Location = new System.Drawing.Point(923, 289);
+            this.kryptonLabel1.Location = new System.Drawing.Point(897, 249);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(211, 84);
             this.kryptonLabel1.TabIndex = 2;
@@ -128,7 +128,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(897, 16);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(250, 258);
+            this.pictureBox1.Size = new System.Drawing.Size(250, 200);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -199,7 +199,6 @@
             this.ClientSize = new System.Drawing.Size(1160, 574);
             this.Controls.Add(this.kryptonPanelEx2);
             this.Controls.Add(this.kryptonPanelEx1);
-            this.MaximizeBox = false;
             this.Name = "UsersTypesForm";
             this.Text = "Typy skoczków";
             this.Load += new System.EventHandler(this.UsersTypesForm_Load);

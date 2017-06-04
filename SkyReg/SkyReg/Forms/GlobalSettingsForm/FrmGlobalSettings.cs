@@ -200,6 +200,7 @@ namespace SkyReg
         private void PaymentsSetAdd()
         {
             FrmPaymentAdd = FormsOpened<FrmPaymentAdd>.IsOpened(FrmPaymentAdd);
+            FrmPaymentAdd.FormaAccept += RefreshPaymentSetGrid;
             FrmPaymentAdd.TopMost = true;
             FrmPaymentAdd.ShowDialog();
         }

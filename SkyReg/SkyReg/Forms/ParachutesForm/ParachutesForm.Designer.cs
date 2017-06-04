@@ -143,7 +143,7 @@
             // kryptonLabel1
             // 
             this.kryptonLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonLabel1.Location = new System.Drawing.Point(772, 266);
+            this.kryptonLabel1.Location = new System.Drawing.Point(752, 202);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(213, 116);
             this.kryptonLabel1.TabIndex = 2;
@@ -168,7 +168,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(752, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(250, 248);
+            this.pictureBox1.Size = new System.Drawing.Size(250, 178);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -180,7 +180,6 @@
             this.ClientSize = new System.Drawing.Size(1015, 559);
             this.Controls.Add(this.kryptonPanelEx2);
             this.Controls.Add(this.kryptonHeaderGroup1);
-            this.MaximizeBox = false;
             this.Name = "ParachutesForm";
             this.Text = "Spadochrony";
             this.Load += new System.EventHandler(this.ParachutesForm_Load);

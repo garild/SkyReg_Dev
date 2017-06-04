@@ -135,7 +135,7 @@ namespace SkyReg
             if( DoValitate() == true)
             {
                 AddPymentSet();
-                FormaAccept.Invoke(this, null);
+                FormaAccept.Invoke(null, null);
                 this.Close();
 
             }

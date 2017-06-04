@@ -201,7 +201,6 @@
             this.ClientSize = new System.Drawing.Size(943, 518);
             this.Controls.Add(this.kryptonPanelEx2);
             this.Controls.Add(this.kryptonPanelEx1);
-            this.MaximizeBox = false;
             this.Name = "AirplanesForm";
             this.Text = "AirplanesForm";
             this.Load += new System.EventHandler(this.AirplanesForm_Load);

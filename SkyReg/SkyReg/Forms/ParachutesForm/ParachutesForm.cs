@@ -77,7 +77,7 @@ namespace SkyReg
                         Name = p.Name,
                         AssemblyValue = p.AssemblyValue.Value,
                         RentValue = p.RentValue.Value,
-                        OwnerName = p.User != null ? $"{p.User.SurName} {p.User.FirstName}" : string.Empty,
+                        OwnerName = p.User != null ? p.User.SurName + " " + p.User.FirstName : string.Empty,
                         UserId = p.User != null ? p.User.Id : -1
                     })
                     .OrderBy(p => p.IdNr)
@@ -92,7 +92,7 @@ namespace SkyReg
 
         private void ParachutesForm_Load(object sender, EventArgs e)
         {
-            ParentFormSizeFromParentsWorkSpaceSize();
+            //ParentFormSizeFromParentsWorkSpaceSize();
         }
 
         private void ParachutesForm_Shown(object sender, EventArgs e)
