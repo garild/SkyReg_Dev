@@ -34,6 +34,7 @@
             this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtUserName = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
+            this.txtServer = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtPassword = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
@@ -45,7 +46,6 @@
             this.btGenerateDataBase = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.StyleManager = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.kryptonPanel3 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
-            this.txtServer = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -55,7 +55,7 @@
             // 
             // progresBarDB
             // 
-            this.progresBarDB.Location = new System.Drawing.Point(-3, 162);
+            this.progresBarDB.Location = new System.Drawing.Point(0, 128);
             this.progresBarDB.Name = "progresBarDB";
             this.progresBarDB.Size = new System.Drawing.Size(472, 10);
             this.progresBarDB.TabIndex = 25;
@@ -80,6 +80,7 @@
             // 
             // kryptonPanel1
             // 
+            this.kryptonPanel1.Controls.Add(this.progresBarDB);
             this.kryptonPanel1.Controls.Add(this.txtServer);
             this.kryptonPanel1.Controls.Add(this.kryptonLabel4);
             this.kryptonPanel1.Controls.Add(this.txtUserName);
@@ -92,9 +93,17 @@
             this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.kryptonPanel1.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanel1.Name = "kryptonPanel1";
-            this.kryptonPanel1.Size = new System.Drawing.Size(469, 161);
+            this.kryptonPanel1.Size = new System.Drawing.Size(469, 139);
             this.kryptonPanel1.StateNormal.Color1 = System.Drawing.SystemColors.WindowFrame;
             this.kryptonPanel1.TabIndex = 14;
+            // 
+            // txtServer
+            // 
+            this.txtServer.Location = new System.Drawing.Point(244, 18);
+            this.txtServer.MaxLength = 80;
+            this.txtServer.Name = "txtServer";
+            this.txtServer.Size = new System.Drawing.Size(213, 20);
+            this.txtServer.TabIndex = 12;
             // 
             // kryptonLabel1
             // 
@@ -165,7 +174,9 @@
             this.btnSaveCfg.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
             this.btnSaveCfg.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnSaveCfg.TabIndex = 5;
+            this.btnSaveCfg.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveCfg.Values.Image")));
             this.btnSaveCfg.Values.Text = "Zapisz";
+            this.btnSaveCfg.Click += new System.EventHandler(this.btnSaveCfg_Click);
             // 
             // btnClose
             // 
@@ -178,7 +189,9 @@
             this.btnClose.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
             this.btnClose.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnClose.TabIndex = 5;
+            this.btnClose.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Values.Image")));
             this.btnClose.Values.Text = "Zamknij";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btGenerateDataBase
             // 
@@ -189,7 +202,9 @@
             this.btGenerateDataBase.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
             this.btGenerateDataBase.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btGenerateDataBase.TabIndex = 4;
+            this.btGenerateDataBase.Values.Image = ((System.Drawing.Image)(resources.GetObject("btGenerateDataBase.Values.Image")));
             this.btGenerateDataBase.Values.Text = "Generuj Bazę";
+            this.btGenerateDataBase.Click += new System.EventHandler(this.btGenerateDataBase_Click);
             // 
             // StyleManager
             // 
@@ -209,27 +224,18 @@
             this.kryptonPanel3.Controls.Add(this.btnClose);
             this.kryptonPanel3.Controls.Add(this.btGenerateDataBase);
             this.kryptonPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.kryptonPanel3.Location = new System.Drawing.Point(0, 172);
+            this.kryptonPanel3.Location = new System.Drawing.Point(0, 136);
             this.kryptonPanel3.Name = "kryptonPanel3";
             this.kryptonPanel3.Size = new System.Drawing.Size(469, 37);
             this.kryptonPanel3.StateCommon.Color1 = System.Drawing.SystemColors.ActiveCaption;
             this.kryptonPanel3.StateNormal.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.kryptonPanel3.TabIndex = 15;
             // 
-            // txtServer
-            // 
-            this.txtServer.Location = new System.Drawing.Point(244, 18);
-            this.txtServer.MaxLength = 80;
-            this.txtServer.Name = "txtServer";
-            this.txtServer.Size = new System.Drawing.Size(213, 20);
-            this.txtServer.TabIndex = 12;
-            // 
             // FrmDataBaseConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 209);
-            this.Controls.Add(this.progresBarDB);
+            this.ClientSize = new System.Drawing.Size(469, 173);
             this.Controls.Add(this.kryptonPanel1);
             this.Controls.Add(this.kryptonPanel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;

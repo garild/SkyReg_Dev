@@ -31,7 +31,7 @@ namespace SkyReg
 
                // AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
                 Application.ApplicationExit += Application_ApplicationExit;
-                FirstTimeRun.CheckAndAdd();
+                
                 FrmLogin frm = new FrmLogin();
                 if (frm.ShowDialog() == DialogResult.OK)
                 {

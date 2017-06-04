@@ -68,6 +68,7 @@ namespace SkyReg
                 //usr2.FirstName = "Admin2";
                 //usr2.SurName = "Admin2";
                 //var dt = _contextUser.Add(usr2);
+
             }
         }
     }

@@ -42,6 +42,8 @@ namespace SkyReg.Forms.DatabaseConfiguration
             this.StyleManager.GlobalStrings.Retry = "Próbuj ponownie";
             this.StyleManager.GlobalStrings.Today = "Dzisiaj";
             this.StyleManager.GlobalStrings.Yes = "Tak";
+
+            LoadDBSettings();
         }
 
         #endregion
@@ -51,12 +53,6 @@ namespace SkyReg.Forms.DatabaseConfiguration
         private void btnSaveCfg_Click(object sender, EventArgs e)
         {
             SaveConfig();
-        }
-
-        private void FrmDataBaseConfig_Load(object sender, EventArgs e)
-        {
-
-            LoadDBSettings();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -74,23 +70,33 @@ namespace SkyReg.Forms.DatabaseConfiguration
             {
                 Directory.CreateDirectory(SkyRegUser.GlobalPathFile);
             }
-            TextReader tr = new StreamReader(SkyRegUser.DatabaseConfigFile);
+            if (File.Exists(SkyRegUser.DatabaseConfigFile))
+            {
+                TextReader tr = new StreamReader(SkyRegUser.DatabaseConfigFile);
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load(SkyRegUser.DatabaseConfigFile);
-            XmlSerializer deserializer;
+                XmlDocument doc = new XmlDocument();
+                doc.Load(SkyRegUser.DatabaseConfigFile);
+                XmlSerializer deserializer;
 
-            //odczyt ustawień z nowej wersji pliku
-            ConfigSettings = new DatabaseAccess();
-            deserializer = new XmlSerializer(ConfigSettings.GetType());
-            ConfigSettings = ((DatabaseAccess)deserializer.Deserialize(tr));
-            txtDatabase.Text = ConfigSettings.DataBaseName;
-            txtServer.Text = ConfigSettings.ServerName;
-            txtUserName.Text = ConfigSettings.User.DecryptString();
-            txtPassword.Text = ConfigSettings.Password.DecryptString();
-            tr.Close();
+                //odczyt ustawień z nowej wersji pliku
+                ConfigSettings = new DatabaseAccess();
+                deserializer = new XmlSerializer(ConfigSettings.GetType());
+                
+                ConfigSettings = ((DatabaseAccess)deserializer.Deserialize(tr));
+                string password = ConfigSettings.Password.DecryptString();
+                string login = ConfigSettings.User.DecryptString();
+                txtDatabase.Text = ConfigSettings.DataBaseName;
+                txtServer.Text = ConfigSettings.ServerName;
+                txtUserName.Text = login;
+                txtPassword.Text = password;
+                tr.Close();
 
-            new DatabaseConfig(ConfigSettings);
+                new DatabaseConfig(ConfigSettings);
+            }
+            else
+            {
+                txtServer.Text = string.Format("{0}\\SQLEXPRESS", Environment.MachineName);
+            }
         }
 
         private bool ValidateControls()
@@ -125,17 +131,25 @@ namespace SkyReg.Forms.DatabaseConfiguration
 
         private void SaveConfig()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(DatabaseAccess));
-            ConfigSettings.DataBaseName = txtDatabase.Text.Trim();
-            ConfigSettings.ServerName = txtServer.Text.Trim();
-            ConfigSettings.User = txtUserName.Text.Trim().EncryptString();
-            ConfigSettings.Password = txtPassword.Text.Trim().EncryptString();
-
             using (TextWriter TW = new StreamWriter(SkyRegUser.DatabaseConfigFile, false, Encoding.GetEncoding("windows-1250")))
             {
+                XmlSerializer serializer = new XmlSerializer(typeof(DatabaseAccess));
+                string password = txtPassword.Text;
+                string login = txtUserName.Text;
+                ConfigSettings.DataBaseName = txtDatabase.Text.Trim();
+                ConfigSettings.ServerName = txtServer.Text.Trim();
+                ConfigSettings.User = login.EncryptString();
+                ConfigSettings.Password = password.EncryptString();
+
+                new DatabaseConfig(ConfigSettings);
+
                 serializer.Serialize(TW, ConfigSettings);
                 TW.Close();
 
+                ConfigSettings.User = login;
+                ConfigSettings.Password = password;
+                new DatabaseConfig(ConfigSettings);
+                FirstTimeRun.CheckAndAdd();
                 KryptonMessageBox.Show("Plik konfiguracyjny został zapisany!", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
@@ -187,6 +201,7 @@ namespace SkyReg.Forms.DatabaseConfiguration
             }
             if (!DbResult)
             {
+
                 KryptonMessageBox.Show("Baza danych już istnieje !", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -197,7 +212,6 @@ namespace SkyReg.Forms.DatabaseConfiguration
             conBuilder.InitialCatalog = txtDatabase.Text;
             conBuilder.DataSource = txtServer.Text;
 
-
             string[] queryBuilder = Resources.DLModel_edmx.Split(new string[] { "GO" }, StringSplitOptions.None);
 
             int i = 0;
@@ -207,10 +221,12 @@ namespace SkyReg.Forms.DatabaseConfiguration
                 bgw.ReportProgress(i++);
             }
 
-
             KryptonMessageBox.Show(string.Format("Baza danych {0} została utworzona !", txtDatabase.Text), "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
         #endregion
+
+
     }
 }
