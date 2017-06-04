@@ -3,6 +3,7 @@ using SkyReg.MainForm;
 using SkyReg.Utils;
 using System;
 using System.Windows.Forms;
+using SkyReg.Common.Extensions;
 
 namespace SkyReg
 {
@@ -28,14 +29,15 @@ namespace SkyReg
                 //        return;
                 //    }
 
-                AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+               // AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
                 Application.ApplicationExit += Application_ApplicationExit;
                 FirstTimeRun.CheckAndAdd();
                 FrmLogin frm = new FrmLogin();
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     frm.Close();
-                    Application.Run(new FrmMain());
+                    FrmMain = FormsOpened<FrmMain>.IsOpened(FrmMain);
+                    Application.Run(FrmMain);
                     
                 }
                 else
@@ -52,11 +54,13 @@ namespace SkyReg
                 Application.ExitThread();
         }
 
-        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            //ExceptionLogger.UnhandledException(e, "Program - Main()");
-            Msg.Show("Wystąpił błąd - zresetuj połączenie sieciowe i spróbuj ponownie uruchomić program", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            return;
-        }
+
+        public static FrmMain FrmMain = null;
+        //private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        //{
+        //    //ExceptionLogger.UnhandledException(e, "Program - Main()");
+        //    Msg.Show("Wystąpił błąd - zresetuj połączenie sieciowe i spróbuj ponownie uruchomić program", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //    return;
+        //}
     }
 }

@@ -4,59 +4,72 @@ using System.Linq;
 using System.Text;
 using DataLayer;
 using System.Drawing;
+using SkyReg.BLL.Services;
+using DataLayer.Result.Repository;
+using DataLayer.Utils;
 
 namespace SkyReg
 {
     public static class FirstTimeRun
     {
         //Uruchamiane podczas startu programu - za pierwszym razem dodaje stałe elementy do bazy
+      
         public static void CheckAndAdd()
         {
-            using(DLModelContainer model = new DLModelContainer())
+            using (DLModelRepository<Group> _contextGroup = new DLModelRepository<Group>())
+            using (DLModelRepository<User> _contextUser = new DLModelRepository<User>())
+            using (DLModelRepository<Operator> _contextOperator = new DLModelRepository<Operator>())
             {
-                //Czy jest grupa Pasażerowie tandemów
-                var isPassengerGroup = model.Group.Any(p => p.Name == "Pasażerowie tandemów");
-                if(isPassengerGroup == false)
-                {
-                    Group gp = new Group();
-                    gp.Name = "Pasażerowie tandemów";
-                    gp.Color = Color.LightPink.ToString();
-                    gp.AllowDelete = false;
-                    model.Group.Add(gp);
-                    model.SaveChanges();
-                }
-
                 //Czy jest grupa Spadochroniarze
-                var isSkydiversGroup = model.Group.Any(p => p.Name == "Skoczkowie");
-                if(isSkydiversGroup == false)
+                var allGroups = _contextGroup.GetAll();
+                var allUsers = _contextUser.GetAll();
+                var allOperators = _contextOperator.GetAll();
+                var isSkydiversGroup = allGroups.Where(p => p.Name == "Skoczkowie").FirstOrDefault();
+                if (isSkydiversGroup == null)
                 {
                     Group gp = new Group();
                     gp.Name = "Skoczkowie";
-                    gp.Color = Color.LightGreen.ToString();
+                    gp.Color = "White";
                     gp.AllowDelete = false;
-                    model.Group.Add(gp);
-                    model.SaveChanges();
+                    _contextGroup.Add(gp);
+                }
+
+                //Czy jest grupa Pasażerowie tandemów
+                var isPassengerGroup = allGroups.Where(p => p.Name == "Pasażerowie tandemów").FirstOrDefault();
+                if (isPassengerGroup == null)
+                {
+                    Group gp = new Group();
+                    gp.Name = "Pasażerowie tandemów";
+                    gp.Color = "LightPink";
+                    gp.AllowDelete = false;
+                    _contextGroup.Add(gp);
                 }
 
                 //Czy jest użytkownik admin z hasłem 123 i jednocześnie jest operatorem
-                var isAdmin = model.User.Any(p => p.Login == "admin"); ;
-                if (isAdmin == false)
+                var isAdmin = allUsers.Where(p => p.Login == "admin").FirstOrDefault();
+                if (isAdmin == null)
                 {
                     User usr = new User();
                     usr.Login = "admin";
                     usr.Password = "s7PNTS7UQzg=";
                     usr.FirstName = "Admin";
                     usr.SurName = "Admin";
-                    model.User.Add(usr);
-                    model.SaveChanges();
+                    _contextUser.Add(usr);
 
                     Operator opr = new Operator();
                     opr.User = usr;
                     opr.Type = (int)Enum_OperatorTypes.Operator;
-                    model.Operator.Add(opr);
-                    model.SaveChanges();
+                    _contextOperator.Add(opr);
                 }
+
+                //User usr2 = new User();
+                //usr2.Login = "admin2";
+                //usr2.Password = "".EncryptString();
+                //usr2.FirstName = "Admin2";
+                //usr2.SurName = "Admin2";
+                //var dt = _contextUser.Add(usr2);
             }
         }
     }
+        
 }

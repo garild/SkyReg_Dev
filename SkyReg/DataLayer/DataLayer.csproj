@@ -91,6 +91,9 @@
       <DependentUpon>DLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Result\Interface\IDLModel.cs" />
+    <Compile Include="Result\Repository\DLModelRepository.cs" />
+    <Compile Include="Result\ResultType.cs" />
     <Compile Include="User.cs">
       <DependentUpon>DLModel.tt</DependentUpon>
     </Compile>
@@ -128,5 +131,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
