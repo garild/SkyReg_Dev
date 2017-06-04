@@ -20,13 +20,19 @@ namespace DataLayer
         {
             Database.Connection.ConnectionString = DatabaseConfig.ConnectionString;
             this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.AutoDetectChangesEnabled = false;
+            this.Configuration.ValidateOnSaveEnabled = false;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            modelBuilder.Entity<Parachute>()
+            .HasOptional(p => p.FlightsElem)
+            .WithOptionalPrincipal(o => o.Parachute)
+            .Map(x => x.MapKey("FlightsElem_Id"));
         }
-    
+
+
         public virtual DbSet<PaymentsSetting> PaymentsSetting { get; set; }
         public virtual DbSet<GlobalSetting> GlobalSetting { get; set; }
         public virtual DbSet<Operator> Operator { get; set; }
