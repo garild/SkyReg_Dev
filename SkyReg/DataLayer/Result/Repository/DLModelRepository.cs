@@ -16,6 +16,7 @@ namespace DataLayer.Result.Repository
         public DLModelRepository()
         {
             _context = new DLModelContainer();
+            _context.Database.Initialize(false);
         }
 
         public ResultType<T> Add(T data)

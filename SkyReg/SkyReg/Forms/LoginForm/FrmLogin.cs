@@ -19,6 +19,7 @@ using SkyReg.Common.FluentValidator;
 using FluentValidation.Results;
 using System.Xml;
 using SkyReg.Forms.DatabaseConfiguration;
+using DataLayer.Result.Repository;
 
 namespace SkyReg.MainForm
 {
@@ -96,7 +97,12 @@ namespace SkyReg.MainForm
                             Txt_Login.Text = userData.Login;
                     };
                 }
-               
+
+                if (!string.IsNullOrEmpty(DatabaseConfig.ConnectionString))
+                {
+                    var db = new DLModelContainer();
+                    var data = db.User.Where(p => p.Id == 0).FirstOrDefault();
+                }
             }
 
             catch (Exception)
