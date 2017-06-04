@@ -150,7 +150,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IsUser" Type="bit" Nullable="false" />
-    <Property Name="AssemblySelf" Type="bit" Nullable="false" />
+    <Property Name="AssemblySelf" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Flight_Id" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -453,7 +453,7 @@
           <NavigationProperty Name="Flight" Relationship="DLModel.FlightsElemFlight" FromRole="FlightsElem" ToRole="Flight" />
           <Property Name="IsUser" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="User" Relationship="DLModel.FlightsElemUser" FromRole="FlightsElem" ToRole="User" />
-          <Property Name="AssemblySelf" Type="Boolean" Nullable="false" />
+          <Property Name="AssemblySelf" Type="Boolean" Nullable="false" DefaultValue="false" />
           <NavigationProperty Name="Parachute" Relationship="DLModel.FlightsElemParachute" FromRole="FlightsElem" ToRole="Parachute" />
         </EntityType>
         <EntityType Name="Parachute">

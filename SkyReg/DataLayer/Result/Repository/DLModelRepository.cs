@@ -16,13 +16,12 @@ namespace DataLayer.Result.Repository
         public DLModelRepository()
         {
             _context = new DLModelContainer();
-            _context.Database.Initialize(false);
         }
 
         public ResultType<T> Add(T data)
         {
             Entities.Add(data);
-            SaveChanges();
+            _context.SaveChanges();
             return new ResultType<T>() { Value = data };
         }
 
@@ -34,7 +33,7 @@ namespace DataLayer.Result.Repository
         public ResultType<T> Update(T data)
         {
             _context.Entry(data).State = EntityState.Modified;
-            SaveChanges();
+            _context.SaveChanges();
             return new ResultType<T>() { Value = data };
         }
 

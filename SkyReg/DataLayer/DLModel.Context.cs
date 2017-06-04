@@ -18,11 +18,8 @@ namespace DataLayer
         public DLModelContainer()
             : base()
         {
-            base.Database.Connection.ConnectionString = DatabaseConfig.ConnectionString;
+            Database.Connection.ConnectionString = DatabaseConfig.ConnectionString;
             this.Configuration.LazyLoadingEnabled = false;
-            this.Configuration.AutoDetectChangesEnabled = false;
-            this.Configuration.ProxyCreationEnabled = false;
-            this.Configuration.ValidateOnSaveEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

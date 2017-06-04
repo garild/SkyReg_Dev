@@ -17,13 +17,9 @@ namespace SkyReg
         public static void CheckAndAdd()
         {
             using (DLModelRepository<Group> _contextGroup = new DLModelRepository<Group>())
-            using (DLModelRepository<User> _contextUser = new DLModelRepository<User>())
-            using (DLModelRepository<Operator> _contextOperator = new DLModelRepository<Operator>())
             {
                 //Czy jest grupa Spadochroniarze
                 var allGroups = _contextGroup.GetAll();
-                var allUsers = _contextUser.GetAll();
-                var allOperators = _contextOperator.GetAll();
                 var isSkydiversGroup = allGroups.Where(p => p.Name == "Skoczkowie").FirstOrDefault();
                 if (isSkydiversGroup == null)
                 {
@@ -44,8 +40,12 @@ namespace SkyReg
                     gp.AllowDelete = false;
                     _contextGroup.Add(gp);
                 }
-
-                //Czy jest użytkownik admin z hasłem 123 i jednocześnie jest operatorem
+            }
+            using (DLModelRepository<User> _contextUser = new DLModelRepository<User>())
+            using (DLModelRepository<Operator> _contextOperator = new DLModelRepository<Operator>())
+            {
+                var allUsers = _contextUser.GetAll();
+                var allOperators = _contextOperator.GetAll();
                 var isAdmin = allUsers.Where(p => p.Login == "admin").FirstOrDefault();
                 if (isAdmin == null)
                 {
@@ -54,21 +54,12 @@ namespace SkyReg
                     usr.Password = "s7PNTS7UQzg=";
                     usr.FirstName = "Admin";
                     usr.SurName = "Admin";
-                    _contextUser.Add(usr);
-
+                    
                     Operator opr = new Operator();
                     opr.User = usr;
                     opr.Type = (int)Enum_OperatorTypes.Operator;
                     _contextOperator.Add(opr);
                 }
-
-                //User usr2 = new User();
-                //usr2.Login = "admin2";
-                //usr2.Password = "".EncryptString();
-                //usr2.FirstName = "Admin2";
-                //usr2.SurName = "Admin2";
-                //var dt = _contextUser.Add(usr2);
-
             }
         }
     }

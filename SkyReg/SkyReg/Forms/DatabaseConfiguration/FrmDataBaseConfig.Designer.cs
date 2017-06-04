@@ -239,6 +239,7 @@
             this.Controls.Add(this.kryptonPanel1);
             this.Controls.Add(this.kryptonPanel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmDataBaseConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generowanie bazy";

@@ -34,14 +34,14 @@
             this.Btn_Close = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.Btn_Login = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
+            this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnDatabaseCfg = new System.Windows.Forms.ToolStripMenuItem();
             this.Txt_Pasword = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.Txt_Login = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.StyleManager = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnDatabaseCfg = new System.Windows.Forms.ToolStripMenuItem();
-            this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonPanelEx1.SuspendLayout();
             this.kryptonPanelEx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -107,6 +107,28 @@
             this.kryptonPanelEx2.Size = new System.Drawing.Size(431, 142);
             this.kryptonPanelEx2.TabIndex = 1;
             // 
+            // kryptonLabel1
+            // 
+            this.kryptonLabel1.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
+            this.kryptonLabel1.Location = new System.Drawing.Point(187, 67);
+            this.kryptonLabel1.Name = "kryptonLabel1";
+            this.kryptonLabel1.Size = new System.Drawing.Size(42, 17);
+            this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.kryptonLabel1.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
+            this.kryptonLabel1.TabIndex = 23;
+            this.kryptonLabel1.Values.Text = "Hasło:";
+            // 
+            // kryptonLabel3
+            // 
+            this.kryptonLabel3.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
+            this.kryptonLabel3.Location = new System.Drawing.Point(187, 44);
+            this.kryptonLabel3.Name = "kryptonLabel3";
+            this.kryptonLabel3.Size = new System.Drawing.Size(41, 17);
+            this.kryptonLabel3.StateCommon.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.kryptonLabel3.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
+            this.kryptonLabel3.TabIndex = 22;
+            this.kryptonLabel3.Values.Text = "Login:";
+            // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
@@ -118,6 +140,24 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 21;
             this.pictureBox2.TabStop = false;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnDatabaseCfg});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 26);
+            // 
+            // btnDatabaseCfg
+            // 
+            this.btnDatabaseCfg.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnDatabaseCfg.Image = ((System.Drawing.Image)(resources.GetObject("btnDatabaseCfg.Image")));
+            this.btnDatabaseCfg.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDatabaseCfg.Name = "btnDatabaseCfg";
+            this.btnDatabaseCfg.Size = new System.Drawing.Size(172, 22);
+            this.btnDatabaseCfg.Text = "Konfiguracja bazy";
+            this.btnDatabaseCfg.Click += new System.EventHandler(this.btnDatabaseCfg_Click);
             // 
             // Txt_Pasword
             // 
@@ -148,46 +188,6 @@
             this.StyleManager.GlobalStrings.Today = "Dzisiaj";
             this.StyleManager.GlobalStrings.Yes = "Tak";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnDatabaseCfg});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 26);
-            // 
-            // btnDatabaseCfg
-            // 
-            this.btnDatabaseCfg.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnDatabaseCfg.Image = ((System.Drawing.Image)(resources.GetObject("btnDatabaseCfg.Image")));
-            this.btnDatabaseCfg.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDatabaseCfg.Name = "btnDatabaseCfg";
-            this.btnDatabaseCfg.Size = new System.Drawing.Size(172, 22);
-            this.btnDatabaseCfg.Text = "Konfiguracja bazy";
-            this.btnDatabaseCfg.Click += new System.EventHandler(this.btnDatabaseCfg_Click);
-            // 
-            // kryptonLabel3
-            // 
-            this.kryptonLabel3.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.kryptonLabel3.Location = new System.Drawing.Point(187, 44);
-            this.kryptonLabel3.Name = "kryptonLabel3";
-            this.kryptonLabel3.Size = new System.Drawing.Size(41, 17);
-            this.kryptonLabel3.StateCommon.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.kryptonLabel3.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
-            this.kryptonLabel3.TabIndex = 22;
-            this.kryptonLabel3.Values.Text = "Login:";
-            // 
-            // kryptonLabel1
-            // 
-            this.kryptonLabel1.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.kryptonLabel1.Location = new System.Drawing.Point(187, 67);
-            this.kryptonLabel1.Name = "kryptonLabel1";
-            this.kryptonLabel1.Size = new System.Drawing.Size(42, 17);
-            this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.kryptonLabel1.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
-            this.kryptonLabel1.TabIndex = 23;
-            this.kryptonLabel1.Values.Text = "Hasło:";
-            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -197,6 +197,7 @@
             this.Controls.Add(this.kryptonPanelEx1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Logowanie";

@@ -1,4 +1,5 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
+using DataLayer;
 using SkyReg.Common.Extensions;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,14 @@ namespace SkyReg
         public FrmMain()
         { 
             InitializeComponent();
+            LoadStatusBarSettings();
+        }
+
+        private void LoadStatusBarSettings()
+        {
+            tstrVersion.Text = String.Format("{0}  ", SkyRegUser.AppVer);
+            tstrComputerName.Text = SkyRegUser.LocalMachineName;
+            tstrLoggedUser.Text = SkyRegUser.UserLogin;
         }
 
         private void outlookBar1_ButtonClicked(object sender, EventArgs e)

@@ -33,6 +33,7 @@ namespace SkyReg.MainForm
             SkyRegUser.GlobalPathFile = Environment.GetFolderPath((Environment.SpecialFolder.LocalApplicationData)) + @"\SkyReg";
             SkyRegUser.DatabaseConfigFile = string.Format("{0}\\DatabaseConfig.xml", SkyRegUser.GlobalPathFile);
             SkyRegUser.UserConfigFile = string.Format("{0}\\UserConfig.xml", SkyRegUser.GlobalPathFile);
+            SkyRegUser.LocalMachineName = Environment.MachineName;
 
             InitializeComponent();
             LoadSettings();
@@ -66,6 +67,11 @@ namespace SkyReg.MainForm
         {
             try
             {
+                Version curVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                string version = curVersion.ToString();
+
+                SkyRegUser.AppVer = version;
+
                 CommonMethods.CheckInternetConnection();
 
                 CreateSkyregFolder();
@@ -97,15 +103,14 @@ namespace SkyReg.MainForm
                             Txt_Login.Text = userData.Login;
                     };
                 }
-
+                
                 if (!string.IsNullOrEmpty(DatabaseConfig.ConnectionString))
                 {
-                    var db = new DLModelContainer();
-                    var data = db.User.Where(p => p.Id == 0).FirstOrDefault();
+                    FirstTimeRun.CheckAndAdd();
                 }
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
                 this.DialogResult = DialogResult.Cancel;
             }
@@ -120,7 +125,6 @@ namespace SkyReg.MainForm
         private void Btn_Login_Click(object sender, EventArgs e)
         {
             LogIn();
-
         }
 
         private void LogIn()
@@ -139,6 +143,8 @@ namespace SkyReg.MainForm
                     var user = _loginRepository.GetUser(login, password.EncryptString());
                     if (user != null)
                     {
+                        SkyRegUser.UserLogin = user.Login;
+                        SkyRegUser.UserId = user.Id;
                         SaveUserConfig(user);
                         this.DialogResult = DialogResult.OK;
                     }
