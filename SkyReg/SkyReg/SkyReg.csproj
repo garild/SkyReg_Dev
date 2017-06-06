@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>SkyReg.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AC.ExtendedRenderer.Toolkit, Version=4.4.0.2, Culture=neutral, PublicKeyToken=2f7c2ef04fde3964, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -85,6 +88,12 @@
     <Compile Include="Common\Enums\Enum_paymentsTypes.cs" />
     <Compile Include="Common\Extensions\BaseModel.cs" />
     <Compile Include="FirstTimeRun.cs" />
+    <Compile Include="Forms\DatabaseConfiguration\FrmDataBaseConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DatabaseConfiguration\FrmDataBaseConfig.Designer.cs">
+      <DependentUpon>FrmDataBaseConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\GlobalSettingsForm\FrmGlobalSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +175,9 @@
     <EmbeddedResource Include="Forms\AirplanesForm\AirPlanesFormAddEdit.resx">
       <DependentUpon>AirPlanesFormAddEdit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DatabaseConfiguration\FrmDataBaseConfig.resx">
+      <DependentUpon>FrmDataBaseConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\GlobalSettingsForm\FrmGlobalSettings.resx">
       <DependentUpon>FrmGlobalSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -206,6 +218,7 @@
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Common\Resources\EF_dll.reg" />
+    <None Include="Instalator\Install.iss" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -315,6 +328,10 @@
     <Content Include="Common\Resources\version.png" />
     <Content Include="Common\Resources\versions.png" />
     <Content Include="Common\Resources\view.png" />
+    <None Include="Resources\dlmodel.edmx.sql" />
+    <Content Include="Instalator\Install_P.iss" />
+    <Content Include="SkyReg.ico" />
+    <None Include="Resources\Create_DataBase.sql" />
     <None Include="Common\Resources\logo_opacity.png" />
     <None Include="Common\Resources\logo_.png" />
     <None Include="Common\Resources\Login.png" />
