@@ -7,8 +7,9 @@ namespace DataLayer.Result.Interface
 {
     public interface IDLModel<TEntity> where TEntity : class,new()
     {
-        ResultType<TEntity> Add(TEntity data);
-        ResultType<TEntity> Delete(TEntity data);
-        ResultType<TEntity> Update(TEntity data);
+        ResultType<TEntity> Insert(TEntity entity);
+        ResultType<TEntity> Delete(TEntity entity);
+        ResultType<TEntity> Update(TEntity entity);
+        TEntity GetById(object id);
     }
 }

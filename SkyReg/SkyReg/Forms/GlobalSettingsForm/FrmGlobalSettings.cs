@@ -271,29 +271,19 @@ namespace SkyReg
 
         private void btnOperatorAdd_Click(object sender, EventArgs e)
         {
-            FrmOperatorAdd foa = new FrmOperatorAdd();
-            foa.MdiParent = this.ParentForm;
-            //TODO sprawdzić czy nie ma wywołanego tego okna
-            foa.AddedUser += RefreshOperatorGrid;
-            foa.Show();
+            FrmOperatorAdd = FormsOpened<FrmOperatorAdd>.IsOpened(FrmOperatorAdd);
+            FrmOperatorAdd.AddedUser += RefreshOperatorGrid;
+            FrmOperatorAdd.TopMost = true;
+            FrmOperatorAdd.ShowDialog();
         }
 
 
         #endregion
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnHeader_Add_Click(object sender, EventArgs e)
-        {
-            PaymentsSetAdd();
-        }
-
         #region Form
 
         private FrmPaymentAdd FrmPaymentAdd = null;
+        private FrmOperatorAdd FrmOperatorAdd = null;
 
         #endregion
 

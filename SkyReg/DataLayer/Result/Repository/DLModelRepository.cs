@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 
@@ -9,50 +10,146 @@ namespace DataLayer.Result.Repository
 {
     public class DLModelRepository<T> : DbContext, IDLModel<T> where T : class, new()
     {
-        private readonly DLModelContainer _context;
-
-        private DbSet<T> entity;
+        private readonly DLModelContainer context;
+        private IDbSet<T> Entity;
+        string errorMessage = string.Empty;
 
         public DLModelRepository()
         {
-            _context = new DLModelContainer();
+            context = new DLModelContainer();
         }
 
-        public ResultType<T> Add(T data)
+        public T GetById(object id)
         {
-            Entities.Add(data);
-            _context.SaveChanges();
-            return new ResultType<T>() { Value = data };
+            return this.Entities.Find(id);
         }
 
-        public ResultType<T> Delete(T data)
+        public ResultType<T> Insert(T entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (entity == null)
+                {
+                    return new ResultType<T>() { Value = null };
+                }
+                this.Entities.Add(entity);
+                this.context.SaveChanges();
+
+                return new ResultType<T>() { Value = entity };
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        errorMessage += string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage) + Environment.NewLine;
+                    }
+                }
+
+                return new ResultType<T>() { Value = null, Error = errorMessage };
+            }
+           
         }
 
-        public ResultType<T> Update(T data)
+        public ColletionResult<T> GetAll()
         {
-            _context.Entry(data).State = EntityState.Modified;
-            _context.SaveChanges();
-            return new ResultType<T>() { Value = data };
+            try
+            {
+                var list = Entities.ToList<T>();
+                
+                return new ColletionResult<T>() { Value = list};
+            }
+
+            catch (DbEntityValidationException dbEx)
+            {
+
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        errorMessage += string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage) + Environment.NewLine;
+                    }
+                }
+
+                return new ColletionResult<T>() { Value = null, Error = errorMessage };
+            }
         }
 
-        public List<T> GetAll()
+
+        public ResultType<T> Update(T entity)
         {
-            var data = Entities.ToList();
-            return data;
+            try
+            {
+                if (entity == null)
+                {
+                    return new ResultType<T>() { Value = null };
+                }
+                this.context.SaveChanges();
+
+                return new ResultType<T>() { Value = entity };
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        errorMessage += Environment.NewLine + string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                    }
+                }
+
+                return new ResultType<T>() { Value = null,Error = errorMessage };
+            }
+        }
+
+        public ResultType<T> Delete(T entity)
+        {
+            try
+            {
+                if (entity == null)
+                {
+                    throw new ArgumentNullException("entity");
+                }
+
+                this.Entities.Remove(entity);
+                this.context.SaveChanges();
+
+                return new ResultType<T>() { Value = null, Error = errorMessage };
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        errorMessage += Environment.NewLine + string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                    }
+                }
+                return new ResultType<T>() { Value = null, Error = errorMessage };
+            }
+        }
+
+        public virtual IQueryable<T> Table
+        {
+            get
+            {
+                return this.Entities;
+            }
         }
 
         private IDbSet<T> Entities
         {
             get
             {
-                if (entity == null)
-                    return _context.Set<T>();
-
-                return entity;
+                if (Entity == null)
+                {
+                    Entity = context.Set<T>();
+                }
+                return Entity;
             }
-
         }
     }
 }

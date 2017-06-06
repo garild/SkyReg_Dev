@@ -83,6 +83,8 @@
             this.RegionListBox = new ComponentFactory.Krypton.Toolkit.KryptonCheckedListBox();
             this.btnUpdate = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnLogin = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton4 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.cbParentUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel3)).BeginInit();
             this.kryptonPanel3.SuspendLayout();
@@ -177,7 +179,9 @@
             // 
             // kryptonPanel3
             // 
+            this.kryptonPanel3.Controls.Add(this.kryptonButton4);
             this.kryptonPanel3.Controls.Add(this.btnLogin);
+            this.kryptonPanel3.Controls.Add(this.kryptonButton3);
             this.kryptonPanel3.Controls.Add(this.btnUpdate);
             this.kryptonPanel3.Controls.Add(this.kryptonButton2);
             this.kryptonPanel3.Controls.Add(this.MainTab);
@@ -444,7 +448,7 @@
             // kryptonButton1
             // 
             this.kryptonButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.kryptonButton1.Location = new System.Drawing.Point(10, 9);
+            this.kryptonButton1.Location = new System.Drawing.Point(3, 9);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.kryptonButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -791,6 +795,30 @@
             this.btnLogin.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnLogin.Values.Image")));
             this.btnLogin.Values.Text = "Zaloguj się";
             // 
+            // kryptonButton3
+            // 
+            this.kryptonButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.kryptonButton3.Location = new System.Drawing.Point(364, 401);
+            this.kryptonButton3.Name = "kryptonButton3";
+            this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.kryptonButton3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.kryptonButton3.Size = new System.Drawing.Size(86, 25);
+            this.kryptonButton3.TabIndex = 0;
+            this.kryptonButton3.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton3.Values.Image")));
+            this.kryptonButton3.Values.Text = "Dodaj";
+            // 
+            // kryptonButton4
+            // 
+            this.kryptonButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.kryptonButton4.Location = new System.Drawing.Point(456, 401);
+            this.kryptonButton4.Name = "kryptonButton4";
+            this.kryptonButton4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.kryptonButton4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.kryptonButton4.Size = new System.Drawing.Size(86, 25);
+            this.kryptonButton4.TabIndex = 2;
+            this.kryptonButton4.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton4.Values.Image")));
+            this.kryptonButton4.Values.Text = "Usuń";
+            // 
             // Exsamples
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -884,5 +912,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton BtnEdit;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton4;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
     }
 }
