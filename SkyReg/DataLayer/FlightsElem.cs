@@ -14,6 +14,12 @@ namespace DataLayer
     
     public partial class FlightsElem
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public FlightsElem()
+        {
+            this.AssemblySelf = false;
+        }
+    
         public int Id { get; set; }
         public bool IsUser { get; set; }
         public bool AssemblySelf { get; set; }

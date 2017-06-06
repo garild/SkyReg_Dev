@@ -17,17 +17,24 @@ using SkyReg.Extensions;
 using SkyReg.Utils;
 using SkyReg.Common.FluentValidator;
 using FluentValidation.Results;
+using System.Xml;
+using SkyReg.Forms.DatabaseConfiguration;
+using DataLayer.Result.Repository;
 
 namespace SkyReg.MainForm
 {
     public partial class FrmLogin : KryptonForm
     {
-        private LoginRepository _loginRepository = new LoginRepository();
-        private readonly string documentsPath = Environment.GetFolderPath((Environment.SpecialFolder.LocalApplicationData)) + @"\SkyReg";
         private ErrorProvider validateControl = new ErrorProvider();
         private ValidationResult _validator = null;
+        private  bool IsDbExists = false;
         public FrmLogin()
         {
+            SkyRegUser.GlobalPathFile = Environment.GetFolderPath((Environment.SpecialFolder.LocalApplicationData)) + @"\SkyReg";
+            SkyRegUser.DatabaseConfigFile = string.Format("{0}\\DatabaseConfig.xml", SkyRegUser.GlobalPathFile);
+            SkyRegUser.UserConfigFile = string.Format("{0}\\UserConfig.xml", SkyRegUser.GlobalPathFile);
+            SkyRegUser.LocalMachineName = Environment.MachineName;
+
             InitializeComponent();
             LoadSettings();
         }
@@ -37,6 +44,11 @@ namespace SkyReg.MainForm
             bool result = true;
             validateControl.Clear();
             validateControl.BlinkRate = 250;
+            if (!IsDbExists)
+            {
+                KryptonMessageBox.Show("Nie znaleziono pliku kofiguracyjnego do bazy danych. Proszę skofigurować base SQL!", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                result = false;
+            }
             if (string.IsNullOrEmpty(Txt_Login.Text))
             {
                 validateControl.SetError(Txt_Login, "!");
@@ -47,7 +59,7 @@ namespace SkyReg.MainForm
                 validateControl.SetError(Txt_Pasword, "!");
                 result = false;
             }
-
+           
             return result;
         }
 
@@ -55,26 +67,50 @@ namespace SkyReg.MainForm
         {
             try
             {
+                Version curVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                string version = curVersion.ToString();
+
+                SkyRegUser.AppVer = version;
+
                 CommonMethods.CheckInternetConnection();
 
-                using (var db = new DLModelContainer())
-                    db.Database.Initialize(true);
+                CreateSkyregFolder();
+                CheckDatabaseConfig();
 
-                if (File.Exists(documentsPath + @"\UserConfig.xml"))
+                using (TextReader tr = new StreamReader(SkyRegUser.DatabaseConfigFile))
                 {
-                    using (StreamReader tr = new StreamReader(documentsPath + @"\UserConfig.xml", Encoding.GetEncoding("windows-1250")))
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(SkyRegUser.DatabaseConfigFile);
+                    XmlSerializer deserializer;
+
+                    //odczyt ustawień z nowej wersji pliku
+                    var ConfigSettings = new DatabaseAccess();
+                    deserializer = new XmlSerializer(ConfigSettings.GetType());
+                    ConfigSettings = ((DatabaseAccess)deserializer.Deserialize(tr));
+                    tr.Close();
+                    ConfigSettings.Password = ConfigSettings.Password.DecryptString();
+                    ConfigSettings.User = ConfigSettings.User.DecryptString();
+                    new DatabaseConfig(ConfigSettings);
+                }
+
+                if (File.Exists(SkyRegUser.UserConfigFile))
+                {
+                    using (StreamReader tr2 = new StreamReader(SkyRegUser.UserConfigFile, Encoding.GetEncoding("windows-1250")))
                     {
-                        XmlSerializer deserializer = new XmlSerializer(typeof(BaseModel));
-                        var userData = (BaseModel)deserializer.Deserialize(tr);
+                        XmlSerializer deserializerUser = new XmlSerializer(typeof(BaseModel));
+                        var userData = (BaseModel)deserializerUser.Deserialize(tr2);
                         if (userData != null)
                             Txt_Login.Text = userData.Login;
                     };
                 }
-
-               
+                
+                if (!string.IsNullOrEmpty(DatabaseConfig.ConnectionString))
+                {
+                    FirstTimeRun.CheckAndAdd();
+                }
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
                 this.DialogResult = DialogResult.Cancel;
             }
@@ -88,9 +124,7 @@ namespace SkyReg.MainForm
 
         private void Btn_Login_Click(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor;
             LogIn();
-            this.Cursor = Cursors.Default;
         }
 
         private void LogIn()
@@ -105,9 +139,12 @@ namespace SkyReg.MainForm
 
                 if (ValidateControls())
                 {
+                    LoginRepository _loginRepository = new LoginRepository();
                     var user = _loginRepository.GetUser(login, password.EncryptString());
                     if (user != null)
                     {
+                        SkyRegUser.UserLogin = user.Login;
+                        SkyRegUser.UserId = user.Id;
                         SaveUserConfig(user);
                         this.DialogResult = DialogResult.OK;
                     }
@@ -124,10 +161,9 @@ namespace SkyReg.MainForm
 
         private void SaveUserConfig(User user)
         {
-            if (!Directory.Exists(documentsPath))
-                Directory.CreateDirectory(documentsPath);
+            string saveFile = SkyRegUser.GlobalPathFile + @"\UserConfig.xml";
+            CreateSkyregFolder();
 
-            string saveFile = documentsPath + @"\UserConfig.xml";
             var userConfig = new BaseModel();
             using (StreamWriter TW = new StreamWriter(saveFile, false, Encoding.GetEncoding("windows-1250")))
             {
@@ -137,7 +173,6 @@ namespace SkyReg.MainForm
                 userConfig.Roles = new List<UsersRole>() { new UsersRole() { Camera = true, Id = 2, Name = "Shit", SpecialType = 1, TandemPassenger = true, TandemPilot = true, Value = 1500.00 } }; //TODO Usunąć test dodać user.Roles
                 serializer.Serialize(TW, userConfig);
             }
-
 
         }
 
@@ -153,6 +188,32 @@ namespace SkyReg.MainForm
         {
             if(e.KeyCode == Keys.Enter)
                 LogIn();
+        }
+
+        private void CheckDatabaseConfig()
+        {
+            if (!File.Exists(SkyRegUser.DatabaseConfigFile))
+            {
+                IsDbExists = false;
+                KryptonMessageBox.Show("Nie znaleziono pliku kofiguracyjnego do bazy danych. Proszę skofigurować base SQL!", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+                IsDbExists = true;
+
+        }
+        private void CreateSkyregFolder()
+        {
+            if (!Directory.Exists(SkyRegUser.GlobalPathFile))
+            {
+                Directory.CreateDirectory(SkyRegUser.GlobalPathFile);
+            }
+
+        }
+
+        private void btnDatabaseCfg_Click(object sender, EventArgs e)
+        {
+            FrmDataBaseConfig frmDataBaseConfig = new FrmDataBaseConfig();
+            frmDataBaseConfig.ShowDialog();
         }
     }
 }

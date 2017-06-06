@@ -20,7 +20,7 @@ namespace SkyReg
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+           
             if (CommonMethods.isNetworkWorking())
             {
                 //    if (System.Diagnostics.Process.GetProcessesByName("EMnet").Length > 1 && hasRestart)
@@ -31,7 +31,7 @@ namespace SkyReg
 
                // AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
                 Application.ApplicationExit += Application_ApplicationExit;
-                FirstTimeRun.CheckAndAdd();
+                AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
                 FrmLogin frm = new FrmLogin();
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
@@ -46,6 +46,13 @@ namespace SkyReg
             else
                 Msg.Show("Brak połaczenia z internetem", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
+
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+
+            //Msg.Show(e.ExceptionObject.ToString());
+        }
+
         private static void Application_ApplicationExit(object sender, EventArgs e)
         {
             if (hasRestart)

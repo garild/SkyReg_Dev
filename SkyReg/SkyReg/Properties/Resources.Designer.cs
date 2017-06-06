@@ -59,5 +59,50 @@ namespace SkyReg.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DECLARE @result bit = 0
+        ///
+        ///IF db_id(&apos;DataBaseName&apos;) IS NOT NULL
+        ///BEGIN
+        ///	set @result = 0
+        ///END
+        ///ELSE
+        ///BEGIN
+        ///	CREATE DATABASE DataBaseName
+        ///	set @result = 1
+        ///END
+        ///
+        ///SELECT @Result.
+        /// </summary>
+        internal static string Create_DataBase {
+            get {
+                return ResourceManager.GetString("Create_DataBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///-- --------------------------------------------------
+        ///-- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
+        ///-- --------------------------------------------------
+        ///-- Date Created: 05/31/2017 22:26:43
+        ///-- Generated from EDMX file: F:\Projekty 2017\Repozytorium\SkyReg\DataLayer\DLModel.edmx
+        ///-- --------------------------------------------------
+        ///
+        ///SET QUOTED_IDENTIFIER OFF;
+        ///GO
+        ///USE [SkyRegDB];
+        ///GO
+        ///IF SCHEMA_ID(N&apos;dbo&apos;) IS NULL EXECUTE(N&apos;CREATE SCHEMA [dbo]&apos;);
+        ///GO
+        ///
+        ///-- ----------------- [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DLModel_edmx {
+            get {
+                return ResourceManager.GetString("DLModel_edmx", resourceCulture);
+            }
+        }
     }
 }

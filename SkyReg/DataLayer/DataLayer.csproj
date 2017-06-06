@@ -51,6 +51,7 @@
     <Compile Include="Airplane.cs">
       <DependentUpon>DLModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseAccess.cs" />
     <Compile Include="DLModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -94,6 +95,7 @@
     <Compile Include="Result\Interface\IDLModel.cs" />
     <Compile Include="Result\Repository\DLModelRepository.cs" />
     <Compile Include="Result\ResultType.cs" />
+    <Compile Include="SkyRegUser.cs" />
     <Compile Include="User.cs">
       <DependentUpon>DLModel.tt</DependentUpon>
     </Compile>

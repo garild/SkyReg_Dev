@@ -9,13 +9,13 @@ namespace DataLayer.Result.Repository
 {
     public class DLModelRepository<T> : DbContext, IDLModel<T> where T : class, new()
     {
-        private static readonly DLModelContainer _context = new DLModelContainer();
+        private readonly DLModelContainer _context;
 
         private DbSet<T> entity;
 
         public DLModelRepository()
         {
-
+            _context = new DLModelContainer();
         }
 
         public ResultType<T> Add(T data)
@@ -42,7 +42,6 @@ namespace DataLayer.Result.Repository
             var data = Entities.ToList();
             return data;
         }
-
 
         private IDbSet<T> Entities
         {
