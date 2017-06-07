@@ -17,9 +17,14 @@
     <EntitySet Name="FlightsElem" EntityType="DLModel.Store.FlightsElem" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Parachute" EntityType="DLModel.Store.Parachute" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Group" EntityType="DLModel.Store.Group" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="UserUsersType" Association="DLModel.Store.UserUsersType">
+    <EntitySet Name="UserUsersType" EntityType="DLModel.Store.UserUsersType" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_UserUsersType_User" Association="DLModel.Store.FK_UserUsersType_User">
       <End Role="User" EntitySet="User" />
+      <End Role="UserUsersType" EntitySet="UserUsersType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserUsersType_UsersType" Association="DLModel.Store.FK_UserUsersType_UsersType">
       <End Role="UsersType" EntitySet="UsersType" />
+      <End Role="UserUsersType" EntitySet="UserUsersType" />
     </AssociationSet>
     <AssociationSet Name="UserOperator" Association="DLModel.Store.UserOperator">
       <End Role="User" EntitySet="User" />
@@ -92,7 +97,6 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Value" Type="decimal" Nullable="false" Precision="8" Scale="2" />
     <Property Name="IsCam" Type="bit" Nullable="false" />
-    <Property Name="User_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -175,18 +179,14 @@
     <Property Name="Color" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AllowDelete" Type="bit" Nullable="true" />
   </EntityType>
-  <Association Name="UserUsersType">
-    <End Role="User" Type="DLModel.Store.User" Multiplicity="0..1" />
-    <End Role="UsersType" Type="DLModel.Store.UsersType" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UsersType">
-        <PropertyRef Name="User_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="UserUsersType">
+    <Key>
+      <PropertyRef Name="User_Id" />
+      <PropertyRef Name="UsersType_Id" />
+    </Key>
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="UsersType_Id" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="UserOperator">
     <End Role="User" Type="DLModel.Store.User" Multiplicity="1" />
     <End Role="Operator" Type="DLModel.Store.Operator" Multiplicity="*" />
@@ -280,6 +280,30 @@
       </Principal>
       <Dependent Role="User">
         <PropertyRef Name="Group_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserUsersType_User">
+    <End Role="User" Type="DLModel.Store.User" Multiplicity="1" />
+    <End Role="UserUsersType" Type="DLModel.Store.UserUsersType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserUsersType">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserUsersType_UsersType">
+    <End Role="UserUsersType" Type="DLModel.Store.UserUsersType" Multiplicity="*" />
+    <End Role="UsersType" Type="DLModel.Store.UsersType" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="UsersType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserUsersType">
+        <PropertyRef Name="UsersType_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -403,7 +427,7 @@
           <NavigationProperty Name="Group" Relationship="DLModel.GroupUser" FromRole="User" ToRole="Group" />
         </EntityType>
         <Association Name="UserUsersType">
-          <End Type="DLModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="DLModel.User" Role="User" Multiplicity="*" />
           <End Type="DLModel.UsersType" Role="UsersType" Multiplicity="*" />
         </Association>
         <Association Name="UserOperator">
@@ -631,14 +655,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="UserUsersType" TypeName="DLModel.UserUsersType" StoreEntitySet="UsersType">
+    <AssociationSetMapping Name="UserUsersType" TypeName="DLModel.UserUsersType" StoreEntitySet="UserUsersType">
       <EndProperty Name="User">
         <ScalarProperty Name="Id" ColumnName="User_Id" />
       </EndProperty>
       <EndProperty Name="UsersType">
-        <ScalarProperty Name="Id" ColumnName="Id" />
+        <ScalarProperty Name="Id" ColumnName="UsersType_Id" />
       </EndProperty>
-      <Condition ColumnName="User_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="UserOperator" TypeName="DLModel.UserOperator" StoreEntitySet="Operator">
       <EndProperty Name="User">

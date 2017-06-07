@@ -16,23 +16,16 @@ namespace DataLayer
     public partial class DLModelContainer : DbContext
     {
         public DLModelContainer()
-            : base()
+            : base("name=DLModelContainer")
         {
-            Database.Connection.ConnectionString = DatabaseConfig.ConnectionString;
             this.Configuration.LazyLoadingEnabled = false;
-            this.Configuration.AutoDetectChangesEnabled = false;
-            this.Configuration.ValidateOnSaveEnabled = false;
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Parachute>()
-            .HasOptional(p => p.FlightsElem)
-            .WithOptionalPrincipal(o => o.Parachute)
-            .Map(x => x.MapKey("FlightsElem_Id"));
+            throw new UnintentionalCodeFirstException();
         }
-
-
+    
         public virtual DbSet<PaymentsSetting> PaymentsSetting { get; set; }
         public virtual DbSet<GlobalSetting> GlobalSetting { get; set; }
         public virtual DbSet<Operator> Operator { get; set; }

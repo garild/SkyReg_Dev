@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DataLayer;
+using DataLayer.Result.Repository;
+using SkyReg.Common.Extensions;
 
 namespace SkyReg
 {
@@ -20,105 +22,110 @@ namespace SkyReg
 
         private void UsersForm_Load(object sender, EventArgs e)
         {
-            //ParentFormSizeFromParentsWorkSpaceSize();
+            LoadGroupToCmbGroup();
         }
 
-        private void ParentFormSizeFromParentsWorkSpaceSize()
+        private void LoadGroupToCmbGroup()
         {
-            Size s = new Size();
-            s.Height = this.Parent.Size.Height - 10;
-            s.Width = this.Parent.Size.Width - 10;
-            this.Size = s;
-            this.StartPosition = FormStartPosition.Manual;
+            using (DLModelRepository<Group> _contextGroup = new DLModelRepository<Group>())
+            {
+                var allGroup = _contextGroup.GetAll();
+
+                cmbGroup.DataSource = allGroup.Select(p => p).OrderBy(p => p.Id).ToList();
+                cmbGroup.ValueMember = "Id";
+                cmbGroup.DisplayMember = "Name";
+                if (cmbGroup.Items.Count > 0)
+                    cmbGroup.SelectedIndex = 0;
+            }
         }
 
         private void UsersForm_Shown(object sender, EventArgs e)
         {
-            RefreshGroupList();
-            GroupListSetView();
+            RefreshUsersList();
         }
 
-        private void GroupListSetView()
+        private void RefreshUsersList()
         {
-            grdGroups.Columns["Id"].Visible = false;
-            grdGroups.Columns["Name"].Visible = true;
-            grdGroups.Columns["Color"].Visible = false;
-            grdGroups.Columns["AllowDelete"].Visible = false;
-            grdGroups.Columns["User"].Visible = false;
-
-            grdGroups.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            grdGroups.Columns["Name"].HeaderText = "Grupa";
-            grdGroups.RowHeadersVisible = false;
-            grdGroups.ReadOnly = true;
-            grdGroups.AllowUserToResizeRows = false;
-
-            for (int i = 0; i <= grdGroups.Rows.Count-1; i++)
+            using (DLModelContainer model = new DLModelContainer())
             {
-                grdGroups.Rows[i].DefaultCellStyle.BackColor = Color.FromName(grdGroups.Rows[i].Cells["Color"].Value.ToString());
+                int selectedGroupId = default(int);
+                int.TryParse(cmbGroup.SelectedValue.ToString(), out selectedGroupId);
+
+                grdUsers.DataSource = model.User
+                    .Include("Group")
+                    .Where(p => p.Group.Id == selectedGroupId)
+                    .OrderBy(p => p.SurName)
+                    .ThenBy(p => p.FirstName)
+                    .ToList();
             }
 
+            UsersSetListView();
         }
 
-        private void RefreshGroupList()
+        private void UsersSetListView()
         {
-            using(DLModelContainer model = new DLModelContainer())
-            {
-                List<Group> groups = model.Group.Select(p => p).OrderBy(p => p.Id).ToList();
-                if (groups != null)
-                {
-                    grdGroups.DataSource = groups;
-                    //po przeładowaniu grid grup ustawia select na pierwszym elemencie
-                    grdGroups.Rows[0].Selected = true;
-                }
-            }
+            grdUsers.Columns["Id"].Visible = false;
+            grdUsers.Columns["Login"].Visible = false;
+            grdUsers.Columns["Password"].Visible = false;
+            grdUsers.Columns["Certificate"].Visible = false;
+            grdUsers.Columns["ZipCode"].Visible = false;
+            grdUsers.Columns["Street"].Visible = false;
+            grdUsers.Columns["StreetNr"].Visible = false;
+            grdUsers.Columns["Phone"].Visible = false;
+            grdUsers.Columns["Email"].Visible = false;
+            grdUsers.Columns["FaceBook"].Visible = false;
+            grdUsers.Columns["IdNr"].Visible = false;
+            grdUsers.Columns["UsersType"].Visible = false;
+            grdUsers.Columns["Operator"].Visible = false;
+            grdUsers.Columns["Parachute"].Visible = false;
+            grdUsers.Columns["FlightsElem"].Visible = false;
+            grdUsers.Columns["Order"].Visible = false;
+            grdUsers.Columns["Group"].Visible = false;
+
+            grdUsers.Columns["SurName"].DisplayIndex = 0;
+            grdUsers.Columns["FirstName"].DisplayIndex = 1;
+            grdUsers.Columns["City"].DisplayIndex = 2;
+            grdUsers.Columns["CertDate"].DisplayIndex = 3;
+
+            grdUsers.Columns["SurName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            grdUsers.Columns["FirstName"].Width = 300;
+            grdUsers.Columns["City"].Width = 300;
+            grdUsers.Columns["CertDate"].Width = 300;
+
+            grdUsers.Columns["SurName"].HeaderText = "Nazwisko";
+            grdUsers.Columns["FirstName"].HeaderText = "Imię";
+            grdUsers.Columns["City"].HeaderText = "Miasto";
+            grdUsers.Columns["CertDate"].HeaderText = "Data wygaśnięcia licencji";
+
+
+            grdUsers.ReadOnly = true;
+            grdUsers.MultiSelect = true;
+            grdUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            grdUsers.AllowUserToResizeRows = false;
         }
 
-        private void btnAddGroup_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            GroupAddForm gad = new GroupAddForm();
-            gad.MdiParent = this.MdiParent;
-            gad.GRoupAddedEH += GroupAddedEventHandler;
-            gad.Show();
+            this.Close();
         }
 
-        private void GroupAddedEventHandler(object sender, EventArgs e)
+        private void cmbGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RefreshGroupList();
-            GroupListSetView();
+            RefreshUsersList();
         }
 
-        private void btnDeleteGroup_Click(object sender, EventArgs e)
+        private void btnAddUser_Click(object sender, EventArgs e)
         {
-            if(grdGroups.SelectedRows.Count > 0)
-            {
-                TryDeleteGroup();
-            }
+            UsersAddEditForm = FormsOpened<UsersAddEditForm>.IsOpened(UsersAddEditForm);
+            //TODO wywołanie eventhandlera
+            UsersAddEditForm.TopMost = true;
+            UsersAddEditForm.FormState = Enum_FormState.Add;
+            UsersAddEditForm.IdUser = default(int);
+            UsersAddEditForm.UserGroup = (int)cmbGroup.SelectedValue;
+            UsersAddEditForm.ShowDialog();
         }
 
-        private void TryDeleteGroup()
-        {
-            using(DLModelContainer model = new DLModelContainer())
-            {
-                int groupId = (int)grdGroups.SelectedRows[0].Cells["Id"].Value;
-                bool isGroupElement = model.User.Include("Group").Any(p => p.Group.Id == groupId);
-                if (isGroupElement)
-                {
-                    KryptonMessageBox.Show("Nie można usunąć zaznaczonej grupy ponieważ zawiera elementy!\nUsuń najpierw elementy grupy i spróbuj ponownie.", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                }
-                else
-                {
-                    if(KryptonMessageBox.Show("Usunąć zaznaczoną pozycję?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        var group = model.Group.Where(p => p.Id == groupId).FirstOrDefault();
-                        if(group != null)
-                        {
-                            model.Group.Remove(group);
-                            model.SaveChanges();
-                            GroupAddedEventHandler(null, null);
-                        }
-                    }
-                }
-            }
-        }
+        private UsersAddEditForm UsersAddEditForm = null;
+
     }
 }
