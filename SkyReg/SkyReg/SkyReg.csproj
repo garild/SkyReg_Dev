@@ -246,6 +246,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Common\AppData\AC.ExtendedRenderer.Toolkit.dll" />
     <Content Include="Common\AppData\ComponentFactory.Krypton.Toolkit.dll" />
     <Content Include="Common\AppData\DataLayer.dll" />
     <Content Include="Common\AppData\EntityFramework.dll" />

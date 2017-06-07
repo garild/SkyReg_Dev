@@ -31,7 +31,7 @@ namespace SkyReg
             {
                 var allGroup = _contextGroup.GetAll();
 
-                cmbGroup.DataSource = allGroup.Select(p => p).OrderBy(p => p.Id).ToList();
+                cmbGroup.DataSource = allGroup.Value?.Select(p => p).OrderBy(p => p.Id).ToList();
                 cmbGroup.ValueMember = "Id";
                 cmbGroup.DisplayMember = "Name";
                 if (cmbGroup.Items.Count > 0)
