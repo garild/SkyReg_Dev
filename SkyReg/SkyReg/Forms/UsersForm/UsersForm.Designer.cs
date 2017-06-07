@@ -30,18 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsersForm));
             this.kryptonPanelEx1 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
+            this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.cmbGroup = new System.Windows.Forms.ComboBox();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnDeleteUser = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnEditUser = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnAddUser = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnDeleteGroup = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnAddGroup = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonHeaderGroup1 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.kryptonPanelEx3 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
-            this.splitContainer = new ComponentFactory.Krypton.Toolkit.KryptonSplitContainer();
-            this.kryptonHeaderGroup3 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
-            this.grdGroups = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.kryptonHeaderGroup2 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.grdUsers = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -51,21 +47,6 @@
             this.kryptonHeaderGroup1.Panel.SuspendLayout();
             this.kryptonHeaderGroup1.SuspendLayout();
             this.kryptonPanelEx3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer.Panel1)).BeginInit();
-            this.splitContainer.Panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer.Panel2)).BeginInit();
-            this.splitContainer.Panel2.SuspendLayout();
-            this.splitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3.Panel)).BeginInit();
-            this.kryptonHeaderGroup3.Panel.SuspendLayout();
-            this.kryptonHeaderGroup3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdGroups)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2.Panel)).BeginInit();
-            this.kryptonHeaderGroup2.Panel.SuspendLayout();
-            this.kryptonHeaderGroup2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUsers)).BeginInit();
             this.kryptonPanelEx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -75,12 +56,12 @@
             // 
             this.kryptonPanelEx1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonPanelEx1.Controls.Add(this.kryptonLabel1);
+            this.kryptonPanelEx1.Controls.Add(this.cmbGroup);
             this.kryptonPanelEx1.Controls.Add(this.btnClose);
             this.kryptonPanelEx1.Controls.Add(this.btnDeleteUser);
             this.kryptonPanelEx1.Controls.Add(this.btnEditUser);
             this.kryptonPanelEx1.Controls.Add(this.btnAddUser);
-            this.kryptonPanelEx1.Controls.Add(this.btnDeleteGroup);
-            this.kryptonPanelEx1.Controls.Add(this.btnAddGroup);
             this.kryptonPanelEx1.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.kryptonPanelEx1.GradientToogleColors = false;
             this.kryptonPanelEx1.GradientUseBlend = false;
@@ -92,61 +73,67 @@
             this.kryptonPanelEx1.Size = new System.Drawing.Size(1145, 34);
             this.kryptonPanelEx1.TabIndex = 0;
             // 
+            // kryptonLabel1
+            // 
+            this.kryptonLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.kryptonLabel1.Location = new System.Drawing.Point(310, 7);
+            this.kryptonLabel1.Name = "kryptonLabel1";
+            this.kryptonLabel1.Size = new System.Drawing.Size(50, 16);
+            this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.kryptonLabel1.TabIndex = 7;
+            this.kryptonLabel1.Values.Text = "Rodzaj:";
+            // 
+            // cmbGroup
+            // 
+            this.cmbGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGroup.FormattingEnabled = true;
+            this.cmbGroup.Location = new System.Drawing.Point(366, 3);
+            this.cmbGroup.Name = "cmbGroup";
+            this.cmbGroup.Size = new System.Drawing.Size(174, 21);
+            this.cmbGroup.TabIndex = 6;
+            this.cmbGroup.SelectedIndexChanged += new System.EventHandler(this.cmbGroup_SelectedIndexChanged);
+            // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(1052, 6);
+            this.btnClose.Location = new System.Drawing.Point(1055, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(90, 25);
+            this.btnClose.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnClose.TabIndex = 5;
             this.btnClose.Values.Text = "&Zamknij";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnDeleteUser
             // 
             this.btnDeleteUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDeleteUser.Location = new System.Drawing.Point(534, 6);
+            this.btnDeleteUser.Location = new System.Drawing.Point(198, 3);
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(90, 25);
+            this.btnDeleteUser.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnDeleteUser.TabIndex = 4;
             this.btnDeleteUser.Values.Text = "U&suń";
             // 
             // btnEditUser
             // 
             this.btnEditUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEditUser.Location = new System.Drawing.Point(438, 6);
+            this.btnEditUser.Location = new System.Drawing.Point(102, 3);
             this.btnEditUser.Name = "btnEditUser";
             this.btnEditUser.Size = new System.Drawing.Size(90, 25);
+            this.btnEditUser.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnEditUser.TabIndex = 3;
             this.btnEditUser.Values.Text = "&Edytuj";
             // 
             // btnAddUser
             // 
             this.btnAddUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddUser.Location = new System.Drawing.Point(342, 6);
+            this.btnAddUser.Location = new System.Drawing.Point(6, 3);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(90, 25);
+            this.btnAddUser.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnAddUser.TabIndex = 2;
             this.btnAddUser.Values.Text = "D&odaj";
-            // 
-            // btnDeleteGroup
-            // 
-            this.btnDeleteGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDeleteGroup.Location = new System.Drawing.Point(89, 6);
-            this.btnDeleteGroup.Name = "btnDeleteGroup";
-            this.btnDeleteGroup.Size = new System.Drawing.Size(79, 25);
-            this.btnDeleteGroup.TabIndex = 1;
-            this.btnDeleteGroup.Values.Text = "&Usuń grupę";
-            this.btnDeleteGroup.Click += new System.EventHandler(this.btnDeleteGroup_Click);
-            // 
-            // btnAddGroup
-            // 
-            this.btnAddGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddGroup.Location = new System.Drawing.Point(4, 6);
-            this.btnAddGroup.Name = "btnAddGroup";
-            this.btnAddGroup.Size = new System.Drawing.Size(79, 25);
-            this.btnAddGroup.TabIndex = 0;
-            this.btnAddGroup.Values.Text = "&Dodaj grupę";
-            this.btnAddGroup.Click += new System.EventHandler(this.btnAddGroup_Click);
             // 
             // kryptonHeaderGroup1
             // 
@@ -170,7 +157,7 @@
             this.kryptonPanelEx3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonPanelEx3.Controls.Add(this.splitContainer);
+            this.kryptonPanelEx3.Controls.Add(this.grdUsers);
             this.kryptonPanelEx3.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.kryptonPanelEx3.GradientToogleColors = false;
             this.kryptonPanelEx3.GradientUseBlend = false;
@@ -182,71 +169,13 @@
             this.kryptonPanelEx3.Size = new System.Drawing.Size(848, 525);
             this.kryptonPanelEx3.TabIndex = 1;
             // 
-            // splitContainer
-            // 
-            this.splitContainer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer.Name = "splitContainer";
-            // 
-            // splitContainer.Panel1
-            // 
-            this.splitContainer.Panel1.Controls.Add(this.kryptonHeaderGroup3);
-            // 
-            // splitContainer.Panel2
-            // 
-            this.splitContainer.Panel2.Controls.Add(this.kryptonHeaderGroup2);
-            this.splitContainer.Size = new System.Drawing.Size(848, 525);
-            this.splitContainer.SplitterDistance = 200;
-            this.splitContainer.TabIndex = 0;
-            // 
-            // kryptonHeaderGroup3
-            // 
-            this.kryptonHeaderGroup3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.kryptonHeaderGroup3.HeaderStylePrimary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Secondary;
-            this.kryptonHeaderGroup3.HeaderVisibleSecondary = false;
-            this.kryptonHeaderGroup3.Location = new System.Drawing.Point(0, 0);
-            this.kryptonHeaderGroup3.Name = "kryptonHeaderGroup3";
-            // 
-            // kryptonHeaderGroup3.Panel
-            // 
-            this.kryptonHeaderGroup3.Panel.Controls.Add(this.grdGroups);
-            this.kryptonHeaderGroup3.Size = new System.Drawing.Size(200, 525);
-            this.kryptonHeaderGroup3.TabIndex = 0;
-            this.kryptonHeaderGroup3.ValuesPrimary.Heading = "Grupy";
-            // 
-            // grdGroups
-            // 
-            this.grdGroups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdGroups.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdGroups.Location = new System.Drawing.Point(0, 0);
-            this.grdGroups.Name = "grdGroups";
-            this.grdGroups.RowHeadersWidth = 30;
-            this.grdGroups.Size = new System.Drawing.Size(198, 502);
-            this.grdGroups.TabIndex = 0;
-            // 
-            // kryptonHeaderGroup2
-            // 
-            this.kryptonHeaderGroup2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.kryptonHeaderGroup2.HeaderStylePrimary = ComponentFactory.Krypton.Toolkit.HeaderStyle.DockInactive;
-            this.kryptonHeaderGroup2.HeaderVisibleSecondary = false;
-            this.kryptonHeaderGroup2.Location = new System.Drawing.Point(0, 0);
-            this.kryptonHeaderGroup2.Name = "kryptonHeaderGroup2";
-            // 
-            // kryptonHeaderGroup2.Panel
-            // 
-            this.kryptonHeaderGroup2.Panel.Controls.Add(this.grdUsers);
-            this.kryptonHeaderGroup2.Size = new System.Drawing.Size(643, 525);
-            this.kryptonHeaderGroup2.TabIndex = 0;
-            this.kryptonHeaderGroup2.ValuesPrimary.Heading = "Osoby";
-            // 
             // grdUsers
             // 
             this.grdUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdUsers.Location = new System.Drawing.Point(0, 0);
             this.grdUsers.Name = "grdUsers";
-            this.grdUsers.Size = new System.Drawing.Size(641, 501);
+            this.grdUsers.Size = new System.Drawing.Size(848, 525);
             this.grdUsers.TabIndex = 0;
             // 
             // kryptonPanelEx2
@@ -289,26 +218,12 @@
             this.Load += new System.EventHandler(this.UsersForm_Load);
             this.Shown += new System.EventHandler(this.UsersForm_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
+            this.kryptonPanelEx1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).EndInit();
             this.kryptonHeaderGroup1.Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).EndInit();
             this.kryptonHeaderGroup1.ResumeLayout(false);
             this.kryptonPanelEx3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer.Panel1)).EndInit();
-            this.splitContainer.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer.Panel2)).EndInit();
-            this.splitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
-            this.splitContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3.Panel)).EndInit();
-            this.kryptonHeaderGroup3.Panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3)).EndInit();
-            this.kryptonHeaderGroup3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdGroups)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2.Panel)).EndInit();
-            this.kryptonHeaderGroup2.Panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2)).EndInit();
-            this.kryptonHeaderGroup2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdUsers)).EndInit();
             this.kryptonPanelEx2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -320,19 +235,15 @@
 
         private AC.ExtendedRenderer.Toolkit.KryptonPanelEx kryptonPanelEx1;
         private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup kryptonHeaderGroup1;
-        private AC.ExtendedRenderer.Toolkit.KryptonPanelEx kryptonPanelEx3;
-        private ComponentFactory.Krypton.Toolkit.KryptonSplitContainer splitContainer;
         private AC.ExtendedRenderer.Toolkit.KryptonPanelEx kryptonPanelEx2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup kryptonHeaderGroup3;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView grdGroups;
-        private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup kryptonHeaderGroup2;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView grdUsers;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnClose;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnDeleteUser;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnEditUser;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddUser;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnDeleteGroup;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddGroup;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
+        private System.Windows.Forms.ComboBox cmbGroup;
+        private AC.ExtendedRenderer.Toolkit.KryptonPanelEx kryptonPanelEx3;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView grdUsers;
     }
 }
