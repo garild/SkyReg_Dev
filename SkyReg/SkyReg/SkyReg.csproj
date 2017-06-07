@@ -93,6 +93,13 @@
     </Compile>
     <Compile Include="Forms\DatabaseConfiguration\FrmDataBaseConfig.Designer.cs">
       <DependentUpon>FrmDataBaseConfig.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Examples.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Examples.Designer.cs">
+      <DependentUpon>Examples.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\GlobalSettingsForm\FrmGlobalSettings.cs">
       <SubType>Form</SubType>
@@ -178,6 +185,9 @@
     <EmbeddedResource Include="Forms\DatabaseConfiguration\FrmDataBaseConfig.resx">
       <DependentUpon>FrmDataBaseConfig.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Examples.resx">
+      <DependentUpon>Examples.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\GlobalSettingsForm\FrmGlobalSettings.resx">
       <DependentUpon>FrmGlobalSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -238,8 +248,10 @@
   <ItemGroup>
     <Content Include="Common\AppData\AC.ExtendedRenderer.Toolkit.dll" />
     <Content Include="Common\AppData\ComponentFactory.Krypton.Toolkit.dll" />
+    <Content Include="Common\AppData\DataLayer.dll" />
     <Content Include="Common\AppData\EntityFramework.dll" />
     <Content Include="Common\AppData\EntityFramework.SqlServer.dll" />
+    <Content Include="Common\AppData\FluentValidation.dll" />
     <Content Include="Common\AppData\SkyReg.ico" />
     <Content Include="Common\Resources\access.png" />
     <Content Include="Common\Resources\access1.png" />
@@ -329,6 +341,7 @@
     <Content Include="Common\Resources\versions.png" />
     <Content Include="Common\Resources\view.png" />
     <None Include="Resources\dlmodel.edmx.sql" />
+    <Content Include="Instalator\Install_P.iss" />
     <Content Include="SkyReg.ico" />
     <None Include="Resources\Create_DataBase.sql" />
     <None Include="Common\Resources\logo_opacity.png" />
