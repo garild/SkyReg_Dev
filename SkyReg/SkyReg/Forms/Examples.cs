@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SkyReg.Forms
 {
-    public partial class Exsamples : KryptonForm
+    public partial class Examples : KryptonForm
     {
-        public Exsamples()
+        public Examples()
         {
             InitializeComponent();
         }
