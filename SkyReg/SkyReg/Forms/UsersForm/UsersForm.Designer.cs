@@ -134,6 +134,7 @@
             this.btnAddUser.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnAddUser.TabIndex = 2;
             this.btnAddUser.Values.Text = "D&odaj";
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
             // kryptonHeaderGroup1
             // 
