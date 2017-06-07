@@ -206,3 +206,5 @@ obj
 bin
 .vs/
 *.suo
+*.exe
+/SkyReg/SkyReg/Instalator/SkyReg.exe
