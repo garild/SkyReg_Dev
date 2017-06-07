@@ -24,26 +24,31 @@ namespace SkyReg
                 
                 //Czy jest grupa Spadochroniarze
                 var allGroups = _contextGroup.GetAll();
-                var isSkydiversGroup = allGroups.Where(p => p.Name == "Skoczkowie").FirstOrDefault();
-                if (isSkydiversGroup == null)
+                if (allGroups.IsSuccess)
                 {
-                    gp = new Group();
-                    gp.Name = "Skoczkowie";
-                    gp.Color = "White";
-                    gp.AllowDelete = false;
-                    _contextGroup.Add(gp);
-                    gpSkoczkowie = gp;
-                }
+                    var isSkydiversGroup = allGroups.Value.Where(p => p.Name == "Skoczkowie").FirstOrDefault();
+                    if (isSkydiversGroup == null)
+                    {
+                        gp = new Group();
+                        gp.Name = "Skoczkowie";
+                        gp.Color = "White";
+                        gp.AllowDelete = false;
+                        if (_contextGroup.Insert(gp).IsSuccess)
+                            gpSkoczkowie = gp;
+                    }
 
-                //Czy jest grupa Pasażerowie tandemów
-                var isPassengerGroup = allGroups.Where(p => p.Name == "Pasażerowie tandemów").FirstOrDefault();
-                if (isPassengerGroup == null)
-                {
-                    gp = new Group();
-                    gp.Name = "Pasażerowie tandemów";
-                    gp.Color = "LightPink";
-                    gp.AllowDelete = false;
-                    _contextGroup.Add(gp);
+
+
+                    //Czy jest grupa Pasażerowie tandemów
+                    var isPassengerGroup = allGroups.Value.Where(p => p.Name == "Pasażerowie tandemów").FirstOrDefault();
+                    if (isPassengerGroup == null)
+                    {
+                        gp = new Group();
+                        gp.Name = "Pasażerowie tandemów";
+                        gp.Color = "LightPink";
+                        gp.AllowDelete = false;
+                        _contextGroup.Insert(gp);
+                    }
                 }
             }
             using (DLModelRepository<User> _contextUser = new DLModelRepository<User>())
@@ -51,7 +56,7 @@ namespace SkyReg
             {
                 var allUsers = _contextUser.GetAll();
                 var allOperators = _contextOperator.GetAll();
-                var isAdmin = allUsers.Where(p => p.Login == "admin").FirstOrDefault();
+                var isAdmin = allUsers.Value.Where(p => p.Login == "admin").FirstOrDefault();
                 if (isAdmin == null)
                 {
                     User usr = new User();
@@ -64,7 +69,7 @@ namespace SkyReg
                     Operator opr = new Operator();
                     opr.User = usr;
                     opr.Type = (int)Enum_OperatorTypes.Operator;
-                    _contextOperator.Add(opr);
+                    _contextOperator.Insert(opr);
                 }
             }
         }

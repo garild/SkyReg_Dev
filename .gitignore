@@ -127,8 +127,6 @@ ClientBin/
 modulesbin/
 tempbin/
 
-# EPiServer Site file (VPP)
-AppData/
 
 # RIA/Silverlight projects
 Generated_Code/

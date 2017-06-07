@@ -90,7 +90,7 @@ namespace SkyReg
 
             using(DLModelRepository<User> _ctxUsr = new DLModelRepository<User>())
             {
-                var users = _ctxUsr.GetAll();
+                var users = _ctxUsr.GetAll().Value?.Where(p => p.FirstName == txtFirstName.Text).FirstOrDefault();
                 if(txtFirstName.Text == default(string))
                 {
                     errorProvider1.SetError(txtFirstName, "Pole nie może być puste!");
