@@ -24,8 +24,6 @@ namespace SkyReg
                 
                 //Czy jest grupa Spadochroniarze
                 var allGroups = _contextGroup.GetAll();
-                if (allGroups.IsSuccess)
-                {
                     var isSkydiversGroup = allGroups.Value.Where(p => p.Name == "Skoczkowie").FirstOrDefault();
                     if (isSkydiversGroup == null)
                     {
@@ -33,7 +31,7 @@ namespace SkyReg
                         gp.Name = "Skoczkowie";
                         gp.Color = "White";
                         gp.AllowDelete = false;
-                        if (_contextGroup.Insert(gp).IsSuccess)
+                        if( _contextGroup.Insert(gp).IsSuccess)
                             gpSkoczkowie = gp;
                     }
 
@@ -49,7 +47,6 @@ namespace SkyReg
                         gp.AllowDelete = false;
                         _contextGroup.Insert(gp);
                     }
-                }
             }
             using (DLModelRepository<User> _contextUser = new DLModelRepository<User>())
             using (DLModelRepository<Operator> _contextOperator = new DLModelRepository<Operator>())

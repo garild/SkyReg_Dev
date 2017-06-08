@@ -40,6 +40,7 @@
             this.kryptonPanelEx3 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.grdUsers = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
+            this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.kryptonPanelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).BeginInit();
@@ -114,6 +115,7 @@
             this.btnDeleteUser.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnDeleteUser.TabIndex = 4;
             this.btnDeleteUser.Values.Text = "U&suń";
+            this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
             // 
             // btnEditUser
             // 
@@ -124,6 +126,7 @@
             this.btnEditUser.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnEditUser.TabIndex = 3;
             this.btnEditUser.Values.Text = "&Edytuj";
+            this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
             // 
             // btnAddUser
             // 
@@ -178,11 +181,13 @@
             this.grdUsers.Name = "grdUsers";
             this.grdUsers.Size = new System.Drawing.Size(848, 525);
             this.grdUsers.TabIndex = 0;
+            this.grdUsers.DoubleClick += new System.EventHandler(this.btnEditUser_Click);
             // 
             // kryptonPanelEx2
             // 
             this.kryptonPanelEx2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonPanelEx2.Controls.Add(this.kryptonLabel2);
             this.kryptonPanelEx2.Controls.Add(this.pictureBox1);
             this.kryptonPanelEx2.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.kryptonPanelEx2.GradientToogleColors = false;
@@ -194,6 +199,15 @@
             this.kryptonPanelEx2.PersistentColors = false;
             this.kryptonPanelEx2.Size = new System.Drawing.Size(300, 526);
             this.kryptonPanelEx2.TabIndex = 0;
+            // 
+            // kryptonLabel2
+            // 
+            this.kryptonLabel2.Location = new System.Drawing.Point(27, 285);
+            this.kryptonLabel2.Name = "kryptonLabel2";
+            this.kryptonLabel2.Size = new System.Drawing.Size(251, 84);
+            this.kryptonLabel2.TabIndex = 1;
+            this.kryptonLabel2.Values.Text = "Kartoteka zawierająca listę \r\nskoczków/pasażerów tandemów\r\n- Nazwisko i imię skoc" +
+    "zka,\r\n- Miasto,\r\n- Termin wygaśnięcia świadectwa kwalifikacji";
             // 
             // pictureBox1
             // 
@@ -227,6 +241,7 @@
             this.kryptonPanelEx3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdUsers)).EndInit();
             this.kryptonPanelEx2.ResumeLayout(false);
+            this.kryptonPanelEx2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -246,5 +261,6 @@
         private System.Windows.Forms.ComboBox cmbGroup;
         private AC.ExtendedRenderer.Toolkit.KryptonPanelEx kryptonPanelEx3;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView grdUsers;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
     }
 }
