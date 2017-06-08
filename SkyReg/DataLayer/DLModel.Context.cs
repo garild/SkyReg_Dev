@@ -16,8 +16,12 @@ namespace DataLayer
     public partial class DLModelContainer : DbContext
     {
         public DLModelContainer()
-            : base("name=DLModelContainer")
+            : base()
         {
+            Database.Connection.ConnectionString = DatabaseConfig.ConnectionString;
+            this.Configuration.AutoDetectChangesEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
+            this.Configuration.ValidateOnSaveEnabled = false;
             this.Configuration.LazyLoadingEnabled = false;
         }
     

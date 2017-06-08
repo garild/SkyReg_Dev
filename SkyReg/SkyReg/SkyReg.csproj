@@ -361,7 +361,7 @@
     <Content Include="Common\Resources\version.png" />
     <Content Include="Common\Resources\versions.png" />
     <Content Include="Common\Resources\view.png" />
-    <None Include="Resources\dlmodel.edmx.sql" />
+    <Content Include="Resources\dlmodel.edmx.sql" />
     <Content Include="Instalator\Install_P.iss" />
     <Content Include="SkyReg.ico" />
     <None Include="Resources\Create_DataBase.sql" />

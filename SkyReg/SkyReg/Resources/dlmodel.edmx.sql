@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/04/2017 20:43:14
--- Generated from EDMX file: E:\GitRepositry\SkyReg\DataLayer\DLModel.edmx
+-- Date Created: 06/07/2017 09:52:08
+-- Generated from EDMX file: F:\Projekty 2017\Repozytorium2\SkyReg_Dev\SkyReg\DataLayer\DLModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -122,8 +122,7 @@ CREATE TABLE [dbo].[UsersType] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Value] decimal(8,2)  NOT NULL,
-    [IsCam] bit  NOT NULL,
-    [User_Id] int  NULL
+    [IsCam] bit  NOT NULL
 );
 GO
 
@@ -208,6 +207,13 @@ CREATE TABLE [dbo].[Group] (
 );
 GO
 
+-- Creating table 'UserUsersType'
+CREATE TABLE [dbo].[UserUsersType] (
+    [User_Id] int  NOT NULL,
+    [UsersType_Id] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -278,23 +284,38 @@ ADD CONSTRAINT [PK_Group]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [User_Id], [UsersType_Id] in table 'UserUsersType'
+ALTER TABLE [dbo].[UserUsersType]
+ADD CONSTRAINT [PK_UserUsersType]
+    PRIMARY KEY CLUSTERED ([User_Id], [UsersType_Id] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- Creating foreign key on [User_Id] in table 'UsersType'
-ALTER TABLE [dbo].[UsersType]
-ADD CONSTRAINT [FK_UserUsersType]
+-- Creating foreign key on [User_Id] in table 'UserUsersType'
+ALTER TABLE [dbo].[UserUsersType]
+ADD CONSTRAINT [FK_UserUsersType_User]
     FOREIGN KEY ([User_Id])
     REFERENCES [dbo].[User]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_UserUsersType'
-CREATE INDEX [IX_FK_UserUsersType]
-ON [dbo].[UsersType]
-    ([User_Id]);
+-- Creating foreign key on [UsersType_Id] in table 'UserUsersType'
+ALTER TABLE [dbo].[UserUsersType]
+ADD CONSTRAINT [FK_UserUsersType_UsersType]
+    FOREIGN KEY ([UsersType_Id])
+    REFERENCES [dbo].[UsersType]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserUsersType_UsersType'
+CREATE INDEX [IX_FK_UserUsersType_UsersType]
+ON [dbo].[UserUsersType]
+    ([UsersType_Id]);
 GO
 
 -- Creating foreign key on [User_Id] in table 'Operator'
