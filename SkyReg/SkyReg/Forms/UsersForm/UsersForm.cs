@@ -29,7 +29,7 @@ namespace SkyReg
         {
             using (DLModelRepository<Group> _contextGroup = new DLModelRepository<Group>())
             {
-                var allGroup = _contextGroup.GetAll();
+                var allGroup = _contextGroup.GetAll().Value;
 
                 cmbGroup.DataSource = allGroup.Value?.Select(p => p).OrderBy(p => p.Id).ToList();
                 cmbGroup.ValueMember = "Id";
@@ -88,9 +88,9 @@ namespace SkyReg
             grdUsers.Columns["CertDate"].DisplayIndex = 3;
 
             grdUsers.Columns["SurName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            grdUsers.Columns["FirstName"].Width = 300;
-            grdUsers.Columns["City"].Width = 300;
-            grdUsers.Columns["CertDate"].Width = 300;
+            grdUsers.Columns["FirstName"].Width = 200;
+            grdUsers.Columns["City"].Width = 200;
+            grdUsers.Columns["CertDate"].Width = 200;
 
             grdUsers.Columns["SurName"].HeaderText = "Nazwisko";
             grdUsers.Columns["FirstName"].HeaderText = "Imię";
@@ -117,7 +117,7 @@ namespace SkyReg
         private void btnAddUser_Click(object sender, EventArgs e)
         {
             UsersAddEditForm = FormsOpened<UsersAddEditForm>.IsOpened(UsersAddEditForm);
-            //TODO wywołanie eventhandlera
+            UsersAddEditForm.EventHandlerAddEditUser += RefreshListAfterAddEdit;
             UsersAddEditForm.TopMost = true;
             UsersAddEditForm.FormState = Enum_FormState.Add;
             UsersAddEditForm.IdUser = default(int);
@@ -125,7 +125,54 @@ namespace SkyReg
             UsersAddEditForm.ShowDialog();
         }
 
+        private void RefreshListAfterAddEdit(object sender, EventArgs e)
+        {
+            RefreshUsersList();
+        }
+
         private UsersAddEditForm UsersAddEditForm = null;
 
+        private void btnEditUser_Click(object sender, EventArgs e)
+        {
+            if (grdUsers.SelectedRows.Count > 0)
+            {
+                int idUsr = (int)grdUsers.SelectedRows[0].Cells["Id"].Value;
+
+                UsersAddEditForm = FormsOpened<UsersAddEditForm>.IsOpened(UsersAddEditForm);
+                UsersAddEditForm.EventHandlerAddEditUser += RefreshListAfterAddEdit;
+                UsersAddEditForm.TopMost = true;
+                UsersAddEditForm.FormState = Enum_FormState.Edit;
+                UsersAddEditForm.IdUser = idUsr;
+                UsersAddEditForm.UserGroup = (int)cmbGroup.SelectedValue;
+                UsersAddEditForm.ShowDialog();
+            }
+        }
+
+        private void btnDeleteUser_Click(object sender, EventArgs e)
+        {
+            DeleteUser();
+        }
+
+        private void DeleteUser()
+        {
+            if (grdUsers.SelectedRows.Count > 0)
+            {
+                if (KryptonMessageBox.Show("Usunąć zaznaczoną pozycję?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    int idUsr = (int)grdUsers.SelectedRows[0].Cells["Id"].Value;
+                    using(DLModelContainer model = new DLModelContainer())
+                    {
+                        User usr = model.User.Include("UsersType").Where(p => p.Id == idUsr).FirstOrDefault();
+                        if (usr != null)
+                        {
+                            model.User.Remove(usr);
+                            model.SaveChanges();
+                            RefreshUsersList();
+                        }
+                    }
+
+                }
+            }
+        }
     }
 }

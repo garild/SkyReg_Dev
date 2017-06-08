@@ -38,6 +38,7 @@
             AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton6 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
             AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton7 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
             AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton8 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
+            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton9 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
             this.StyleManager = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.outlookBar1 = new AC.ExtendedRenderer.Navigator.OutlookBar();
@@ -73,14 +74,14 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tstrLoggedUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tstrVersion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel7 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tstrLoggedUser = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tstrComputerName = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -111,54 +112,60 @@
             this.outlookBar1.ButtonColorSelectedBottom = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(195)))), ((int)(((byte)(108)))));
             this.outlookBar1.ButtonColorSelectedTop = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(122)))), ((int)(((byte)(5)))));
             this.outlookBar1.ButtonHeight = 35;
-            outlookBarButton1.BuddyPage1 = "Flights";
+            outlookBarButton1.BuddyPage1 = "Planer";
             outlookBarButton1.BuddyPage2 = null;
             outlookBarButton1.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton1.Image")));
             outlookBarButton1.Tag1 = null;
             outlookBarButton1.Tag2 = null;
-            outlookBarButton1.Text = "Wyloty";
-            outlookBarButton2.BuddyPage1 = "Jumpers";
+            outlookBarButton1.Text = "Planówka";
+            outlookBarButton2.BuddyPage1 = "Flights";
             outlookBarButton2.BuddyPage2 = null;
             outlookBarButton2.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton2.Image")));
             outlookBarButton2.Tag1 = null;
             outlookBarButton2.Tag2 = null;
-            outlookBarButton2.Text = "Skoczkowie";
-            outlookBarButton3.BuddyPage1 = "Parachutes";
+            outlookBarButton2.Text = "Wyloty";
+            outlookBarButton3.BuddyPage1 = "Jumpers";
             outlookBarButton3.BuddyPage2 = null;
             outlookBarButton3.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton3.Image")));
             outlookBarButton3.Tag1 = null;
             outlookBarButton3.Tag2 = null;
-            outlookBarButton3.Text = "Spadochrony";
-            outlookBarButton4.BuddyPage1 = "Jumpers_types";
+            outlookBarButton3.Text = "Skoczkowie";
+            outlookBarButton4.BuddyPage1 = "Parachutes";
             outlookBarButton4.BuddyPage2 = null;
             outlookBarButton4.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton4.Image")));
             outlookBarButton4.Tag1 = null;
             outlookBarButton4.Tag2 = null;
-            outlookBarButton4.Text = "Typy skoczków";
-            outlookBarButton5.BuddyPage1 = "Airplanes";
+            outlookBarButton4.Text = "Spadochrony";
+            outlookBarButton5.BuddyPage1 = "Jumpers_types";
             outlookBarButton5.BuddyPage2 = null;
             outlookBarButton5.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton5.Image")));
             outlookBarButton5.Tag1 = null;
             outlookBarButton5.Tag2 = null;
-            outlookBarButton5.Text = "Samoloty";
-            outlookBarButton6.BuddyPage1 = "Orders";
+            outlookBarButton5.Text = "Typy skoczków";
+            outlookBarButton6.BuddyPage1 = "Airplanes";
             outlookBarButton6.BuddyPage2 = null;
             outlookBarButton6.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton6.Image")));
             outlookBarButton6.Tag1 = null;
             outlookBarButton6.Tag2 = null;
-            outlookBarButton6.Text = "Zgłoszenia";
-            outlookBarButton7.BuddyPage1 = "Moneys";
+            outlookBarButton6.Text = "Samoloty";
+            outlookBarButton7.BuddyPage1 = "Orders";
             outlookBarButton7.BuddyPage2 = null;
             outlookBarButton7.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton7.Image")));
             outlookBarButton7.Tag1 = null;
             outlookBarButton7.Tag2 = null;
-            outlookBarButton7.Text = "Finanse";
-            outlookBarButton8.BuddyPage1 = "Settings";
+            outlookBarButton7.Text = "Zgłoszenia";
+            outlookBarButton8.BuddyPage1 = "Moneys";
             outlookBarButton8.BuddyPage2 = null;
             outlookBarButton8.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton8.Image")));
             outlookBarButton8.Tag1 = null;
             outlookBarButton8.Tag2 = null;
-            outlookBarButton8.Text = "Ustawienia";
+            outlookBarButton8.Text = "Finanse";
+            outlookBarButton9.BuddyPage1 = "Settings";
+            outlookBarButton9.BuddyPage2 = null;
+            outlookBarButton9.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton9.Image")));
+            outlookBarButton9.Tag1 = null;
+            outlookBarButton9.Tag2 = null;
+            outlookBarButton9.Text = "Ustawienia";
             this.outlookBar1.Buttons.Add(outlookBarButton1);
             this.outlookBar1.Buttons.Add(outlookBarButton2);
             this.outlookBar1.Buttons.Add(outlookBarButton3);
@@ -167,6 +174,7 @@
             this.outlookBar1.Buttons.Add(outlookBarButton6);
             this.outlookBar1.Buttons.Add(outlookBarButton7);
             this.outlookBar1.Buttons.Add(outlookBarButton8);
+            this.outlookBar1.Buttons.Add(outlookBarButton9);
             this.outlookBar1.Dock = System.Windows.Forms.DockStyle.Top;
             this.outlookBar1.DrawBorders = true;
             this.outlookBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
@@ -176,7 +184,7 @@
             this.outlookBar1.Name = "outlookBar1";
             this.outlookBar1.OutlookBarLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(83)))), ((int)(((byte)(92)))));
             this.outlookBar1.Renderer = AC.ExtendedRenderer.Navigator.Renderer.Krypton;
-            this.outlookBar1.Size = new System.Drawing.Size(200, 296);
+            this.outlookBar1.Size = new System.Drawing.Size(200, 328);
             this.outlookBar1.TabIndex = 1;
             this.outlookBar1.Text = "outlookBar1";
             this.outlookBar1.ButtonClicked += new AC.ExtendedRenderer.Navigator.OutlookBar.ButtonClickedEventHandler(this.outlookBar1_ButtonClicked);
@@ -361,7 +369,7 @@
             this.customizeToolStripMenuItem,
             this.optionsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // customizeToolStripMenuItem
@@ -444,15 +452,6 @@
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // tstrLoggedUser
-            // 
-            this.tstrLoggedUser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.tstrLoggedUser.Image = ((System.Drawing.Image)(resources.GetObject("tstrLoggedUser.Image")));
-            this.tstrLoggedUser.Name = "tstrLoggedUser";
-            this.tstrLoggedUser.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tstrLoggedUser.Size = new System.Drawing.Size(52, 17);
-            this.tstrLoggedUser.Text = " User";
-            // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
@@ -474,23 +473,26 @@
             this.tstrVersion.Size = new System.Drawing.Size(61, 17);
             this.tstrVersion.Text = "Wersja";
             // 
-            // toolStripStatusLabel5
-            // 
-            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(10, 17);
-            this.toolStripStatusLabel5.Text = " ";
-            // 
-            // toolStripStatusLabel6
-            // 
-            this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
-            this.toolStripStatusLabel6.Size = new System.Drawing.Size(16, 17);
-            this.toolStripStatusLabel6.Text = "   ";
-            // 
             // toolStripStatusLabel7
             // 
             this.toolStripStatusLabel7.Name = "toolStripStatusLabel7";
             this.toolStripStatusLabel7.Size = new System.Drawing.Size(10, 17);
             this.toolStripStatusLabel7.Text = " ";
+            // 
+            // tstrLoggedUser
+            // 
+            this.tstrLoggedUser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.tstrLoggedUser.Image = ((System.Drawing.Image)(resources.GetObject("tstrLoggedUser.Image")));
+            this.tstrLoggedUser.Name = "tstrLoggedUser";
+            this.tstrLoggedUser.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tstrLoggedUser.Size = new System.Drawing.Size(52, 17);
+            this.tstrLoggedUser.Text = " User";
+            // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(10, 17);
+            this.toolStripStatusLabel5.Text = " ";
             // 
             // tstrComputerName
             // 
@@ -500,6 +502,12 @@
             this.tstrComputerName.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tstrComputerName.Size = new System.Drawing.Size(37, 17);
             this.tstrComputerName.Text = "PC";
+            // 
+            // toolStripStatusLabel6
+            // 
+            this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
+            this.toolStripStatusLabel6.Size = new System.Drawing.Size(16, 17);
+            this.toolStripStatusLabel6.Text = "   ";
             // 
             // FrmMain
             // 

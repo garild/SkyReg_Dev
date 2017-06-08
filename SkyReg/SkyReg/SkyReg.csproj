@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Enums\Enum_flightsStatuses.cs" />
     <Compile Include="Common\Extensions\FormsOpened.cs" />
     <Compile Include="Common\FluentValidator\UserValidator.cs" />
     <Compile Include="Forms\AirplanesForm\AirplanesForm.cs">
@@ -100,6 +101,19 @@
     </Compile>
     <Compile Include="Forms\Examples.Designer.cs">
       <DependentUpon>Examples.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FlightsForm\FlightsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FlightsForm\FlightsForm.Designer.cs">
+      <DependentUpon>FlightsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FlightsForm\FlightsOnList.cs" />
+    <Compile Include="Forms\FlightsForm\FlyAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FlightsForm\FlyAddEditForm.Designer.cs">
+      <DependentUpon>FlyAddEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\GlobalSettingsForm\FrmGlobalSettings.cs">
       <SubType>Form</SubType>
@@ -188,6 +202,12 @@
     <EmbeddedResource Include="Forms\Examples.resx">
       <DependentUpon>Examples.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FlightsForm\FlightsForm.resx">
+      <DependentUpon>FlightsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FlightsForm\FlyAddEditForm.resx">
+      <DependentUpon>FlyAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\GlobalSettingsForm\FrmGlobalSettings.resx">
       <DependentUpon>FrmGlobalSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -272,6 +292,7 @@
     <Content Include="Common\Resources\database.png" />
     <Content Include="Common\Resources\default.png" />
     <Content Include="Common\Resources\delete.png" />
+    <Content Include="Common\Resources\departures.png" />
     <Content Include="Common\Resources\edit.png" />
     <Content Include="Common\Resources\editCustomer.png" />
     <Content Include="Common\Resources\edit_.png" />
@@ -340,7 +361,7 @@
     <Content Include="Common\Resources\version.png" />
     <Content Include="Common\Resources\versions.png" />
     <Content Include="Common\Resources\view.png" />
-    <None Include="Resources\dlmodel.edmx.sql" />
+    <Content Include="Resources\dlmodel.edmx.sql" />
     <Content Include="Instalator\Install_P.iss" />
     <Content Include="SkyReg.ico" />
     <None Include="Resources\Create_DataBase.sql" />

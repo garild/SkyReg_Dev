@@ -42,8 +42,6 @@
             this.kryptonLabel12 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtPhone = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel11 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.txtCountry = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.kryptonLabel10 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel9 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtCity = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.txtZipCode = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
@@ -92,8 +90,6 @@
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel12);
             this.kryptonPanelEx1.Controls.Add(this.txtPhone);
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel11);
-            this.kryptonPanelEx1.Controls.Add(this.txtCountry);
-            this.kryptonPanelEx1.Controls.Add(this.kryptonLabel10);
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel9);
             this.kryptonPanelEx1.Controls.Add(this.txtCity);
             this.kryptonPanelEx1.Controls.Add(this.txtZipCode);
@@ -131,7 +127,7 @@
             this.chkListUserTypes.Location = new System.Drawing.Point(12, 255);
             this.chkListUserTypes.Name = "chkListUserTypes";
             this.chkListUserTypes.Size = new System.Drawing.Size(200, 169);
-            this.chkListUserTypes.TabIndex = 34;
+            this.chkListUserTypes.TabIndex = 14;
             // 
             // grdSettlement
             // 
@@ -139,7 +135,7 @@
             this.grdSettlement.Location = new System.Drawing.Point(12, 455);
             this.grdSettlement.Name = "grdSettlement";
             this.grdSettlement.Size = new System.Drawing.Size(560, 200);
-            this.grdSettlement.TabIndex = 33;
+            this.grdSettlement.TabIndex = 16;
             // 
             // kryptonLabel16
             // 
@@ -163,7 +159,7 @@
             this.grdJumpsList.Location = new System.Drawing.Point(218, 255);
             this.grdJumpsList.Name = "grdJumpsList";
             this.grdJumpsList.Size = new System.Drawing.Size(354, 167);
-            this.grdJumpsList.TabIndex = 30;
+            this.grdJumpsList.TabIndex = 15;
             // 
             // kryptonLabel14
             // 
@@ -178,7 +174,7 @@
             this.txtFacebook.Location = new System.Drawing.Point(412, 203);
             this.txtFacebook.Name = "txtFacebook";
             this.txtFacebook.Size = new System.Drawing.Size(160, 23);
-            this.txtFacebook.TabIndex = 27;
+            this.txtFacebook.TabIndex = 13;
             // 
             // kryptonLabel13
             // 
@@ -193,7 +189,7 @@
             this.txtEmail.Location = new System.Drawing.Point(412, 174);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(160, 23);
-            this.txtEmail.TabIndex = 25;
+            this.txtEmail.TabIndex = 12;
             // 
             // kryptonLabel12
             // 
@@ -208,7 +204,7 @@
             this.txtPhone.Location = new System.Drawing.Point(412, 145);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(160, 23);
-            this.txtPhone.TabIndex = 23;
+            this.txtPhone.TabIndex = 11;
             // 
             // kryptonLabel11
             // 
@@ -217,21 +213,6 @@
             this.kryptonLabel11.Size = new System.Drawing.Size(29, 20);
             this.kryptonLabel11.TabIndex = 22;
             this.kryptonLabel11.Values.Text = "Tel:";
-            // 
-            // txtCountry
-            // 
-            this.txtCountry.Location = new System.Drawing.Point(65, 203);
-            this.txtCountry.Name = "txtCountry";
-            this.txtCountry.Size = new System.Drawing.Size(183, 23);
-            this.txtCountry.TabIndex = 21;
-            // 
-            // kryptonLabel10
-            // 
-            this.kryptonLabel10.Location = new System.Drawing.Point(22, 206);
-            this.kryptonLabel10.Name = "kryptonLabel10";
-            this.kryptonLabel10.Size = new System.Drawing.Size(34, 20);
-            this.kryptonLabel10.TabIndex = 20;
-            this.kryptonLabel10.Values.Text = "Kraj:";
             // 
             // kryptonLabel9
             // 
@@ -246,14 +227,14 @@
             this.txtCity.Location = new System.Drawing.Point(207, 174);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(144, 23);
-            this.txtCity.TabIndex = 18;
+            this.txtCity.TabIndex = 10;
             // 
             // txtZipCode
             // 
             this.txtZipCode.Location = new System.Drawing.Point(65, 174);
             this.txtZipCode.Name = "txtZipCode";
             this.txtZipCode.Size = new System.Drawing.Size(80, 23);
-            this.txtZipCode.TabIndex = 17;
+            this.txtZipCode.TabIndex = 9;
             // 
             // kryptonLabel8
             // 
@@ -268,7 +249,7 @@
             this.txtStreetNr.Location = new System.Drawing.Point(287, 145);
             this.txtStreetNr.Name = "txtStreetNr";
             this.txtStreetNr.Size = new System.Drawing.Size(64, 23);
-            this.txtStreetNr.TabIndex = 15;
+            this.txtStreetNr.TabIndex = 8;
             // 
             // kryptonLabel7
             // 
@@ -291,7 +272,7 @@
             this.txtStreet.Location = new System.Drawing.Point(65, 145);
             this.txtStreet.Name = "txtStreet";
             this.txtStreet.Size = new System.Drawing.Size(183, 23);
-            this.txtStreet.TabIndex = 12;
+            this.txtStreet.TabIndex = 7;
             // 
             // dateCertDate
             // 
@@ -299,7 +280,7 @@
             this.dateCertDate.Location = new System.Drawing.Point(434, 104);
             this.dateCertDate.Name = "dateCertDate";
             this.dateCertDate.Size = new System.Drawing.Size(138, 21);
-            this.dateCertDate.TabIndex = 11;
+            this.dateCertDate.TabIndex = 6;
             // 
             // kryptonLabel5
             // 
@@ -322,14 +303,14 @@
             this.txtCertyfikate.Location = new System.Drawing.Point(168, 102);
             this.txtCertyfikate.Name = "txtCertyfikate";
             this.txtCertyfikate.Size = new System.Drawing.Size(183, 23);
-            this.txtCertyfikate.TabIndex = 8;
+            this.txtCertyfikate.TabIndex = 5;
             // 
             // btnCheckLogin
             // 
             this.btnCheckLogin.Location = new System.Drawing.Point(377, 47);
             this.btnCheckLogin.Name = "btnCheckLogin";
             this.btnCheckLogin.Size = new System.Drawing.Size(90, 25);
-            this.btnCheckLogin.TabIndex = 7;
+            this.btnCheckLogin.TabIndex = 3;
             this.btnCheckLogin.Values.Text = "&Sprawdź login";
             this.btnCheckLogin.Click += new System.EventHandler(this.btnCheckLogin_Click);
             // 
@@ -353,29 +334,31 @@
             // 
             this.txtPassword.Location = new System.Drawing.Point(168, 73);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '●';
             this.txtPassword.Size = new System.Drawing.Size(183, 23);
             this.txtPassword.TabIndex = 4;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtLogin
             // 
             this.txtLogin.Location = new System.Drawing.Point(168, 44);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(183, 23);
-            this.txtLogin.TabIndex = 3;
+            this.txtLogin.TabIndex = 2;
             // 
             // txtSurName
             // 
             this.txtSurName.Location = new System.Drawing.Point(377, 16);
             this.txtSurName.Name = "txtSurName";
             this.txtSurName.Size = new System.Drawing.Size(195, 23);
-            this.txtSurName.TabIndex = 2;
+            this.txtSurName.TabIndex = 1;
             // 
             // txtFirstName
             // 
             this.txtFirstName.Location = new System.Drawing.Point(168, 15);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(183, 23);
-            this.txtFirstName.TabIndex = 1;
+            this.txtFirstName.TabIndex = 0;
             // 
             // kryptonLabel1
             // 
@@ -431,8 +414,13 @@
             this.ClientSize = new System.Drawing.Size(599, 706);
             this.Controls.Add(this.kryptonPanelEx2);
             this.Controls.Add(this.kryptonPanelEx1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "UsersAddEditForm";
-            this.Text = "UsersAddEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Użytkownik";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.UsersAddEditForm_Load);
             this.kryptonPanelEx1.ResumeLayout(false);
             this.kryptonPanelEx1.PerformLayout();
@@ -471,8 +459,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel12;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtPhone;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel11;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtCountry;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel10;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel9;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtCity;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtZipCode;
