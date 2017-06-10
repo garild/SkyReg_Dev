@@ -25,16 +25,14 @@ namespace SkyReg
             
             using (DLModelContainer model = new DLModelContainer())
             {
-                List<UserOnComboBox> usersList = new List<UserOnComboBox>();
-                
-                usersList = model.User.Select(p => new UserOnComboBox
+                var userList = model.User.Select(p => new
                 {
                     Id = p.Id,
                     Name = p.SurName + " " + p.FirstName
                 }).OrderBy(p => p.Name)
                 .ToList();
 
-                cmbName.DataSource = usersList;
+                cmbName.DataSource = userList;
                 cmbName.DisplayMember = "Name";
                 cmbName.ValueMember = "Id";
             }
@@ -64,9 +62,7 @@ namespace SkyReg
                 op.Type = (short)typ;
                 op.User = _user.GetAll().Value?.Where(p => p.Id == (int)cmbName.SelectedValue).FirstOrDefault();
 
-                var result = _operator.Insert(op);
-
-                if (result.IsSuccess)
+                if (_operator.Insert(op).IsSuccess)
                 {
                     DialogResult = DialogResult.OK;
                     this.Close();

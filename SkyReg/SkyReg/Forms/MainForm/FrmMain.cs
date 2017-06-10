@@ -30,7 +30,7 @@ namespace SkyReg
 
         private void outlookBar1_ButtonClicked(object sender, EventArgs e)
         {
-            switch (outlookBar1.Buttons[outlookBar1.SelectedIndex].BuddyPage1)
+            switch (outlookBar.Buttons[outlookBar.SelectedIndex].BuddyPage1)
             {
                 case "Settings":
                     FrmGlobalSettings = FormsOpened<FrmGlobalSettings>.IsOpened(FrmGlobalSettings);

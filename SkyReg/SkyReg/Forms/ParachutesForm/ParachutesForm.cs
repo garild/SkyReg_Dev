@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DataLayer;
 using SkyRegEnums;
 using DataLayer.Result.Repository;
+using SkyReg.Common.Extensions;
 
 namespace SkyReg
 {
@@ -26,14 +27,14 @@ namespace SkyReg
 
         #region Metody prywatne
 
-        private void ParentFormSizeFromParentsWorkSpaceSize()
-        {
-            Size s = new Size();
-            s.Height = this.Parent.Size.Height - 10;
-            s.Width = this.Parent.Size.Width - 10;
-            this.Size = s;
-            this.StartPosition = FormStartPosition.Manual;
-        }
+        //private void ParentFormSizeFromParentsWorkSpaceSize()
+        //{
+        //    Size s = new Size();
+        //    s.Height = this.Parent.Size.Height - 10;
+        //    s.Width = this.Parent.Size.Width - 10;
+        //    this.Size = s;
+        //    this.StartPosition = FormStartPosition.Manual;
+        //}
 
         private void SetParachuteListView()
         {
@@ -67,12 +68,11 @@ namespace SkyReg
 
         private void RefreshParachuteList()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (var _context = new DLModelRepository<Parachute>())
             {
-                grdParachute.DataSource = model
-                    .Parachute
-                    .Include("User")
-                    .Select(p => new ParachuteListElem
+                grdParachute.DataSource = _context
+                    .GetAll("User").Value
+                    .Select(p => new
                     {
                         Id = p.Id,
                         IdNr = p.IdNr,
@@ -84,6 +84,7 @@ namespace SkyReg
                     })
                     .OrderBy(p => p.IdNr)
                     .ToList();
+
                 grdParachute.Refresh();
             }
         }
@@ -94,37 +95,27 @@ namespace SkyReg
 
         private void ParachutesForm_Load(object sender, EventArgs e)
         {
-            //ParentFormSizeFromParentsWorkSpaceSize();
-        }
-
-        private void ParachutesForm_Shown(object sender, EventArgs e)
-        {
             RefreshParachuteList();
             SetParachuteListView();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e) //TODO Kod Janusza
         {
-            ParachuteFormAddEdit apf = new ParachuteFormAddEdit(FormState.Add, null);
-            apf.MdiParent = this.ParentForm;
-            apf.ParachuteAddedEdited += ParachutesListRefreshAfterAddedEdited;
-            apf.Show();
+            _parachuteFormAddEdit = FormsOpened<ParachuteFormAddEdit>.IsShowDialog(new ParachuteFormAddEdit(FormState.Add, null));
+            _parachuteFormAddEdit.StartPosition = FormStartPosition.CenterParent;
+            if (_parachuteFormAddEdit.ShowDialog() == DialogResult.OK)
+                RefreshParachuteList();
         }
-
-        private void ParachutesListRefreshAfterAddedEdited(object sender, EventArgs e)
-        {
-            RefreshParachuteList();
-        }
-
+       
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if (grdParachute.SelectedRows.Count > 0)
             {
                 int parId = (int)grdParachute.SelectedRows[0].Cells["Id"].Value;
-                ParachuteFormAddEdit apf = new ParachuteFormAddEdit(FormState.Edit, parId);
-                apf.MdiParent = this.ParentForm;
-                apf.ParachuteAddedEdited += ParachutesListRefreshAfterAddedEdited;
-                apf.Show();
+                _parachuteFormAddEdit = FormsOpened<ParachuteFormAddEdit>.IsShowDialog(new ParachuteFormAddEdit(FormState.Edit, parId));
+                _parachuteFormAddEdit.StartPosition = FormStartPosition.CenterParent;
+                if (_parachuteFormAddEdit.ShowDialog() == DialogResult.OK)
+                    RefreshParachuteList();
             }
         }
 
@@ -149,5 +140,7 @@ namespace SkyReg
         }
 
         #endregion
+
+        private ParachuteFormAddEdit _parachuteFormAddEdit = null;
     }
 }

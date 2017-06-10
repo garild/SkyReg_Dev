@@ -42,7 +42,7 @@
             AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton10 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
             this.StyleManager = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.outlookBar1 = new AC.ExtendedRenderer.Navigator.OutlookBar();
+            this.outlookBar = new AC.ExtendedRenderer.Navigator.OutlookBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,25 +94,25 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.outlookBar1);
+            this.panel1.Controls.Add(this.outlookBar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 455);
             this.panel1.TabIndex = 3;
             // 
-            // outlookBar1
+            // outlookBar
             // 
-            this.outlookBar1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.outlookBar1.ButtonColorHoveringBottom = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(239)))), ((int)(((byte)(177)))));
-            this.outlookBar1.ButtonColorHoveringTop = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(77)))));
-            this.outlookBar1.ButtonColorPassiveBottom = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(232)))), ((int)(((byte)(236)))));
-            this.outlookBar1.ButtonColorPassiveTop = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
-            this.outlookBar1.ButtonColorSelectedAndHoveringBottom = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(207)))), ((int)(((byte)(100)))));
-            this.outlookBar1.ButtonColorSelectedAndHoveringTop = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(142)))), ((int)(((byte)(49)))));
-            this.outlookBar1.ButtonColorSelectedBottom = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(195)))), ((int)(((byte)(108)))));
-            this.outlookBar1.ButtonColorSelectedTop = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(122)))), ((int)(((byte)(5)))));
-            this.outlookBar1.ButtonHeight = 35;
+            this.outlookBar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.outlookBar.ButtonColorHoveringBottom = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(239)))), ((int)(((byte)(177)))));
+            this.outlookBar.ButtonColorHoveringTop = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(77)))));
+            this.outlookBar.ButtonColorPassiveBottom = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(232)))), ((int)(((byte)(236)))));
+            this.outlookBar.ButtonColorPassiveTop = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
+            this.outlookBar.ButtonColorSelectedAndHoveringBottom = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(207)))), ((int)(((byte)(100)))));
+            this.outlookBar.ButtonColorSelectedAndHoveringTop = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(142)))), ((int)(((byte)(49)))));
+            this.outlookBar.ButtonColorSelectedBottom = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(195)))), ((int)(((byte)(108)))));
+            this.outlookBar.ButtonColorSelectedTop = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(122)))), ((int)(((byte)(5)))));
+            this.outlookBar.ButtonHeight = 35;
             outlookBarButton1.BuddyPage1 = "Planer";
             outlookBarButton1.BuddyPage2 = null;
             outlookBarButton1.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton1.Image")));
@@ -173,29 +173,34 @@
             outlookBarButton10.Tag1 = null;
             outlookBarButton10.Tag2 = null;
             outlookBarButton10.Text = "Test";
-            this.outlookBar1.Buttons.Add(outlookBarButton1);
-            this.outlookBar1.Buttons.Add(outlookBarButton2);
-            this.outlookBar1.Buttons.Add(outlookBarButton3);
-            this.outlookBar1.Buttons.Add(outlookBarButton4);
-            this.outlookBar1.Buttons.Add(outlookBarButton5);
-            this.outlookBar1.Buttons.Add(outlookBarButton6);
-            this.outlookBar1.Buttons.Add(outlookBarButton7);
-            this.outlookBar1.Buttons.Add(outlookBarButton8);
-            this.outlookBar1.Buttons.Add(outlookBarButton9);
-            this.outlookBar1.Buttons.Add(outlookBarButton10);
-            this.outlookBar1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.outlookBar1.DrawBorders = true;
-            this.outlookBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.outlookBar1.ForeColorSelected = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.outlookBar1.Location = new System.Drawing.Point(0, 0);
-            this.outlookBar1.MinimumSize = new System.Drawing.Size(16, 40);
-            this.outlookBar1.Name = "outlookBar1";
-            this.outlookBar1.OutlookBarLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(83)))), ((int)(((byte)(92)))));
-            this.outlookBar1.Renderer = AC.ExtendedRenderer.Navigator.Renderer.Krypton;
-            this.outlookBar1.Size = new System.Drawing.Size(200, 360);
-            this.outlookBar1.TabIndex = 1;
-            this.outlookBar1.Text = "outlookBar1";
-            this.outlookBar1.ButtonClicked += new AC.ExtendedRenderer.Navigator.OutlookBar.ButtonClickedEventHandler(this.outlookBar1_ButtonClicked);
+            this.outlookBar.Buttons.Add(outlookBarButton1);
+            this.outlookBar.Buttons.Add(outlookBarButton2);
+            this.outlookBar.Buttons.Add(outlookBarButton3);
+            this.outlookBar.Buttons.Add(outlookBarButton4);
+            this.outlookBar.Buttons.Add(outlookBarButton5);
+            this.outlookBar.Buttons.Add(outlookBarButton6);
+            this.outlookBar.Buttons.Add(outlookBarButton7);
+            this.outlookBar.Buttons.Add(outlookBarButton8);
+            this.outlookBar.Buttons.Add(outlookBarButton9);
+            this.outlookBar.Buttons.Add(outlookBarButton10);
+            this.outlookBar.CausesValidation = false;
+            this.outlookBar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.outlookBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.outlookBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.outlookBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.outlookBar.ForeColorSelected = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.outlookBar.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.outlookBar.Location = new System.Drawing.Point(0, 0);
+            this.outlookBar.MinimumSize = new System.Drawing.Size(16, 40);
+            this.outlookBar.Name = "outlookBar";
+            this.outlookBar.OutlookBarLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(83)))), ((int)(((byte)(92)))));
+            this.outlookBar.Padding = new System.Windows.Forms.Padding(12);
+            this.outlookBar.Renderer = AC.ExtendedRenderer.Navigator.Renderer.Krypton;
+            this.outlookBar.Size = new System.Drawing.Size(200, 328);
+            this.outlookBar.TabIndex = 1;
+            this.outlookBar.TabStop = false;
+            this.outlookBar.Text = "outlookBar";
+            this.outlookBar.ButtonClicked += new AC.ExtendedRenderer.Navigator.OutlookBar.ButtonClickedEventHandler(this.outlookBar1_ButtonClicked);
             // 
             // menuStrip1
             // 
@@ -383,13 +388,13 @@
             // customizeToolStripMenuItem
             // 
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.customizeToolStripMenuItem.Text = "&Customize";
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.optionsToolStripMenuItem.Text = "&Options";
             // 
             // helpToolStripMenuItem
@@ -578,7 +583,6 @@
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private AC.ExtendedRenderer.Navigator.OutlookBar outlookBar1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
@@ -589,6 +593,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
         private System.Windows.Forms.ToolStripStatusLabel tstrComputerName;
+        public AC.ExtendedRenderer.Navigator.OutlookBar outlookBar;
     }
 }
 
