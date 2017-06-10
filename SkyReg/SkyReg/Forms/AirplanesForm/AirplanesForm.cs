@@ -21,7 +21,7 @@ namespace SkyReg
 
         private void AirplanesForm_Load(object sender, EventArgs e)
         {
-           // ParentFormSizeFromParentsWorkSpaceSize();
+            RefreshAirplanesList();
         }
 
         //private void ParentFormSizeFromParentsWorkSpaceSize()
@@ -38,7 +38,7 @@ namespace SkyReg
             this.Close();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)//TODO Kod Janusza
         {
             AirPlanesFormAddEdit apf = new AirPlanesFormAddEdit(FormState.Add, null);
             apf.MdiParent = this.ParentForm;
@@ -46,7 +46,7 @@ namespace SkyReg
             apf.Show();
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e) //TODO Kod Janusza
         {
             if(grdAirplanes.SelectedRows.Count > 0)
             {
@@ -89,18 +89,11 @@ namespace SkyReg
             RefreshAirplanesList();
         }
 
-        private void AirplanesForm_Shown(object sender, EventArgs e)
-        {
-            RefreshAirplanesList();
-        }
-
         private void RefreshAirplanesList()
         {
             using (DLModelContainer model = new DLModelContainer())
             {
-                
-                List<Airplane> airplanes = model.Airplane.Select(p => p).OrderBy(p => p.Name).ToList();
-                grdAirplanes.DataSource = airplanes;
+                grdAirplanes.DataSource = model.Airplane.Select(p => p).OrderBy(p => p.Name).ToList();
                 SetViewOfAirplanesGrid();
             }
         }

@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 
 namespace DataLayer.Result.Repository
 {
-    public class DLModelRepository<T> : DbContext, IDLModel<T> where T : class, new()
+    public class DLModelRepository<T> : DbContext, IDLModel<T> where T : class, new() //TODO zmienić obsługę błędów
     {
         private readonly DLModelContainer context = new DLModelContainer();
         private IDbSet<T> Entity;
@@ -36,6 +37,11 @@ namespace DataLayer.Result.Repository
                 this.context.SaveChanges();
 
                 return new ResultType<T>() { Value = entity };
+            }
+            catch(DbUpdateException ex)
+            {
+                errorMessage = ex.InnerException?.Message;
+                return new ResultType<T>() { Value = null, Error = errorMessage };
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -65,7 +71,11 @@ namespace DataLayer.Result.Repository
 
                 return new ColletionResult<T>() { Value = result };
             }
-
+            catch (DbUpdateException ex)
+            {
+                errorMessage = ex.InnerException?.Message;
+                return new ColletionResult<T>() { Value = null, Error = errorMessage };
+            }
             catch (DbEntityValidationException dbEx)
             {
 
@@ -95,6 +105,11 @@ namespace DataLayer.Result.Repository
 
                 return new ResultType<T>() { Value = entity };
             }
+            catch (DbUpdateException ex)
+            {
+                errorMessage = ex.InnerException?.Message;
+                return new ResultType<T>() { Value = null, Error = errorMessage };
+            }
             catch (DbEntityValidationException dbEx)
             {
                 foreach (var validationErrors in dbEx.EntityValidationErrors)
@@ -122,6 +137,11 @@ namespace DataLayer.Result.Repository
                 context.SaveChanges();
 
                 return new ResultType<T>() { IsSuccess = true };
+            }
+            catch (DbUpdateException ex)
+            {
+                errorMessage = ex.InnerException?.Message;
+                return new ResultType<T>() { Value = null, Error = errorMessage };
             }
             catch (DbEntityValidationException dbEx)
             {

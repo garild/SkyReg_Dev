@@ -15,11 +15,6 @@ namespace SkyReg
 {
     public partial class FrmPaymentAdd : KryptonForm
     {
-        #region EventHandler
-
-
-        #endregion
-
         #region Konstruktory
 
         public FrmPaymentAdd()
