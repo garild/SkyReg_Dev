@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DataLayer;
+using DataLayer.Result.Repository;
 
 namespace SkyReg
 {
@@ -131,17 +132,14 @@ namespace SkyReg
             if (grdParachute.SelectedRows.Count > 0)
             {
                 int parId = (int)grdParachute.SelectedRows[0].Cells["Id"].Value;
-                using (DLModelContainer model = new DLModelContainer())
+                using (var _parachute = new DLModelRepository<Parachute>())
                 {
                     if (KryptonMessageBox.Show("Usunąć zaznaczoną pozycję?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        Parachute par = model.Parachute.Where(p => p.Id == parId).FirstOrDefault();
+                        Parachute par = _parachute.GetAll().Value.Where(p => p.Id == parId).FirstOrDefault();
                         if (par != null)
-                        {
-                            model.Parachute.Remove(par);
-                            model.SaveChanges();
-                            RefreshParachuteList();
-                        }
+                            if(_parachute.Delete(par).IsSuccess)
+                                RefreshParachuteList();
                     }
                 }
             }
