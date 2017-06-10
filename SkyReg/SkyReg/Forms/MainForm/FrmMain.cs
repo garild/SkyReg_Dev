@@ -111,6 +111,16 @@ namespace SkyReg
                     PaymentsForm.Show();
                     PaymentsForm.Activate();
                     break;
+                case "Test":
+                    examples = FormsOpened<Examples>.IsOpened(examples);
+                    examples.MdiParent = this;
+                    examples.WindowState = FormWindowState.Maximized;
+                    examples.BringToFront();
+                    examples.TopLevel = false;
+                    examples.Show();
+                    examples.Activate();
+                    break;
+
             }
         }
 
@@ -122,16 +132,7 @@ namespace SkyReg
         private void ScheduleForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             ScheduleForm = null;
-                case "Test":
-                    examples = FormsOpened<Examples>.IsOpened(examples);
-                    examples.MdiParent = this;
-                    examples.WindowState = FormWindowState.Maximized;
-                    examples.BringToFront();
-                    examples.TopLevel = false;
-                    examples.Show();
-                    examples.Activate();
-                    break;
-            }
+              
         }
 
         private void FlightsForm_FormClosed(object sender, FormClosedEventArgs e)
