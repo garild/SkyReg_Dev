@@ -475,10 +475,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Flight" Relationship="DLModel.FlightsElemFlight" FromRole="FlightsElem" ToRole="Flight" />
-          <Property Name="IsUser" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="User" Relationship="DLModel.FlightsElemUser" FromRole="FlightsElem" ToRole="User" />
-          <Property Name="AssemblySelf" Type="Boolean" Nullable="false" DefaultValue="false" />
+          <Property Name="AssemblySelf" Type="Boolean" Nullable="true" DefaultValue="false" />
           <NavigationProperty Name="Parachute" Relationship="DLModel.FlightsElemParachute" FromRole="FlightsElem" ToRole="Parachute" />
+          <Property Name="Lp" Type="Int32" Nullable="false" />
+          <Property Name="TeamName" Type="String" Nullable="true" />
         </EntityType>
         <EntityType Name="Parachute">
           <Key>
@@ -629,7 +630,6 @@
       <EntityTypeMapping TypeName="IsTypeOf(DLModel.FlightsElem)">
         <MappingFragment StoreEntitySet="FlightsElem">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="IsUser" ColumnName="IsUser" />
           <ScalarProperty Name="AssemblySelf" ColumnName="AssemblySelf" />
         </MappingFragment>
       </EntityTypeMapping>

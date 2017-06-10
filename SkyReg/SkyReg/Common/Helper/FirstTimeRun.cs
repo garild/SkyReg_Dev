@@ -69,6 +69,32 @@ namespace SkyReg
                     _contextOperator.Insert(opr);
                 }
             }
+
+            
+            using( DLModelContainer model = new DLModelContainer())
+            {
+                //Czy jest zdefiniowane KP
+                bool isIncomeCash = model.PaymentsSetting.Any(p => p.Type == (int)Enum_paymentsTypes.IncomeCash);
+                if(isIncomeCash == false)
+                {
+                    PaymentsSetting ps = new PaymentsSetting();
+                    ps.Type = (int)Enum_paymentsTypes.IncomeCash;
+                    ps.Name = "KP";
+                    model.PaymentsSetting.Add(ps);
+                    model.SaveChanges();
+                }
+
+                //Czy jest zdefiniowane KW
+                bool isExpenditureCash = model.PaymentsSetting.Any(p => p.Type == (int)Enum_paymentsTypes.ExpenditureCash);
+                if(isExpenditureCash == false)
+                {
+                    PaymentsSetting ps = new PaymentsSetting();
+                    ps.Type = (int)Enum_paymentsTypes.ExpenditureCash;
+                    ps.Name = "KW";
+                    model.PaymentsSetting.Add(ps);
+                    model.SaveChanges();
+                }
+            }
         }
     }
         
