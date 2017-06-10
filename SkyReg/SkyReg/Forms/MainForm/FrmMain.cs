@@ -1,6 +1,7 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using DataLayer;
 using SkyReg.Common.Extensions;
+using SkyReg.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -121,6 +122,16 @@ namespace SkyReg
         private void ScheduleForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             ScheduleForm = null;
+                case "Test":
+                    examples = FormsOpened<Examples>.IsOpened(examples);
+                    examples.MdiParent = this;
+                    examples.WindowState = FormWindowState.Maximized;
+                    examples.BringToFront();
+                    examples.TopLevel = false;
+                    examples.Show();
+                    examples.Activate();
+                    break;
+            }
         }
 
         private void FlightsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -164,6 +175,8 @@ namespace SkyReg
         private FlightsForm FlightsForm = null;
         private ScheduleForm ScheduleForm = null;
         private PaymentsForm PaymentsForm = null;
+
+        private Examples examples = null;
 
         #endregion
 

@@ -57,7 +57,7 @@ namespace DataLayer.Result.Repository
         {
             try
             {
-                var list = Entities.AsNoTracking().ToList<T>();
+                var list = Entities.AsNoTracking().ToList();
                 
                 return new ColletionResult<T>() { Value = list};
             }
@@ -114,10 +114,10 @@ namespace DataLayer.Result.Repository
                     throw new ArgumentNullException("entity");
                 }
 
-                this.Entities.Remove(entity);
+                context.Entry(entity).State = EntityState.Deleted;
                 this.context.SaveChanges();
 
-                return new ResultType<T>() { Value = null, Error = errorMessage };
+                return new ResultType<T>() { IsSuccess = true};
             }
             catch (DbEntityValidationException dbEx)
             {
