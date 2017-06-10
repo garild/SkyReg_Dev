@@ -13,6 +13,7 @@ namespace SkyReg
         [Description("KW")]
         Wypłata = 1,
         [Description("Pakiety")]
-        Pakiet = 2
+        Pakiet = 2,
+       
     }
 }

@@ -74,22 +74,24 @@ namespace SkyReg
             using( DLModelContainer model = new DLModelContainer())
             {
                 //Czy jest zdefiniowane KP
-                bool isIncomeCash = model.PaymentsSetting.Any(p => p.Type == (int)Enum_paymentsTypes.IncomeCash);
+                var inComeCash = (short)PaymentsTypes.Wpłata;
+                var outComeCash = (short)PaymentsTypes.Wypłata;
+                bool isIncomeCash = model.PaymentsSetting.Any(p => p.Type == inComeCash);
                 if(isIncomeCash == false)
                 {
                     PaymentsSetting ps = new PaymentsSetting();
-                    ps.Type = (int)Enum_paymentsTypes.IncomeCash;
+                    ps.Type = inComeCash;
                     ps.Name = "KP";
                     model.PaymentsSetting.Add(ps);
                     model.SaveChanges();
                 }
 
                 //Czy jest zdefiniowane KW
-                bool isExpenditureCash = model.PaymentsSetting.Any(p => p.Type == (int)Enum_paymentsTypes.ExpenditureCash);
+                bool isExpenditureCash = model.PaymentsSetting.Any(p => p.Type == outComeCash);
                 if(isExpenditureCash == false)
                 {
                     PaymentsSetting ps = new PaymentsSetting();
-                    ps.Type = (int)Enum_paymentsTypes.ExpenditureCash;
+                    ps.Type = outComeCash;
                     ps.Name = "KW";
                     model.PaymentsSetting.Add(ps);
                     model.SaveChanges();

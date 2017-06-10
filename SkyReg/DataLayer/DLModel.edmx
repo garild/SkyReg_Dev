@@ -153,8 +153,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IsUser" Type="bit" Nullable="false" />
-    <Property Name="AssemblySelf" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="AssemblySelf" Type="bit" Nullable="true" DefaultValue="false" />
+    <Property Name="Lp" Type="int" Nullable="true" />
+    <Property Name="TeamName" Type="nvarchar(max)" Nullable="true" DefaultValue="Null" />
     <Property Name="Flight_Id" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -478,8 +479,8 @@
           <NavigationProperty Name="User" Relationship="DLModel.FlightsElemUser" FromRole="FlightsElem" ToRole="User" />
           <Property Name="AssemblySelf" Type="Boolean" Nullable="true" DefaultValue="false" />
           <NavigationProperty Name="Parachute" Relationship="DLModel.FlightsElemParachute" FromRole="FlightsElem" ToRole="Parachute" />
-          <Property Name="Lp" Type="Int32" Nullable="false" />
-          <Property Name="TeamName" Type="String" Nullable="true" />
+          <Property Name="Lp" Type="Int32" Nullable="true" />
+          <Property Name="TeamName" Type="String" Nullable="true" DefaultValue="Null" />
         </EntityType>
         <EntityType Name="Parachute">
           <Key>
@@ -631,6 +632,8 @@
         <MappingFragment StoreEntitySet="FlightsElem">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="AssemblySelf" ColumnName="AssemblySelf" />
+          <ScalarProperty Name="Lp" ColumnName="Lp" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

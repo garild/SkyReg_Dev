@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/07/2017 09:52:08
+-- Date Created: 06/10/2017 19:27:31
 -- Generated from EDMX file: F:\Projekty 2017\Repozytorium2\SkyReg_Dev\SkyReg\DataLayer\DLModel.edmx
 -- --------------------------------------------------
 
@@ -17,8 +17,11 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_UserUsersType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UsersType] DROP CONSTRAINT [FK_UserUsersType];
+IF OBJECT_ID(N'[dbo].[FK_UserUsersType_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserUsersType] DROP CONSTRAINT [FK_UserUsersType_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserUsersType_UsersType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserUsersType] DROP CONSTRAINT [FK_UserUsersType_UsersType];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserOperator]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Operator] DROP CONSTRAINT [FK_UserOperator];
@@ -81,6 +84,9 @@ IF OBJECT_ID(N'[dbo].[Parachute]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Group]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Group];
+GO
+IF OBJECT_ID(N'[dbo].[UserUsersType]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserUsersType];
 GO
 
 -- --------------------------------------------------
@@ -179,8 +185,9 @@ GO
 -- Creating table 'FlightsElem'
 CREATE TABLE [dbo].[FlightsElem] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [IsUser] bit  NOT NULL,
-    [AssemblySelf] bit  NOT NULL,
+    [AssemblySelf] bit  NULL,
+    [Lp] int  NULL,
+    [TeamName] nvarchar(max)  NULL,
     [Flight_Id] int  NOT NULL,
     [User_Id] int  NOT NULL
 );

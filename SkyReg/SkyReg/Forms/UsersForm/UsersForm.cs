@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DataLayer;
 using DataLayer.Result.Repository;
 using SkyReg.Common.Extensions;
+using SkyRegEnums;
 
 namespace SkyReg
 {
@@ -119,7 +120,7 @@ namespace SkyReg
             UsersAddEditForm = FormsOpened<UsersAddEditForm>.IsOpened(UsersAddEditForm);
             UsersAddEditForm.EventHandlerAddEditUser += RefreshListAfterAddEdit;
             UsersAddEditForm.TopMost = true;
-            UsersAddEditForm.FormState = Enum_FormState.Add;
+            UsersAddEditForm.FormState = FormState.Add;
             UsersAddEditForm.IdUser = default(int);
             UsersAddEditForm.UserGroup = (int)cmbGroup.SelectedValue;
             UsersAddEditForm.ShowDialog();
@@ -141,7 +142,7 @@ namespace SkyReg
                 UsersAddEditForm = FormsOpened<UsersAddEditForm>.IsOpened(UsersAddEditForm);
                 UsersAddEditForm.EventHandlerAddEditUser += RefreshListAfterAddEdit;
                 UsersAddEditForm.TopMost = true;
-                UsersAddEditForm.FormState = Enum_FormState.Edit;
+                UsersAddEditForm.FormState = FormState.Edit;
                 UsersAddEditForm.IdUser = idUsr;
                 UsersAddEditForm.UserGroup = (int)cmbGroup.SelectedValue;
                 UsersAddEditForm.ShowDialog();

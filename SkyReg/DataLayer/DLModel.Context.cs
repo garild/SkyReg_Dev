@@ -37,6 +37,5 @@ namespace DataLayer
         public virtual DbSet<FlightsElem> FlightsElem { get; set; }
         public virtual DbSet<Parachute> Parachute { get; set; }
         public virtual DbSet<Group> Group { get; set; }
-
     }
 }

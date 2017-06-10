@@ -18,11 +18,13 @@ namespace DataLayer
         public FlightsElem()
         {
             this.AssemblySelf = false;
+            this.TeamName = "Null";
         }
     
         public int Id { get; set; }
-        public bool IsUser { get; set; }
-        public bool AssemblySelf { get; set; }
+        public Nullable<bool> AssemblySelf { get; set; }
+        public Nullable<int> Lp { get; set; }
+        public string TeamName { get; set; }
     
         public virtual Flight Flight { get; set; }
         public virtual User User { get; set; }

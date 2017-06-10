@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DataLayer;
 using System.Text.RegularExpressions;
 using DataLayer.Result.Repository;
+using SkyRegEnums;
 
 namespace SkyReg
 {
