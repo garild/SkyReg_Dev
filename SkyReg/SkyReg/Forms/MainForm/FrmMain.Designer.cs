@@ -39,6 +39,7 @@
             AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton7 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
             AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton8 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
             AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton9 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
+            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton10 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
             this.StyleManager = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.outlookBar1 = new AC.ExtendedRenderer.Navigator.OutlookBar();
@@ -166,6 +167,12 @@
             outlookBarButton9.Tag1 = null;
             outlookBarButton9.Tag2 = null;
             outlookBarButton9.Text = "Ustawienia";
+            outlookBarButton10.BuddyPage1 = "Test";
+            outlookBarButton10.BuddyPage2 = "Test";
+            outlookBarButton10.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton10.Image")));
+            outlookBarButton10.Tag1 = null;
+            outlookBarButton10.Tag2 = null;
+            outlookBarButton10.Text = "Test";
             this.outlookBar1.Buttons.Add(outlookBarButton1);
             this.outlookBar1.Buttons.Add(outlookBarButton2);
             this.outlookBar1.Buttons.Add(outlookBarButton3);
@@ -175,6 +182,7 @@
             this.outlookBar1.Buttons.Add(outlookBarButton7);
             this.outlookBar1.Buttons.Add(outlookBarButton8);
             this.outlookBar1.Buttons.Add(outlookBarButton9);
+            this.outlookBar1.Buttons.Add(outlookBarButton10);
             this.outlookBar1.Dock = System.Windows.Forms.DockStyle.Top;
             this.outlookBar1.DrawBorders = true;
             this.outlookBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
@@ -184,7 +192,7 @@
             this.outlookBar1.Name = "outlookBar1";
             this.outlookBar1.OutlookBarLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(83)))), ((int)(((byte)(92)))));
             this.outlookBar1.Renderer = AC.ExtendedRenderer.Navigator.Renderer.Krypton;
-            this.outlookBar1.Size = new System.Drawing.Size(200, 328);
+            this.outlookBar1.Size = new System.Drawing.Size(200, 360);
             this.outlookBar1.TabIndex = 1;
             this.outlookBar1.Text = "outlookBar1";
             this.outlookBar1.ButtonClicked += new AC.ExtendedRenderer.Navigator.OutlookBar.ButtonClickedEventHandler(this.outlookBar1_ButtonClicked);
@@ -369,7 +377,7 @@
             this.customizeToolStripMenuItem,
             this.optionsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // customizeToolStripMenuItem

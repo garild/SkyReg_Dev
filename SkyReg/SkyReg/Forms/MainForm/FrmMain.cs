@@ -1,6 +1,7 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using DataLayer;
 using SkyReg.Common.Extensions;
+using SkyReg.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -90,6 +91,15 @@ namespace SkyReg
                     FlightsForm.Show();
                     FlightsForm.Activate();
                     break;
+                case "Test":
+                    examples = FormsOpened<Examples>.IsOpened(examples);
+                    examples.MdiParent = this;
+                    examples.WindowState = FormWindowState.Maximized;
+                    examples.BringToFront();
+                    examples.TopLevel = false;
+                    examples.Show();
+                    examples.Activate();
+                    break;
             }
         }
 
@@ -132,6 +142,8 @@ namespace SkyReg
         private ParachutesForm ParachutesForm = null;
         private AirplanesForm AirplanesForm = null;
         private FlightsForm FlightsForm = null;
+
+        private Examples examples = null;
 
         #endregion
 
