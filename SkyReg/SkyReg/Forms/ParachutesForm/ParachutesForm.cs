@@ -137,10 +137,12 @@ namespace SkyReg
                 {
                     if (KryptonMessageBox.Show("Usunąć zaznaczoną pozycję?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        Parachute par = _parachute.GetAll().Value.Where(p => p.Id == parId).FirstOrDefault();
+                        var par = _parachute.GetAll().Value.Where(p => p.Id == parId).FirstOrDefault();
                         if (par != null)
-                            if(_parachute.Delete(par).IsSuccess)
-                                RefreshParachuteList();
+                        {
+                            _parachute.Delete(par);
+                            RefreshParachuteList();
+                        }
                     }
                 }
             }

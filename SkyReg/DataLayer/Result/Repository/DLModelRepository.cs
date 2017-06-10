@@ -10,13 +10,13 @@ namespace DataLayer.Result.Repository
 {
     public class DLModelRepository<T> : DbContext, IDLModel<T> where T : class, new()
     {
-        private readonly DLModelContainer context;
+        private readonly DLModelContainer context = new DLModelContainer();
         private IDbSet<T> Entity;
         string errorMessage = string.Empty;
 
         public DLModelRepository()
         {
-            context = new DLModelContainer();
+
         }
 
         public T GetById(object id)
@@ -50,16 +50,20 @@ namespace DataLayer.Result.Repository
 
                 return new ResultType<T>() { Value = null, Error = errorMessage };
             }
-           
+
         }
 
-        public ColletionResult<T> GetAll()
+        public ColletionResult<T> GetAll(string include = null)
         {
             try
             {
-                var list = Entities.AsNoTracking().ToList();
-                
-                return new ColletionResult<T>() { Value = list};
+                List<T> result = new List<T>();
+                if (!string.IsNullOrEmpty(include))
+                    result = Table.Include(include).AsNoTracking().ToList();
+                else
+                    result = Table.AsNoTracking().ToList();
+
+                return new ColletionResult<T>() { Value = result };
             }
 
             catch (DbEntityValidationException dbEx)
@@ -101,7 +105,7 @@ namespace DataLayer.Result.Repository
                     }
                 }
 
-                return new ResultType<T>() { Value = null,Error = errorMessage };
+                return new ResultType<T>() { Value = null, Error = errorMessage };
             }
         }
 
@@ -115,9 +119,9 @@ namespace DataLayer.Result.Repository
                 }
 
                 context.Entry(entity).State = EntityState.Deleted;
-                this.context.SaveChanges();
+                context.SaveChanges();
 
-                return new ResultType<T>() { IsSuccess = true};
+                return new ResultType<T>() { IsSuccess = true };
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -137,17 +141,23 @@ namespace DataLayer.Result.Repository
         {
             get
             {
-                return this.Entities;
+                return Entities;
             }
         }
 
-        private IDbSet<T> Entities 
+        private IDbSet<T> Entities
         {
             get
             {
                 if (Entity == null)
                 {
+                    context.Configuration.AutoDetectChangesEnabled = false;
+                    context.Configuration.LazyLoadingEnabled = false;
+                    context.Configuration.ProxyCreationEnabled = false;
+                    context.Configuration.ValidateOnSaveEnabled = false;
+
                     Entity = context.Set<T>();
+
                 }
                 return Entity;
             }
