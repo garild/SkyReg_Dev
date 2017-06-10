@@ -17,12 +17,12 @@ namespace DataLayer.Result.Repository
 
         public DLModelRepository()
         {
-
+            context.Database.Initialize(true);
         }
 
         public T GetById(object id)
         {
-            return this.Entities.Find(id);
+            return Entities.Find(id);
         }
 
         public ResultType<T> Insert(T entity)
