@@ -88,6 +88,9 @@
     <Compile Include="Parachute.cs">
       <DependentUpon>DLModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Payment.cs">
+      <DependentUpon>DLModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PaymentsSetting.cs">
       <DependentUpon>DLModel.tt</DependentUpon>
     </Compile>

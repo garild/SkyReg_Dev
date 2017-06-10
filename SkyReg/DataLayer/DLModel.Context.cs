@@ -16,13 +16,9 @@ namespace DataLayer
     public partial class DLModelContainer : DbContext
     {
         public DLModelContainer()
-            : base()
+            : base("name=DLModelContainer")
         {
-            this.Database.Connection.ConnectionString = DatabaseConfig.ConnectionString;
             this.Configuration.LazyLoadingEnabled = false;
-            this.Configuration.ProxyCreationEnabled = false;
-            this.Configuration.AutoDetectChangesEnabled = false;
-            this.Configuration.ValidateOnSaveEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -41,5 +37,6 @@ namespace DataLayer
         public virtual DbSet<FlightsElem> FlightsElem { get; set; }
         public virtual DbSet<Parachute> Parachute { get; set; }
         public virtual DbSet<Group> Group { get; set; }
+        public virtual DbSet<Payment> Payment { get; set; }
     }
 }

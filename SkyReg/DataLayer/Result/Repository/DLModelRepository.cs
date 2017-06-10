@@ -113,8 +113,7 @@ namespace DataLayer.Result.Repository
                 {
                     throw new ArgumentNullException("entity");
                 }
-
-                this.Entities.Remove(entity);
+                context.Entry(entity).State = EntityState.Deleted;
                 this.context.SaveChanges();
 
                 return new ResultType<T>() { Value = null, Error = errorMessage };

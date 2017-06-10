@@ -12,23 +12,16 @@ namespace DataLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class FlightsElem
+    public partial class Payment
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public FlightsElem()
-        {
-            this.AssemblySelf = false;
-            this.TeamName = "Null";
-        }
-    
         public int Id { get; set; }
-        public Nullable<bool> AssemblySelf { get; set; }
-        public Nullable<int> Lp { get; set; }
-        public string TeamName { get; set; }
+        public string Description { get; set; }
+        public decimal Value { get; set; }
+        public Nullable<decimal> Count { get; set; }
+        public Nullable<bool> IsBooked { get; set; }
     
-        public virtual Flight Flight { get; set; }
+        public virtual PaymentsSetting PaymentsSetting { get; set; }
         public virtual User User { get; set; }
-        public virtual Parachute Parachute { get; set; }
-        public virtual Payment Payments { get; set; }
+        public virtual FlightsElem FlightsElem { get; set; }
     }
 }

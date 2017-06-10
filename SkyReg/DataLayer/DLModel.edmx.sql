@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/10/2017 19:27:31
+-- Date Created: 06/11/2017 00:19:02
 -- Generated from EDMX file: F:\Projekty 2017\Repozytorium2\SkyReg_Dev\SkyReg\DataLayer\DLModel.edmx
 -- --------------------------------------------------
 
@@ -47,6 +47,15 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_GroupUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_GroupUser];
 GO
+IF OBJECT_ID(N'[dbo].[FK_PaymentsPaymentsSetting]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Payment] DROP CONSTRAINT [FK_PaymentsPaymentsSetting];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserPayments]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Payment] DROP CONSTRAINT [FK_UserPayments];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FlightsElemPayments]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FlightsElem] DROP CONSTRAINT [FK_FlightsElemPayments];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -84,6 +93,9 @@ IF OBJECT_ID(N'[dbo].[Parachute]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Group]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Group];
+GO
+IF OBJECT_ID(N'[dbo].[Payment]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Payment];
 GO
 IF OBJECT_ID(N'[dbo].[UserUsersType]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UserUsersType];
@@ -189,7 +201,8 @@ CREATE TABLE [dbo].[FlightsElem] (
     [Lp] int  NULL,
     [TeamName] nvarchar(max)  NULL,
     [Flight_Id] int  NOT NULL,
-    [User_Id] int  NOT NULL
+    [User_Id] int  NOT NULL,
+    [Payments_Id] int  NOT NULL
 );
 GO
 
@@ -211,6 +224,18 @@ CREATE TABLE [dbo].[Group] (
     [Name] nvarchar(max)  NULL,
     [Color] nvarchar(max)  NOT NULL,
     [AllowDelete] bit  NULL
+);
+GO
+
+-- Creating table 'Payment'
+CREATE TABLE [dbo].[Payment] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Description] nvarchar(max)  NULL,
+    [Value] decimal(8,2)  NOT NULL,
+    [Count] decimal(8,2)  NULL,
+    [IsBooked] bit  NULL,
+    [PaymentsSetting_Id] int  NOT NULL,
+    [User_Id] int  NOT NULL
 );
 GO
 
@@ -288,6 +313,12 @@ GO
 -- Creating primary key on [Id] in table 'Group'
 ALTER TABLE [dbo].[Group]
 ADD CONSTRAINT [PK_Group]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Payment'
+ALTER TABLE [dbo].[Payment]
+ADD CONSTRAINT [PK_Payment]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -443,6 +474,51 @@ GO
 CREATE INDEX [IX_FK_GroupUser]
 ON [dbo].[User]
     ([Group_Id]);
+GO
+
+-- Creating foreign key on [PaymentsSetting_Id] in table 'Payment'
+ALTER TABLE [dbo].[Payment]
+ADD CONSTRAINT [FK_PaymentsPaymentsSetting]
+    FOREIGN KEY ([PaymentsSetting_Id])
+    REFERENCES [dbo].[PaymentsSetting]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PaymentsPaymentsSetting'
+CREATE INDEX [IX_FK_PaymentsPaymentsSetting]
+ON [dbo].[Payment]
+    ([PaymentsSetting_Id]);
+GO
+
+-- Creating foreign key on [User_Id] in table 'Payment'
+ALTER TABLE [dbo].[Payment]
+ADD CONSTRAINT [FK_UserPayments]
+    FOREIGN KEY ([User_Id])
+    REFERENCES [dbo].[User]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserPayments'
+CREATE INDEX [IX_FK_UserPayments]
+ON [dbo].[Payment]
+    ([User_Id]);
+GO
+
+-- Creating foreign key on [Payments_Id] in table 'FlightsElem'
+ALTER TABLE [dbo].[FlightsElem]
+ADD CONSTRAINT [FK_FlightsElemPayments]
+    FOREIGN KEY ([Payments_Id])
+    REFERENCES [dbo].[Payment]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_FlightsElemPayments'
+CREATE INDEX [IX_FK_FlightsElemPayments]
+ON [dbo].[FlightsElem]
+    ([Payments_Id]);
 GO
 
 -- --------------------------------------------------

@@ -16,6 +16,9 @@ namespace SkyReg
 {
     public partial class UsersForm : KryptonForm
     {
+        private UsersAddEditForm UsersAddEditForm = null;
+
+
         public UsersForm()
         {
             InitializeComponent();
@@ -131,7 +134,7 @@ namespace SkyReg
             RefreshUsersList();
         }
 
-        private UsersAddEditForm UsersAddEditForm = null;
+        
 
         private void btnEditUser_Click(object sender, EventArgs e)
         {

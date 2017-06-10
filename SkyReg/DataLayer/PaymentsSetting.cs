@@ -19,5 +19,7 @@ namespace DataLayer
         public short Type { get; set; }
         public Nullable<decimal> Value { get; set; }
         public Nullable<decimal> Count { get; set; }
+    
+        public virtual Payment Payments { get; set; }
     }
 }

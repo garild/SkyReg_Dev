@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Enums\EnumExtensions.cs" />
     <Compile Include="Common\Enums\FlightsStatus.cs" />
     <Compile Include="Common\Extensions\FormsOpened.cs" />
     <Compile Include="Common\Extensions\PrimitiveTypeExtensions.cs" />
@@ -161,6 +162,12 @@
     <Compile Include="Forms\ParachutesForm\ParachutesForm.Designer.cs">
       <DependentUpon>ParachutesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PaymentsForm\PaymentsAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PaymentsForm\PaymentsAddEditForm.Designer.cs">
+      <DependentUpon>PaymentsAddEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PaymentsForm\PaymentsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ParachutesForm\ParachutesForm.resx">
       <DependentUpon>ParachutesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PaymentsForm\PaymentsAddEditForm.resx">
+      <DependentUpon>PaymentsAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PaymentsForm\PaymentsForm.resx">
       <DependentUpon>PaymentsForm.cs</DependentUpon>
