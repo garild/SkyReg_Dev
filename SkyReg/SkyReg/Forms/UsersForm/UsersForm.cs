@@ -31,7 +31,7 @@ namespace SkyReg
             {
                 var allGroup = _contextGroup.GetAll().Value;
 
-                cmbGroup.DataSource = allGroup?.Select(p => p).OrderBy(p => p.Id).ToList();
+                cmbGroup.DataSource = allGroup.Select(p => p).OrderBy(p => p.Id).ToList();
                 cmbGroup.ValueMember = "Id";
                 cmbGroup.DisplayMember = "Name";
                 if (cmbGroup.Items.Count > 0)
@@ -119,7 +119,7 @@ namespace SkyReg
             UsersAddEditForm = FormsOpened<UsersAddEditForm>.IsOpened(UsersAddEditForm);
             UsersAddEditForm.EventHandlerAddEditUser += RefreshListAfterAddEdit;
             UsersAddEditForm.TopMost = true;
-            UsersAddEditForm.FormState = FormState.Add;
+            UsersAddEditForm.FormState = Enum_FormState.Add;
             UsersAddEditForm.IdUser = default(int);
             UsersAddEditForm.UserGroup = (int)cmbGroup.SelectedValue;
             UsersAddEditForm.ShowDialog();
@@ -141,7 +141,7 @@ namespace SkyReg
                 UsersAddEditForm = FormsOpened<UsersAddEditForm>.IsOpened(UsersAddEditForm);
                 UsersAddEditForm.EventHandlerAddEditUser += RefreshListAfterAddEdit;
                 UsersAddEditForm.TopMost = true;
-                UsersAddEditForm.FormState = FormState.Edit;
+                UsersAddEditForm.FormState = Enum_FormState.Edit;
                 UsersAddEditForm.IdUser = idUsr;
                 UsersAddEditForm.UserGroup = (int)cmbGroup.SelectedValue;
                 UsersAddEditForm.ShowDialog();

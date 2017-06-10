@@ -90,7 +90,37 @@ namespace SkyReg
                     FlightsForm.Show();
                     FlightsForm.Activate();
                     break;
+                case "Planer":
+                    ScheduleForm = FormsOpened<ScheduleForm>.IsOpened(ScheduleForm);
+                    ScheduleForm.MdiParent = this;
+                    ScheduleForm.WindowState = FormWindowState.Maximized;
+                    ScheduleForm.FormClosed += ScheduleForm_FormClosed;
+                    ScheduleForm.BringToFront();
+                    ScheduleForm.TopLevel = false;
+                    ScheduleForm.Show();
+                    ScheduleForm.Activate();
+                    break;
+                case "Moneys":
+                    PaymentsForm = FormsOpened<PaymentsForm>.IsOpened(PaymentsForm);
+                    PaymentsForm.MdiParent = this;
+                    PaymentsForm.WindowState = FormWindowState.Maximized;
+                    PaymentsForm.FormClosed += PaymentsForm_FormClosed;
+                    PaymentsForm.BringToFront();
+                    PaymentsForm.TopLevel = false;
+                    PaymentsForm.Show();
+                    PaymentsForm.Activate();
+                    break;
             }
+        }
+
+        private void PaymentsForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            PaymentsForm = null;
+        }
+
+        private void ScheduleForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ScheduleForm = null;
         }
 
         private void FlightsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -132,6 +162,8 @@ namespace SkyReg
         private ParachutesForm ParachutesForm = null;
         private AirplanesForm AirplanesForm = null;
         private FlightsForm FlightsForm = null;
+        private ScheduleForm ScheduleForm = null;
+        private PaymentsForm PaymentsForm = null;
 
         #endregion
 
