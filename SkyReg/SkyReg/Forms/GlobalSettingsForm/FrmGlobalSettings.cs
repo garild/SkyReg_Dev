@@ -20,17 +20,17 @@ namespace SkyReg
         {
             InitializeComponent();
             PaymentsTypesLoad();
-            grdPaymentViewSettings();
+            PaymentViewSettings();
             OperatorsLoad();
-            loadGlobalSettingsFields();
-            grdOperatorsViewSettings();
+            LoadGlobalSettingsFields();
+            OperatorsViewSettings();
         }
 
         #endregion
 
         #region Metody prywatne
 
-        private void loadGlobalSettingsFields()
+        private void LoadGlobalSettingsFields()
         {
             using (DLModelContainer model = new DLModelContainer())
             {
@@ -56,7 +56,7 @@ namespace SkyReg
                     {
                         Id = p.Id,
                         Name = p.User.SurName + " " + p.User.FirstName,
-                        Type = p.Type == (int)Enum_OperatorTypes.Operator ? "Operator" : "Rejestrujący",
+                        Type = p.Type == (int)OperatorTypes.Operator ? "Operator" : "Rejestrujący",
                     })
                     .OrderBy(p => Name)
                     .ToList();
@@ -66,7 +66,7 @@ namespace SkyReg
             }
         }
 
-        private void grdOperatorsViewSettings()
+        private void OperatorsViewSettings()
         {
             grdOperators.RowHeadersVisible = false;
             grdOperators.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -92,7 +92,7 @@ namespace SkyReg
 
         }
 
-        private void grdPaymentViewSettings()
+        private void PaymentViewSettings()
         {
             grdPayment.RowHeadersVisible = false;
             grdPayment.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -164,7 +164,7 @@ namespace SkyReg
                                 model.Operator.Remove(opeToDelete);
                                 model.SaveChanges();
                                 OperatorsLoad();
-                                grdOperatorsViewSettings();
+                                OperatorsViewSettings();
                             }
                         }
                     }
@@ -189,7 +189,7 @@ namespace SkyReg
                                 model.PaymentsSetting.Remove(paySetToDelete);
                                 model.SaveChanges();
                                 PaymentsTypesLoad();
-                                grdPaymentViewSettings();
+                                PaymentViewSettings();
                             }
                         }
                     }
@@ -199,22 +199,25 @@ namespace SkyReg
 
         private void PaymentsSetAdd()
         {
-            FrmPaymentAdd = FormsOpened<FrmPaymentAdd>.IsOpened(FrmPaymentAdd);
-            FrmPaymentAdd.FormaAccept += RefreshPaymentSetGrid;
-            FrmPaymentAdd.TopMost = true;
+            FrmPaymentAdd = FormsOpened<FrmPaymentAdd>.IsShowDialog(FrmPaymentAdd);
+            FrmPaymentAdd.FormClosed += FrmPaymentAdd_FormClosed;
             FrmPaymentAdd.ShowDialog();
         }
 
-        private void RefreshPaymentSetGrid(object sender, EventArgs e)
+        private void FrmPaymentAdd_FormClosed(object sender, FormClosedEventArgs e)
         {
-            PaymentsTypesLoad();
-            grdPaymentViewSettings();
+            if(FrmPaymentAdd.DialogResult == DialogResult.OK)
+            {
+                PaymentsTypesLoad();
+                PaymentViewSettings();
+            }
         }
+
 
         private void RefreshOperatorGrid(object sender, EventArgs e)
         {
             OperatorsLoad();
-            grdOperatorsViewSettings();
+            OperatorsViewSettings();
         }
 
         private void saveGlobalSettings()
@@ -271,10 +274,18 @@ namespace SkyReg
 
         private void btnOperatorAdd_Click(object sender, EventArgs e)
         {
-            FrmOperatorAdd = FormsOpened<FrmOperatorAdd>.IsOpened(FrmOperatorAdd);
-            FrmOperatorAdd.AddedUser += RefreshOperatorGrid;
-            FrmOperatorAdd.TopMost = true;
+            FrmOperatorAdd = FormsOpened<FrmOperatorAdd>.IsShowDialog(FrmOperatorAdd);
+            FrmOperatorAdd.FormClosed += FrmOperatorAdd_FormClosed;
             FrmOperatorAdd.ShowDialog();
+        }
+
+        private void FrmOperatorAdd_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if(FrmOperatorAdd.DialogResult == DialogResult.OK)
+            {
+                OperatorsLoad();
+                OperatorsViewSettings();
+            }
         }
 
 

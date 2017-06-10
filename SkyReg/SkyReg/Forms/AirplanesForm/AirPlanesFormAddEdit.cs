@@ -13,7 +13,7 @@ namespace SkyReg
 {
     public partial class AirPlanesFormAddEdit : KryptonForm
     {
-        Enum_FormState _formState;
+        FormState _formState;
         int _airplaneId = -1;
 
         public EventHandler RefreshAirplanesGridEH;
@@ -23,11 +23,11 @@ namespace SkyReg
             InitializeComponent();
         }
 
-        public AirPlanesFormAddEdit(Enum_FormState formState, int? airplaneId)
+        public AirPlanesFormAddEdit(FormState formState, int? airplaneId)
         {
             InitializeComponent();
             _formState = formState;
-            if(formState == Enum_FormState.Edit)
+            if(formState == FormState.Edit)
             {
                 _airplaneId = airplaneId.Value;
                 LoadAirplaneData(airplaneId);
@@ -60,7 +60,7 @@ namespace SkyReg
         {
             using (DLModelContainer model = new DLModelContainer())
             {
-                if (_formState == Enum_FormState.Add)
+                if (_formState == FormState.Add)
                 {
                     Airplane ap = new Airplane();
                     ap.Name = txtName.Text;
@@ -106,7 +106,7 @@ namespace SkyReg
                 errorProvider1.SetError(numSeatsCount, "Wartość musi być większa od 1!");
                 result = false;
             }
-            if(_formState == Enum_FormState.Add)
+            if(_formState == FormState.Add)
             {
                 using(DLModelContainer model = new DLModelContainer())
                 {

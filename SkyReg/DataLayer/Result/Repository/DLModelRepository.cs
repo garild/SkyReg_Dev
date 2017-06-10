@@ -57,7 +57,7 @@ namespace DataLayer.Result.Repository
         {
             try
             {
-                var list = Entities.ToList<T>();
+                var list = Entities.AsNoTracking().ToList<T>();
                 
                 return new ColletionResult<T>() { Value = list};
             }
@@ -86,6 +86,7 @@ namespace DataLayer.Result.Repository
                 {
                     return new ResultType<T>() { Value = null };
                 }
+                context.Entry(entity).State = EntityState.Modified;
                 this.context.SaveChanges();
 
                 return new ResultType<T>() { Value = entity };
@@ -140,7 +141,7 @@ namespace DataLayer.Result.Repository
             }
         }
 
-        private IDbSet<T> Entities
+        private IDbSet<T> Entities 
         {
             get
             {

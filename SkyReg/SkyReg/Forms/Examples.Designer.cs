@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Examples));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.btnSaveCfg = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -40,24 +42,11 @@
             this.cbParentUsers = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.TxNote = new System.Windows.Forms.TextBox();
             this.kryptonPanel3 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
-            this.txtPassword = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.btGenerateDataBase = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.rdCopyBudgetWithoutCustomers = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
-            this.DataGridFiltrs = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.GridViewSummary = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.kryptonHeaderGroup1 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
-            this.DataGridScheduleBudget = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.BtnAdd = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.TxDescription = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.kryptonPanelEx1 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
-            this.BtnDelete = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton4 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnLogin = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnUpdate = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.BtnEdit = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.StatusBar = new System.Windows.Forms.StatusStrip();
-            this.TsUsersCount = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripRegionCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainTab = new ComponentFactory.Krypton.Toolkit.KryptonTabControl();
             this.TabPageGeneralInfo = new ComponentFactory.Krypton.Toolkit.KryptonTabPage();
             this.kryptonPanelEx3 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
@@ -81,23 +70,30 @@
             this.kryptonPanelEx4 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.LeftMenuList = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.RegionListBox = new ComponentFactory.Krypton.Toolkit.KryptonCheckedListBox();
-            this.btnUpdate = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnLogin = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton4 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.DataGridFiltrs = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.StatusBar = new System.Windows.Forms.StatusStrip();
+            this.TsUsersCount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripRegionCount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.kryptonPanelEx1 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
+            this.BtnDelete = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.BtnEdit = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BtnAdd = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.TxDescription = new System.Windows.Forms.TextBox();
+            this.kryptonHeaderGroup1 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
+            this.DataGridScheduleBudget = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.rdCopyBudgetWithoutCustomers = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
+            this.txtPassword = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.btGenerateDataBase = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonHeaderGroup2 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
+            this.DataGridView2 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.GridView1 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.kryptonHeaderGroup3 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
+            this.kryptonDataGridView2 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.cbParentUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel3)).BeginInit();
             this.kryptonPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridFiltrs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewSummary)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).BeginInit();
-            this.kryptonHeaderGroup1.Panel.SuspendLayout();
-            this.kryptonHeaderGroup1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridScheduleBudget)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.kryptonPanelEx1.SuspendLayout();
-            this.StatusBar.SuspendLayout();
             this.MainTab.SuspendLayout();
             this.TabPageGeneralInfo.SuspendLayout();
             this.kryptonPanelEx3.SuspendLayout();
@@ -109,13 +105,32 @@
             ((System.ComponentModel.ISupportInitialize)(this.LeftMenuList.Panel)).BeginInit();
             this.LeftMenuList.Panel.SuspendLayout();
             this.LeftMenuList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridFiltrs)).BeginInit();
+            this.StatusBar.SuspendLayout();
+            this.kryptonPanelEx1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).BeginInit();
+            this.kryptonHeaderGroup1.Panel.SuspendLayout();
+            this.kryptonHeaderGroup1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridScheduleBudget)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2.Panel)).BeginInit();
+            this.kryptonHeaderGroup2.Panel.SuspendLayout();
+            this.kryptonHeaderGroup2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3.Panel)).BeginInit();
+            this.kryptonHeaderGroup3.Panel.SuspendLayout();
+            this.kryptonHeaderGroup3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
             // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(28, 194);
+            this.btnClose.Location = new System.Drawing.Point(31, 196);
             this.btnClose.Name = "btnClose";
             this.btnClose.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.btnClose.Size = new System.Drawing.Size(80, 25);
@@ -137,9 +152,8 @@
             // 
             // btnSaveCfg
             // 
-            this.btnSaveCfg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveCfg.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSaveCfg.Location = new System.Drawing.Point(28, 163);
+            this.btnSaveCfg.Location = new System.Drawing.Point(31, 165);
             this.btnSaveCfg.Name = "btnSaveCfg";
             this.btnSaveCfg.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.btnSaveCfg.Size = new System.Drawing.Size(73, 25);
@@ -156,6 +170,7 @@
             this.BudgetDatetime.Location = new System.Drawing.Point(31, 4);
             this.BudgetDatetime.MinDate = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
             this.BudgetDatetime.Name = "BudgetDatetime";
+            this.BudgetDatetime.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.BudgetDatetime.ShowUpDown = true;
             this.BudgetDatetime.Size = new System.Drawing.Size(66, 21);
             this.BudgetDatetime.TabIndex = 23;
@@ -165,6 +180,7 @@
             this.cbParentUsers.DropDownWidth = 175;
             this.cbParentUsers.Location = new System.Drawing.Point(103, 5);
             this.cbParentUsers.Name = "cbParentUsers";
+            this.cbParentUsers.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.cbParentUsers.Size = new System.Drawing.Size(122, 21);
             this.cbParentUsers.TabIndex = 24;
             this.cbParentUsers.Text = "Brak";
@@ -179,6 +195,7 @@
             // 
             // kryptonPanel3
             // 
+            this.kryptonPanel3.Controls.Add(this.kryptonHeaderGroup3);
             this.kryptonPanel3.Controls.Add(this.kryptonButton4);
             this.kryptonPanel3.Controls.Add(this.btnLogin);
             this.kryptonPanel3.Controls.Add(this.kryptonButton3);
@@ -205,263 +222,64 @@
             this.kryptonPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonPanel3.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanel3.Name = "kryptonPanel3";
-            this.kryptonPanel3.Size = new System.Drawing.Size(919, 539);
+            this.kryptonPanel3.Size = new System.Drawing.Size(1249, 539);
             this.kryptonPanel3.StateCommon.Color1 = System.Drawing.SystemColors.ActiveCaption;
             this.kryptonPanel3.StateNormal.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.kryptonPanel3.TabIndex = 18;
             // 
-            // txtPassword
+            // kryptonButton4
             // 
-            this.txtPassword.Location = new System.Drawing.Point(30, 96);
-            this.txtPassword.MaxLength = 40;
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '•';
-            this.txtPassword.Size = new System.Drawing.Size(115, 20);
-            this.txtPassword.TabIndex = 19;
+            this.kryptonButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.kryptonButton4.Location = new System.Drawing.Point(456, 401);
+            this.kryptonButton4.Name = "kryptonButton4";
+            this.kryptonButton4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.kryptonButton4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.kryptonButton4.Size = new System.Drawing.Size(86, 25);
+            this.kryptonButton4.TabIndex = 2;
+            this.kryptonButton4.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton4.Values.Image")));
+            this.kryptonButton4.Values.Text = "Usuń";
             // 
-            // btGenerateDataBase
+            // btnLogin
             // 
-            this.btGenerateDataBase.Location = new System.Drawing.Point(30, 134);
-            this.btGenerateDataBase.Name = "btGenerateDataBase";
-            this.btGenerateDataBase.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.btGenerateDataBase.Size = new System.Drawing.Size(114, 25);
-            this.btGenerateDataBase.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
-            this.btGenerateDataBase.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btGenerateDataBase.TabIndex = 4;
-            this.btGenerateDataBase.Values.Image = ((System.Drawing.Image)(resources.GetObject("btGenerateDataBase.Values.Image")));
-            this.btGenerateDataBase.Values.Text = "Generuj Bazę";
+            this.btnLogin.Location = new System.Drawing.Point(364, 370);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnLogin.Size = new System.Drawing.Size(95, 25);
+            this.btnLogin.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
+            this.btnLogin.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnLogin.TabIndex = 78;
+            this.btnLogin.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnLogin.Values.Image")));
+            this.btnLogin.Values.Text = "Zaloguj się";
             // 
-            // rdCopyBudgetWithoutCustomers
+            // kryptonButton3
             // 
-            this.rdCopyBudgetWithoutCustomers.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.rdCopyBudgetWithoutCustomers.Location = new System.Drawing.Point(31, 49);
-            this.rdCopyBudgetWithoutCustomers.Name = "rdCopyBudgetWithoutCustomers";
-            this.rdCopyBudgetWithoutCustomers.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
-            this.rdCopyBudgetWithoutCustomers.Size = new System.Drawing.Size(464, 22);
-            this.rdCopyBudgetWithoutCustomers.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
-            this.rdCopyBudgetWithoutCustomers.TabIndex = 27;
-            this.rdCopyBudgetWithoutCustomers.Values.Text = "Skopiuj cały budżet na wybranego użytkownika - nie przypisuj kotrahentów";
+            this.kryptonButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.kryptonButton3.Location = new System.Drawing.Point(364, 401);
+            this.kryptonButton3.Name = "kryptonButton3";
+            this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.kryptonButton3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.kryptonButton3.Size = new System.Drawing.Size(86, 25);
+            this.kryptonButton3.TabIndex = 0;
+            this.kryptonButton3.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton3.Values.Image")));
+            this.kryptonButton3.Values.Text = "Dodaj";
             // 
-            // DataGridFiltrs
+            // btnUpdate
             // 
-            this.DataGridFiltrs.AllowUserToAddRows = false;
-            this.DataGridFiltrs.AllowUserToDeleteRows = false;
-            this.DataGridFiltrs.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Maroon;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Maroon;
-            this.DataGridFiltrs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DataGridFiltrs.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            this.DataGridFiltrs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DataGridFiltrs.ColumnHeadersVisible = false;
-            this.DataGridFiltrs.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
-            this.DataGridFiltrs.GridStyles.Style = ComponentFactory.Krypton.Toolkit.DataGridViewStyle.Mixed;
-            this.DataGridFiltrs.GridStyles.StyleBackground = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ButtonCustom1;
-            this.DataGridFiltrs.GridStyles.StyleColumn = ComponentFactory.Krypton.Toolkit.GridStyle.Custom1;
-            this.DataGridFiltrs.GridStyles.StyleDataCells = ComponentFactory.Krypton.Toolkit.GridStyle.Custom1;
-            this.DataGridFiltrs.Location = new System.Drawing.Point(455, 6);
-            this.DataGridFiltrs.MultiSelect = false;
-            this.DataGridFiltrs.Name = "DataGridFiltrs";
-            this.DataGridFiltrs.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Black;
-            this.DataGridFiltrs.RowHeadersVisible = false;
-            this.DataGridFiltrs.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Maroon;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Maroon;
-            this.DataGridFiltrs.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.DataGridFiltrs.RowTemplate.DefaultCellStyle.Format = "N2";
-            this.DataGridFiltrs.RowTemplate.DefaultCellStyle.NullValue = "0,00";
-            this.DataGridFiltrs.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridFiltrs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DataGridFiltrs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DataGridFiltrs.Size = new System.Drawing.Size(387, 23);
-            this.DataGridFiltrs.StandardTab = true;
-            this.DataGridFiltrs.StateCommon.BackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ButtonCustom1;
-            this.DataGridFiltrs.StateCommon.DataCell.Border.Color1 = System.Drawing.Color.Black;
-            this.DataGridFiltrs.StateCommon.DataCell.Border.Color2 = System.Drawing.Color.Black;
-            this.DataGridFiltrs.StateCommon.DataCell.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.DataGridFiltrs.StateCommon.HeaderColumn.Border.Color1 = System.Drawing.Color.Black;
-            this.DataGridFiltrs.StateCommon.HeaderColumn.Border.Color2 = System.Drawing.Color.Black;
-            this.DataGridFiltrs.StateCommon.HeaderColumn.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.DataGridFiltrs.StateNormal.Background.Color1 = System.Drawing.Color.Silver;
-            this.DataGridFiltrs.StateNormal.Background.ColorAlign = ComponentFactory.Krypton.Toolkit.PaletteRectangleAlign.Control;
-            this.DataGridFiltrs.StateNormal.Background.ColorAngle = 0F;
-            this.DataGridFiltrs.StateNormal.Background.ColorStyle = ComponentFactory.Krypton.Toolkit.PaletteColorStyle.GlassBottom;
-            this.DataGridFiltrs.StateNormal.DataCell.Border.Color1 = System.Drawing.Color.Black;
-            this.DataGridFiltrs.StateNormal.DataCell.Border.Color2 = System.Drawing.Color.Black;
-            this.DataGridFiltrs.StateNormal.DataCell.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.DataGridFiltrs.StateNormal.HeaderColumn.Back.Color1 = System.Drawing.Color.Silver;
-            this.DataGridFiltrs.StateNormal.HeaderColumn.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.DataGridFiltrs.StateNormal.HeaderColumn.Border.Color1 = System.Drawing.Color.Black;
-            this.DataGridFiltrs.StateNormal.HeaderColumn.Border.Color2 = System.Drawing.Color.Black;
-            this.DataGridFiltrs.StateNormal.HeaderColumn.Border.ColorAngle = 2F;
-            this.DataGridFiltrs.StateNormal.HeaderColumn.Border.ColorStyle = ComponentFactory.Krypton.Toolkit.PaletteColorStyle.ExpertSquareHighlight2;
-            this.DataGridFiltrs.StateNormal.HeaderColumn.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.DataGridFiltrs.TabIndex = 69;
-            this.DataGridFiltrs.Visible = false;
-            // 
-            // GridViewSummary
-            // 
-            this.GridViewSummary.AllowUserToAddRows = false;
-            this.GridViewSummary.AllowUserToDeleteRows = false;
-            this.GridViewSummary.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.GridViewSummary.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.GridViewSummary.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            this.GridViewSummary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.GridViewSummary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridViewSummary.Location = new System.Drawing.Point(0, 0);
-            this.GridViewSummary.MultiSelect = false;
-            this.GridViewSummary.Name = "GridViewSummary";
-            this.GridViewSummary.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleBlue;
-            this.GridViewSummary.ReadOnly = true;
-            this.GridViewSummary.RowHeadersVisible = false;
-            this.GridViewSummary.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.GridViewSummary.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.GridViewSummary.RowTemplate.DefaultCellStyle.Format = "N2";
-            this.GridViewSummary.RowTemplate.DefaultCellStyle.NullValue = "0,00";
-            this.GridViewSummary.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridViewSummary.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridViewSummary.Size = new System.Drawing.Size(305, 81);
-            this.GridViewSummary.TabIndex = 45;
-            // 
-            // kryptonHeaderGroup1
-            // 
-            this.kryptonHeaderGroup1.HeaderStylePrimary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Calendar;
-            this.kryptonHeaderGroup1.HeaderStyleSecondary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Primary;
-            this.kryptonHeaderGroup1.HeaderVisibleSecondary = false;
-            this.kryptonHeaderGroup1.Location = new System.Drawing.Point(29, 261);
-            this.kryptonHeaderGroup1.Name = "kryptonHeaderGroup1";
-            this.kryptonHeaderGroup1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
-            // 
-            // kryptonHeaderGroup1.Panel
-            // 
-            this.kryptonHeaderGroup1.Panel.Controls.Add(this.GridViewSummary);
-            this.kryptonHeaderGroup1.Size = new System.Drawing.Size(307, 106);
-            this.kryptonHeaderGroup1.TabIndex = 68;
-            this.kryptonHeaderGroup1.ValuesPrimary.Heading = "Podsumowanie";
-            this.kryptonHeaderGroup1.ValuesPrimary.Image = null;
-            // 
-            // DataGridScheduleBudget
-            // 
-            this.DataGridScheduleBudget.AllowUserToAddRows = false;
-            this.DataGridScheduleBudget.AllowUserToDeleteRows = false;
-            this.DataGridScheduleBudget.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = "0,00";
-            this.DataGridScheduleBudget.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.DataGridScheduleBudget.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            this.DataGridScheduleBudget.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DataGridScheduleBudget.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
-            this.DataGridScheduleBudget.Location = new System.Drawing.Point(28, 372);
-            this.DataGridScheduleBudget.MultiSelect = false;
-            this.DataGridScheduleBudget.Name = "DataGridScheduleBudget";
-            this.DataGridScheduleBudget.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleBlue;
-            this.DataGridScheduleBudget.RowHeadersVisible = false;
-            this.DataGridScheduleBudget.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.DataGridScheduleBudget.RowTemplate.DefaultCellStyle.Format = "N2";
-            this.DataGridScheduleBudget.RowTemplate.DefaultCellStyle.NullValue = "0,00";
-            this.DataGridScheduleBudget.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridScheduleBudget.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridScheduleBudget.ShowCellErrors = false;
-            this.DataGridScheduleBudget.ShowCellToolTips = false;
-            this.DataGridScheduleBudget.ShowEditingIcon = false;
-            this.DataGridScheduleBudget.ShowRowErrors = false;
-            this.DataGridScheduleBudget.Size = new System.Drawing.Size(308, 86);
-            this.DataGridScheduleBudget.TabIndex = 70;
-            // 
-            // BtnAdd
-            // 
-            this.BtnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnAdd.Location = new System.Drawing.Point(26, 230);
-            this.BtnAdd.Name = "BtnAdd";
-            this.BtnAdd.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.BtnAdd.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.BtnAdd.Size = new System.Drawing.Size(82, 25);
-            this.BtnAdd.TabIndex = 71;
-            this.BtnAdd.Values.Image = ((System.Drawing.Image)(resources.GetObject("BtnAdd.Values.Image")));
-            this.BtnAdd.Values.Text = "Utwórz";
-            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            // 
-            // TxDescription
-            // 
-            this.TxDescription.Location = new System.Drawing.Point(172, 77);
-            this.TxDescription.Multiline = true;
-            this.TxDescription.Name = "TxDescription";
-            this.TxDescription.Size = new System.Drawing.Size(164, 40);
-            this.TxDescription.TabIndex = 72;
-            this.TxDescription.TextChanged += new System.EventHandler(this.TxDescription_TextChanged);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(172, 134);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(122, 115);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 73;
-            this.pictureBox1.TabStop = false;
-            // 
-            // kryptonPanelEx1
-            // 
-            this.kryptonPanelEx1.Controls.Add(this.BtnDelete);
-            this.kryptonPanelEx1.Controls.Add(this.kryptonButton1);
-            this.kryptonPanelEx1.Controls.Add(this.BtnEdit);
-            this.kryptonPanelEx1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.kryptonPanelEx1.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.kryptonPanelEx1.GradientToogleColors = false;
-            this.kryptonPanelEx1.GradientUseBlend = false;
-            this.kryptonPanelEx1.Image = null;
-            this.kryptonPanelEx1.ImageLocation = new System.Drawing.Point(4, 4);
-            this.kryptonPanelEx1.Location = new System.Drawing.Point(0, 500);
-            this.kryptonPanelEx1.Name = "kryptonPanelEx1";
-            this.kryptonPanelEx1.PersistentColors = false;
-            this.kryptonPanelEx1.Size = new System.Drawing.Size(919, 39);
-            this.kryptonPanelEx1.TabIndex = 74;
-            // 
-            // BtnDelete
-            // 
-            this.BtnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnDelete.Location = new System.Drawing.Point(194, 9);
-            this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.BtnDelete.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.BtnDelete.Size = new System.Drawing.Size(86, 25);
-            this.BtnDelete.TabIndex = 2;
-            this.BtnDelete.Values.Image = ((System.Drawing.Image)(resources.GetObject("BtnDelete.Values.Image")));
-            this.BtnDelete.Values.Text = "Usuń";
-            // 
-            // kryptonButton1
-            // 
-            this.kryptonButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.kryptonButton1.Location = new System.Drawing.Point(3, 9);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.kryptonButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.kryptonButton1.Size = new System.Drawing.Size(86, 25);
-            this.kryptonButton1.TabIndex = 0;
-            this.kryptonButton1.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton1.Values.Image")));
-            this.kryptonButton1.Values.Text = "Dodaj";
+            this.btnUpdate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnUpdate.Location = new System.Drawing.Point(364, 342);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnUpdate.Size = new System.Drawing.Size(100, 24);
+            this.btnUpdate.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
+            this.btnUpdate.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnUpdate.TabIndex = 77;
+            this.btnUpdate.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Values.Image")));
+            this.btnUpdate.Values.Text = "Aktualizuj";
             // 
             // kryptonButton2
             // 
-            this.kryptonButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonButton2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.kryptonButton2.Location = new System.Drawing.Point(531, 345);
+            this.kryptonButton2.Location = new System.Drawing.Point(364, 432);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.kryptonButton2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -470,47 +288,6 @@
             this.kryptonButton2.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton2.Values.Image")));
             this.kryptonButton2.Values.Text = "Wyslij";
             this.kryptonButton2.Click += new System.EventHandler(this.kryptonButton2_Click);
-            // 
-            // BtnEdit
-            // 
-            this.BtnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnEdit.AutoSize = true;
-            this.BtnEdit.Location = new System.Drawing.Point(102, 9);
-            this.BtnEdit.Name = "BtnEdit";
-            this.BtnEdit.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.BtnEdit.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.BtnEdit.Size = new System.Drawing.Size(86, 25);
-            this.BtnEdit.TabIndex = 1;
-            this.BtnEdit.Values.Image = ((System.Drawing.Image)(resources.GetObject("BtnEdit.Values.Image")));
-            this.BtnEdit.Values.Text = "Edytuj";
-            // 
-            // StatusBar
-            // 
-            this.StatusBar.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.StatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TsUsersCount,
-            this.toolStripRegionCount});
-            this.StatusBar.Location = new System.Drawing.Point(0, 478);
-            this.StatusBar.Name = "StatusBar";
-            this.StatusBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.StatusBar.Size = new System.Drawing.Size(919, 22);
-            this.StatusBar.SizingGrip = false;
-            this.StatusBar.TabIndex = 75;
-            this.StatusBar.Text = "statusStrip1";
-            // 
-            // TsUsersCount
-            // 
-            this.TsUsersCount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.TsUsersCount.Name = "TsUsersCount";
-            this.TsUsersCount.Size = new System.Drawing.Size(102, 17);
-            this.TsUsersCount.Text = "Liczba rekordów:";
-            // 
-            // toolStripRegionCount
-            // 
-            this.toolStripRegionCount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.toolStripRegionCount.Name = "toolStripRegionCount";
-            this.toolStripRegionCount.Size = new System.Drawing.Size(14, 17);
-            this.toolStripRegionCount.Text = "0";
             // 
             // MainTab
             // 
@@ -769,80 +546,395 @@
             this.RegionListBox.Size = new System.Drawing.Size(325, 184);
             this.RegionListBox.TabIndex = 0;
             // 
-            // btnUpdate
+            // DataGridFiltrs
             // 
-            this.btnUpdate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnUpdate.Location = new System.Drawing.Point(364, 342);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.btnUpdate.Size = new System.Drawing.Size(100, 24);
-            this.btnUpdate.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
-            this.btnUpdate.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnUpdate.TabIndex = 77;
-            this.btnUpdate.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Values.Image")));
-            this.btnUpdate.Values.Text = "Aktualizuj";
+            this.DataGridFiltrs.AllowUserToAddRows = false;
+            this.DataGridFiltrs.AllowUserToDeleteRows = false;
+            this.DataGridFiltrs.AllowUserToResizeRows = false;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Maroon;
+            this.DataGridFiltrs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.DataGridFiltrs.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            this.DataGridFiltrs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DataGridFiltrs.ColumnHeadersVisible = false;
+            this.DataGridFiltrs.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.DataGridFiltrs.GridStyles.Style = ComponentFactory.Krypton.Toolkit.DataGridViewStyle.Mixed;
+            this.DataGridFiltrs.GridStyles.StyleBackground = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ButtonCustom1;
+            this.DataGridFiltrs.GridStyles.StyleColumn = ComponentFactory.Krypton.Toolkit.GridStyle.Custom1;
+            this.DataGridFiltrs.GridStyles.StyleDataCells = ComponentFactory.Krypton.Toolkit.GridStyle.Custom1;
+            this.DataGridFiltrs.Location = new System.Drawing.Point(455, 6);
+            this.DataGridFiltrs.MultiSelect = false;
+            this.DataGridFiltrs.Name = "DataGridFiltrs";
+            this.DataGridFiltrs.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Black;
+            this.DataGridFiltrs.RowHeadersVisible = false;
+            this.DataGridFiltrs.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Maroon;
+            this.DataGridFiltrs.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.DataGridFiltrs.RowTemplate.DefaultCellStyle.Format = "N2";
+            this.DataGridFiltrs.RowTemplate.DefaultCellStyle.NullValue = "0,00";
+            this.DataGridFiltrs.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridFiltrs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DataGridFiltrs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DataGridFiltrs.Size = new System.Drawing.Size(173, 23);
+            this.DataGridFiltrs.StandardTab = true;
+            this.DataGridFiltrs.StateCommon.BackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ButtonCustom1;
+            this.DataGridFiltrs.StateCommon.DataCell.Border.Color1 = System.Drawing.Color.Black;
+            this.DataGridFiltrs.StateCommon.DataCell.Border.Color2 = System.Drawing.Color.Black;
+            this.DataGridFiltrs.StateCommon.DataCell.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.DataGridFiltrs.StateCommon.HeaderColumn.Border.Color1 = System.Drawing.Color.Black;
+            this.DataGridFiltrs.StateCommon.HeaderColumn.Border.Color2 = System.Drawing.Color.Black;
+            this.DataGridFiltrs.StateCommon.HeaderColumn.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.DataGridFiltrs.StateNormal.Background.Color1 = System.Drawing.Color.Silver;
+            this.DataGridFiltrs.StateNormal.Background.ColorAlign = ComponentFactory.Krypton.Toolkit.PaletteRectangleAlign.Control;
+            this.DataGridFiltrs.StateNormal.Background.ColorAngle = 0F;
+            this.DataGridFiltrs.StateNormal.Background.ColorStyle = ComponentFactory.Krypton.Toolkit.PaletteColorStyle.GlassBottom;
+            this.DataGridFiltrs.StateNormal.DataCell.Border.Color1 = System.Drawing.Color.Black;
+            this.DataGridFiltrs.StateNormal.DataCell.Border.Color2 = System.Drawing.Color.Black;
+            this.DataGridFiltrs.StateNormal.DataCell.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.DataGridFiltrs.StateNormal.HeaderColumn.Back.Color1 = System.Drawing.Color.Silver;
+            this.DataGridFiltrs.StateNormal.HeaderColumn.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DataGridFiltrs.StateNormal.HeaderColumn.Border.Color1 = System.Drawing.Color.Black;
+            this.DataGridFiltrs.StateNormal.HeaderColumn.Border.Color2 = System.Drawing.Color.Black;
+            this.DataGridFiltrs.StateNormal.HeaderColumn.Border.ColorAngle = 2F;
+            this.DataGridFiltrs.StateNormal.HeaderColumn.Border.ColorStyle = ComponentFactory.Krypton.Toolkit.PaletteColorStyle.ExpertSquareHighlight2;
+            this.DataGridFiltrs.StateNormal.HeaderColumn.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.DataGridFiltrs.TabIndex = 69;
+            this.DataGridFiltrs.Visible = false;
             // 
-            // btnLogin
+            // StatusBar
             // 
-            this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogin.Location = new System.Drawing.Point(367, 370);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.btnLogin.Size = new System.Drawing.Size(95, 25);
-            this.btnLogin.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
-            this.btnLogin.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnLogin.TabIndex = 78;
-            this.btnLogin.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnLogin.Values.Image")));
-            this.btnLogin.Values.Text = "Zaloguj się";
+            this.StatusBar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.StatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TsUsersCount,
+            this.toolStripRegionCount});
+            this.StatusBar.Location = new System.Drawing.Point(0, 478);
+            this.StatusBar.Name = "StatusBar";
+            this.StatusBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
+            this.StatusBar.Size = new System.Drawing.Size(1249, 22);
+            this.StatusBar.SizingGrip = false;
+            this.StatusBar.TabIndex = 75;
+            this.StatusBar.Text = "statusStrip1";
             // 
-            // kryptonButton3
+            // TsUsersCount
             // 
-            this.kryptonButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.kryptonButton3.Location = new System.Drawing.Point(364, 401);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.kryptonButton3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.kryptonButton3.Size = new System.Drawing.Size(86, 25);
-            this.kryptonButton3.TabIndex = 0;
-            this.kryptonButton3.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton3.Values.Image")));
-            this.kryptonButton3.Values.Text = "Dodaj";
+            this.TsUsersCount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.TsUsersCount.Name = "TsUsersCount";
+            this.TsUsersCount.Size = new System.Drawing.Size(102, 17);
+            this.TsUsersCount.Text = "Liczba rekordów:";
             // 
-            // kryptonButton4
+            // toolStripRegionCount
             // 
-            this.kryptonButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.kryptonButton4.Location = new System.Drawing.Point(456, 401);
-            this.kryptonButton4.Name = "kryptonButton4";
-            this.kryptonButton4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.kryptonButton4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.kryptonButton4.Size = new System.Drawing.Size(86, 25);
-            this.kryptonButton4.TabIndex = 2;
-            this.kryptonButton4.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton4.Values.Image")));
-            this.kryptonButton4.Values.Text = "Usuń";
+            this.toolStripRegionCount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripRegionCount.Name = "toolStripRegionCount";
+            this.toolStripRegionCount.Size = new System.Drawing.Size(14, 17);
+            this.toolStripRegionCount.Text = "0";
             // 
-            // Exsamples
+            // kryptonPanelEx1
+            // 
+            this.kryptonPanelEx1.Controls.Add(this.BtnDelete);
+            this.kryptonPanelEx1.Controls.Add(this.kryptonButton1);
+            this.kryptonPanelEx1.Controls.Add(this.BtnEdit);
+            this.kryptonPanelEx1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.kryptonPanelEx1.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.kryptonPanelEx1.GradientToogleColors = false;
+            this.kryptonPanelEx1.GradientUseBlend = false;
+            this.kryptonPanelEx1.Image = null;
+            this.kryptonPanelEx1.ImageLocation = new System.Drawing.Point(4, 4);
+            this.kryptonPanelEx1.Location = new System.Drawing.Point(0, 500);
+            this.kryptonPanelEx1.Name = "kryptonPanelEx1";
+            this.kryptonPanelEx1.PersistentColors = false;
+            this.kryptonPanelEx1.Size = new System.Drawing.Size(1249, 39);
+            this.kryptonPanelEx1.TabIndex = 74;
+            // 
+            // BtnDelete
+            // 
+            this.BtnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BtnDelete.Location = new System.Drawing.Point(194, 9);
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.BtnDelete.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.BtnDelete.Size = new System.Drawing.Size(86, 25);
+            this.BtnDelete.TabIndex = 2;
+            this.BtnDelete.Values.Image = ((System.Drawing.Image)(resources.GetObject("BtnDelete.Values.Image")));
+            this.BtnDelete.Values.Text = "Usuń";
+            // 
+            // kryptonButton1
+            // 
+            this.kryptonButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.kryptonButton1.Location = new System.Drawing.Point(3, 9);
+            this.kryptonButton1.Name = "kryptonButton1";
+            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.kryptonButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.kryptonButton1.Size = new System.Drawing.Size(86, 25);
+            this.kryptonButton1.TabIndex = 0;
+            this.kryptonButton1.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton1.Values.Image")));
+            this.kryptonButton1.Values.Text = "Dodaj";
+            // 
+            // BtnEdit
+            // 
+            this.BtnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BtnEdit.AutoSize = true;
+            this.BtnEdit.Location = new System.Drawing.Point(102, 9);
+            this.BtnEdit.Name = "BtnEdit";
+            this.BtnEdit.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.BtnEdit.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.BtnEdit.Size = new System.Drawing.Size(86, 25);
+            this.BtnEdit.TabIndex = 1;
+            this.BtnEdit.Values.Image = ((System.Drawing.Image)(resources.GetObject("BtnEdit.Values.Image")));
+            this.BtnEdit.Values.Text = "Edytuj";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(172, 134);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(122, 115);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 73;
+            this.pictureBox1.TabStop = false;
+            // 
+            // BtnAdd
+            // 
+            this.BtnAdd.Location = new System.Drawing.Point(29, 232);
+            this.BtnAdd.Name = "BtnAdd";
+            this.BtnAdd.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.BtnAdd.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.BtnAdd.Size = new System.Drawing.Size(82, 25);
+            this.BtnAdd.TabIndex = 71;
+            this.BtnAdd.Values.Image = ((System.Drawing.Image)(resources.GetObject("BtnAdd.Values.Image")));
+            this.BtnAdd.Values.Text = "Utwórz";
+            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            // 
+            // TxDescription
+            // 
+            this.TxDescription.Location = new System.Drawing.Point(172, 77);
+            this.TxDescription.Multiline = true;
+            this.TxDescription.Name = "TxDescription";
+            this.TxDescription.Size = new System.Drawing.Size(164, 40);
+            this.TxDescription.TabIndex = 72;
+            this.TxDescription.TextChanged += new System.EventHandler(this.TxDescription_TextChanged);
+            // 
+            // kryptonHeaderGroup1
+            // 
+            this.kryptonHeaderGroup1.HeaderStylePrimary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Calendar;
+            this.kryptonHeaderGroup1.HeaderStyleSecondary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Primary;
+            this.kryptonHeaderGroup1.HeaderVisibleSecondary = false;
+            this.kryptonHeaderGroup1.Location = new System.Drawing.Point(733, 102);
+            this.kryptonHeaderGroup1.Name = "kryptonHeaderGroup1";
+            this.kryptonHeaderGroup1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
+            // 
+            // kryptonHeaderGroup1.Panel
+            // 
+            this.kryptonHeaderGroup1.Panel.Controls.Add(this.GridView1);
+            this.kryptonHeaderGroup1.Panel.Controls.Add(this.kryptonHeaderGroup2);
+            this.kryptonHeaderGroup1.Size = new System.Drawing.Size(473, 303);
+            this.kryptonHeaderGroup1.TabIndex = 68;
+            this.kryptonHeaderGroup1.ValuesPrimary.Heading = "Drag & Drop";
+            this.kryptonHeaderGroup1.ValuesPrimary.Image = null;
+            // 
+            // DataGridScheduleBudget
+            // 
+            this.DataGridScheduleBudget.AllowUserToAddRows = false;
+            this.DataGridScheduleBudget.AllowUserToDeleteRows = false;
+            this.DataGridScheduleBudget.AllowUserToResizeRows = false;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = "0,00";
+            this.DataGridScheduleBudget.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.DataGridScheduleBudget.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            this.DataGridScheduleBudget.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DataGridScheduleBudget.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.DataGridScheduleBudget.Location = new System.Drawing.Point(28, 372);
+            this.DataGridScheduleBudget.MultiSelect = false;
+            this.DataGridScheduleBudget.Name = "DataGridScheduleBudget";
+            this.DataGridScheduleBudget.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleBlue;
+            this.DataGridScheduleBudget.RowHeadersVisible = false;
+            this.DataGridScheduleBudget.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.DataGridScheduleBudget.RowTemplate.DefaultCellStyle.Format = "N2";
+            this.DataGridScheduleBudget.RowTemplate.DefaultCellStyle.NullValue = "0,00";
+            this.DataGridScheduleBudget.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridScheduleBudget.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridScheduleBudget.ShowCellErrors = false;
+            this.DataGridScheduleBudget.ShowCellToolTips = false;
+            this.DataGridScheduleBudget.ShowEditingIcon = false;
+            this.DataGridScheduleBudget.ShowRowErrors = false;
+            this.DataGridScheduleBudget.Size = new System.Drawing.Size(308, 86);
+            this.DataGridScheduleBudget.TabIndex = 70;
+            // 
+            // rdCopyBudgetWithoutCustomers
+            // 
+            this.rdCopyBudgetWithoutCustomers.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
+            this.rdCopyBudgetWithoutCustomers.Location = new System.Drawing.Point(31, 49);
+            this.rdCopyBudgetWithoutCustomers.Name = "rdCopyBudgetWithoutCustomers";
+            this.rdCopyBudgetWithoutCustomers.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
+            this.rdCopyBudgetWithoutCustomers.Size = new System.Drawing.Size(464, 22);
+            this.rdCopyBudgetWithoutCustomers.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
+            this.rdCopyBudgetWithoutCustomers.TabIndex = 27;
+            this.rdCopyBudgetWithoutCustomers.Values.Text = "Skopiuj cały budżet na wybranego użytkownika - nie przypisuj kotrahentów";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(30, 96);
+            this.txtPassword.MaxLength = 40;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '•';
+            this.txtPassword.Size = new System.Drawing.Size(115, 20);
+            this.txtPassword.TabIndex = 19;
+            // 
+            // btGenerateDataBase
+            // 
+            this.btGenerateDataBase.Location = new System.Drawing.Point(30, 134);
+            this.btGenerateDataBase.Name = "btGenerateDataBase";
+            this.btGenerateDataBase.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btGenerateDataBase.Size = new System.Drawing.Size(114, 25);
+            this.btGenerateDataBase.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
+            this.btGenerateDataBase.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btGenerateDataBase.TabIndex = 4;
+            this.btGenerateDataBase.Values.Image = ((System.Drawing.Image)(resources.GetObject("btGenerateDataBase.Values.Image")));
+            this.btGenerateDataBase.Values.Text = "Generuj Bazę";
+            // 
+            // kryptonHeaderGroup2
+            // 
+            this.kryptonHeaderGroup2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.kryptonHeaderGroup2.HeaderStylePrimary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Calendar;
+            this.kryptonHeaderGroup2.HeaderStyleSecondary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Primary;
+            this.kryptonHeaderGroup2.HeaderVisibleSecondary = false;
+            this.kryptonHeaderGroup2.Location = new System.Drawing.Point(0, 139);
+            this.kryptonHeaderGroup2.Name = "kryptonHeaderGroup2";
+            this.kryptonHeaderGroup2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
+            // 
+            // kryptonHeaderGroup2.Panel
+            // 
+            this.kryptonHeaderGroup2.Panel.Controls.Add(this.DataGridView2);
+            this.kryptonHeaderGroup2.Size = new System.Drawing.Size(471, 139);
+            this.kryptonHeaderGroup2.TabIndex = 69;
+            this.kryptonHeaderGroup2.ValuesPrimary.Heading = "Into";
+            this.kryptonHeaderGroup2.ValuesPrimary.Image = null;
+            // 
+            // DataGridView2
+            // 
+            this.DataGridView2.AllowUserToAddRows = false;
+            this.DataGridView2.AllowUserToDeleteRows = false;
+            this.DataGridView2.AllowUserToResizeRows = false;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.DataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.DataGridView2.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGridView2.Location = new System.Drawing.Point(0, 0);
+            this.DataGridView2.MultiSelect = false;
+            this.DataGridView2.Name = "DataGridView2";
+            this.DataGridView2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleBlue;
+            this.DataGridView2.ReadOnly = true;
+            this.DataGridView2.RowHeadersVisible = false;
+            this.DataGridView2.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.DataGridView2.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DataGridView2.RowTemplate.DefaultCellStyle.Format = "N2";
+            this.DataGridView2.RowTemplate.DefaultCellStyle.NullValue = "0,00";
+            this.DataGridView2.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridView2.Size = new System.Drawing.Size(469, 114);
+            this.DataGridView2.TabIndex = 45;
+            // 
+            // GridView1
+            // 
+            this.GridView1.AllowUserToAddRows = false;
+            this.GridView1.AllowUserToDeleteRows = false;
+            this.GridView1.AllowUserToResizeRows = false;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.GridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.GridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.GridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.GridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GridView1.Location = new System.Drawing.Point(0, 0);
+            this.GridView1.MultiSelect = false;
+            this.GridView1.Name = "GridView1";
+            this.GridView1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleBlue;
+            this.GridView1.ReadOnly = true;
+            this.GridView1.RowHeadersVisible = false;
+            this.GridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.GridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GridView1.RowTemplate.DefaultCellStyle.Format = "N2";
+            this.GridView1.RowTemplate.DefaultCellStyle.NullValue = "0,00";
+            this.GridView1.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.GridView1.Size = new System.Drawing.Size(471, 139);
+            this.GridView1.TabIndex = 70;
+            // 
+            // kryptonHeaderGroup3
+            // 
+            this.kryptonHeaderGroup3.HeaderStylePrimary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Calendar;
+            this.kryptonHeaderGroup3.HeaderStyleSecondary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Primary;
+            this.kryptonHeaderGroup3.HeaderVisibleSecondary = false;
+            this.kryptonHeaderGroup3.Location = new System.Drawing.Point(31, 265);
+            this.kryptonHeaderGroup3.Name = "kryptonHeaderGroup3";
+            this.kryptonHeaderGroup3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
+            // 
+            // kryptonHeaderGroup3.Panel
+            // 
+            this.kryptonHeaderGroup3.Panel.Controls.Add(this.kryptonDataGridView2);
+            this.kryptonHeaderGroup3.Size = new System.Drawing.Size(282, 82);
+            this.kryptonHeaderGroup3.TabIndex = 79;
+            this.kryptonHeaderGroup3.ValuesPrimary.Heading = "Podsumowanie";
+            this.kryptonHeaderGroup3.ValuesPrimary.Image = null;
+            // 
+            // kryptonDataGridView2
+            // 
+            this.kryptonDataGridView2.AllowUserToAddRows = false;
+            this.kryptonDataGridView2.AllowUserToDeleteRows = false;
+            this.kryptonDataGridView2.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.kryptonDataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.kryptonDataGridView2.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.kryptonDataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.kryptonDataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.kryptonDataGridView2.Location = new System.Drawing.Point(0, 0);
+            this.kryptonDataGridView2.MultiSelect = false;
+            this.kryptonDataGridView2.Name = "kryptonDataGridView2";
+            this.kryptonDataGridView2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleBlue;
+            this.kryptonDataGridView2.ReadOnly = true;
+            this.kryptonDataGridView2.RowHeadersVisible = false;
+            this.kryptonDataGridView2.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.kryptonDataGridView2.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.kryptonDataGridView2.RowTemplate.DefaultCellStyle.Format = "N2";
+            this.kryptonDataGridView2.RowTemplate.DefaultCellStyle.NullValue = "0,00";
+            this.kryptonDataGridView2.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.kryptonDataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.kryptonDataGridView2.Size = new System.Drawing.Size(280, 57);
+            this.kryptonDataGridView2.TabIndex = 45;
+            // 
+            // Examples
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(919, 539);
+            this.ClientSize = new System.Drawing.Size(1249, 539);
             this.Controls.Add(this.kryptonPanel3);
-            this.Name = "Exsamples";
+            this.Name = "Examples";
             this.Text = "Exsamples";
             ((System.ComponentModel.ISupportInitialize)(this.cbParentUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel3)).EndInit();
             this.kryptonPanel3.ResumeLayout(false);
             this.kryptonPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridFiltrs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewSummary)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).EndInit();
-            this.kryptonHeaderGroup1.Panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).EndInit();
-            this.kryptonHeaderGroup1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridScheduleBudget)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.kryptonPanelEx1.ResumeLayout(false);
-            this.kryptonPanelEx1.PerformLayout();
-            this.StatusBar.ResumeLayout(false);
-            this.StatusBar.PerformLayout();
             this.MainTab.ResumeLayout(false);
             this.TabPageGeneralInfo.ResumeLayout(false);
             this.kryptonPanelEx3.ResumeLayout(false);
@@ -856,6 +948,28 @@
             this.LeftMenuList.Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LeftMenuList)).EndInit();
             this.LeftMenuList.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridFiltrs)).EndInit();
+            this.StatusBar.ResumeLayout(false);
+            this.StatusBar.PerformLayout();
+            this.kryptonPanelEx1.ResumeLayout(false);
+            this.kryptonPanelEx1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).EndInit();
+            this.kryptonHeaderGroup1.Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).EndInit();
+            this.kryptonHeaderGroup1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridScheduleBudget)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2.Panel)).EndInit();
+            this.kryptonHeaderGroup2.Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2)).EndInit();
+            this.kryptonHeaderGroup2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3.Panel)).EndInit();
+            this.kryptonHeaderGroup3.Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3)).EndInit();
+            this.kryptonHeaderGroup3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -873,7 +987,6 @@
         private System.Windows.Forms.TextBox TxDescription;
         private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup kryptonHeaderGroup1;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView DataGridFiltrs;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView GridViewSummary;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView DataGridScheduleBudget;
         private ComponentFactory.Krypton.Toolkit.KryptonRadioButton rdCopyBudgetWithoutCustomers;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtPassword;
@@ -914,5 +1027,10 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton4;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
+        private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup kryptonHeaderGroup3;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView kryptonDataGridView2;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView GridView1;
+        private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup kryptonHeaderGroup2;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView DataGridView2;
     }
 }

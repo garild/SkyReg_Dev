@@ -73,10 +73,10 @@ namespace SkyReg
                         AirplaneNr = p.Airplane.RegNr,
                         Altitude = p.Altitude,
                         AvailableSeats = p.Airplane.Seats - p.FlightsElem.Count,
-                        Status = p.FlyStatus == (short)Enum_flightsStatuses.Opened ? "Otwarty" :
-                                    p.FlyStatus == (short)Enum_flightsStatuses.Closed ? "Zamknięty" :
-                                    p.FlyStatus == (short)Enum_flightsStatuses.Executed ? "Zrealizowany" :
-                                    p.FlyStatus == (short)Enum_flightsStatuses.Canceled ? "Anulowany" :
+                        Status = p.FlyStatus == (short)FlightsStatus.Opened ? "Otwarty" :
+                                    p.FlyStatus == (short)FlightsStatus.Closed ? "Zamknięty" :
+                                    p.FlyStatus == (short)FlightsStatus.Executed ? "Zrealizowany" :
+                                    p.FlyStatus == (short)FlightsStatus.Canceled ? "Anulowany" :
                                     string.Empty
                     }).ToList();
                 grdFlights.DataSource = flightsList;
@@ -97,7 +97,7 @@ namespace SkyReg
             FlyAddEditForm = FormsOpened<FlyAddEditForm>.IsOpened(FlyAddEditForm);
             FlyAddEditForm.EventHandlerAddedEditedFlight += RefreshAfterAddedEditedFlight;
             FlyAddEditForm.TopMost = true;
-            FlyAddEditForm.FormState = Enum_FormState.Add;
+            FlyAddEditForm.FormState = FormState.Add;
             FlyAddEditForm.FlightId = default(int);
             FlyAddEditForm.ShowDialog();
         }
@@ -113,7 +113,7 @@ namespace SkyReg
                 FlyAddEditForm = FormsOpened<FlyAddEditForm>.IsOpened(FlyAddEditForm);
                 FlyAddEditForm.EventHandlerAddedEditedFlight += RefreshAfterAddedEditedFlight;
                 FlyAddEditForm.TopMost = true;
-                FlyAddEditForm.FormState = Enum_FormState.Edit;
+                FlyAddEditForm.FormState = FormState.Edit;
                 FlyAddEditForm.FlightId = flightId;
                 FlyAddEditForm.ShowDialog();
             }

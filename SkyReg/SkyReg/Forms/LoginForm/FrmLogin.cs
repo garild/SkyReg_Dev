@@ -110,8 +110,9 @@ namespace SkyReg.MainForm
                 }
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
+                KryptonMessageBox.Show("Wystąpił błąd podczas wczytywania pliku z ustawieniami", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.Cancel;
             }
 
@@ -139,17 +140,19 @@ namespace SkyReg.MainForm
 
                 if (ValidateControls())
                 {
-                    LoginRepository _loginRepository = new LoginRepository();
-                    var user = _loginRepository.GetUser(login, password.EncryptString());
-                    if (user != null)
+                    using (var _loginRepo = new DLModelRepository<User>())
                     {
-                        SkyRegUser.UserLogin = user.Login;
-                        SkyRegUser.UserId = user.Id;
-                        SaveUserConfig(user);
-                        this.DialogResult = DialogResult.OK;
+                        var user = _loginRepo.GetAll().Value.Where(p => p.Login == login && p.Password == password.EncryptString()).FirstOrDefault();
+                        if (user != null)
+                        {
+                            SkyRegUser.UserLogin = user.Login;
+                            SkyRegUser.UserId = user.Id;
+                            SaveUserConfig(user);
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                            KryptonMessageBox.Show("Podany login lub hasło nie są prawidłowe", "Błąd logowania", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    else
-                        KryptonMessageBox.Show("Podany login lub hasło nie są prawidłowe", "Błąd logowania", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)

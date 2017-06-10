@@ -103,7 +103,7 @@ namespace SkyReg
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            ParachuteFormAddEdit apf = new ParachuteFormAddEdit(Enum_FormState.Add, null);
+            ParachuteFormAddEdit apf = new ParachuteFormAddEdit(FormState.Add, null);
             apf.MdiParent = this.ParentForm;
             apf.ParachuteAddedEdited += ParachutesListRefreshAfterAddedEdited;
             apf.Show();
@@ -119,7 +119,7 @@ namespace SkyReg
             if (grdParachute.SelectedRows.Count > 0)
             {
                 int parId = (int)grdParachute.SelectedRows[0].Cells["Id"].Value;
-                ParachuteFormAddEdit apf = new ParachuteFormAddEdit(Enum_FormState.Edit, parId);
+                ParachuteFormAddEdit apf = new ParachuteFormAddEdit(FormState.Edit, parId);
                 apf.MdiParent = this.ParentForm;
                 apf.ParachuteAddedEdited += ParachutesListRefreshAfterAddedEdited;
                 apf.Show();

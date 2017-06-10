@@ -39,7 +39,7 @@ namespace SkyReg
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AirPlanesFormAddEdit apf = new AirPlanesFormAddEdit(Enum_FormState.Add, null);
+            AirPlanesFormAddEdit apf = new AirPlanesFormAddEdit(FormState.Add, null);
             apf.MdiParent = this.ParentForm;
             apf.RefreshAirplanesGridEH += AddedEditedAirplane;
             apf.Show();
@@ -50,7 +50,7 @@ namespace SkyReg
             if(grdAirplanes.SelectedRows.Count > 0)
             {
                 int airplaneId = (int)grdAirplanes.SelectedRows[0].Cells["Id"].Value;
-                AirPlanesFormAddEdit apf = new AirPlanesFormAddEdit(Enum_FormState.Edit, airplaneId);
+                AirPlanesFormAddEdit apf = new AirPlanesFormAddEdit(FormState.Edit, airplaneId);
                 apf.MdiParent = this.ParentForm;
                 apf.RefreshAirplanesGridEH += AddedEditedAirplane;
                 apf.Show();

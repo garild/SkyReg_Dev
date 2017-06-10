@@ -67,8 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Enums\Enum_flightsStatuses.cs" />
+    <Compile Include="Common\Enums\FlightsStatus.cs" />
     <Compile Include="Common\Extensions\FormsOpened.cs" />
+    <Compile Include="Common\Extensions\PrimitiveTypeExtensions.cs" />
     <Compile Include="Common\FluentValidator\UserValidator.cs" />
     <Compile Include="Forms\AirplanesForm\AirplanesForm.cs">
       <SubType>Form</SubType>
@@ -84,9 +85,9 @@
     </Compile>
     <Compile Include="BLL\Login\ILoginRepository.cs" />
     <Compile Include="BLL\Login\LoginRepository.cs" />
-    <Compile Include="Common\Enums\Enum_FormState.cs" />
-    <Compile Include="Common\Enums\Enum_OperatorTypes.cs" />
-    <Compile Include="Common\Enums\Enum_paymentsTypes.cs" />
+    <Compile Include="Common\Enums\FormState.cs" />
+    <Compile Include="Common\Enums\OperatorTypes.cs" />
+    <Compile Include="Common\Enums\PaymentsTypes.cs" />
     <Compile Include="Common\Helper\BaseModel.cs" />
     <Compile Include="Common\Helper\FirstTimeRun.cs" />
     <Compile Include="Forms\DatabaseConfiguration\FrmDataBaseConfig.cs">
@@ -147,7 +148,6 @@
     <Compile Include="Forms\LoginForm\FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ParachutesForm\IParachuteListElem.cs" />
     <Compile Include="Forms\ParachutesForm\ParachuteFormAddEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,7 +176,6 @@
     <Compile Include="Forms\UsersForm\UsersForm.Designer.cs">
       <DependentUpon>UsersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UsersTypesForm\IUserTypeListElem.cs" />
     <Compile Include="Forms\UsersTypesForm\UsersTypesForm.cs">
       <SubType>Form</SubType>
     </Compile>

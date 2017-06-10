@@ -9,12 +9,13 @@ using System.Text;
 using System.Windows.Forms;
 using DataLayer;
 using DataLayer.Result.Repository;
+using SkyReg.Common.Extensions;
 
 namespace SkyReg
 {
     public partial class UsersAddEditForm : KryptonForm
     {
-        public Enum_FormState FormState { get; set; }
+        public FormState FormState { get; set; }
         public int? IdUser { get; set; }
         public int UserGroup { get; set; }
 
@@ -23,20 +24,21 @@ namespace SkyReg
         public UsersAddEditForm()
         {
             InitializeComponent();
+            dateCertDate.MaxDate = DateTime.Now.AddYears(2);
         }
 
         private void UsersAddEditForm_Load(object sender, EventArgs e)
         {
             LoadAllUsersTypes();
-            if (FormState == Enum_FormState.Edit)
+            if (FormState == FormState.Edit)
                 LoadEditedUserData();
         }
 
         private void LoadEditedUserData()
         {
-            using(DLModelContainer model = new DLModelContainer())
+            using(var model =  new DLModelRepository<User>())
             {
-                User usr = model.User.Where(p => p.Id == IdUser).FirstOrDefault();
+                var usr = model.GetAll().Value?.Where(p => p.Id == IdUser).FirstOrDefault();
                 if (usr != null)
                 {
                     txtCertyfikate.Text = usr.Certificate;
@@ -51,7 +53,7 @@ namespace SkyReg
                     txtStreetNr.Text = usr.StreetNr;
                     txtSurName.Text = usr.SurName;
                     txtZipCode.Text = usr.ZipCode;
-                    dateCertDate.Value = usr.CertDate.Value;
+                    dateCertDate.Value = usr.CertDate.HasValue ? usr.CertDate.Value : dateCertDate.MaxDate;
                 }
             }
         }
@@ -59,36 +61,38 @@ namespace SkyReg
         private void LoadAllUsersTypes()
         {
             chkListUserTypes.Items.Clear();
-            using(DLModelContainer model = new DLModelContainer())
+            using(var model = new DLModelContainer())
             {
-                List<UsersType> allUsrTypes = model.UsersType.ToList();
-                if (FormState == Enum_FormState.Edit)
+                var allUserTypes = model.UsersType.ToList();
+                if (FormState == FormState.Edit)
                 {
-                    List<UsersType> currentUsrTypes = model.User.Where(p => p.Id == IdUser).SelectMany(p => p.UsersType).ToList();
-                    foreach (UsersType item in allUsrTypes)
+                    var currentUserTypes = model.User.Where(p => p.Id == IdUser).SelectMany(p => p.UsersType).ToList();
+                    allUserTypes?.ForEach(item =>
                     {
-                        if (currentUsrTypes.Any(p => p.Id == item.Id) == true)
+                        if (currentUserTypes.Any(p => p.Id == item.Id))
                             chkListUserTypes.Items.Add(item.Name, true);
                         else
                             chkListUserTypes.Items.Add(item.Name, false);
-                    }
+                    });
+                    
                 }
                 else
                 {
-                    foreach(UsersType item in allUsrTypes)
+                    allUserTypes?.ForEach(p=>
                     {
-                        chkListUserTypes.Items.Add(item.Name, false);
-                    }
+                        chkListUserTypes.Items.Add(p.Name, false);
+                    });
+                   
                 }
             }
         }
 
         private void btnCheckLogin_Click(object sender, EventArgs e)
         {
-            using(DLModelContainer model = new DLModelContainer())
+            using(var model = new DLModelRepository<User>())
             {
-                bool isUser = model.User.Any(p => p.Login == txtLogin.Text);
-                if (isUser == false)
+                var isUser = model.GetAll().Value?.Any(p => p.Login == txtLogin.Text);
+                if (!isUser.HasValue)
                 {
                     KryptonMessageBox.Show("Login wolny.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
@@ -116,27 +120,25 @@ namespace SkyReg
         {
             using (DLModelContainer model = new DLModelContainer())
             {
-                User usr;
+                User usr = new User();
 
-                if (FormState == Enum_FormState.Add)
+                if (FormState != FormState.Add)
                 {
-                    usr = new User();
-                }
-                else
-                {
-                    usr = model.User.Include("UsersType").Where(p => p.Id == IdUser).FirstOrDefault();
+                    usr = model.User.Include("UsersType").AsNoTracking().Where(p => p.Id == IdUser).FirstOrDefault();
                 }
 
-                List<UsersType> listUsersTypes = new List<UsersType>();
-                foreach(var item in chkListUserTypes.CheckedItems)
+                var listUsersTypes = new List<UsersType>();
+              
+                foreach (var item in chkListUserTypes.CheckedItems)
                 {
                     listUsersTypes.Add(model.UsersType.Where(p => p.Name == item.ToString()).FirstOrDefault());
                 }
 
-                if (txtCertyfikate.Text != string.Empty)
+                if (txtCertyfikate.Text.HasValue())
                     usr.CertDate = dateCertDate.Value.Date;
                 else
-                    usr.CertDate = DateTime.MaxValue;
+                    usr.CertDate = dateCertDate.MaxDate;
+
                 usr.Certificate = txtCertyfikate.Text;
                 usr.City = txtCity.Text;
                 usr.Email = txtEmail.Text;
@@ -151,49 +153,54 @@ namespace SkyReg
                 usr.SurName = txtSurName.Text;
                 usr.ZipCode = txtZipCode.Text;
                 usr.UsersType = listUsersTypes;
-                if (FormState == Enum_FormState.Add)
+
+                if (FormState == FormState.Add)
                 {
                     model.User.Add(usr);
                 }
+
                 model.SaveChanges();
                 EventHandlerAddEditUser.Invoke(null, null);
-                var a = usr;
+             
                 this.Close();
             }
         }
 
         private bool ValidateAddEditUser()
         {
-            bool result = true;
             errorProvider1.Clear();
 
             using(DLModelRepository<User> _ctxUsr = new DLModelRepository<User>())
             {
+                var userList = _ctxUsr.GetAll();
+                if (userList.IsSuccess)
+                {
+                    if (!txtFirstName.Text.HasValue())
+                    {
+                        errorProvider1.SetError(txtFirstName, "Pole nie może być puste!");
+                        return false;
+                    }
+                    if (!txtSurName.Text.HasValue())
+                    {
+                        errorProvider1.SetError(txtSurName, "Pole nie może być puste!");
+                        return false;
+                    }
                 
-                if(txtFirstName.Text == string.Empty)
-                {
-                    errorProvider1.SetError(txtFirstName, "Pole nie może być puste!");
-                    result = false;
-                }
-                if(txtSurName.Text == string.Empty)
-                {
-                    errorProvider1.SetError(txtSurName, "Pole nie może być puste!");
-                    result = false;
-                }
-                if( _ctxUsr.GetAll().Value?.Where(p => p.FirstName == txtFirstName.Text && p.SurName == txtSurName.Text && p.Id != IdUser).FirstOrDefault() != null)
-                {
-                    errorProvider1.SetError(txtFirstName, "Użytkownik o tym imieniu i nazwisku już istnieje!");
-                    errorProvider1.SetError(txtSurName, "Użytkownik o tym imieniu i nazwisku już istnieje!");
-                    result = false;
-                }
-                if( _ctxUsr.GetAll().Value.Any(p=>p.Login == txtLogin.Text && p.Id != IdUser) == true)
-                {
-                    errorProvider1.SetError(txtLogin, "Ten login jest już w użyciu!");
-                    result = false;
+                    if (userList.Value.Where(p => p.FirstName == txtFirstName.Text && p.SurName == txtSurName.Text && p.Id != IdUser).FirstOrDefault() != null)
+                    {
+                        errorProvider1.SetError(txtFirstName, "Użytkownik o tym imieniu i nazwisku już istnieje!");
+                        errorProvider1.SetError(txtSurName, "Użytkownik o tym imieniu i nazwisku już istnieje!");
+                        return false;
+                    }
+                    if (userList.Value.Any(p => p.Login == txtLogin.Text && p.Id != IdUser))
+                    {
+                        errorProvider1.SetError(txtLogin, "Ten login jest już w użyciu!");
+                        return false;
+                    }
                 }
             }
 
-            return result;
+            return true;
         }
     }
 }

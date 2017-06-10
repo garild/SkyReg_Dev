@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DataLayer;
+using DataLayer.Result.Repository;
 
 namespace SkyReg
 {
@@ -63,34 +64,40 @@ namespace SkyReg
 
         private void RefreshUsersTypesList()
         {
-            using(DLModelContainer model = new DLModelContainer())
+            grdUsersTypes.DataSource = null;
+            using (var model = new DLModelRepository<UsersType>())
             {
-                List<UserTypeListElem> usrTypes = model.UsersType
+                var usrTypes = model.GetAll().Value?
                     .Select(p => new UserTypeListElem
                     {
                         Id = p.Id,
                         Name = p.Name,
                         Value = p.Value,
-                        Camera = p.IsCam == true? "Tak": "Nie"
+                        Camera = p.IsCam ? "Tak": "Nie"
                     })
                     .OrderBy(p => p.Name)
                     .ToList();
+                if(usrTypes.Count > 0)
+
                 grdUsersTypes.DataSource = usrTypes;
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            UserTypeAddEdit utae = new UserTypeAddEdit(Enum_FormState.Add, null);
-            utae.MdiParent = this.ParentForm;
-            utae.UserTypeAddEditEH += UsersTypesListRefresh;
-            utae.Show();
+            userTypeAddEdit = new UserTypeAddEdit(FormState.Add, null);
+            userTypeAddEdit.FormClosed += UserTypeAddEdit_FormClosed;
+            userTypeAddEdit.ShowDialog();
         }
 
-        private void UsersTypesListRefresh(object sender, EventArgs e)
+        private void UserTypeAddEdit_FormClosed(object sender, FormClosedEventArgs e)
         {
-            RefreshUsersTypesList();
-            grdUsersTypes.Refresh();
+            if(userTypeAddEdit.DialogResult == DialogResult.OK)
+            {
+                RefreshUsersTypesList();
+                SetUsrTypesListView();
+                grdUsersTypes.Refresh();
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -98,10 +105,9 @@ namespace SkyReg
             if (grdUsersTypes.SelectedRows.Count > 0)
             {
                 int usrTypeId = (int)grdUsersTypes.SelectedRows[0].Cells["Id"].Value;
-                UserTypeAddEdit utae = new UserTypeAddEdit(Enum_FormState.Edit, usrTypeId);
-                utae.MdiParent = this.ParentForm;
-                utae.UserTypeAddEditEH += UsersTypesListRefresh;
-                utae.Show();
+                userTypeAddEdit = new UserTypeAddEdit(FormState.Edit, usrTypeId);
+                userTypeAddEdit.FormClosed += UserTypeAddEdit_FormClosed;
+                userTypeAddEdit.Show();
             }
         }
 
@@ -130,5 +136,7 @@ namespace SkyReg
         {
             this.Close();
         }
+
+        private UserTypeAddEdit userTypeAddEdit = null;
     }
 }

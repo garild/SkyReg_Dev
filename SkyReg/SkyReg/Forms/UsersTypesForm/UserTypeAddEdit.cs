@@ -8,26 +8,22 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DataLayer;
+using SkyReg.Common.Extensions;
+using DataLayer.Result.Repository;
 
 namespace SkyReg
 {
     public partial class UserTypeAddEdit : KryptonForm
     {
-        Enum_FormState _formState;
-        int? _idUsrType;
+        FormState? _formState;
+        int? _idUserType;
 
-        public EventHandler UserTypeAddEditEH;
-
-        public UserTypeAddEdit()
+        public UserTypeAddEdit(FormState? formState = null, int? idUserType = null)
         {
             InitializeComponent();
-        }
-
-        public UserTypeAddEdit(Enum_FormState formState, int? idUsrType)
-        {
+            this.DialogResult = DialogResult.None;
             _formState = formState;
-            _idUsrType = idUsrType;
-            InitializeComponent();
+            _idUserType = idUserType;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -40,46 +36,45 @@ namespace SkyReg
 
         private void SaveUserType()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (var model = new DLModelRepository<UsersType>())
             {
-                if (_formState == Enum_FormState.Add)
+                if (_formState == FormState.Add)
                 {
                     UsersType ut = new UsersType();
                     ut.Name = txtName.Text;
                     ut.Value = numValue.Value;
                     ut.IsCam = chkCam.Checked;
-                    model.UsersType.Add(ut);
-                    model.SaveChanges();
+                    model.Insert(ut);
+                  
                 }
                 else
                 {
-                    UsersType ut = model.UsersType.Where(p => p.Id == _idUsrType).FirstOrDefault();
+                    var ut = model.GetAll().Value?.Where(p => p.Id == _idUserType).FirstOrDefault();
                     if (ut != null)
                     {
                         ut.Name = txtName.Text;
                         ut.Value = numValue.Value;
                         ut.IsCam = chkCam.Checked;
-                        model.SaveChanges();
+                        model.Update(ut);
                     }
                 }
             }
+            this.DialogResult = DialogResult.OK;
             this.Close();
-            UserTypeAddEditEH.Invoke(null, null);
         }
 
         private bool ValidateUserType()
         {
             bool result = true;
+            errorProvider1.Clear();
+            errorProvider1.Clear();
 
-            errorProvider1.SetError(txtName, string.Empty);
-            errorProvider1.SetError(numValue, string.Empty);
-
-            if(txtName.Text == string.Empty)
+            if (!txtName.Text.HasValue())
             {
                 errorProvider1.SetError(txtName, "Pole nie może być puste!");
-                result = false;
+                result = false; 
             }
-            if(numValue.Value == 0)
+            if(numValue.Value == default(decimal))
             {
                 errorProvider1.SetError(numValue, "Wartość nie może być równa 0!");
                 result = false;
@@ -87,7 +82,7 @@ namespace SkyReg
 
             using(DLModelContainer model = new DLModelContainer())
             {
-                if(_formState == Enum_FormState.Add)
+                if(_formState == FormState.Add)
                 {
                     var isUserType = model.UsersType.Any(p => p.Name == txtName.Text);
                     if(isUserType == true)
@@ -98,8 +93,7 @@ namespace SkyReg
                 }
                 else
                 {
-                    var isUserType = model.UsersType.Any(p => p.Name == txtName.Text && p.Id != _idUsrType);
-                    if (isUserType == true)
+                    if (model.UsersType.Any(p => p.Name == txtName.Text && p.Id != _idUserType))
                     {
                         errorProvider1.SetError(txtName, "Typ skoczka już istnieje!");
                         result = false;
@@ -117,7 +111,7 @@ namespace SkyReg
 
         private void UserTypeAddEdit_Load(object sender, EventArgs e)
         {
-            if (_formState == Enum_FormState.Edit)
+            if (_formState == FormState.Edit)
                 LoadUserType();
         }
 
@@ -125,7 +119,7 @@ namespace SkyReg
         {
             using(DLModelContainer model = new DLModelContainer())
             {
-                UsersType ut = model.UsersType.Where(p => p.Id == _idUsrType).FirstOrDefault();
+                UsersType ut = model.UsersType.Where(p => p.Id == _idUserType).FirstOrDefault();
                 if(ut != null)
                 {
                     txtName.Text = ut.Name;

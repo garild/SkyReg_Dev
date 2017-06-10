@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DataLayer;
+using DataLayer.Result.Repository;
+using SkyReg.Common.Extensions;
 
 namespace SkyReg
 {
@@ -15,10 +17,8 @@ namespace SkyReg
     {
         #region EventHandler
 
-        public EventHandler FormaAccept;
 
         #endregion
-
 
         #region Konstruktory
 
@@ -33,7 +33,7 @@ namespace SkyReg
 
         private void EnableDisableControls()
         {
-            if (cmbBoxTypes.SelectedIndex == (int)Enum_paymentsTypes.Package)
+            if (cmbBoxTypes.SelectedIndex == (int)PaymentsTypes.Pakiet)
             {
                 numPrice.Enabled = true;
                 numCount.Enabled = true;
@@ -50,7 +50,7 @@ namespace SkyReg
             bool txtBoxNameError = false;
             bool result = true;
 
-            if (txtBoxName.Text == string.Empty)
+            if (!txtBoxName.Text.HasValue())
             {
                 errorProvider1.SetError(txtBoxName, "Pole nie może być puste!");
                 txtBoxNameError = true;
@@ -67,9 +67,9 @@ namespace SkyReg
                 }
             }
 
-            if (cmbBoxTypes.SelectedIndex == (int)Enum_paymentsTypes.Package)
+            if (cmbBoxTypes.SelectedIndex == (int)PaymentsTypes.Pakiet)
             {
-                if (numCount.Value == 0)
+                if (numCount.Value == default(decimal))
                 {
                     errorProvider1.SetError(numCount, "Wartość nie może być równa 0!");
                     result = false;
@@ -79,7 +79,7 @@ namespace SkyReg
                     errorProvider1.SetError(numCount, string.Empty);
                 }
 
-                if (numPrice.Value == 0)
+                if (numPrice.Value == default(decimal))
                 {
                     errorProvider1.SetError(numPrice, "Wartość nie może być równa 0!");
                     result = false;
@@ -101,15 +101,21 @@ namespace SkyReg
 
         private void AddPymentSet()
         {
-            using(DLModelContainer model = new DLModelContainer())
+            PaymentsTypes type;
+            Enum.TryParse(cmbBoxTypes.Text, out type);
+            using (var _paySetting = new DLModelRepository<PaymentsSetting>())
             {
-                PaymentsSetting ps = new PaymentsSetting();
+                var ps = new PaymentsSetting();
                 ps.Count = numCount.Value;
                 ps.Name = txtBoxName.Text;
-                ps.Type = (short)cmbBoxTypes.SelectedIndex;
+                ps.Type = (short)type;
                 ps.Value = numPrice.Value;
-                model.PaymentsSetting.Add(ps);
-                model.SaveChanges();
+                var result = _paySetting.Insert(ps);
+                if (result.IsSuccess)
+                {
+                    DialogResult = DialogResult.OK;
+                    this.Close();
+                }
             }
         }
 
@@ -119,10 +125,9 @@ namespace SkyReg
 
         private void FrmPaymentAdd_Load(object sender, EventArgs e)
         {
-            cmbBoxTypes.SelectedIndex = (int)Enum_paymentsTypes.Income;
+            cmbBoxTypes.DataSource = Enum.GetNames(typeof(PaymentsTypes));
             EnableDisableControls();
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+           
         }
         
         private void cmbBoxTypes_SelectedIndexChanged(object sender, EventArgs e)
@@ -132,12 +137,9 @@ namespace SkyReg
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if( DoValitate() == true)
+            if (DoValitate())
             {
                 AddPymentSet();
-                FormaAccept.Invoke(null, null);
-                this.Close();
-
             }
         }
 

@@ -17,7 +17,7 @@ namespace SkyReg
     {
         public EventHandler EventHandlerAddedEditedFlight;
 
-        public Enum_FormState FormState { get; set; }
+        public FormState FormState { get; set; }
         public int FlightId { get; set; }
 
         public FlyAddEditForm()
@@ -30,7 +30,7 @@ namespace SkyReg
             txtFirtPartOfNr.ReadOnly = true;
             LoadAllAirplanes();
 
-            if(FormState == Enum_FormState.Add)
+            if(FormState == FormState.Add)
             {
                 SetDefaultDataFields();
             }
@@ -114,7 +114,7 @@ namespace SkyReg
             Flight fly = null;
             using(DLModelContainer model = new DLModelContainer())
             {
-                if(FormState == Enum_FormState.Add)
+                if(FormState == FormState.Add)
                 {
                     fly = new Flight();
                 }
@@ -131,8 +131,8 @@ namespace SkyReg
                         fly.Altitude = (int)numAltitude.Value;
                         fly.FlyDateTime = datDate.Value.Date;
                         fly.FlyNr = txtLastPartOfNr.Text;
-                        fly.FlyStatus = (int)Enum_flightsStatuses.Opened;
-                        if(FormState == Enum_FormState.Add)
+                        fly.FlyStatus = (int)FlightsStatus.Opened;
+                        if(FormState == FormState.Add)
                         {
                             model.Flight.Add(fly);
                         }

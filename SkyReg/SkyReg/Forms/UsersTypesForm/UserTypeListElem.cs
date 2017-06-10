@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SkyReg
 {
-    class UserTypeListElem : IUserTypeListElem
+    public class UserTypeListElem 
     {
         public int Id { get; set ; }
         public string Name { get; set ; }

@@ -13,7 +13,7 @@ namespace SkyReg
 {
     public partial class ParachuteFormAddEdit : KryptonForm
     {
-        Enum_FormState _formState;
+        FormState _formState;
         int? _parachuteId = -1;
 
         public EventHandler ParachuteAddedEdited;
@@ -23,7 +23,7 @@ namespace SkyReg
             InitializeComponent();
         }
 
-        public ParachuteFormAddEdit(Enum_FormState formState, int? parachuteId)
+        public ParachuteFormAddEdit(FormState formState, int? parachuteId)
         {
             InitializeComponent();
             _formState = formState;
@@ -47,7 +47,7 @@ namespace SkyReg
         {
             OwnersComboBoxLoad();
 
-            if (_formState == Enum_FormState.Edit)
+            if (_formState == FormState.Edit)
             {
                 LoadParachuteData(_parachuteId);
             }
@@ -127,7 +127,7 @@ namespace SkyReg
         {
             using (DLModelContainer model = new DLModelContainer())
             {
-                if (_formState == Enum_FormState.Add)
+                if (_formState == FormState.Add)
                 {
                     Parachute par = new Parachute();
                     par.IdNr = txtRegNr.Text;
@@ -195,7 +195,7 @@ namespace SkyReg
                     }
                 }
             }
-            if(_formState == Enum_FormState.Add)
+            if(_formState == FormState.Add)
             {
                 using(DLModelContainer model = new DLModelContainer())
                 {

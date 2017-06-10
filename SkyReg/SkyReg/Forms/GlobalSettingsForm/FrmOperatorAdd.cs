@@ -8,26 +8,25 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DataLayer;
+using DataLayer.Result.Repository;
 
 namespace SkyReg
 {
     public partial class FrmOperatorAdd : KryptonForm
     {
-        public EventHandler AddedUser;
-
-
         public FrmOperatorAdd()
         {
             InitializeComponent();
-            cmbTypes.SelectedIndex = 0;
         }
 
         private void FrmOperatorAdd_Load(object sender, EventArgs e)
         {
-            using(DLModelContainer model = new DLModelContainer())
+            cmbTypes.DataSource = Enum.GetNames(typeof(OperatorTypes));
+            
+            using (DLModelContainer model = new DLModelContainer())
             {
                 List<UserOnComboBox> usersList = new List<UserOnComboBox>();
-
+                
                 usersList = model.User.Select(p => new UserOnComboBox
                 {
                     Id = p.Id,
@@ -39,6 +38,7 @@ namespace SkyReg
                 cmbName.DisplayMember = "Name";
                 cmbName.ValueMember = "Id";
             }
+            
         }
 
         private void btnOperatorCancel_Click(object sender, EventArgs e)
@@ -48,77 +48,59 @@ namespace SkyReg
 
         private void btnOperatorAdd_Click(object sender, EventArgs e)
         {
-            if(addOperatorValidate() == true)
-            {
-                addOperatorToDB();
-            }
-
+            if(OperatorValidate())
+                AddOperator();
         }
 
-        private void addOperatorToDB()
+        private void AddOperator()
         {
-            using( DLModelContainer model = new DLModelContainer())
+            using (var _operator = new DLModelRepository<Operator>())
+            using (var _user = new DLModelRepository<User>())
             {
-                short typ;
-                if (cmbTypes.Text == "Operator")
-                    typ = (short)Enum_OperatorTypes.Operator;
-                else
-                    typ = (short)Enum_OperatorTypes.Registrar;
+                OperatorTypes typ;
+                Enum.TryParse(cmbTypes.Text, out typ);
 
-                Operator op = new Operator();
-                op.Type = typ;
-                op.User = model.User.Where(p => p.Id == (int)cmbName.SelectedValue).FirstOrDefault();
-                model.Operator.Add(op);
-                model.SaveChanges();
-                AddedUser.Invoke(this, null);
-                this.Close();
+                var op = new Operator();
+                op.Type = (short)typ;
+                op.User = _user.GetAll().Value?.Where(p => p.Id == (int)cmbName.SelectedValue).FirstOrDefault();
+
+                var result = _operator.Insert(op);
+
+                if (result.IsSuccess)
+                {
+                    DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                
             }
         }
 
-        private bool addOperatorValidate()
+        private bool OperatorValidate()
         {
-            bool result = true;
+            var result = true;
 
             if (cmbName.SelectedValue == null)
             {
                 errorProvider1.SetError(cmbName, "Pole nie może być puste!");
-                result = false;
-            }
-            else
-            {
-                errorProvider1.SetError(cmbName, string.Empty);
+                result =  false;
             }
             if(cmbTypes.Text == string.Empty)
             {
                 errorProvider1.SetError(cmbTypes, "Pole nie może być puste!");
-                result = false;
+                result =  false;
             }
-            else
-            {
-                errorProvider1.SetError(cmbTypes, string.Empty);
-            }
+
+            errorProvider1.Clear();
 
             using (DLModelContainer model = new DLModelContainer())
             {
-                short typ;
-                if (cmbTypes.Text == "Operator")
-                    typ = (int)Enum_OperatorTypes.Operator;
-                else
-                    typ = (int)Enum_OperatorTypes.Registrar;
-
                 int idUser = (int)cmbName.SelectedValue;
-                if( model.Operator.Include("User").Any(p => p.User.Id == idUser && p.Type == typ) == true)
+                if( model.Operator.Include("User").Any(p => p.User.Id == idUser && p.Type == cmbTypes.SelectedIndex) == true)
                 {
                     errorProvider1.SetError(cmbName, "Taki operator już istnieje");
                     errorProvider1.SetError(cmbTypes, "Taki operator już istnieje");
                     result = false;
                 }
-            }
-
-            if(result == true)
-            {
-                errorProvider1.SetError(cmbName, string.Empty);
-                errorProvider1.SetError(cmbTypes, string.Empty);
             }
 
             return result;

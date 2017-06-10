@@ -5,11 +5,9 @@ using System.Text;
 
 namespace SkyReg
 {
-    public enum Enum_flightsStatuses
+    public enum FormState
     {
-        Opened = 1,
-        Closed = 2,
-        Executed = 3,
-        Canceled = 4
+        Add = 0,
+        Edit = 1
     }
 }

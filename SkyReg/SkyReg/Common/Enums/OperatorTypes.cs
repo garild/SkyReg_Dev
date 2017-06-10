@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SkyReg
 {
-    public enum Enum_FormState
+    public enum OperatorTypes
     {
-        Add = 0,
-        Edit = 1
+        Operator = 1,
+        Rejestrujący = 2
     }
 }

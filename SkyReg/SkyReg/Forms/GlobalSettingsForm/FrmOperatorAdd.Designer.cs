@@ -46,6 +46,7 @@
             this.kryptonLabel1.Location = new System.Drawing.Point(14, 11);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(98, 20);
+            this.kryptonLabel1.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel1.TabIndex = 1;
             this.kryptonLabel1.Values.Text = "Nazwisko i imię:";
             // 
@@ -54,6 +55,7 @@
             this.kryptonLabel2.Location = new System.Drawing.Point(79, 39);
             this.kryptonLabel2.Name = "kryptonLabel2";
             this.kryptonLabel2.Size = new System.Drawing.Size(33, 20);
+            this.kryptonLabel2.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel2.TabIndex = 3;
             this.kryptonLabel2.Values.Text = "Typ:";
             // 
@@ -111,9 +113,6 @@
             this.cmbTypes.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.cmbTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTypes.FormattingEnabled = true;
-            this.cmbTypes.Items.AddRange(new object[] {
-            "Operator",
-            "Rejestrujący"});
             this.cmbTypes.Location = new System.Drawing.Point(118, 38);
             this.cmbTypes.Name = "cmbTypes";
             this.cmbTypes.PersistentColors = false;
@@ -131,9 +130,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(440, 127);
             this.Controls.Add(this.kryptonPanelEx1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "FrmOperatorAdd";
             this.Text = "Dodaj";
             this.Load += new System.EventHandler(this.FrmOperatorAdd_Load);

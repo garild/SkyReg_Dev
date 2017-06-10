@@ -5,10 +5,11 @@ using System.Text;
 
 namespace SkyReg
 {
-    public enum Enum_paymentsTypes
+    public enum FlightsStatus
     {
-        Income = 0,//KP
-        Expenditure = 1,//KW
-        Package = 2
+        Opened = 1,
+        Closed = 2,
+        Executed = 3,
+        Canceled = 4
     }
 }

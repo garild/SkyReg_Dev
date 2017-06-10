@@ -65,7 +65,7 @@ namespace SkyReg
                     
                     Operator opr = new Operator();
                     opr.User = usr;
-                    opr.Type = (int)Enum_OperatorTypes.Operator;
+                    opr.Type = (int)OperatorTypes.Operator;
                     _contextOperator.Insert(opr);
                 }
             }

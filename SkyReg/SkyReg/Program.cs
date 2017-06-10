@@ -49,8 +49,8 @@ namespace SkyReg
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-
-            //Msg.Show(e.ExceptionObject.ToString());
+            Msg.Show((e.ExceptionObject as Exception).Message);
+            return;
         }
 
         private static void Application_ApplicationExit(object sender, EventArgs e)

@@ -92,6 +92,7 @@
             this.kryptonLabel4.Location = new System.Drawing.Point(12, 95);
             this.kryptonLabel4.Name = "kryptonLabel4";
             this.kryptonLabel4.Size = new System.Drawing.Size(42, 20);
+            this.kryptonLabel4.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel4.TabIndex = 7;
             this.kryptonLabel4.Values.Text = "Skoki:";
             // 
@@ -113,6 +114,7 @@
             this.kryptonLabel3.Location = new System.Drawing.Point(12, 67);
             this.kryptonLabel3.Name = "kryptonLabel3";
             this.kryptonLabel3.Size = new System.Drawing.Size(41, 20);
+            this.kryptonLabel3.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel3.TabIndex = 5;
             this.kryptonLabel3.Values.Text = "Cena:";
             // 
@@ -135,6 +137,7 @@
             this.kryptonLabel2.Location = new System.Drawing.Point(12, 39);
             this.kryptonLabel2.Name = "kryptonLabel2";
             this.kryptonLabel2.Size = new System.Drawing.Size(33, 20);
+            this.kryptonLabel2.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel2.TabIndex = 3;
             this.kryptonLabel2.Values.Text = "Typ:";
             // 
@@ -143,10 +146,6 @@
             this.cmbBoxTypes.DisableBorderColor = false;
             this.cmbBoxTypes.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.cmbBoxTypes.FormattingEnabled = true;
-            this.cmbBoxTypes.Items.AddRange(new object[] {
-            "Wpłata",
-            "Wypłata",
-            "Pakiet"});
             this.cmbBoxTypes.Location = new System.Drawing.Point(60, 38);
             this.cmbBoxTypes.Name = "cmbBoxTypes";
             this.cmbBoxTypes.PersistentColors = false;
@@ -167,6 +166,7 @@
             this.kryptonLabel1.Location = new System.Drawing.Point(3, 12);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(50, 20);
+            this.kryptonLabel1.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel1.TabIndex = 0;
             this.kryptonLabel1.Values.Text = "Nazwa:";
             // 

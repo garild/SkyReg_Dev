@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SkyReg
 {
-    public class ParachuteListElem : IParachuteListElem
+    public class ParachuteListElem 
     {
         public int Id { get; set; }
         public string IdNr { get; set; }
