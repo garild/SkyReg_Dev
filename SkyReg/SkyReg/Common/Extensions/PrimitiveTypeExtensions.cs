@@ -9,7 +9,7 @@ namespace SkyReg.Common.Extensions
     {
         public static bool HasValue(this string text)
         {
-            if (string.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text) && string.IsNullOrWhiteSpace(text))
                 return false;
             return true;
         }
