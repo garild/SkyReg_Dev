@@ -203,6 +203,7 @@
     <Property Name="Value" Type="decimal" Nullable="false" Precision="8" Scale="2" />
     <Property Name="Count" Type="decimal" Nullable="true" Precision="8" Scale="2" />
     <Property Name="IsBooked" Type="bit" Nullable="true" />
+    <Property Name="Date" Type="datetime" Nullable="true" />
     <Property Name="PaymentsSetting_Id" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -618,6 +619,7 @@
           <NavigationProperty Name="FlightsElem" Relationship="DLModel.FlightsElemPayments" FromRole="Payments" ToRole="FlightsElem" />
           <Property Name="Count" Type="Decimal" Nullable="true" Precision="8" Scale="2" />
           <Property Name="IsBooked" Type="Boolean" Nullable="true" />
+          <Property Name="Date" Type="DateTime" Nullable="true" />
         </EntityType>
         <Association Name="PaymentsPaymentsSetting">
           <End Type="DLModel.Payment" Role="Payments" Multiplicity="0..1" />
@@ -769,6 +771,7 @@
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="Count" ColumnName="Count" />
           <ScalarProperty Name="IsBooked" ColumnName="IsBooked" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

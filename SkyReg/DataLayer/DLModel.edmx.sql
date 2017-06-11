@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/11/2017 00:19:02
+-- Date Created: 06/11/2017 11:03:26
 -- Generated from EDMX file: F:\Projekty 2017\Repozytorium2\SkyReg_Dev\SkyReg\DataLayer\DLModel.edmx
 -- --------------------------------------------------
 
@@ -234,6 +234,7 @@ CREATE TABLE [dbo].[Payment] (
     [Value] decimal(8,2)  NOT NULL,
     [Count] decimal(8,2)  NULL,
     [IsBooked] bit  NULL,
+    [Date] datetime  NULL,
     [PaymentsSetting_Id] int  NOT NULL,
     [User_Id] int  NOT NULL
 );

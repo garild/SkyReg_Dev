@@ -19,6 +19,7 @@ namespace DataLayer
         public decimal Value { get; set; }
         public Nullable<decimal> Count { get; set; }
         public Nullable<bool> IsBooked { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
         public virtual PaymentsSetting PaymentsSetting { get; set; }
         public virtual User User { get; set; }
