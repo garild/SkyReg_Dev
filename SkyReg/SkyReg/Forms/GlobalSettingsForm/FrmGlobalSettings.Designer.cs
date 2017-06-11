@@ -559,7 +559,6 @@
             this.btn_Generate.TabIndex = 0;
             this.btn_Generate.Values.Image = ((System.Drawing.Image)(resources.GetObject("btn_Generate.Values.Image")));
             this.btn_Generate.Values.Text = "Generuj";
-            this.btn_Generate.Click += new System.EventHandler(this.btn_Generate_Click);
             // 
             // chkTuesday
             // 
@@ -720,6 +719,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Ustawienia";
+            this.Shown += new System.EventHandler(this.FrmGlobalSettings_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
             this.kryptonPanelEx2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).EndInit();

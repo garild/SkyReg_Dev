@@ -29,35 +29,36 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPaymentAdd));
             this.kryptonPanelEx1 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
-            this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnOK = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.cmbBoxTypes = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.numCount = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.numPrice = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.cmbBoxTypes = new AC.ExtendedRenderer.Toolkit.KryptonComboBox();
             this.txtBoxName = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
+            this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonPanelEx1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBoxTypes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.kryptonPanelEx2.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonPanelEx1
             // 
-            this.kryptonPanelEx1.Controls.Add(this.btnCancel);
-            this.kryptonPanelEx1.Controls.Add(this.btnOK);
+            this.kryptonPanelEx1.Controls.Add(this.cmbBoxTypes);
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel4);
             this.kryptonPanelEx1.Controls.Add(this.numCount);
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel3);
             this.kryptonPanelEx1.Controls.Add(this.numPrice);
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel2);
-            this.kryptonPanelEx1.Controls.Add(this.cmbBoxTypes);
             this.kryptonPanelEx1.Controls.Add(this.txtBoxName);
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel1);
-            this.kryptonPanelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonPanelEx1.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.kryptonPanelEx1.GradientToogleColors = false;
             this.kryptonPanelEx1.GradientUseBlend = false;
@@ -66,26 +67,19 @@
             this.kryptonPanelEx1.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanelEx1.Name = "kryptonPanelEx1";
             this.kryptonPanelEx1.PersistentColors = false;
-            this.kryptonPanelEx1.Size = new System.Drawing.Size(371, 184);
+            this.kryptonPanelEx1.Size = new System.Drawing.Size(306, 148);
             this.kryptonPanelEx1.TabIndex = 0;
             // 
-            // btnCancel
+            // cmbBoxTypes
             // 
-            this.btnCancel.Location = new System.Drawing.Point(253, 139);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(90, 25);
-            this.btnCancel.TabIndex = 5;
-            this.btnCancel.Values.Text = "&Anuluj";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnOK
-            // 
-            this.btnOK.Location = new System.Drawing.Point(157, 139);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(90, 25);
-            this.btnOK.TabIndex = 4;
-            this.btnOK.Values.Text = "&Dodaj";
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            this.cmbBoxTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBoxTypes.DropDownWidth = 175;
+            this.cmbBoxTypes.Location = new System.Drawing.Point(60, 38);
+            this.cmbBoxTypes.Name = "cmbBoxTypes";
+            this.cmbBoxTypes.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.cmbBoxTypes.Size = new System.Drawing.Size(219, 21);
+            this.cmbBoxTypes.TabIndex = 25;
+            this.cmbBoxTypes.SelectedIndexChanged += new System.EventHandler(this.cmbBoxTypes_SelectedIndexChanged);
             // 
             // kryptonLabel4
             // 
@@ -105,7 +99,7 @@
             0,
             0});
             this.numCount.Name = "numCount";
-            this.numCount.Size = new System.Drawing.Size(146, 22);
+            this.numCount.Size = new System.Drawing.Size(88, 22);
             this.numCount.TabIndex = 3;
             this.numCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -128,7 +122,7 @@
             0,
             0});
             this.numPrice.Name = "numPrice";
-            this.numPrice.Size = new System.Drawing.Size(146, 22);
+            this.numPrice.Size = new System.Drawing.Size(88, 22);
             this.numPrice.TabIndex = 2;
             this.numPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -141,24 +135,11 @@
             this.kryptonLabel2.TabIndex = 3;
             this.kryptonLabel2.Values.Text = "Typ:";
             // 
-            // cmbBoxTypes
-            // 
-            this.cmbBoxTypes.DisableBorderColor = false;
-            this.cmbBoxTypes.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cmbBoxTypes.FormattingEnabled = true;
-            this.cmbBoxTypes.Location = new System.Drawing.Point(60, 38);
-            this.cmbBoxTypes.Name = "cmbBoxTypes";
-            this.cmbBoxTypes.PersistentColors = false;
-            this.cmbBoxTypes.Size = new System.Drawing.Size(146, 21);
-            this.cmbBoxTypes.TabIndex = 1;
-            this.cmbBoxTypes.UseStyledColors = false;
-            this.cmbBoxTypes.SelectedIndexChanged += new System.EventHandler(this.cmbBoxTypes_SelectedIndexChanged);
-            // 
             // txtBoxName
             // 
             this.txtBoxName.Location = new System.Drawing.Point(60, 9);
             this.txtBoxName.Name = "txtBoxName";
-            this.txtBoxName.Size = new System.Drawing.Size(283, 20);
+            this.txtBoxName.Size = new System.Drawing.Size(219, 20);
             this.txtBoxName.TabIndex = 0;
             // 
             // kryptonLabel1
@@ -174,13 +155,57 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // kryptonPanelEx2
+            // 
+            this.kryptonPanelEx2.Controls.Add(this.btnClose);
+            this.kryptonPanelEx2.Controls.Add(this.kryptonButton1);
+            this.kryptonPanelEx2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.kryptonPanelEx2.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.kryptonPanelEx2.GradientToogleColors = false;
+            this.kryptonPanelEx2.GradientUseBlend = false;
+            this.kryptonPanelEx2.Image = null;
+            this.kryptonPanelEx2.ImageLocation = new System.Drawing.Point(4, 4);
+            this.kryptonPanelEx2.Location = new System.Drawing.Point(0, 145);
+            this.kryptonPanelEx2.Name = "kryptonPanelEx2";
+            this.kryptonPanelEx2.PersistentColors = false;
+            this.kryptonPanelEx2.Size = new System.Drawing.Size(306, 39);
+            this.kryptonPanelEx2.TabIndex = 75;
+            // 
+            // btnClose
+            // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(191, 9);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnClose.Size = new System.Drawing.Size(88, 25);
+            this.btnClose.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
+            this.btnClose.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnClose.TabIndex = 6;
+            this.btnClose.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Values.Image")));
+            this.btnClose.Values.Text = "Zamknij";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // kryptonButton1
+            // 
+            this.kryptonButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.kryptonButton1.Location = new System.Drawing.Point(85, 9);
+            this.kryptonButton1.Name = "kryptonButton1";
+            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.kryptonButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.kryptonButton1.Size = new System.Drawing.Size(100, 25);
+            this.kryptonButton1.TabIndex = 0;
+            this.kryptonButton1.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton1.Values.Image")));
+            this.kryptonButton1.Values.Text = "Dodaj";
+            this.kryptonButton1.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // FrmPaymentAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(371, 184);
+            this.ClientSize = new System.Drawing.Size(306, 184);
+            this.Controls.Add(this.kryptonPanelEx2);
             this.Controls.Add(this.kryptonPanelEx1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IsMdiContainer = true;
             this.Name = "FrmPaymentAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -188,7 +213,9 @@
             this.Load += new System.EventHandler(this.FrmPaymentAdd_Load);
             this.kryptonPanelEx1.ResumeLayout(false);
             this.kryptonPanelEx1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBoxTypes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.kryptonPanelEx2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -201,11 +228,12 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
         private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numPrice;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
-        private AC.ExtendedRenderer.Toolkit.KryptonComboBox cmbBoxTypes;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtBoxName;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancel;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnOK;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private AC.ExtendedRenderer.Toolkit.KryptonPanelEx kryptonPanelEx2;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnClose;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox cmbBoxTypes;
     }
 }

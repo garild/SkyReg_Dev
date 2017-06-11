@@ -130,7 +130,7 @@ namespace SkyReg
             EnableDisableControls();
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             if (DoValitate())
             {
@@ -138,7 +138,7 @@ namespace SkyReg
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }

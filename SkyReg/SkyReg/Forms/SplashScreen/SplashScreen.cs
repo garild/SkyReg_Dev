@@ -54,7 +54,6 @@ namespace SkyReg.Forms.SplashScreen
             }
             catch (Exception ex)
             {
-
                 Msg.Show(ex.Message);
                 this.DialogResult = DialogResult.Cancel;
             }
@@ -82,10 +81,11 @@ namespace SkyReg.Forms.SplashScreen
             try
             {
                 bgw.ReportProgress(25);
-                Thread.Sleep(1000);
+
+                Thread.Sleep(500);
+
                 CreateSkyregFolder();
                 bgw.ReportProgress(75);
-                Thread.Sleep(500);
 
                 if (File.Exists(SkyRegUser.DatabaseConfigFile))
                 {
@@ -113,7 +113,7 @@ namespace SkyReg.Forms.SplashScreen
                 }
 
                 bgw.ReportProgress(100);
-                Thread.Sleep(500);
+                Thread.Sleep(100);
             }
 
             catch (Exception ex)

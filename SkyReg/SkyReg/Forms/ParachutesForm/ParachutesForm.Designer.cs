@@ -180,6 +180,7 @@
             this.ClientSize = new System.Drawing.Size(1015, 559);
             this.Controls.Add(this.kryptonPanelEx2);
             this.Controls.Add(this.kryptonHeaderGroup1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ParachutesForm";
             this.Text = "Spadochrony";
             this.Load += new System.EventHandler(this.ParachutesForm_Load);

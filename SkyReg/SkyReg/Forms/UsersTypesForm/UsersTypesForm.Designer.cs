@@ -201,6 +201,7 @@
             this.ClientSize = new System.Drawing.Size(1160, 574);
             this.Controls.Add(this.kryptonPanelEx2);
             this.Controls.Add(this.kryptonPanelEx1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UsersTypesForm";
             this.Text = "Typy skoczków";
             this.Load += new System.EventHandler(this.UsersTypesForm_Load);

@@ -104,9 +104,10 @@
             // kryptonLabel1
             // 
             this.kryptonLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonLabel1.Location = new System.Drawing.Point(626, 220);
+            this.kryptonLabel1.Location = new System.Drawing.Point(631, 220);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(211, 84);
+            this.kryptonLabel1.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel1.TabIndex = 7;
             this.kryptonLabel1.Values.Text = "Kartoteka zawierająca listę informacji\r\no dostępnych samolotach\r\n- nazwa samolotu" +
     "\r\n- numer rejestracyjny samolotu\r\n- liczba miejsc w samolocie\r\n";
@@ -168,7 +169,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(842, 8);
+            this.btnClose.Location = new System.Drawing.Point(841, 8);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(90, 25);
             this.btnClose.TabIndex = 4;
@@ -177,21 +178,20 @@
             // 
             // kryptonPanelEx2
             // 
-            this.kryptonPanelEx2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonPanelEx2.Controls.Add(this.btnClose);
             this.kryptonPanelEx2.Controls.Add(this.btnAdd);
             this.kryptonPanelEx2.Controls.Add(this.btnDelete);
             this.kryptonPanelEx2.Controls.Add(this.btnEdit);
+            this.kryptonPanelEx2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.kryptonPanelEx2.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.kryptonPanelEx2.GradientToogleColors = false;
             this.kryptonPanelEx2.GradientUseBlend = false;
             this.kryptonPanelEx2.Image = null;
             this.kryptonPanelEx2.ImageLocation = new System.Drawing.Point(4, 4);
-            this.kryptonPanelEx2.Location = new System.Drawing.Point(-1, 476);
+            this.kryptonPanelEx2.Location = new System.Drawing.Point(0, 476);
             this.kryptonPanelEx2.Name = "kryptonPanelEx2";
             this.kryptonPanelEx2.PersistentColors = false;
-            this.kryptonPanelEx2.Size = new System.Drawing.Size(944, 42);
+            this.kryptonPanelEx2.Size = new System.Drawing.Size(943, 42);
             this.kryptonPanelEx2.TabIndex = 1;
             // 
             // AirplanesForm
@@ -201,6 +201,7 @@
             this.ClientSize = new System.Drawing.Size(943, 518);
             this.Controls.Add(this.kryptonPanelEx2);
             this.Controls.Add(this.kryptonPanelEx1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AirplanesForm";
             this.Text = "AirplanesForm";
             this.Load += new System.EventHandler(this.AirplanesForm_Load);

@@ -21,10 +21,12 @@ namespace SkyReg.Common.Extensions
             if (form == default(TFrom))
             {
                 form = Activator.CreateInstance<TFrom>();
-                (form as KryptonForm).WindowState = System.Windows.Forms.FormWindowState.Normal;
-                (form as KryptonForm).StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-                (form as KryptonForm).TopLevel = true;
-                (form as KryptonForm).BringToFront();
+                var newForm = (form as KryptonForm);
+                newForm.WindowState = System.Windows.Forms.FormWindowState.Normal;
+                newForm.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+                newForm.TopLevel = true;
+                newForm.BringToFront();
+                newForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             }
             return form;
         }

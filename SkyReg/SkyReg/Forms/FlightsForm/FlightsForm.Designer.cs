@@ -37,6 +37,7 @@
             this.btnAddFlight = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnEditFlight = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonPanelEx1 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
+            this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.btnDatRefresh = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.datTo = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.datSince = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
@@ -44,7 +45,6 @@
             this.grdFlights = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).BeginInit();
             this.kryptonHeaderGroup1.Panel.SuspendLayout();
@@ -165,6 +165,15 @@
             this.kryptonPanelEx1.Size = new System.Drawing.Size(1023, 543);
             this.kryptonPanelEx1.TabIndex = 0;
             // 
+            // kryptonLabel2
+            // 
+            this.kryptonLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonLabel2.Location = new System.Drawing.Point(762, 252);
+            this.kryptonLabel2.Name = "kryptonLabel2";
+            this.kryptonLabel2.Size = new System.Drawing.Size(240, 148);
+            this.kryptonLabel2.TabIndex = 6;
+            this.kryptonLabel2.Values.Text = resources.GetString("kryptonLabel2.Values.Text");
+            // 
             // btnDatRefresh
             // 
             this.btnDatRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -233,21 +242,13 @@
             this.timer1.Interval = 15000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // kryptonLabel2
-            // 
-            this.kryptonLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonLabel2.Location = new System.Drawing.Point(762, 252);
-            this.kryptonLabel2.Name = "kryptonLabel2";
-            this.kryptonLabel2.Size = new System.Drawing.Size(240, 148);
-            this.kryptonLabel2.TabIndex = 6;
-            this.kryptonLabel2.Values.Text = resources.GetString("kryptonLabel2.Values.Text");
-            // 
             // FlightsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1023, 619);
             this.Controls.Add(this.kryptonHeaderGroup1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FlightsForm";
             this.Text = "FlightsForm";
             this.Shown += new System.EventHandler(this.FlightsForm_Shown);

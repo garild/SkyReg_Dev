@@ -11,5 +11,6 @@ namespace DataLayer.Result.Interface
         ResultType<TEntity> Delete(TEntity entity);
         ResultType<TEntity> Update(TEntity entity);
         TEntity GetById(object id);
+        
     }
 }

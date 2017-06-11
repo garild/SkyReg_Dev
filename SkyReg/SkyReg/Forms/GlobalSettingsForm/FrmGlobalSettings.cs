@@ -82,6 +82,12 @@ namespace SkyReg
             grdOperators.Columns["Type"].Width = 100;
             grdOperators.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
+            
+            
+        }
+
+        private void FrmGlobalSettings_Shown(object sender, EventArgs e)
+        {
             foreach (DataGridViewRow item in grdOperators.Rows)
             {
                 if (item.Cells["Type"].Value.ToString() == "Operator")
@@ -90,6 +96,13 @@ namespace SkyReg
                 }
             }
 
+            foreach (DataGridViewRow item in grdPayment.Rows)
+            {
+                if (item.Cells["Type"].Value.ToString() == "Płatność")
+                {
+                    item.DefaultCellStyle.BackColor = Color.Gold;
+                }
+            }
         }
 
         private void PaymentViewSettings()
@@ -117,13 +130,8 @@ namespace SkyReg
             grdPayment.Columns["Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             grdPayment.Columns["Count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-            foreach (DataGridViewRow item in grdPayment.Rows)
-            {
-                if (item.Cells["Type"].Value.ToString() == "Płatność")
-                {
-                    item.DefaultCellStyle.BackColor = Color.Gold;
-                }
-            }
+           
+            
         }
 
         private void PaymentsTypesLoad()
@@ -213,7 +221,7 @@ namespace SkyReg
             }
         }
 
-        private void saveGlobalSettings()
+        private void saveGlobalSettings()//TODO KOD Janusza
         {
             using (DLModelContainer model = new DLModelContainer())
             {
@@ -291,9 +299,6 @@ namespace SkyReg
 
         #endregion
 
-        private void btn_Generate_Click(object sender, EventArgs e)
-        {
-
-        }
+      
     }
 }

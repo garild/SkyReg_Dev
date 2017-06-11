@@ -204,7 +204,7 @@
             // 
             this.kryptonLabel2.Location = new System.Drawing.Point(27, 285);
             this.kryptonLabel2.Name = "kryptonLabel2";
-            this.kryptonLabel2.Size = new System.Drawing.Size(251, 84);
+            this.kryptonLabel2.Size = new System.Drawing.Size(253, 84);
             this.kryptonLabel2.TabIndex = 1;
             this.kryptonLabel2.Values.Text = "Kartoteka zawierająca listę \r\nskoczków/pasażerów tandemów\r\n- Nazwisko i imię skoc" +
     "zka,\r\n- Miasto,\r\n- Termin wygaśnięcia świadectwa kwalifikacji";
@@ -228,6 +228,7 @@
             this.ClientSize = new System.Drawing.Size(1145, 589);
             this.Controls.Add(this.kryptonHeaderGroup1);
             this.Controls.Add(this.kryptonPanelEx1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UsersForm";
             this.Text = "Skoczkowie";
             this.Load += new System.EventHandler(this.UsersForm_Load);

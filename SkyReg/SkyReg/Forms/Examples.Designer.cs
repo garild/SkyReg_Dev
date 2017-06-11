@@ -91,6 +91,7 @@
             this.rdCopyBudgetWithoutCustomers = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
             this.txtPassword = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.btGenerateDataBase = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonComboBox2 = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.cbParentUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel3)).BeginInit();
             this.kryptonPanel3.SuspendLayout();
@@ -125,6 +126,7 @@
             this.kryptonHeaderGroup2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridScheduleBudget)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -212,6 +214,7 @@
             this.kryptonPanel3.Controls.Add(this.DataGridScheduleBudget);
             this.kryptonPanel3.Controls.Add(this.rdCopyBudgetWithoutCustomers);
             this.kryptonPanel3.Controls.Add(this.TxNote);
+            this.kryptonPanel3.Controls.Add(this.kryptonComboBox2);
             this.kryptonPanel3.Controls.Add(this.cbParentUsers);
             this.kryptonPanel3.Controls.Add(this.BudgetDatetime);
             this.kryptonPanel3.Controls.Add(this.btnSaveCfg);
@@ -899,7 +902,7 @@
             // rdCopyBudgetWithoutCustomers
             // 
             this.rdCopyBudgetWithoutCustomers.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.rdCopyBudgetWithoutCustomers.Location = new System.Drawing.Point(31, 49);
+            this.rdCopyBudgetWithoutCustomers.Location = new System.Drawing.Point(31, 52);
             this.rdCopyBudgetWithoutCustomers.Name = "rdCopyBudgetWithoutCustomers";
             this.rdCopyBudgetWithoutCustomers.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
             this.rdCopyBudgetWithoutCustomers.Size = new System.Drawing.Size(464, 22);
@@ -927,6 +930,16 @@
             this.btGenerateDataBase.TabIndex = 4;
             this.btGenerateDataBase.Values.Image = ((System.Drawing.Image)(resources.GetObject("btGenerateDataBase.Values.Image")));
             this.btGenerateDataBase.Values.Text = "Generuj Bazę";
+            // 
+            // kryptonComboBox2
+            // 
+            this.kryptonComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.kryptonComboBox2.DropDownWidth = 175;
+            this.kryptonComboBox2.Location = new System.Drawing.Point(102, 32);
+            this.kryptonComboBox2.Name = "kryptonComboBox2";
+            this.kryptonComboBox2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.kryptonComboBox2.Size = new System.Drawing.Size(122, 21);
+            this.kryptonComboBox2.TabIndex = 24;
             // 
             // Examples
             // 
@@ -975,6 +988,7 @@
             this.kryptonHeaderGroup2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridScheduleBudget)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1037,5 +1051,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup kryptonHeaderGroup2;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dataGridView2;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox2;
     }
 }

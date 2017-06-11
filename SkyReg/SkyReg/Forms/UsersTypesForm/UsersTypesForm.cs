@@ -23,22 +23,22 @@ namespace SkyReg
 
         private void UsersTypesForm_Load(object sender, EventArgs e)
         {
-            //ParentFormSizeFromParentsWorkSpaceSize();
+            RefreshUsersTypesList();
+            SetUsrTypesListView();
         }
 
-        private void ParentFormSizeFromParentsWorkSpaceSize()
-        {
-            Size s = new Size();
-            s.Height = this.Parent.Size.Height - 10;
-            s.Width = this.Parent.Size.Width - 10;
-            this.Size = s;
-            this.StartPosition = FormStartPosition.Manual;
-        }
+        //private void ParentFormSizeFromParentsWorkSpaceSize()
+        //{
+        //    Size s = new Size();
+        //    s.Height = this.Parent.Size.Height - 10;
+        //    s.Width = this.Parent.Size.Width - 10;
+        //    this.Size = s;
+        //    this.StartPosition = FormStartPosition.Manual;
+        //}
 
         private void UsersTypesForm_Shown(object sender, EventArgs e)
         {
-            RefreshUsersTypesList();
-            SetUsrTypesListView();
+            
         }
 
         private void SetUsrTypesListView()

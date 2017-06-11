@@ -10,20 +10,24 @@ namespace SkyReg
     public static class FirstTimeRun
     {
         //Uruchamiane podczas startu programu - za pierwszym razem dodaje stałe elementy do bazy
-
+        private static readonly DLModelRepository<Group> _contextGroup = new DLModelRepository<Group>();
+        private static readonly DLModelRepository<User> _contextUser = new DLModelRepository<User>();
+        private static readonly DLModelRepository<Operator> _contextOperator = new DLModelRepository<Operator>();
+        private static readonly DLModelRepository<PaymentsSetting> _contextPaymentsSetting = new DLModelRepository<PaymentsSetting>();
+        
         public static void CheckAndAdd()
         {
             try
             {
                 Group gpSkoczkowie = default(Group);
 
-                using (DLModelRepository<Group> _contextGroup = new DLModelRepository<Group>())
+                using (_contextGroup)
                 {
                     Group gp = default(Group);
 
                     //Czy jest grupa Spadochroniarze
-                    var allGroups = _contextGroup.GetAll();
-                    var isSkydiversGroup = allGroups.Value.Where(p => p.Name == "Skoczkowie").FirstOrDefault();
+                    var allGroups = _contextGroup.Table;
+                    var isSkydiversGroup = allGroups.Where(p => p.Name == "Skoczkowie").FirstOrDefault();
                     if (isSkydiversGroup == null)
                     {
                         gp = new Group();
@@ -34,10 +38,8 @@ namespace SkyReg
                             gpSkoczkowie = gp;
                     }
 
-
-
                     //Czy jest grupa Pasażerowie tandemów
-                    var isPassengerGroup = allGroups.Value.Where(p => p.Name == "Pasażerowie tandemów").FirstOrDefault();
+                    var isPassengerGroup = allGroups.Where(p => p.Name == "Pasażerowie tandemów").FirstOrDefault();
                     if (isPassengerGroup == null)
                     {
                         gp = new Group();
@@ -47,61 +49,67 @@ namespace SkyReg
                         _contextGroup.Insert(gp);
                     }
                 }
-                using (DLModelRepository<User> _contextUser = new DLModelRepository<User>())
-                using (DLModelRepository<Operator> _contextOperator = new DLModelRepository<Operator>())
+                using (_contextUser)
+                using (_contextOperator)
                 {
-                    var allUsers = _contextUser.GetAll();
-                    var allOperators = _contextOperator.GetAll();
-                    var isAdmin = allUsers.Value.Where(p => p.Login == "admin").FirstOrDefault();
+                    var allUsers = _contextUser.Table;
+                    var allOperators = _contextOperator.Table;
+                    var isAdmin = allUsers?.Where(p => p.Login == "admin").FirstOrDefault();
                     if (isAdmin == null)
                     {
-                        User usr = new User();
-                        usr.Login = "admin";
-                        usr.Password = "s7PNTS7UQzg=";
-                        usr.FirstName = "Admin";
-                        usr.SurName = "Admin";
-                        usr.Group = gpSkoczkowie;
+                        var usr = new User()
+                        {
+                            Login = "admin",
+                            Password = "s7PNTS7UQzg=",
+                            FirstName = "Admin",
+                            SurName = "Admin",
+                            Group = gpSkoczkowie
+                        };
 
-                        Operator opr = new Operator();
-                        opr.User = usr;
-                        opr.Type = (int)OperatorTypes.Operator;
+                        var opr = new Operator()
+                        {
+                            User = usr,
+                            Type = (int)OperatorTypes.Operator
+                        };
+
                         _contextOperator.Insert(opr);
                     }
                 }
 
 
-                using (DLModelContainer model = new DLModelContainer())
+                using (_contextPaymentsSetting)
                 {
                     //Czy jest zdefiniowane KP
                     var inComeCash = (short)PaymentsTypes.Wpłata;
                     var outComeCash = (short)PaymentsTypes.Wypłata;
-                    bool isIncomeCash = model.PaymentsSetting.Any(p => p.Type == inComeCash);
-                    if (isIncomeCash == false)
+
+                    if (!_contextPaymentsSetting.Table.Any(p => p.Type == inComeCash))
                     {
-                        PaymentsSetting ps = new PaymentsSetting();
-                        ps.Type = inComeCash;
-                        ps.Name = "KP";
-                        model.PaymentsSetting.Add(ps);
-                        model.SaveChanges();
+                        var ps = new PaymentsSetting()
+                        {
+                            Type = inComeCash,
+                            Name = "KP"
+                        };
+
+                        _contextPaymentsSetting.Insert(ps);
                     }
 
                     //Czy jest zdefiniowane KW
-                    bool isExpenditureCash = model.PaymentsSetting.Any(p => p.Type == outComeCash);
-                    if (isExpenditureCash == false)
+                    if (!_contextPaymentsSetting.Table.Any(p => p.Type == outComeCash))
                     {
-                        PaymentsSetting ps = new PaymentsSetting();
-                        ps.Type = outComeCash;
-                        ps.Name = "KW";
-                        model.PaymentsSetting.Add(ps);
-                        model.SaveChanges();
+                        var ps = new PaymentsSetting()
+                        {
+                            Type = outComeCash,
+                            Name = "KW"
+                        };
+
+                        _contextPaymentsSetting.Insert(ps);
                     }
                 }
             }
             catch (Exception ex)
             {
-               
                 Msg.Show($"Wystąpił błąd w {nameof(FirstTimeRun)}, treść : {ex.Message}", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                
             }
 
         }
