@@ -312,6 +312,9 @@
     <Content Include="Common\AppData\EntityFramework.dll" />
     <Content Include="Common\AppData\EntityFramework.SqlServer.dll" />
     <Content Include="Common\AppData\FluentValidation.dll" />
+    <Content Include="Common\AppData\MetroFramework.Design.dll" />
+    <Content Include="Common\AppData\MetroFramework.dll" />
+    <Content Include="Common\AppData\MetroFramework.Fonts.dll" />
     <Content Include="Common\AppData\SkyReg.ico" />
     <Content Include="Common\Resources\access.png" />
     <Content Include="Common\Resources\access1.png" />

@@ -35,6 +35,9 @@ Source: ..\bin\Debug\EntityFramework.SqlServer.dll; DestDir: {app}; Flags: 32bit
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 Source: ..\bin\Debug\SkyReg.exe; DestDir: {app}; Flags: replacesameversion; Tasks: " desktopicon"
 Source: ..\bin\Debug\FluentValidation.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\bin\Debug\MetroFramework.Design.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\bin\Debug\MetroFramework.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\bin\Debug\MetroFramework.Fonts.dll; DestDir: {app}; Flags: replacesameversion
 
 
 [Icons]
