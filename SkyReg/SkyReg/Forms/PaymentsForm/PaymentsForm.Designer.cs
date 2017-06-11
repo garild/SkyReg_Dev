@@ -32,7 +32,7 @@
             this.kryptonHeaderGroup1 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.BtnDelete = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnAdd = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.BtnEdit = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonPanelEx1 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
@@ -69,7 +69,7 @@
             this.kryptonPanelEx2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonPanelEx2.Controls.Add(this.BtnDelete);
-            this.kryptonPanelEx2.Controls.Add(this.kryptonButton1);
+            this.kryptonPanelEx2.Controls.Add(this.btnAdd);
             this.kryptonPanelEx2.Controls.Add(this.BtnEdit);
             this.kryptonPanelEx2.Controls.Add(this.btnClose);
             this.kryptonPanelEx2.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
@@ -95,18 +95,18 @@
             this.BtnDelete.Values.Image = ((System.Drawing.Image)(resources.GetObject("BtnDelete.Values.Image")));
             this.BtnDelete.Values.Text = "Usuń";
             // 
-            // kryptonButton1
+            // btnAdd
             // 
-            this.kryptonButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.kryptonButton1.Location = new System.Drawing.Point(11, 11);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.kryptonButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.kryptonButton1.Size = new System.Drawing.Size(86, 25);
-            this.kryptonButton1.TabIndex = 7;
-            this.kryptonButton1.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton1.Values.Image")));
-            this.kryptonButton1.Values.Text = "Dodaj";
-            this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAdd.Location = new System.Drawing.Point(11, 11);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnAdd.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnAdd.Size = new System.Drawing.Size(86, 25);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Values.Image")));
+            this.btnAdd.Values.Text = "Dodaj";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // BtnEdit
             // 
@@ -161,6 +161,7 @@
             this.kryptonLabel1.Location = new System.Drawing.Point(871, 221);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(189, 116);
+            this.kryptonLabel1.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel1.TabIndex = 2;
             this.kryptonLabel1.Values.Text = "Kartoteka zawierająca informacje\r\no operacjach finansowych:\r\n- data,\r\n- kontrahen" +
     "t,\r\n- numer operacji,\r\n- typ operacji,\r\n- wartość\r\n";
@@ -175,6 +176,7 @@
             this.grdPayments.Name = "grdPayments";
             this.grdPayments.Size = new System.Drawing.Size(865, 559);
             this.grdPayments.TabIndex = 1;
+            this.grdPayments.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.grdPayments_MouseDoubleClick);
             // 
             // pictureBox1
             // 
@@ -195,6 +197,7 @@
             this.Controls.Add(this.kryptonHeaderGroup1);
             this.Name = "PaymentsForm";
             this.Text = "Finanse";
+            this.Load += new System.EventHandler(this.PaymentsForm_Load);
             this.Shown += new System.EventHandler(this.PaymentsForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).EndInit();
             this.kryptonHeaderGroup1.Panel.ResumeLayout(false);
@@ -220,7 +223,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnClose;
         private ComponentFactory.Krypton.Toolkit.KryptonButton BtnDelete;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnAdd;
         private ComponentFactory.Krypton.Toolkit.KryptonButton BtnEdit;
     }
 }

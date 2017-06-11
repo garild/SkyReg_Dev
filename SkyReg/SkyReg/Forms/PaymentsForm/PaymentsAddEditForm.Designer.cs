@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentsAddEditForm));
             this.kryptonPanelEx1 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
+            this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.datData = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtDescription = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
@@ -42,8 +44,6 @@
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.btnSaveCfg = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.datData = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
-            this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.kryptonPanelEx1.SuspendLayout();
             this.kryptonPanelEx2.SuspendLayout();
@@ -76,11 +76,29 @@
             this.kryptonPanelEx1.Size = new System.Drawing.Size(362, 179);
             this.kryptonPanelEx1.TabIndex = 0;
             // 
+            // kryptonLabel5
+            // 
+            this.kryptonLabel5.Location = new System.Drawing.Point(68, 14);
+            this.kryptonLabel5.Name = "kryptonLabel5";
+            this.kryptonLabel5.Size = new System.Drawing.Size(39, 20);
+            this.kryptonLabel5.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
+            this.kryptonLabel5.TabIndex = 9;
+            this.kryptonLabel5.Values.Text = "Data:";
+            // 
+            // datData
+            // 
+            this.datData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.datData.Location = new System.Drawing.Point(113, 13);
+            this.datData.Name = "datData";
+            this.datData.Size = new System.Drawing.Size(102, 21);
+            this.datData.TabIndex = 8;
+            // 
             // kryptonLabel4
             // 
             this.kryptonLabel4.Location = new System.Drawing.Point(60, 127);
             this.kryptonLabel4.Name = "kryptonLabel4";
             this.kryptonLabel4.Size = new System.Drawing.Size(38, 20);
+            this.kryptonLabel4.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel4.TabIndex = 7;
             this.kryptonLabel4.Values.Text = "Opis:";
             // 
@@ -88,7 +106,7 @@
             // 
             this.txtDescription.Location = new System.Drawing.Point(113, 124);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(234, 23);
+            this.txtDescription.Size = new System.Drawing.Size(234, 20);
             this.txtDescription.TabIndex = 6;
             // 
             // kryptonLabel3
@@ -96,6 +114,7 @@
             this.kryptonLabel3.Location = new System.Drawing.Point(58, 97);
             this.kryptonLabel3.Name = "kryptonLabel3";
             this.kryptonLabel3.Size = new System.Drawing.Size(47, 20);
+            this.kryptonLabel3.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel3.TabIndex = 5;
             this.kryptonLabel3.Values.Text = "Kwota:";
             // 
@@ -118,6 +137,7 @@
             this.kryptonLabel2.Location = new System.Drawing.Point(58, 67);
             this.kryptonLabel2.Name = "kryptonLabel2";
             this.kryptonLabel2.Size = new System.Drawing.Size(49, 20);
+            this.kryptonLabel2.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel2.TabIndex = 3;
             this.kryptonLabel2.Values.Text = "Osoba:";
             // 
@@ -134,6 +154,7 @@
             this.kryptonLabel1.Location = new System.Drawing.Point(21, 41);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(86, 20);
+            this.kryptonLabel1.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel1.TabIndex = 1;
             this.kryptonLabel1.Values.Text = "Typ płatności:";
             // 
@@ -189,22 +210,6 @@
             this.btnClose.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Values.Image")));
             this.btnClose.Values.Text = "Zamknij";
             // 
-            // datData
-            // 
-            this.datData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datData.Location = new System.Drawing.Point(113, 13);
-            this.datData.Name = "datData";
-            this.datData.Size = new System.Drawing.Size(102, 21);
-            this.datData.TabIndex = 8;
-            // 
-            // kryptonLabel5
-            // 
-            this.kryptonLabel5.Location = new System.Drawing.Point(68, 14);
-            this.kryptonLabel5.Name = "kryptonLabel5";
-            this.kryptonLabel5.Size = new System.Drawing.Size(39, 20);
-            this.kryptonLabel5.TabIndex = 9;
-            this.kryptonLabel5.Values.Text = "Data:";
-            // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
@@ -216,7 +221,7 @@
             this.ClientSize = new System.Drawing.Size(359, 221);
             this.Controls.Add(this.kryptonPanelEx2);
             this.Controls.Add(this.kryptonPanelEx1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PaymentsAddEditForm";

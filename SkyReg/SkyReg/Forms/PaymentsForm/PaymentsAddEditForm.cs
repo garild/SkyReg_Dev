@@ -11,24 +11,27 @@ using DataLayer;
 using SkyReg.BLL.Services;
 using DataLayer.Result.Repository;
 using DataLayer.Utils;
+using SkyRegEnums;
 
 namespace SkyReg
 {
     public partial class PaymentsAddEditForm : KryptonForm
     {
-        public SkyRegEnums.FormState FormState { get; set; }
-        public int PayId { get; set; }
+        public FormState _formState { get; set; }
+        public int _payId { get; set; }
 
-        public PaymentsAddEditForm()
+        public PaymentsAddEditForm(FormState FormState, int PayId)
         {
             InitializeComponent();
+            this._formState = FormState;
+            this._payId = PayId;
         }
 
         private void PaymentsAddEditForm_Load(object sender, EventArgs e)
         {
             LoadPayTypes();
             LoadUsers();
-            if (FormState == SkyRegEnums.FormState.Edit)
+            if (_formState == FormState.Edit)
                 LoadPayData();
             else
                 datData.Value = DateTime.Now.Date;
@@ -43,7 +46,7 @@ namespace SkyReg
                     .Include("PaymentsSetting")
                     .Include("User")
                     .AsNoTracking()
-                    .Where(p => p.Id == PayId)
+                    .Where(p => p.Id == _payId)
                     .FirstOrDefault();
                 if(pay != null)
                 {
@@ -120,27 +123,19 @@ namespace SkyReg
 
         private void SaveData()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (var _pay = new DLModelRepository<Payment>())
+            using (var _ps = new DLModelRepository<PaymentsSetting>())
+            using (var _usr = new DLModelRepository<User>())
             {
-                Payment pay = null;
-                if (FormState == SkyRegEnums.FormState.Add)
-                {
-                    pay = new Payment();
-                }
-                else
-                {
-                    pay = model
-                        .Payment
-                        .Include("User")
-                        .Include("PaymentsSetting")
-                        .AsNoTracking()
-                        .Where(p => p.Id == PayId)
-                        .FirstOrDefault();
-                }
+                Payment pay = new Payment();
+
+                if (_formState != FormState.Add)
+                    pay = _pay.Table.Where(p => p.Id == _payId).FirstOrDefault();
+
                 int selectedUserId = (int)cmbUser.SelectedValue;
                 int selectedPaySetId = (int)cmbPayType.SelectedValue;
-                PaymentsSetting ps = model.PaymentsSetting.Where(p => p.Id == selectedPaySetId).FirstOrDefault();
-                User usr = model.User.Where(p => p.Id == selectedUserId).FirstOrDefault();
+                PaymentsSetting ps = _ps.Table.Where(p => p.Id == selectedPaySetId).FirstOrDefault();
+                User usr = _usr.Table.Where(p => p.Id == selectedUserId).FirstOrDefault();
 
                 pay.Date = datData.Value.Date;
                 pay.Description = txtDescription.Text;
@@ -148,16 +143,16 @@ namespace SkyReg
                 pay.PaymentsSetting = ps;
                 pay.User = usr;
                 pay.Value = numValue.Value;
-                if (FormState == SkyRegEnums.FormState.Add)
+
+                if (_formState == FormState.Add)
                 {
-                    model.Payment.Add(pay);
-                    model.Entry(pay).State = System.Data.Entity.EntityState.Added;
+                    _pay.Insert(pay);
                 }
                 else
                 {
-                    model.Entry(pay).State = System.Data.Entity.EntityState.Modified;
+                    _pay.Update(pay);
                 }
-                model.SaveChanges();
+               
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

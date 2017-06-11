@@ -171,6 +171,7 @@ namespace DataLayer.Result.Repository
             {
                 if (Entity == null)
                 {
+                    
                     context.Configuration.AutoDetectChangesEnabled = false;
                     context.Configuration.LazyLoadingEnabled = false;
                     context.Configuration.ProxyCreationEnabled = false;

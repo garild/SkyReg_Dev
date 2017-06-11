@@ -22,11 +22,10 @@ namespace SkyReg
             InitializeComponent();
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            PaymentsAddEditForm = FormsOpened<PaymentsAddEditForm>.IsOpened(PaymentsAddEditForm);
-            PaymentsAddEditForm.FormState = SkyRegEnums.FormState.Add;
-            PaymentsAddEditForm.PayId = default(int);
+            PaymentsAddEditForm = FormsOpened<PaymentsAddEditForm>.IsOpened(new SkyReg.PaymentsAddEditForm(SkyRegEnums.FormState.Add, default(int)));
+           
             if( PaymentsAddEditForm.ShowDialog() == DialogResult.OK)
             {
                 RefreshPayList();
@@ -35,25 +34,28 @@ namespace SkyReg
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
+            EditPayment();
+        }
+
+        private void EditPayment()
+        {
             if (grdPayments.SelectedRows.Count > 0)
             {
                 int selectedId = (int)grdPayments.SelectedRows[0].Cells["Id"].Value;
 
-                PaymentsAddEditForm = FormsOpened<PaymentsAddEditForm>.IsOpened(PaymentsAddEditForm);
-                PaymentsAddEditForm.FormState = SkyRegEnums.FormState.Edit;
-                PaymentsAddEditForm.PayId = selectedId;
-                if (PaymentsAddEditForm.ShowDialog() == DialogResult.OK)
+                PaymentsAddEditForm = FormsOpened<PaymentsAddEditForm>.IsShowDialog(new PaymentsAddEditForm(SkyRegEnums.FormState.Edit, selectedId));
+
+              if (PaymentsAddEditForm.ShowDialog() == DialogResult.OK)
                 {
                     RefreshPayList();
                 }
             }
         }
 
-        
 
-        private void PaymentsForm_Shown(object sender, EventArgs e)
+        private void PaymentsForm_Shown(object sender, EventArgs e) //TODO KOD Janusza!!!!!!! 
         {
-            RefreshPayList();
+            //RefreshPayList(); MASZ MI NIC NIE WSTAWIAC DO SHOWN!! TO OBCIĄZA UZYWAJ OnLOAD!!!
         }
 
         private void RefreshPayList()
@@ -64,13 +66,13 @@ namespace SkyReg
                     .Include("User")
                     .Include("PaymentsSetting")
                     .AsNoTracking()
-                    .Where(p=>p.IsBooked == false)
-                    .Select(p=> new PayOnGrid
+                    .Where(p => p.IsBooked == false)
+                    .Select(p => new
                     {
                         Id = p.Id,
                         Date = p.Date.Value,
                         Value = p.Value,
-                        Count = p.Count.Value,
+                        Count = p.Count.HasValue ? p.Count : default(decimal),
                         Description = p.Description,
                         PayType = p.PaymentsSetting.Name,
                         UserName = p.User.SurName + " " + p.User.FirstName
@@ -118,6 +120,16 @@ namespace SkyReg
             grdPayments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             grdPayments.AllowUserToResizeRows = false;
 
+        }
+
+        private void PaymentsForm_Load(object sender, EventArgs e)
+        {
+            RefreshPayList();
+        }
+
+        private void grdPayments_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            EditPayment();
         }
     }
 }
