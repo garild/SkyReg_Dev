@@ -38,16 +38,18 @@
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.numValue = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.cmbUser = new System.Windows.Forms.ComboBox();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.cmbPayType = new System.Windows.Forms.ComboBox();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.btnSaveCfg = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cmbPayType = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.cmbUser = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.kryptonPanelEx1.SuspendLayout();
             this.kryptonPanelEx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbPayType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbUser)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonPanelEx1
@@ -55,6 +57,8 @@
             this.kryptonPanelEx1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonPanelEx1.Controls.Add(this.cmbUser);
+            this.kryptonPanelEx1.Controls.Add(this.cmbPayType);
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel5);
             this.kryptonPanelEx1.Controls.Add(this.datData);
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel4);
@@ -62,9 +66,7 @@
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel3);
             this.kryptonPanelEx1.Controls.Add(this.numValue);
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel2);
-            this.kryptonPanelEx1.Controls.Add(this.cmbUser);
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel1);
-            this.kryptonPanelEx1.Controls.Add(this.cmbPayType);
             this.kryptonPanelEx1.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.kryptonPanelEx1.GradientToogleColors = false;
             this.kryptonPanelEx1.GradientUseBlend = false;
@@ -90,6 +92,7 @@
             this.datData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.datData.Location = new System.Drawing.Point(113, 13);
             this.datData.Name = "datData";
+            this.datData.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.datData.Size = new System.Drawing.Size(102, 21);
             this.datData.TabIndex = 8;
             // 
@@ -128,6 +131,7 @@
             0,
             0});
             this.numValue.Name = "numValue";
+            this.numValue.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.numValue.Size = new System.Drawing.Size(102, 22);
             this.numValue.TabIndex = 4;
             this.numValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -141,14 +145,6 @@
             this.kryptonLabel2.TabIndex = 3;
             this.kryptonLabel2.Values.Text = "Osoba:";
             // 
-            // cmbUser
-            // 
-            this.cmbUser.FormattingEnabled = true;
-            this.cmbUser.Location = new System.Drawing.Point(113, 67);
-            this.cmbUser.Name = "cmbUser";
-            this.cmbUser.Size = new System.Drawing.Size(234, 21);
-            this.cmbUser.TabIndex = 2;
-            // 
             // kryptonLabel1
             // 
             this.kryptonLabel1.Location = new System.Drawing.Point(21, 41);
@@ -157,15 +153,6 @@
             this.kryptonLabel1.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel1.TabIndex = 1;
             this.kryptonLabel1.Values.Text = "Typ płatności:";
-            // 
-            // cmbPayType
-            // 
-            this.cmbPayType.FormattingEnabled = true;
-            this.cmbPayType.Location = new System.Drawing.Point(113, 40);
-            this.cmbPayType.Name = "cmbPayType";
-            this.cmbPayType.Size = new System.Drawing.Size(234, 21);
-            this.cmbPayType.TabIndex = 0;
-            this.cmbPayType.SelectedIndexChanged += new System.EventHandler(this.cmbPayType_SelectedIndexChanged);
             // 
             // kryptonPanelEx2
             // 
@@ -214,6 +201,27 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // cmbPayType
+            // 
+            this.cmbPayType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPayType.DropDownWidth = 175;
+            this.cmbPayType.Location = new System.Drawing.Point(113, 40);
+            this.cmbPayType.Name = "cmbPayType";
+            this.cmbPayType.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.cmbPayType.Size = new System.Drawing.Size(230, 21);
+            this.cmbPayType.TabIndex = 25;
+            this.cmbPayType.SelectedIndexChanged += new System.EventHandler(this.cmbPayType_SelectedIndexChanged);
+            // 
+            // cmbUser
+            // 
+            this.cmbUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUser.DropDownWidth = 175;
+            this.cmbUser.Location = new System.Drawing.Point(113, 66);
+            this.cmbUser.Name = "cmbUser";
+            this.cmbUser.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.cmbUser.Size = new System.Drawing.Size(230, 21);
+            this.cmbUser.TabIndex = 25;
+            // 
             // PaymentsAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -233,6 +241,8 @@
             this.kryptonPanelEx1.PerformLayout();
             this.kryptonPanelEx2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbPayType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbUser)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -243,9 +253,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
         private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numValue;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
-        private System.Windows.Forms.ComboBox cmbUser;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
-        private System.Windows.Forms.ComboBox cmbPayType;
         private AC.ExtendedRenderer.Toolkit.KryptonPanelEx kryptonPanelEx2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSaveCfg;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnClose;
@@ -254,5 +262,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel5;
         private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker datData;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox cmbUser;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox cmbPayType;
     }
 }

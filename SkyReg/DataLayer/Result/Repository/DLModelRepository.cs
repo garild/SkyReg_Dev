@@ -9,7 +9,7 @@ using System.Text;
 
 namespace DataLayer.Result.Repository
 {
-    public class DLModelRepository<T> : DbContext,IDisposable ,IDLModel<T> where T : class, new() //TODO zmienić obsługę błędów
+    public class DLModelRepository<T> : DbContext ,IDLModel<T> where T : class, new() //TODO zmienić obsługę błędów
     {
         private readonly DLModelContainer context = new DLModelContainer();
         private IDbSet<T> Entity;

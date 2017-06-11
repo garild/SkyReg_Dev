@@ -75,46 +75,34 @@ namespace SkyReg
                         _contextOperator.Insert(opr);
                     }
                 }
-
-            
-            using( DLModelContainer model = new DLModelContainer())
-            {
-                //Czy jest zdefiniowane KP
-                var inComeCash = (short)PaymentsTypes.Wpłata;
-                var outComeCash = (short)PaymentsTypes.Wypłata;
-                bool isIncomeCash = model.PaymentsSetting.Any(p => p.Type == inComeCash);
-                if(isIncomeCash == false)
+                using (DLModelContainer model = new DLModelContainer())
                 {
-                    PaymentsSetting ps = new PaymentsSetting();
-                    ps.Type = inComeCash;
-                    ps.Name = "KP";
-                    model.PaymentsSetting.Add(ps);
-                    model.SaveChanges();
-                }
-
-                //Czy jest zdefiniowane KW
-                bool isExpenditureCash = model.PaymentsSetting.Any(p => p.Type == outComeCash);
-                if(isExpenditureCash == false)
-                {
-                    PaymentsSetting ps = new PaymentsSetting();
-                    ps.Type = outComeCash;
-                    ps.Name = Enum.GetName(typeof(PaymentsTypes), PaymentsTypes.KW);
-                    ps.Value = 0;
-                    ps.Count = 0;
-                    model.PaymentsSetting.Add(ps);
-                    model.SaveChanges();
-                }
-                    //Czy jest zdefiniowane KW
-                    if (!_contextPaymentsSetting.Table.Any(p => p.Type == outComeCash))
+                    //Czy jest zdefiniowane KP
+                    var inComeCash = (short)PaymentsTypes.KP;
+                    var outComeCash = (short)PaymentsTypes.KW;
+                    bool isIncomeCash = model.PaymentsSetting.Any(p => p.Type == inComeCash);
+                    if (isIncomeCash == false)
                     {
-                        var ps = new PaymentsSetting()
-                        {
-                            Type = outComeCash,
-                            Name = "KW"
-                        };
-
-                        _contextPaymentsSetting.Insert(ps);
+                        PaymentsSetting ps = new PaymentsSetting();
+                        ps.Type = inComeCash;
+                        ps.Name = "KP";
+                        model.PaymentsSetting.Add(ps);
+                        model.SaveChanges();
                     }
+
+                    //Czy jest zdefiniowane KW
+                    bool isExpenditureCash = model.PaymentsSetting.Any(p => p.Type == outComeCash);
+                    if (isExpenditureCash == false)
+                    {
+                        PaymentsSetting ps = new PaymentsSetting();
+                        ps.Type = outComeCash;
+                        ps.Name = Enum.GetName(typeof(PaymentsTypes), PaymentsTypes.KW);
+                        ps.Value = 0;
+                        ps.Count = 0;
+                        model.PaymentsSetting.Add(ps);
+                        model.SaveChanges();
+                    }
+
                 }
             }
             catch (Exception ex)

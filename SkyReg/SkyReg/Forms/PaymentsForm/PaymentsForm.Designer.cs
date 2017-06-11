@@ -136,6 +136,7 @@
             this.btnClose.TabIndex = 6;
             this.btnClose.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Values.Image")));
             this.btnClose.Values.Text = "Zamknij";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // kryptonPanelEx1
             // 

@@ -12,24 +12,21 @@ namespace DataLayer
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class DLModelContainer : DbContext
     {
         public DLModelContainer()
-            : base(DatabaseConfig.ConnectionString)
+            : base()
         {
+            this.Database.Connection.ConnectionString = DatabaseConfig.ConnectionString;
             this.Configuration.LazyLoadingEnabled = false;
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Parachute>()
-            .HasOptional(p => p.FlightsElem)
-            .WithOptionalPrincipal(o => o.Parachute)
-            .Map(x => x.MapKey("FlightsElem_Id"));
-              
+            throw new UnintentionalCodeFirstException();
         }
-
+    
         public virtual DbSet<PaymentsSetting> PaymentsSetting { get; set; }
         public virtual DbSet<GlobalSetting> GlobalSetting { get; set; }
         public virtual DbSet<Operator> Operator { get; set; }
