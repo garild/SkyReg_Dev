@@ -35,6 +35,7 @@ namespace SkyReg
                 cmbName.DataSource = userList;
                 cmbName.DisplayMember = "Name";
                 cmbName.ValueMember = "Id";
+
             }
             
         }
@@ -102,6 +103,34 @@ namespace SkyReg
             return result;
 
         }
-        
+
+        private void cmbName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AutoCompleteStringCollection autoComplete = new AutoCompleteStringCollection();
+            var searchPhrase = cmbName.Text.ToLower();
+            if (searchPhrase.Length > 4)
+            {
+                
+                using (var _user = new DLModelRepository<User>())
+                {
+                    var userList = _user.Table.Where(p=>p.FirstName.ToLower() == searchPhrase || p.SurName.ToLower() == searchPhrase).Select(p => new
+                    {
+                        Name = p.SurName + " " + p.FirstName
+                    }).OrderBy(p => p.Name)
+                    .ToList();
+
+                    userList.ForEach(p =>
+                    {
+                        autoComplete.Add(p.Name);
+
+                    });
+
+                    cmbName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    cmbName.AutoCompleteCustomSource = autoComplete;
+                    cmbName.AutoCompleteMode = AutoCompleteMode.Suggest;
+                }
+
+            }
+        }
     }
 }

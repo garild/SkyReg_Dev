@@ -93,13 +93,13 @@
             // 
             // cmbName
             // 
-            this.cmbName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbName.DropDownWidth = 175;
             this.cmbName.Location = new System.Drawing.Point(118, 11);
             this.cmbName.Name = "cmbName";
             this.cmbName.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.cmbName.Size = new System.Drawing.Size(288, 21);
             this.cmbName.TabIndex = 25;
+            this.cmbName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbName_KeyPress);
             // 
             // errorProvider1
             // 
@@ -144,7 +144,7 @@
             this.btnAdd.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnAdd.Size = new System.Drawing.Size(86, 25);
             this.btnAdd.TabIndex = 0;
-            this.btnAdd.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton1.Values.Image")));
+            this.btnAdd.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Values.Image")));
             this.btnAdd.Values.Text = "Dodaj";
             this.btnAdd.Click += new System.EventHandler(this.btnOperatorAdd_Click);
             // 
