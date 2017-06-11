@@ -2,6 +2,7 @@
 using DataLayer;
 using SkyReg.Common.Extensions;
 using SkyReg.Forms;
+using SkyReg.Forms.SplashScreen;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -120,7 +121,6 @@ namespace SkyReg
                     examples.Show();
                     examples.Activate();
                     break;
-
             }
         }
 
@@ -178,6 +178,7 @@ namespace SkyReg
         private PaymentsForm PaymentsForm = null;
 
         private Examples examples = null;
+        private SplashScreen splashScreen = null;
 
         #endregion
 

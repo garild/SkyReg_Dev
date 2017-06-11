@@ -4,6 +4,7 @@ using SkyReg.Utils;
 using System;
 using System.Windows.Forms;
 using SkyReg.Common.Extensions;
+using SkyReg.Forms.SplashScreen;
 
 namespace SkyReg
 {
@@ -28,22 +29,27 @@ namespace SkyReg
                 //        KryptonMessageBox.Show("Aplikacja została już wcześniej uruchomiona !", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //        return;
                 //    }
-              
-                FrmLogin frm = new FrmLogin();
-                if (frm.ShowDialog() == DialogResult.OK)
+                _splashScreen = FormsOpened<SplashScreen>.IsShowDialog(_splashScreen);
+                if (_splashScreen.ShowDialog() == DialogResult.OK)
                 {
-                    frm.Close();
-                    FrmMain = FormsOpened<FrmMain>.IsOpened(FrmMain);
-                    Application.Run(FrmMain);
-                    
+                    FrmLogin frm = new FrmLogin();
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        frm.Close();
+                        _frmMain = FormsOpened<FrmMain>.IsOpened(_frmMain);
+                        Application.Run(_frmMain);
+
+                    }
+                    else
+                        Application.Exit();
                 }
-                else
-                    Application.Exit();
+                
             }
             else
                 Msg.Show("Brak połaczenia z internetem", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
-        public static FrmMain FrmMain = null;
+        public static FrmMain _frmMain = null;
+        public static SplashScreen _splashScreen = null;
     }
 }

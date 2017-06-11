@@ -32,11 +32,6 @@ namespace SkyReg.MainForm
 
         public FrmLogin()
         {
-            SkyRegUser.GlobalPathFile = Environment.GetFolderPath((Environment.SpecialFolder.LocalApplicationData)) + @"\SkyReg";
-            SkyRegUser.DatabaseConfigFile = string.Format("{0}\\DatabaseConfig.xml", SkyRegUser.GlobalPathFile);
-            SkyRegUser.UserConfigFile = string.Format("{0}\\UserConfig.xml", SkyRegUser.GlobalPathFile);
-            SkyRegUser.LocalMachineName = Environment.MachineName;
-
             InitializeComponent();
             LoadSettings();
         }
@@ -46,7 +41,7 @@ namespace SkyReg.MainForm
             bool result = true;
             validateControl.Clear();
             validateControl.BlinkRate = 250;
-            if (!IsDbExists)
+            if (!SkyRegUser.IsDbExists)
             {
                 KryptonMessageBox.Show("Nie znaleziono pliku kofiguracyjnego do bazy danych. Proszę skofigurować base SQL!", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 result = false;
@@ -69,15 +64,6 @@ namespace SkyReg.MainForm
         {
             try
             {
-                Version curVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-                string version = curVersion.ToString();
-
-                SkyRegUser.AppVer = version;
-
-                CommonMethods.CheckInternetConnection();
-
-                CreateSkyregFolder();
-                CheckDatabaseConfig();
 
                 using (TextReader tr = new StreamReader(SkyRegUser.DatabaseConfigFile))
                 {
@@ -132,19 +118,16 @@ namespace SkyReg.MainForm
 
         private void LogIn()
         {
-            string login = Txt_Login.Text;
+            string login = Txt_Login.Text.ToLower();
             string password = Txt_Pasword.Text;
 
             try
             {
-                var us = new User();
-                _validator = new UserValidator().Validate(us);
-
                 if (ValidateControls())
                 {
                     using (var _loginRepo = new DLModelRepository<User>())
                     {
-                        var user = _loginRepo.GetAll().Value.Where(p => p.Login == login && p.Password == password.EncryptString()).FirstOrDefault();
+                        var user = _loginRepo.GetAll().Value?.Where(p => p.Login.ToLower() == login && p.Password == password.EncryptString()).FirstOrDefault();
                         if (user != null)
                         {
                             SkyRegUser.UserLogin = user.Login;

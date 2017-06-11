@@ -16,7 +16,7 @@ namespace DataLayer
 
         public static string AppVer { get; set; }
         public static string LocalMachineName { get; set; }
-
+        public static bool IsDbExists { get; set; }
     }
 
 }

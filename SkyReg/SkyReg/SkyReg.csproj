@@ -263,6 +263,9 @@
     <EmbeddedResource Include="Forms\ScheduleForm\ScheduleForm.resx">
       <DependentUpon>ScheduleForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SplashScreen\SplashScreen.af.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SplashScreen\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -371,6 +374,7 @@
     <Content Include="Common\Resources\Setting VF1.png" />
     <Content Include="Common\Resources\setttings.png" />
     <Content Include="Common\Resources\skydiver.png" />
+    <Content Include="Common\Resources\skydiveronthesky.png" />
     <Content Include="Common\Resources\SkyReg.ico" />
     <Content Include="Common\Resources\small Edit.png" />
     <Content Include="Common\Resources\SqlDb.png" />

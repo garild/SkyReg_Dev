@@ -14,14 +14,19 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
+using ComponentFactory.Krypton.Toolkit;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace SkyReg.Forms.SplashScreen
 {
-    public partial class SplashScreen : MetroForm
+    public partial class SplashScreen : KryptonForm
     {
-        private Timer _timer = new Timer();
         private bool IsDbExists = false;
-
+        private int blockProgerss => 25;
+        private object _lock = new object();
+        private BackgroundWorker bgw = new BackgroundWorker();
+        string error = "";
         public SplashScreen()
         {
             InitializeComponent();
@@ -30,61 +35,76 @@ namespace SkyReg.Forms.SplashScreen
             SkyRegUser.DatabaseConfigFile = string.Format("{0}\\DatabaseConfig.xml", SkyRegUser.GlobalPathFile);
             SkyRegUser.UserConfigFile = string.Format("{0}\\UserConfig.xml", SkyRegUser.GlobalPathFile);
             SkyRegUser.LocalMachineName = Environment.MachineName;
+            Version curVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            labAppVersion.Text = $"wersja {curVersion}";
+            SkyRegUser.AppVer = labAppVersion.Text;
 
-            StarLoading();
+            StartLoading();
         }
 
-        private void StarLoading()
+        private void StartLoading()
         {
-            this.Opacity = 100;
-            _timer.Enabled = true;
-            _timer.Interval = 4000;
-            _timer.Tick += _timer_Tick;
-            _timer.Start();
+            bgw.WorkerReportsProgress = true;
+            bgw.DoWork += Bgw_DoWork;
+            bgw.ProgressChanged += Bgw_ProgressChanged;
+            bgw.RunWorkerCompleted += Bgw_RunWorkerCompleted;
+            bgw.RunWorkerAsync();
+           
         }
-        private void ValidateTask()
+
+        private void Bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            
+            DialogResult = DialogResult.OK;
+            this.Close();
         }
-        private void _timer_Tick(object sender, EventArgs e)
+
+        private void Bgw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            progressBar.Value = e.ProgressPercentage;
         }
+
+        private void Bgw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            LoadSettings();
+        }
+
         private void LoadSettings()
         {
             try
             {
-                Version curVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-                string version = curVersion.ToString();
-
-                SkyRegUser.AppVer = version;
-
-                CommonMethods.CheckInternetConnection();
-
+                bgw.ReportProgress(25);
+                Thread.Sleep(1000);
                 CreateSkyregFolder();
-                CheckDatabaseConfig();
+                bgw.ReportProgress(75);
+                Thread.Sleep(500);
 
-                using (TextReader tr = new StreamReader(SkyRegUser.DatabaseConfigFile))
+                if (File.Exists(SkyRegUser.DatabaseConfigFile))
                 {
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(SkyRegUser.DatabaseConfigFile);
-                    XmlSerializer deserializer;
+                    using (TextReader tr = new StreamReader(SkyRegUser.DatabaseConfigFile))
+                    {
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load(SkyRegUser.DatabaseConfigFile);
+                        XmlSerializer deserializer;
 
-                    //odczyt ustawień z nowej wersji pliku
-                    var ConfigSettings = new DatabaseAccess();
-                    deserializer = new XmlSerializer(ConfigSettings.GetType());
-                    ConfigSettings = ((DatabaseAccess)deserializer.Deserialize(tr));
-                    tr.Close();
-                    ConfigSettings.Password = ConfigSettings.Password.DecryptString();
-                    ConfigSettings.User = ConfigSettings.User.DecryptString();
-                    new DatabaseConfig(ConfigSettings);
+                        //odczyt ustawień z nowej wersji pliku
+                        var ConfigSettings = new DatabaseAccess();
+                        deserializer = new XmlSerializer(ConfigSettings.GetType());
+                        ConfigSettings = ((DatabaseAccess)deserializer.Deserialize(tr));
+                        tr.Close();
+                        ConfigSettings.Password = ConfigSettings.Password.DecryptString();
+                        ConfigSettings.User = ConfigSettings.User.DecryptString();
+                        new DatabaseConfig(ConfigSettings);
+                        SkyRegUser.IsDbExists = true;
+                    }
+
+                    if (!string.IsNullOrEmpty(DatabaseConfig.ConnectionString))
+                    {
+                        FirstTimeRun.CheckAndAdd();
+                    }
                 }
 
-
-                if (!string.IsNullOrEmpty(DatabaseConfig.ConnectionString))
-                {
-                    FirstTimeRun.CheckAndAdd();
-                }
+                bgw.ReportProgress(100);
+                Thread.Sleep(500);
             }
 
             catch (Exception)
@@ -94,22 +114,18 @@ namespace SkyReg.Forms.SplashScreen
 
         }
 
-        private void CheckDatabaseConfig()
-        {
-            if (!File.Exists(SkyRegUser.DatabaseConfigFile))
-            {
-                IsDbExists = false;
-            }
-            else
-                IsDbExists = true;
-
-        }
         private void CreateSkyregFolder()
         {
             if (!Directory.Exists(SkyRegUser.GlobalPathFile))
             {
                 Directory.CreateDirectory(SkyRegUser.GlobalPathFile);
+
             }
+           
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
 
         }
     }

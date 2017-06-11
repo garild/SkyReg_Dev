@@ -29,84 +29,56 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreen));
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.progressBar = new MetroFramework.Controls.MetroProgressBar();
-            this.cbDbExists = new MetroFramework.Controls.MetroCheckBox();
-            this.cbLoadSettings = new MetroFramework.Controls.MetroCheckBox();
-            this.metroCheckBox2 = new MetroFramework.Controls.MetroCheckBox();
-            this.metroCheckBox3 = new MetroFramework.Controls.MetroCheckBox();
+            this.labAppVersion = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // metroStyleManager1
             // 
             this.metroStyleManager1.Owner = null;
-            this.metroStyleManager1.Style = MetroFramework.MetroColorStyle.White;
-            this.metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroStyleManager1.Style = MetroFramework.MetroColorStyle.Silver;
+            this.metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // progressBar
             // 
+            this.progressBar.FontWeight = MetroFramework.MetroProgressBarWeight.Bold;
             this.progressBar.HideProgressText = false;
-            this.progressBar.Location = new System.Drawing.Point(33, 450);
+            resources.ApplyResources(this.progressBar, "progressBar");
             this.progressBar.Name = "progressBar";
             this.progressBar.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Blocks;
-            this.progressBar.Size = new System.Drawing.Size(655, 23);
             this.progressBar.Step = 25;
-            this.progressBar.Style = MetroFramework.MetroColorStyle.Black;
-            this.progressBar.TabIndex = 0;
+            this.progressBar.Style = MetroFramework.MetroColorStyle.Green;
+            this.progressBar.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
-            // cbDbExists
+            // labAppVersion
             // 
-            this.cbDbExists.AutoSize = true;
-            this.cbDbExists.Location = new System.Drawing.Point(33, 345);
-            this.cbDbExists.Name = "cbDbExists";
-            this.cbDbExists.Size = new System.Drawing.Size(266, 15);
-            this.cbDbExists.TabIndex = 1;
-            this.cbDbExists.Text = "Baza danych SkyReg zainstalowana poprawnie";
-            this.cbDbExists.UseVisualStyleBackColor = true;
-            // 
-            // cbLoadSettings
-            // 
-            this.cbLoadSettings.AutoSize = true;
-            this.cbLoadSettings.Location = new System.Drawing.Point(33, 366);
-            this.cbLoadSettings.Name = "cbLoadSettings";
-            this.cbLoadSettings.Size = new System.Drawing.Size(215, 15);
-            this.cbLoadSettings.TabIndex = 1;
-            this.cbLoadSettings.Text = "Ładowanie konfiguracji bazy danych";
-            this.cbLoadSettings.UseVisualStyleBackColor = true;
-            // 
-            // metroCheckBox2
-            // 
-            this.metroCheckBox2.AutoSize = true;
-            this.metroCheckBox2.Location = new System.Drawing.Point(33, 387);
-            this.metroCheckBox2.Name = "metroCheckBox2";
-            this.metroCheckBox2.Size = new System.Drawing.Size(266, 15);
-            this.metroCheckBox2.TabIndex = 1;
-            this.metroCheckBox2.Text = "Baza danych SkyReg zainstalowana poprawnie";
-            this.metroCheckBox2.UseVisualStyleBackColor = true;
-            // 
-            // metroCheckBox3
-            // 
-            this.metroCheckBox3.AutoSize = true;
-            this.metroCheckBox3.Location = new System.Drawing.Point(33, 408);
-            this.metroCheckBox3.Name = "metroCheckBox3";
-            this.metroCheckBox3.Size = new System.Drawing.Size(266, 15);
-            this.metroCheckBox3.TabIndex = 1;
-            this.metroCheckBox3.Text = "Baza danych SkyReg zainstalowana poprawnie";
-            this.metroCheckBox3.UseVisualStyleBackColor = true;
+            this.labAppVersion.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
+            resources.ApplyResources(this.labAppVersion, "labAppVersion");
+            this.labAppVersion.Name = "labAppVersion";
+            this.labAppVersion.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
+            this.labAppVersion.StateCommon.LongText.Color1 = System.Drawing.Color.White;
+            this.labAppVersion.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
+            this.labAppVersion.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
+            this.labAppVersion.Values.Text = resources.GetString("labAppVersion.Values.Text");
             // 
             // SplashScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(726, 515);
-            this.Controls.Add(this.metroCheckBox3);
-            this.Controls.Add(this.metroCheckBox2);
-            this.Controls.Add(this.cbLoadSettings);
-            this.Controls.Add(this.cbDbExists);
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.Controls.Add(this.labAppVersion);
             this.Controls.Add(this.progressBar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.HeaderStyle = ComponentFactory.Krypton.Toolkit.HeaderStyle.Custom2;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SplashScreen";
-            this.Text = "SplashScreen";
+            this.ShowIcon = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -116,9 +88,6 @@
         #endregion
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
         private MetroFramework.Controls.MetroProgressBar progressBar;
-        private MetroFramework.Controls.MetroCheckBox cbDbExists;
-        private MetroFramework.Controls.MetroCheckBox cbLoadSettings;
-        private MetroFramework.Controls.MetroCheckBox metroCheckBox2;
-        private MetroFramework.Controls.MetroCheckBox metroCheckBox3;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel labAppVersion;
     }
 }

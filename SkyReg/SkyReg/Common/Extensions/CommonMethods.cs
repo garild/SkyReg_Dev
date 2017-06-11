@@ -10,7 +10,7 @@ namespace SkyReg.Utils
     {
         public static bool isNetworkWorking()
         {
-            var all = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces();
+            var all = NetworkInterface.GetAllNetworkInterfaces();
             foreach (var item in all)
             {
                 if (item.NetworkInterfaceType == NetworkInterfaceType.Loopback)

@@ -92,6 +92,7 @@ namespace SkyReg.Forms.DatabaseConfiguration
                 tr.Close();
 
                 new DatabaseConfig(ConfigSettings);
+                SkyRegUser.IsDbExists = true;
             }
             else
             {
@@ -149,7 +150,7 @@ namespace SkyReg.Forms.DatabaseConfiguration
                 ConfigSettings.User = login;
                 ConfigSettings.Password = password;
                 new DatabaseConfig(ConfigSettings);
-                FirstTimeRun.CheckAndAdd();
+                SkyRegUser.IsDbExists = true;
                 KryptonMessageBox.Show("Plik konfiguracyjny został zapisany!", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
