@@ -21,32 +21,47 @@ namespace SkyReg
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-           
-            if (CommonMethods.isNetworkWorking())
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            try
             {
-                //    if (System.Diagnostics.Process.GetProcessesByName("EMnet").Length > 1 && hasRestart)
-                //    {
-                //        KryptonMessageBox.Show("Aplikacja została już wcześniej uruchomiona !", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //        return;
-                //    }
-                _splashScreen = FormsOpened<SplashScreen>.IsShowDialog(_splashScreen);
-                if (_splashScreen.ShowDialog() == DialogResult.OK)
+                if (CommonMethods.isNetworkWorking())
                 {
-                    FrmLogin frm = new FrmLogin();
-                    if (frm.ShowDialog() == DialogResult.OK)
+                    _splashScreen = FormsOpened<SplashScreen>.IsOpened(_splashScreen);
+                    _splashScreen.WindowState = FormWindowState.Normal;
+                    _splashScreen.StartPosition = FormStartPosition.CenterScreen;
+                    
+                    if (_splashScreen.ShowDialog() == DialogResult.OK)
                     {
-                        frm.Close();
-                        _frmMain = FormsOpened<FrmMain>.IsOpened(_frmMain);
-                        Application.Run(_frmMain);
+                        FrmLogin frm = new FrmLogin();
+                        if (frm.ShowDialog() == DialogResult.OK)
+                        {
+                            frm.Close();
+                            _frmMain = FormsOpened<FrmMain>.IsOpened(_frmMain);
+                            Application.Run(_frmMain);
 
+                        }
+                        else
+                            Application.Exit();
                     }
-                    else
-                        Application.Exit();
+
                 }
-                
+                else
+                    Msg.Show("Brak połaczenia z internetem", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else
-                Msg.Show("Brak połaczenia z internetem", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            catch (Exception ex)
+            {
+                _splashScreen.Close();
+                Msg.Show("Wystąpił błąd, treść : " + ex.Message, "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                Application.Exit();
+            }
+            
+        }
+
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Msg.Show($"Wystąpił błąd w {nameof(Program)}, treść : {(e.ExceptionObject as Exception).Message}", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            Application.Exit();
         }
 
         public static FrmMain _frmMain = null;

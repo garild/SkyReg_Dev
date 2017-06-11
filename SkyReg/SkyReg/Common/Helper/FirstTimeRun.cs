@@ -1,29 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DataLayer;
-using System.Drawing;
-using SkyReg.BLL.Services;
 using DataLayer.Result.Repository;
-using DataLayer.Utils;
+using Msg = AC.ExtendedRenderer.Toolkit.KryptonMessageBox;
+using System.Windows.Forms;
 
 namespace SkyReg
 {
     public static class FirstTimeRun
     {
         //Uruchamiane podczas startu programu - za pierwszym razem dodaje stałe elementy do bazy
-      
+
         public static void CheckAndAdd()
         {
-            Group gpSkoczkowie = default(Group);
-
-            using (DLModelRepository<Group> _contextGroup = new DLModelRepository<Group>())
+            try
             {
-                Group gp = default(Group);
-                
-                //Czy jest grupa Spadochroniarze
-                var allGroups = _contextGroup.GetAll();
+                Group gpSkoczkowie = default(Group);
+
+                using (DLModelRepository<Group> _contextGroup = new DLModelRepository<Group>())
+                {
+                    Group gp = default(Group);
+
+                    //Czy jest grupa Spadochroniarze
+                    var allGroups = _contextGroup.GetAll();
                     var isSkydiversGroup = allGroups.Value.Where(p => p.Name == "Skoczkowie").FirstOrDefault();
                     if (isSkydiversGroup == null)
                     {
@@ -31,7 +30,7 @@ namespace SkyReg
                         gp.Name = "Skoczkowie";
                         gp.Color = "White";
                         gp.AllowDelete = false;
-                        if( _contextGroup.Insert(gp).IsSuccess)
+                        if (_contextGroup.Insert(gp).IsSuccess)
                             gpSkoczkowie = gp;
                     }
 
@@ -47,57 +46,66 @@ namespace SkyReg
                         gp.AllowDelete = false;
                         _contextGroup.Insert(gp);
                     }
-            }
-            using (DLModelRepository<User> _contextUser = new DLModelRepository<User>())
-            using (DLModelRepository<Operator> _contextOperator = new DLModelRepository<Operator>())
-            {
-                var allUsers = _contextUser.GetAll();
-                var allOperators = _contextOperator.GetAll();
-                var isAdmin = allUsers.Value.Where(p => p.Login == "admin").FirstOrDefault();
-                if (isAdmin == null)
-                {
-                    User usr = new User();
-                    usr.Login = "admin";
-                    usr.Password = "s7PNTS7UQzg=";
-                    usr.FirstName = "Admin";
-                    usr.SurName = "Admin";
-                    usr.Group = gpSkoczkowie;
-                    
-                    Operator opr = new Operator();
-                    opr.User = usr;
-                    opr.Type = (int)OperatorTypes.Operator;
-                    _contextOperator.Insert(opr);
                 }
-            }
-
-            
-            using( DLModelContainer model = new DLModelContainer())
-            {
-                //Czy jest zdefiniowane KP
-                var inComeCash = (short)PaymentsTypes.Wpłata;
-                var outComeCash = (short)PaymentsTypes.Wypłata;
-                bool isIncomeCash = model.PaymentsSetting.Any(p => p.Type == inComeCash);
-                if(isIncomeCash == false)
+                using (DLModelRepository<User> _contextUser = new DLModelRepository<User>())
+                using (DLModelRepository<Operator> _contextOperator = new DLModelRepository<Operator>())
                 {
-                    PaymentsSetting ps = new PaymentsSetting();
-                    ps.Type = inComeCash;
-                    ps.Name = "KP";
-                    model.PaymentsSetting.Add(ps);
-                    model.SaveChanges();
+                    var allUsers = _contextUser.GetAll();
+                    var allOperators = _contextOperator.GetAll();
+                    var isAdmin = allUsers.Value.Where(p => p.Login == "admin").FirstOrDefault();
+                    if (isAdmin == null)
+                    {
+                        User usr = new User();
+                        usr.Login = "admin";
+                        usr.Password = "s7PNTS7UQzg=";
+                        usr.FirstName = "Admin";
+                        usr.SurName = "Admin";
+                        usr.Group = gpSkoczkowie;
+
+                        Operator opr = new Operator();
+                        opr.User = usr;
+                        opr.Type = (int)OperatorTypes.Operator;
+                        _contextOperator.Insert(opr);
+                    }
                 }
 
-                //Czy jest zdefiniowane KW
-                bool isExpenditureCash = model.PaymentsSetting.Any(p => p.Type == outComeCash);
-                if(isExpenditureCash == false)
+
+                using (DLModelContainer model = new DLModelContainer())
                 {
-                    PaymentsSetting ps = new PaymentsSetting();
-                    ps.Type = outComeCash;
-                    ps.Name = "KW";
-                    model.PaymentsSetting.Add(ps);
-                    model.SaveChanges();
+                    //Czy jest zdefiniowane KP
+                    var inComeCash = (short)PaymentsTypes.Wpłata;
+                    var outComeCash = (short)PaymentsTypes.Wypłata;
+                    bool isIncomeCash = model.PaymentsSetting.Any(p => p.Type == inComeCash);
+                    if (isIncomeCash == false)
+                    {
+                        PaymentsSetting ps = new PaymentsSetting();
+                        ps.Type = inComeCash;
+                        ps.Name = "KP";
+                        model.PaymentsSetting.Add(ps);
+                        model.SaveChanges();
+                    }
+
+                    //Czy jest zdefiniowane KW
+                    bool isExpenditureCash = model.PaymentsSetting.Any(p => p.Type == outComeCash);
+                    if (isExpenditureCash == false)
+                    {
+                        PaymentsSetting ps = new PaymentsSetting();
+                        ps.Type = outComeCash;
+                        ps.Name = "KW";
+                        model.PaymentsSetting.Add(ps);
+                        model.SaveChanges();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+               
+                Msg.Show($"Wystąpił błąd w {nameof(FirstTimeRun)}, treść : {ex.Message}", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                
+            }
+
         }
+	
     }
-        
+
 }

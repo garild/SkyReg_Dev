@@ -24,10 +24,10 @@ namespace DataLayer
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Parachute>()
-            .HasOptional(p => p.FlightsElem)
-            .WithOptionalPrincipal(o => o.Parachute)
-            .Map(x => x.MapKey("FlightsElem_Id"));
+            //modelBuilder.Entity<Parachute>()
+            //.HasOptional(p => p.FlightsElem)
+            //.WithOptionalPrincipal(o => o.Parachute)
+            //.Map(x => x.MapKey("FlightsElem_Id"));
         }
 
         public virtual DbSet<PaymentsSetting> PaymentsSetting { get; set; }

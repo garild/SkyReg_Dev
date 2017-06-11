@@ -7,8 +7,8 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{BAD44E56-5FC7-4F88-80D9-F07E0C12D045}
 AppName=SkyReg
-AppVersion=1.0.0.0
-VersionInfoVersion=1.0.0.0
+AppVersion=1.0.0.1
+VersionInfoVersion=1.0.0.1
 AppPublisher=SkyReg
 DefaultDirName={pf}\SkyReg\
 DefaultGroupName=SkyReg

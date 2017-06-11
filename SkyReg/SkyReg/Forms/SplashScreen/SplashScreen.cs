@@ -44,11 +44,20 @@ namespace SkyReg.Forms.SplashScreen
 
         private void StartLoading()
         {
-            bgw.WorkerReportsProgress = true;
-            bgw.DoWork += Bgw_DoWork;
-            bgw.ProgressChanged += Bgw_ProgressChanged;
-            bgw.RunWorkerCompleted += Bgw_RunWorkerCompleted;
-            bgw.RunWorkerAsync();
+            try
+            {
+                bgw.WorkerReportsProgress = true;
+                bgw.DoWork += Bgw_DoWork;
+                bgw.ProgressChanged += Bgw_ProgressChanged;
+                bgw.RunWorkerCompleted += Bgw_RunWorkerCompleted;
+                bgw.RunWorkerAsync();
+            }
+            catch (Exception ex)
+            {
+
+                Msg.Show(ex.Message);
+                this.DialogResult = DialogResult.Cancel;
+            }
            
         }
 
@@ -107,8 +116,9 @@ namespace SkyReg.Forms.SplashScreen
                 Thread.Sleep(500);
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
+                Msg.Show(ex.Message);
                 this.DialogResult = DialogResult.Cancel;
             }
 
