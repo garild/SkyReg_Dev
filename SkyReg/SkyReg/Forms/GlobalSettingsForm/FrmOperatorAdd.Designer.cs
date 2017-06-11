@@ -93,13 +93,14 @@
             // 
             // cmbName
             // 
+            this.cmbName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbName.DropDownWidth = 175;
             this.cmbName.Location = new System.Drawing.Point(118, 11);
             this.cmbName.Name = "cmbName";
             this.cmbName.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.cmbName.Size = new System.Drawing.Size(288, 21);
             this.cmbName.TabIndex = 25;
-            this.cmbName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbName_KeyPress);
             // 
             // errorProvider1
             // 
