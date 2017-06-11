@@ -110,7 +110,7 @@ namespace SkyReg
             }
         }
 
-        private void SaveFlight()
+        private void SaveFlight() //TODO poprawić kod janusza!
         {
             Flight fly = null;
             using(DLModelContainer model = new DLModelContainer())
@@ -145,7 +145,7 @@ namespace SkyReg
             }
         }
 
-        private bool FlightValidate()
+        private bool FlightValidate()// TODO Kod Janusza!
         {
             bool result = true;
             errorProvider1.Clear();

@@ -14,17 +14,12 @@ namespace SkyReg
 {
     public partial class ParachuteFormAddEdit : KryptonForm
     {
-        FormState _formState;
+        FormState? _formState;
         int? _parachuteId = -1;
 
-        public EventHandler ParachuteAddedEdited;
+        public EventHandler ParachuteAddedEdited;//TODO Kod Janusza
 
-        public ParachuteFormAddEdit()
-        {
-            InitializeComponent();
-        }
-
-        public ParachuteFormAddEdit(FormState formState, int? parachuteId)
+        public ParachuteFormAddEdit(FormState? formState=null, int? parachuteId = null)
         {
             InitializeComponent();
             _formState = formState;
@@ -48,7 +43,7 @@ namespace SkyReg
         {
             OwnersComboBoxLoad();
 
-            if (_formState == FormState.Edit)
+            if (_formState == FormState.Edit && _parachuteId > 0)
             {
                 LoadParachuteData(_parachuteId);
             }
@@ -112,19 +107,21 @@ namespace SkyReg
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(ParachuteValidate() == true)
+            if(ParachuteValidate())
             {
                 ParachuteSave();
+                DialogResult = DialogResult.OK;
                 this.Close();
             }
         }
 
-        private void ParachuteSave()
+        private void ParachuteSave() //TODO Kod Janusza Edycja nie działa!!
         {
             using (DLModelContainer model = new DLModelContainer())
             {
@@ -153,7 +150,6 @@ namespace SkyReg
                     }
                 }
                 model.SaveChanges();
-                ParachuteAddedEdited.Invoke(null, null);
             }
         }
 

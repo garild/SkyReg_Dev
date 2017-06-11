@@ -26,7 +26,7 @@ namespace DataLayer.Result
             }
             set
             {
-                if (value.Equals(default(T)) || value.Equals(Activator.CreateInstance<T>()))
+                if (value == null || value.Equals(default(T)) || value.Equals(Activator.CreateInstance<T>()))
                 {
                     IsSuccess = false;
                     IsError = true;

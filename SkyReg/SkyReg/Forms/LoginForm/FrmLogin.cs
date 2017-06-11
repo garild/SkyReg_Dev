@@ -20,6 +20,7 @@ using FluentValidation.Results;
 using System.Xml;
 using SkyReg.Forms.DatabaseConfiguration;
 using DataLayer.Result.Repository;
+using SkyReg.Common.Extensions;
 
 namespace SkyReg.MainForm
 {
@@ -28,6 +29,7 @@ namespace SkyReg.MainForm
         private ErrorProvider validateControl = new ErrorProvider();
         private ValidationResult _validator = null;
         private  bool IsDbExists = false;
+
         public FrmLogin()
         {
             SkyRegUser.GlobalPathFile = Environment.GetFolderPath((Environment.SpecialFolder.LocalApplicationData)) + @"\SkyReg";
@@ -49,12 +51,12 @@ namespace SkyReg.MainForm
                 KryptonMessageBox.Show("Nie znaleziono pliku kofiguracyjnego do bazy danych. Proszę skofigurować base SQL!", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 result = false;
             }
-            if (string.IsNullOrEmpty(Txt_Login.Text))
+            if (!Txt_Login.Text.HasValue())
             {
                 validateControl.SetError(Txt_Login, "!");
                 result = false;
             }
-            if (string.IsNullOrEmpty(Txt_Pasword.Text))
+            if (!Txt_Pasword.Text.HasValue())
             {
                 validateControl.SetError(Txt_Pasword, "!");
                 result = false;
@@ -215,8 +217,10 @@ namespace SkyReg.MainForm
 
         private void btnDatabaseCfg_Click(object sender, EventArgs e)
         {
-            FrmDataBaseConfig frmDataBaseConfig = new FrmDataBaseConfig();
+            frmDataBaseConfig = FormsOpened<FrmDataBaseConfig>.IsShowDialog(frmDataBaseConfig);
             frmDataBaseConfig.ShowDialog();
         }
+
+        private FrmDataBaseConfig frmDataBaseConfig = null;
     }
 }

@@ -61,12 +61,12 @@ namespace SkyReg
             grdFlights.DataSource = null;
             using (DLModelContainer model = new DLModelContainer())
             {
-                List<FlightsOnList> flightsList = model.Flight
+                grdFlights.DataSource = model.Flight
                     .Include("Airplane")
                     .Include("FlightsElem")
                     .Where(p => p.FlyDateTime >= datSince.Value.Date && p.FlyDateTime <= datTo.Value.Date)
                     .OrderBy(p => p.FlyNr)
-                    .Select(p => new FlightsOnList
+                    .Select(p => new //TODO Kod Janusza
                     {
                         Id = p.Id,
                         FlightsNr = "LOT " + p.FlyDateTime.Year + @"/" + p.FlyDateTime.Month + @"/" + p.FlyDateTime.Day + @"/" + p.FlyNr,
@@ -78,11 +78,12 @@ namespace SkyReg
                                     p.FlyStatus == (short)FlightsStatus.Closed ? "Zamknięty" :
                                     p.FlyStatus == (short)FlightsStatus.Executed ? "Zrealizowany" :
                                     p.FlyStatus == (short)FlightsStatus.Canceled ? "Anulowany" :
-                                    string.Empty
+                                    string.Empty,
+
                     }).ToList();
-                grdFlights.DataSource = flightsList;
 
                 SetFlightsListView();
+
                 if (_lastGridSelectedIndex >= 0 && grdFlights.SelectedRows.Count > 0 && _lastGridSelectedIndex <= grdFlights.Rows.Count)
                     grdFlights.Rows[_lastGridSelectedIndex].Selected = true;
             }
@@ -99,11 +100,8 @@ namespace SkyReg
             FlyAddEditForm.EventHandlerAddedEditedFlight += RefreshAfterAddedEditedFlight;
             FlyAddEditForm.TopMost = true;
             FlyAddEditForm.FormState = FormState.Add;
-            FlyAddEditForm.FlightId = default(int);
             FlyAddEditForm.ShowDialog();
         }
-
-
 
         private void btnEditFlight_Click(object sender, EventArgs e)
         {
@@ -143,9 +141,9 @@ namespace SkyReg
                 {
                     int idFlight = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
                     Flight fly = model.Flight.Where(p => p.Id == idFlight).FirstOrDefault();
-                    if(fly != null)
+                    if (fly != null)
                     {
-                        if(KryptonMessageBox.Show("Usunąć zaznaczoną pozycję?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (KryptonMessageBox.Show("Usunąć zaznaczoną pozycję?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             model.Flight.Remove(fly);
                             model.SaveChanges();

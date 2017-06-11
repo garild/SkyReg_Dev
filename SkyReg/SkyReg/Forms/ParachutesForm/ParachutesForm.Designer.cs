@@ -183,7 +183,6 @@
             this.Name = "ParachutesForm";
             this.Text = "Spadochrony";
             this.Load += new System.EventHandler(this.ParachutesForm_Load);
-            this.Shown += new System.EventHandler(this.ParachutesForm_Shown);
             this.kryptonPanelEx2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).EndInit();
             this.kryptonHeaderGroup1.Panel.ResumeLayout(false);

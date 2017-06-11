@@ -44,7 +44,7 @@ namespace SkyReg
             }
         }
 
-        private void OperatorsLoad()
+        private void OperatorsLoad() //TODO Kod Janusza
         {
             using (DLModelContainer model = new DLModelContainer())
             {
@@ -147,7 +147,7 @@ namespace SkyReg
             }
         }
 
-        private void OperatorDelete()
+        private void OperatorDelete()//TODO KOD Janusza
         {
             if (grdOperators.SelectedRows.Count > 0)
             {
@@ -172,7 +172,7 @@ namespace SkyReg
             }
         }
 
-        private void PaymentsSetDelete()
+        private void PaymentsSetDelete() //TODO KOD Janusza
         {
             if (grdPayment.SelectedRows.Count > 0)
             {
@@ -211,13 +211,6 @@ namespace SkyReg
                 PaymentsTypesLoad();
                 PaymentViewSettings();
             }
-        }
-
-
-        private void RefreshOperatorGrid(object sender, EventArgs e)
-        {
-            OperatorsLoad();
-            OperatorsViewSettings();
         }
 
         private void saveGlobalSettings()
@@ -298,5 +291,9 @@ namespace SkyReg
 
         #endregion
 
+        private void btn_Generate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

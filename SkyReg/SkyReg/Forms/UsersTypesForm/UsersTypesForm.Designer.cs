@@ -102,9 +102,11 @@
             // kryptonLabel1
             // 
             this.kryptonLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonLabel1.Location = new System.Drawing.Point(897, 249);
+            this.kryptonLabel1.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.ItalicPanel;
+            this.kryptonLabel1.Location = new System.Drawing.Point(897, 234);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(211, 84);
+            this.kryptonLabel1.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel1.TabIndex = 2;
             this.kryptonLabel1.Values.Text = "Kartoteka zawierająca listę informacji\r\no dostępnych typach skoczków\r\n- nazwę typ" +
     "u skoczka\r\n- koszt skoku danego typu skoczka\r\n- czy dany typ używa kamery";

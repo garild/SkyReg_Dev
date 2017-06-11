@@ -14,17 +14,18 @@ namespace SkyReg
 {
     public partial class AirPlanesFormAddEdit : KryptonForm
     {
+        //TODO Kod Janusza
         FormState _formState;
         int _airplaneId = -1;
 
-        public EventHandler RefreshAirplanesGridEH;
+        public EventHandler RefreshAirplanesGridEH;//TODO Kod Janusza
 
         public AirPlanesFormAddEdit()
         {
             InitializeComponent();
         }
 
-        public AirPlanesFormAddEdit(FormState formState, int? airplaneId)
+        public AirPlanesFormAddEdit(FormState formState, int? airplaneId)//TODO Kod Janusza
         {
             InitializeComponent();
             _formState = formState;
@@ -57,7 +58,7 @@ namespace SkyReg
             }
         }
 
-        private void SaveAirplane()
+        private void SaveAirplane() //TODO Kod Janusza
         {
             using (DLModelContainer model = new DLModelContainer())
             {
@@ -85,7 +86,7 @@ namespace SkyReg
             }
         }
 
-        private bool ValidateAirplane()
+        private bool ValidateAirplane()//TODO Kod Janusza
         {
             bool result = true;
             errorProvider1.SetError(txtName, string.Empty);
@@ -109,7 +110,7 @@ namespace SkyReg
             }
             if(_formState == FormState.Add)
             {
-                using(DLModelContainer model = new DLModelContainer())
+                using(DLModelContainer model = new DLModelContainer()) //TODO KOD JANUSZA
                 {
                     bool isAirplane = model.Airplane.Any(p => p.RegNr == txtID.Text);
                     if(isAirplane == true)

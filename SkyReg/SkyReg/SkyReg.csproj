@@ -110,7 +110,6 @@
     <Compile Include="Forms\FlightsForm\FlightsForm.Designer.cs">
       <DependentUpon>FlightsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FlightsForm\FlightsOnList.cs" />
     <Compile Include="Forms\FlightsForm\FlyAddEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,9 +125,11 @@
     <Compile Include="Common\Helper\GroupId.cs" />
     <Compile Include="Forms\MainForm\FrmMain.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Forms\MainForm\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Forms\GlobalSettingsForm\FrmOperatorAdd.cs">
       <SubType>Form</SubType>
@@ -142,7 +143,6 @@
     <Compile Include="Forms\GlobalSettingsForm\FrmPaymentAdd.Designer.cs">
       <DependentUpon>FrmPaymentAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\GlobalSettingsForm\UserOnComboBox.cs" />
     <Compile Include="Forms\LoginForm\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,7 +155,6 @@
     <Compile Include="Forms\ParachutesForm\ParachuteFormAddEdit.Designer.cs">
       <DependentUpon>ParachuteFormAddEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ParachutesForm\ParachuteListElem.cs" />
     <Compile Include="Forms\ParachutesForm\ParachutesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,7 +207,6 @@
     <Compile Include="Forms\UsersTypesForm\UserTypeAddEdit.Designer.cs">
       <DependentUpon>UserTypeAddEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UsersTypesForm\UserTypeListElem.cs" />
     <EmbeddedResource Include="Forms\AirplanesForm\AirplanesForm.resx">
       <DependentUpon>AirplanesForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,6 +230,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GlobalSettingsForm\FrmOperatorAdd.resx">
       <DependentUpon>FrmOperatorAdd.cs</DependentUpon>

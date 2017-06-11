@@ -204,7 +204,6 @@
             this.Name = "AirplanesForm";
             this.Text = "AirplanesForm";
             this.Load += new System.EventHandler(this.AirplanesForm_Load);
-            this.Shown += new System.EventHandler(this.AirplanesForm_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).EndInit();
             this.kryptonHeaderGroup1.Panel.ResumeLayout(false);

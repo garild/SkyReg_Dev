@@ -1,6 +1,7 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using DataLayer;
 using SkyReg.Common.Extensions;
+using SkyReg.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,7 +30,7 @@ namespace SkyReg
 
         private void outlookBar1_ButtonClicked(object sender, EventArgs e)
         {
-            switch (outlookBar1.Buttons[outlookBar1.SelectedIndex].BuddyPage1)
+            switch (outlookBar.Buttons[outlookBar.SelectedIndex].BuddyPage1)
             {
                 case "Settings":
                     FrmGlobalSettings = FormsOpened<FrmGlobalSettings>.IsOpened(FrmGlobalSettings);
@@ -110,6 +111,16 @@ namespace SkyReg
                     PaymentsForm.Show();
                     PaymentsForm.Activate();
                     break;
+                case "Test":
+                    examples = FormsOpened<Examples>.IsOpened(examples);
+                    examples.MdiParent = this;
+                    examples.WindowState = FormWindowState.Maximized;
+                    examples.BringToFront();
+                    examples.TopLevel = false;
+                    examples.Show();
+                    examples.Activate();
+                    break;
+
             }
         }
 
@@ -121,6 +132,7 @@ namespace SkyReg
         private void ScheduleForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             ScheduleForm = null;
+              
         }
 
         private void FlightsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -164,6 +176,8 @@ namespace SkyReg
         private FlightsForm FlightsForm = null;
         private ScheduleForm ScheduleForm = null;
         private PaymentsForm PaymentsForm = null;
+
+        private Examples examples = null;
 
         #endregion
 

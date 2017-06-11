@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DataLayer;
 using DataLayer.Result.Repository;
 using SkyRegEnums;
+using SkyReg.Common.Extensions;
 
 namespace SkyReg
 {
@@ -69,7 +70,7 @@ namespace SkyReg
             using (var model = new DLModelRepository<UsersType>())
             {
                 var usrTypes = model.GetAll().Value?
-                    .Select(p => new UserTypeListElem
+                    .Select(p => new 
                     {
                         Id = p.Id,
                         Name = p.Name,
@@ -86,8 +87,9 @@ namespace SkyReg
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            userTypeAddEdit = new UserTypeAddEdit(FormState.Add, null);
+            userTypeAddEdit = FormsOpened<UserTypeAddEdit>.IsShowDialog(new UserTypeAddEdit(FormState.Add, null));
             userTypeAddEdit.FormClosed += UserTypeAddEdit_FormClosed;
+            userTypeAddEdit.StartPosition = FormStartPosition.CenterParent;
             userTypeAddEdit.ShowDialog();
         }
 

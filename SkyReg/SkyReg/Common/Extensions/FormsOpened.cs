@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SkyReg.Common.Extensions
 {
-    public sealed class FormsOpened<TFrom> where TFrom : class,new()
+    public sealed class FormsOpened<TFrom> where TFrom : class
     {
         public static TFrom IsOpened(TFrom form)
         {

@@ -559,6 +559,7 @@
             this.btn_Generate.TabIndex = 0;
             this.btn_Generate.Values.Image = ((System.Drawing.Image)(resources.GetObject("btn_Generate.Values.Image")));
             this.btn_Generate.Values.Text = "Generuj";
+            this.btn_Generate.Click += new System.EventHandler(this.btn_Generate_Click);
             // 
             // chkTuesday
             // 
