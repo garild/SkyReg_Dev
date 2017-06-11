@@ -94,6 +94,7 @@
             this.BtnDelete.TabIndex = 9;
             this.BtnDelete.Values.Image = ((System.Drawing.Image)(resources.GetObject("BtnDelete.Values.Image")));
             this.BtnDelete.Values.Text = "Usuń";
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // btnAdd
             // 

@@ -131,5 +131,23 @@ namespace SkyReg
         {
             EditPayment();
         }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            using (DLModelContainer model = new DLModelContainer())
+            {
+                if (grdPayments.SelectedRows.Count > 0)
+                {
+                    int idPayForDelete = (int)grdPayments.SelectedRows[0].Cells["Id"].Value;
+                    if(KryptonMessageBox.Show("Czy usunąć zaznaczoną pozycję?", "Usunąć", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        var payToDel = model.Payment.Where(p => p.Id == idPayForDelete).FirstOrDefault();
+                        model.Payment.Remove(payToDel);
+                        model.SaveChanges();
+                        RefreshPayList();
+                    }
+                }
+            }
+        }
     }
 }
