@@ -54,6 +54,18 @@
       <HintPath>..\packages\FluentValidation.6.2.0.0\lib\portable-net40+sl50+wp80+win8+wpa81\FluentValidation.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroFramework.Design.1.2.0.3\lib\net40\MetroFramework.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroFramework.Fonts.1.2.0.3\lib\net40\MetroFramework.Fonts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -172,6 +184,12 @@
     <Compile Include="Forms\ScheduleForm\ScheduleForm.Designer.cs">
       <DependentUpon>ScheduleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SplashScreen\SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SplashScreen\SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UsersForm\UsersAddEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScheduleForm\ScheduleForm.resx">
       <DependentUpon>ScheduleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SplashScreen\SplashScreen.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UsersForm\UsersAddEditForm.resx">
       <DependentUpon>UsersAddEditForm.cs</DependentUpon>
@@ -377,6 +398,7 @@
     <Content Include="Common\Resources\version.png" />
     <Content Include="Common\Resources\versions.png" />
     <Content Include="Common\Resources\view.png" />
+    <Content Include="MetroFramework.txt" />
     <Content Include="Resources\dlmodel.edmx.sql" />
     <Content Include="Instalator\Install_P.iss" />
     <Content Include="SkyReg.ico" />
