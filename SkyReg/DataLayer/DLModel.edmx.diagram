@@ -25,6 +25,10 @@
         <AssociationConnector Association="DLModel.UserOrder" />
         <EntityTypeShape EntityType="DLModel.Group" Width="1.5" PointX="1.25" PointY="6" />
         <AssociationConnector Association="DLModel.GroupUser" />
+        <EntityTypeShape EntityType="DLModel.Payment" Width="1.5" PointX="9.875" PointY="6" />
+        <AssociationConnector Association="DLModel.PaymentsPaymentsSetting" />
+        <AssociationConnector Association="DLModel.UserPayments" />
+        <AssociationConnector Association="DLModel.FlightsElemPayments" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

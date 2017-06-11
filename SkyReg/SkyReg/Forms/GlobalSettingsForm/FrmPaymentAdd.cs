@@ -103,7 +103,7 @@ namespace SkyReg
                 var ps = new PaymentsSetting();
                 ps.Count = numCount.Value;
                 ps.Name = txtBoxName.Text;
-                ps.Type = (short)type;
+                ps.Type = (short)cmbBoxTypes.SelectedIndex;
                 ps.Value = numPrice.Value;
                 var result = _paySetting.Insert(ps);
                 if (result.IsSuccess)
@@ -120,7 +120,9 @@ namespace SkyReg
 
         private void FrmPaymentAdd_Load(object sender, EventArgs e)
         {
-            cmbBoxTypes.DataSource = Enum.GetNames(typeof(PaymentsTypes));
+            cmbBoxTypes.DataSource = SkyRegEnums.EnumExtensions.GetDescriptions(typeof(PaymentsTypes));
+
+            
             EnableDisableControls();
            
         }

@@ -17,6 +17,7 @@
     <EntitySet Name="FlightsElem" EntityType="DLModel.Store.FlightsElem" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Parachute" EntityType="DLModel.Store.Parachute" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Group" EntityType="DLModel.Store.Group" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Payment" EntityType="DLModel.Store.Payment" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserUsersType" EntityType="DLModel.Store.UserUsersType" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_UserUsersType_User" Association="DLModel.Store.FK_UserUsersType_User">
       <End Role="User" EntitySet="User" />
@@ -57,6 +58,18 @@
     <AssociationSet Name="GroupUser" Association="DLModel.Store.GroupUser">
       <End Role="Group" EntitySet="Group" />
       <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="PaymentsPaymentsSetting" Association="DLModel.Store.PaymentsPaymentsSetting">
+      <End Role="Payments" EntitySet="Payment" />
+      <End Role="PaymentsSetting" EntitySet="PaymentsSetting" />
+    </AssociationSet>
+    <AssociationSet Name="UserPayments" Association="DLModel.Store.UserPayments">
+      <End Role="User" EntitySet="User" />
+      <End Role="Payments" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FlightsElemPayments" Association="DLModel.Store.FlightsElemPayments">
+      <End Role="FlightsElem" EntitySet="FlightsElem" />
+      <End Role="Payments" EntitySet="Payment" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="PaymentsSetting">
@@ -158,6 +171,7 @@
     <Property Name="TeamName" Type="nvarchar(max)" Nullable="true" DefaultValue="Null" />
     <Property Name="Flight_Id" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="Payments_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Parachute">
     <Key>
@@ -179,6 +193,19 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Color" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AllowDelete" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Value" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+    <Property Name="Count" Type="decimal" Nullable="true" Precision="8" Scale="2" />
+    <Property Name="IsBooked" Type="bit" Nullable="true" />
+    <Property Name="Date" Type="datetime" Nullable="true" />
+    <Property Name="PaymentsSetting_Id" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UserUsersType">
     <Key>
@@ -284,6 +311,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="PaymentsPaymentsSetting">
+    <End Role="Payments" Type="DLModel.Store.Payment" Multiplicity="*" />
+    <End Role="PaymentsSetting" Type="DLModel.Store.PaymentsSetting" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentsSetting">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="PaymentsSetting_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserPayments">
+    <End Role="User" Type="DLModel.Store.User" Multiplicity="1" />
+    <End Role="Payments" Type="DLModel.Store.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FlightsElemPayments">
+    <End Role="FlightsElem" Type="DLModel.Store.FlightsElem" Multiplicity="*" />
+    <End Role="Payments" Type="DLModel.Store.Payment" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Payments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FlightsElem">
+        <PropertyRef Name="Payments_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UserUsersType_User">
     <End Role="User" Type="DLModel.Store.User" Multiplicity="1" />
     <End Role="UserUsersType" Type="DLModel.Store.UserUsersType" Multiplicity="*" />
@@ -360,6 +423,19 @@
             <End Role="Group" EntitySet="Group" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
+          <EntitySet Name="Payment" EntityType="DLModel.Payment" />
+          <AssociationSet Name="PaymentsPaymentsSetting" Association="DLModel.PaymentsPaymentsSetting">
+            <End Role="Payments" EntitySet="Payment" />
+            <End Role="PaymentsSetting" EntitySet="PaymentsSetting" />
+          </AssociationSet>
+          <AssociationSet Name="UserPayments" Association="DLModel.UserPayments">
+            <End Role="User" EntitySet="User" />
+            <End Role="Payments" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FlightsElemPayments" Association="DLModel.FlightsElemPayments">
+            <End Role="FlightsElem" EntitySet="FlightsElem" />
+            <End Role="Payments" EntitySet="Payment" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="PaymentsSetting">
           <Key>
@@ -370,6 +446,7 @@
           <Property Name="Type" Type="Int16" Nullable="false" />
           <Property Name="Value" Type="Decimal" Nullable="true" Precision="8" Scale="2" />
           <Property Name="Count" Type="Decimal" Nullable="true" />
+          <NavigationProperty Name="Payments" Relationship="DLModel.PaymentsPaymentsSetting" FromRole="PaymentsSetting" ToRole="Payments" />
         </EntityType>
         <EntityType Name="GlobalSetting">
           <Key>
@@ -426,6 +503,7 @@
           <NavigationProperty Name="FlightsElem" Relationship="DLModel.FlightsElemUser" FromRole="User" ToRole="FlightsElem" />
           <NavigationProperty Name="Order" Relationship="DLModel.UserOrder" FromRole="User" ToRole="Order" />
           <NavigationProperty Name="Group" Relationship="DLModel.GroupUser" FromRole="User" ToRole="Group" />
+          <NavigationProperty Name="Payments" Relationship="DLModel.UserPayments" FromRole="User" ToRole="Payments" />
         </EntityType>
         <Association Name="UserUsersType">
           <End Type="DLModel.User" Role="User" Multiplicity="*" />
@@ -481,6 +559,7 @@
           <NavigationProperty Name="Parachute" Relationship="DLModel.FlightsElemParachute" FromRole="FlightsElem" ToRole="Parachute" />
           <Property Name="Lp" Type="Int32" Nullable="true" />
           <Property Name="TeamName" Type="String" Nullable="true" DefaultValue="Null" />
+          <NavigationProperty Name="Payments" Relationship="DLModel.FlightsElemPayments" FromRole="FlightsElem" ToRole="Payments" />
         </EntityType>
         <EntityType Name="Parachute">
           <Key>
@@ -527,6 +606,32 @@
         <Association Name="GroupUser">
           <End Type="DLModel.Group" Role="Group" Multiplicity="0..1" />
           <End Type="DLModel.User" Role="User" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="true" />
+          <Property Name="Value" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <NavigationProperty Name="PaymentsSetting" Relationship="DLModel.PaymentsPaymentsSetting" FromRole="Payments" ToRole="PaymentsSetting" />
+          <NavigationProperty Name="User" Relationship="DLModel.UserPayments" FromRole="Payments" ToRole="User" />
+          <NavigationProperty Name="FlightsElem" Relationship="DLModel.FlightsElemPayments" FromRole="Payments" ToRole="FlightsElem" />
+          <Property Name="Count" Type="Decimal" Nullable="true" Precision="8" Scale="2" />
+          <Property Name="IsBooked" Type="Boolean" Nullable="true" />
+          <Property Name="Date" Type="DateTime" Nullable="true" />
+        </EntityType>
+        <Association Name="PaymentsPaymentsSetting">
+          <End Type="DLModel.Payment" Role="Payments" Multiplicity="0..1" />
+          <End Type="DLModel.PaymentsSetting" Role="PaymentsSetting" Multiplicity="1" />
+        </Association>
+        <Association Name="UserPayments">
+          <End Type="DLModel.User" Role="User" Multiplicity="1" />
+          <End Type="DLModel.Payment" Role="Payments" Multiplicity="0..1" />
+        </Association>
+        <Association Name="FlightsElemPayments">
+          <End Type="DLModel.FlightsElem" Role="FlightsElem" Multiplicity="0..1" />
+          <End Type="DLModel.Payment" Role="Payments" Multiplicity="1" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -658,6 +763,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Payment">
+      <EntityTypeMapping TypeName="IsTypeOf(DLModel.Payment)">
+        <MappingFragment StoreEntitySet="Payment">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="IsBooked" ColumnName="IsBooked" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="UserUsersType" TypeName="DLModel.UserUsersType" StoreEntitySet="UserUsersType">
       <EndProperty Name="User">
         <ScalarProperty Name="Id" ColumnName="User_Id" />
@@ -734,6 +851,30 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
       <Condition ColumnName="Group_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PaymentsPaymentsSetting" TypeName="DLModel.PaymentsPaymentsSetting" StoreEntitySet="Payment">
+      <EndProperty Name="PaymentsSetting">
+        <ScalarProperty Name="Id" ColumnName="PaymentsSetting_Id" />
+      </EndProperty>
+      <EndProperty Name="Payments">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserPayments" TypeName="DLModel.UserPayments" StoreEntitySet="Payment">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Payments">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FlightsElemPayments" TypeName="DLModel.FlightsElemPayments" StoreEntitySet="FlightsElem">
+      <EndProperty Name="Payments">
+        <ScalarProperty Name="Id" ColumnName="Payments_Id" />
+      </EndProperty>
+      <EndProperty Name="FlightsElem">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>

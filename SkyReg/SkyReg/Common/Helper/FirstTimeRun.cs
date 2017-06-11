@@ -76,24 +76,34 @@ namespace SkyReg
                     }
                 }
 
-
-                using (_contextPaymentsSetting)
+            
+            using( DLModelContainer model = new DLModelContainer())
+            {
+                //Czy jest zdefiniowane KP
+                var inComeCash = (short)PaymentsTypes.Wpłata;
+                var outComeCash = (short)PaymentsTypes.Wypłata;
+                bool isIncomeCash = model.PaymentsSetting.Any(p => p.Type == inComeCash);
+                if(isIncomeCash == false)
                 {
-                    //Czy jest zdefiniowane KP
-                    var inComeCash = (short)PaymentsTypes.Wpłata;
-                    var outComeCash = (short)PaymentsTypes.Wypłata;
+                    PaymentsSetting ps = new PaymentsSetting();
+                    ps.Type = inComeCash;
+                    ps.Name = "KP";
+                    model.PaymentsSetting.Add(ps);
+                    model.SaveChanges();
+                }
 
-                    if (!_contextPaymentsSetting.Table.Any(p => p.Type == inComeCash))
-                    {
-                        var ps = new PaymentsSetting()
-                        {
-                            Type = inComeCash,
-                            Name = "KP"
-                        };
-
-                        _contextPaymentsSetting.Insert(ps);
-                    }
-
+                //Czy jest zdefiniowane KW
+                bool isExpenditureCash = model.PaymentsSetting.Any(p => p.Type == outComeCash);
+                if(isExpenditureCash == false)
+                {
+                    PaymentsSetting ps = new PaymentsSetting();
+                    ps.Type = outComeCash;
+                    ps.Name = Enum.GetName(typeof(PaymentsTypes), PaymentsTypes.KW);
+                    ps.Value = 0;
+                    ps.Count = 0;
+                    model.PaymentsSetting.Add(ps);
+                    model.SaveChanges();
+                }
                     //Czy jest zdefiniowane KW
                     if (!_contextPaymentsSetting.Table.Any(p => p.Type == outComeCash))
                     {

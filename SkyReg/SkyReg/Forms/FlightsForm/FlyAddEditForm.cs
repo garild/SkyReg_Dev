@@ -112,14 +112,10 @@ namespace SkyReg
 
         private void SaveFlight() //TODO poprawić kod janusza!
         {
-            Flight fly = null;
+            Flight fly = new Flight();
             using(DLModelContainer model = new DLModelContainer())
             {
-                if(FormState == FormState.Add)
-                {
-                    fly = new Flight();
-                }
-                else
+                if(FormState != FormState.Add)
                 {
                     fly = model.Flight.Include("Airplane").Where(p => p.Id == FlightId).FirstOrDefault();
                 }

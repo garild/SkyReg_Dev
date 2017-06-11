@@ -8,12 +8,20 @@ namespace SkyReg
 {
     public enum PaymentsTypes
     {
-        [Description("KP")]
-        Wpłata = 0,
-        [Description("KW")]
-        Wypłata = 1,
-        [Description("Pakiety")]
+        [Description("Wpłata gotówka")]
+        KP = 0,
+        [Description("Wypłata gotówka")]
+        KW = 1,
+        [Description("Pakiet")]
         Pakiet = 2,
-       
+        [Description("Wpłata inna")]
+        BP = 3,
+        [Description("Wypłata inne")]
+        BW = 4,
+        [Description("Należność")]
+        Naleznosc = 5,
+        [Description("Zobowiazanie")]
+        Zobowiazanie = 6,
+
     }
 }
