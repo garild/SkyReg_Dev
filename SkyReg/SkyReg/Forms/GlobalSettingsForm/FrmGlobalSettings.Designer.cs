@@ -60,18 +60,21 @@
             this.chkMonday = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.btn_Generate = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.chkTuesday = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
-            this.cmbThursday = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
+            this.chkThursday = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.chkWednesday = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.chkSunday = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.chkFriday = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.chkSaturday = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
-            this.dateTermTo = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
-            this.dateTermSince = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
-            this.numFlightsPerDay = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
-            this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.dateTo = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
+            this.dateFrom = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
+            this.flightsPerDay = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.kryptonLabel6 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.numAltitude = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
+            this.kryptonLabel10 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel11 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.cmbAirplane = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.kryptonPanelEx1.SuspendLayout();
             this.kryptonPanelEx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).BeginInit();
@@ -100,6 +103,7 @@
             this.kryptonHeaderGroup2.SuspendLayout();
             this.kryptonPanelEx6.SuspendLayout();
             this.kryptonPanelEx7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbAirplane)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonPanelEx1
@@ -461,21 +465,24 @@
             // 
             // kryptonPanelEx6
             // 
+            this.kryptonPanelEx6.Controls.Add(this.cmbAirplane);
+            this.kryptonPanelEx6.Controls.Add(this.kryptonLabel11);
+            this.kryptonPanelEx6.Controls.Add(this.kryptonLabel10);
+            this.kryptonPanelEx6.Controls.Add(this.numAltitude);
             this.kryptonPanelEx6.Controls.Add(this.kryptonPanelEx7);
             this.kryptonPanelEx6.Controls.Add(this.chkMonday);
             this.kryptonPanelEx6.Controls.Add(this.btn_Generate);
             this.kryptonPanelEx6.Controls.Add(this.chkTuesday);
-            this.kryptonPanelEx6.Controls.Add(this.cmbThursday);
+            this.kryptonPanelEx6.Controls.Add(this.chkThursday);
             this.kryptonPanelEx6.Controls.Add(this.kryptonLabel7);
             this.kryptonPanelEx6.Controls.Add(this.kryptonLabel4);
             this.kryptonPanelEx6.Controls.Add(this.chkWednesday);
             this.kryptonPanelEx6.Controls.Add(this.chkSunday);
             this.kryptonPanelEx6.Controls.Add(this.chkFriday);
             this.kryptonPanelEx6.Controls.Add(this.chkSaturday);
-            this.kryptonPanelEx6.Controls.Add(this.dateTermTo);
-            this.kryptonPanelEx6.Controls.Add(this.dateTermSince);
-            this.kryptonPanelEx6.Controls.Add(this.numFlightsPerDay);
-            this.kryptonPanelEx6.Controls.Add(this.kryptonLabel5);
+            this.kryptonPanelEx6.Controls.Add(this.dateTo);
+            this.kryptonPanelEx6.Controls.Add(this.dateFrom);
+            this.kryptonPanelEx6.Controls.Add(this.flightsPerDay);
             this.kryptonPanelEx6.Controls.Add(this.kryptonLabel6);
             this.kryptonPanelEx6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonPanelEx6.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
@@ -538,19 +545,21 @@
             // chkMonday
             // 
             this.chkMonday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkMonday.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkMonday.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.chkMonday.Location = new System.Drawing.Point(11, 14);
+            this.chkMonday.Location = new System.Drawing.Point(18, 17);
             this.chkMonday.Name = "chkMonday";
             this.chkMonday.Size = new System.Drawing.Size(98, 20);
             this.chkMonday.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.chkMonday.TabIndex = 0;
             this.chkMonday.Text = "Poniedziałek";
             this.chkMonday.Values.Text = "Poniedziałek";
+            this.chkMonday.CheckedChanged += new System.EventHandler(this.chkMonday_CheckedChanged);
             // 
             // btn_Generate
             // 
             this.btn_Generate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Generate.Location = new System.Drawing.Point(409, 244);
+            this.btn_Generate.Location = new System.Drawing.Point(409, 243);
             this.btn_Generate.Name = "btn_Generate";
             this.btn_Generate.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.btn_Generate.Size = new System.Drawing.Size(91, 24);
@@ -559,36 +568,41 @@
             this.btn_Generate.TabIndex = 0;
             this.btn_Generate.Values.Image = ((System.Drawing.Image)(resources.GetObject("btn_Generate.Values.Image")));
             this.btn_Generate.Values.Text = "Generuj";
+            this.btn_Generate.Click += new System.EventHandler(this.btn_Generate_Click);
             // 
             // chkTuesday
             // 
             this.chkTuesday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkTuesday.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkTuesday.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.chkTuesday.Location = new System.Drawing.Point(11, 38);
+            this.chkTuesday.Location = new System.Drawing.Point(18, 41);
             this.chkTuesday.Name = "chkTuesday";
             this.chkTuesday.Size = new System.Drawing.Size(67, 20);
             this.chkTuesday.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.chkTuesday.TabIndex = 1;
             this.chkTuesday.Text = "Wtorek";
             this.chkTuesday.Values.Text = "Wtorek";
+            this.chkTuesday.CheckedChanged += new System.EventHandler(this.chkTuesday_CheckedChanged);
             // 
-            // cmbThursday
+            // chkThursday
             // 
-            this.cmbThursday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbThursday.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.cmbThursday.Location = new System.Drawing.Point(11, 90);
-            this.cmbThursday.Name = "cmbThursday";
-            this.cmbThursday.Size = new System.Drawing.Size(77, 20);
-            this.cmbThursday.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
-            this.cmbThursday.TabIndex = 3;
-            this.cmbThursday.Text = "Czwartek";
-            this.cmbThursday.Values.Text = "Czwartek";
+            this.chkThursday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkThursday.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkThursday.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
+            this.chkThursday.Location = new System.Drawing.Point(18, 89);
+            this.chkThursday.Name = "chkThursday";
+            this.chkThursday.Size = new System.Drawing.Size(77, 20);
+            this.chkThursday.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
+            this.chkThursday.TabIndex = 3;
+            this.chkThursday.Text = "Czwartek";
+            this.chkThursday.Values.Text = "Czwartek";
+            this.chkThursday.CheckedChanged += new System.EventHandler(this.chkThursday_CheckedChanged);
             // 
             // kryptonLabel7
             // 
             this.kryptonLabel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonLabel7.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.kryptonLabel7.Location = new System.Drawing.Point(365, 13);
+            this.kryptonLabel7.Location = new System.Drawing.Point(374, 15);
             this.kryptonLabel7.Name = "kryptonLabel7";
             this.kryptonLabel7.Size = new System.Drawing.Size(15, 20);
             this.kryptonLabel7.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
@@ -599,7 +613,7 @@
             // 
             this.kryptonLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonLabel4.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.kryptonLabel4.Location = new System.Drawing.Point(191, 12);
+            this.kryptonLabel4.Location = new System.Drawing.Point(193, 15);
             this.kryptonLabel4.Name = "kryptonLabel4";
             this.kryptonLabel4.Size = new System.Drawing.Size(66, 20);
             this.kryptonLabel4.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
@@ -609,102 +623,158 @@
             // chkWednesday
             // 
             this.chkWednesday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkWednesday.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkWednesday.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.chkWednesday.Location = new System.Drawing.Point(11, 64);
+            this.chkWednesday.Location = new System.Drawing.Point(18, 63);
             this.chkWednesday.Name = "chkWednesday";
             this.chkWednesday.Size = new System.Drawing.Size(57, 20);
             this.chkWednesday.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.chkWednesday.TabIndex = 2;
             this.chkWednesday.Text = "Środa";
             this.chkWednesday.Values.Text = "Środa";
+            this.chkWednesday.CheckedChanged += new System.EventHandler(this.chkWednesday_CheckedChanged);
             // 
             // chkSunday
             // 
             this.chkSunday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkSunday.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkSunday.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.chkSunday.Location = new System.Drawing.Point(11, 168);
+            this.chkSunday.Location = new System.Drawing.Point(18, 167);
             this.chkSunday.Name = "chkSunday";
             this.chkSunday.Size = new System.Drawing.Size(77, 20);
             this.chkSunday.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.chkSunday.TabIndex = 6;
             this.chkSunday.Text = "Niedziela";
             this.chkSunday.Values.Text = "Niedziela";
+            this.chkSunday.CheckedChanged += new System.EventHandler(this.chkSunday_CheckedChanged);
             // 
             // chkFriday
             // 
             this.chkFriday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkFriday.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkFriday.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.chkFriday.Location = new System.Drawing.Point(11, 116);
+            this.chkFriday.Location = new System.Drawing.Point(18, 115);
             this.chkFriday.Name = "chkFriday";
             this.chkFriday.Size = new System.Drawing.Size(60, 20);
             this.chkFriday.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.chkFriday.TabIndex = 4;
             this.chkFriday.Text = "Piątek";
             this.chkFriday.Values.Text = "Piątek";
+            this.chkFriday.CheckedChanged += new System.EventHandler(this.chkFriday_CheckedChanged);
             // 
             // chkSaturday
             // 
             this.chkSaturday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkSaturday.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkSaturday.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.chkSaturday.Location = new System.Drawing.Point(11, 142);
+            this.chkSaturday.Location = new System.Drawing.Point(18, 141);
             this.chkSaturday.Name = "chkSaturday";
             this.chkSaturday.Size = new System.Drawing.Size(65, 20);
             this.chkSaturday.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.chkSaturday.TabIndex = 5;
             this.chkSaturday.Text = "Sobota";
             this.chkSaturday.Values.Text = "Sobota";
+            this.chkSaturday.CheckedChanged += new System.EventHandler(this.chkSaturday_CheckedChanged);
             // 
-            // dateTermTo
+            // dateTo
             // 
-            this.dateTermTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTermTo.CalendarTodayDate = new System.DateTime(2017, 5, 25, 0, 0, 0, 0);
-            this.dateTermTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTermTo.Location = new System.Drawing.Point(396, 12);
-            this.dateTermTo.Name = "dateTermTo";
-            this.dateTermTo.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.dateTermTo.Size = new System.Drawing.Size(93, 21);
-            this.dateTermTo.TabIndex = 7;
+            this.dateTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTo.CalendarTodayDate = new System.DateTime(2017, 5, 25, 0, 0, 0, 0);
+            this.dateTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTo.Location = new System.Drawing.Point(398, 14);
+            this.dateTo.Name = "dateTo";
+            this.dateTo.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.dateTo.Size = new System.Drawing.Size(93, 21);
+            this.dateTo.TabIndex = 7;
             // 
-            // dateTermSince
+            // dateFrom
             // 
-            this.dateTermSince.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTermSince.CalendarTodayDate = new System.DateTime(2017, 5, 25, 0, 0, 0, 0);
-            this.dateTermSince.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTermSince.Location = new System.Drawing.Point(263, 12);
-            this.dateTermSince.Name = "dateTermSince";
-            this.dateTermSince.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.dateTermSince.Size = new System.Drawing.Size(93, 21);
-            this.dateTermSince.TabIndex = 7;
+            this.dateFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateFrom.CalendarTodayDate = new System.DateTime(2017, 5, 25, 0, 0, 0, 0);
+            this.dateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateFrom.Location = new System.Drawing.Point(265, 15);
+            this.dateFrom.Name = "dateFrom";
+            this.dateFrom.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.dateFrom.Size = new System.Drawing.Size(103, 21);
+            this.dateFrom.TabIndex = 7;
             // 
-            // numFlightsPerDay
+            // flightsPerDay
             // 
-            this.numFlightsPerDay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numFlightsPerDay.Location = new System.Drawing.Point(396, 40);
-            this.numFlightsPerDay.Name = "numFlightsPerDay";
-            this.numFlightsPerDay.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.numFlightsPerDay.Size = new System.Drawing.Size(93, 22);
-            this.numFlightsPerDay.TabIndex = 9;
-            this.numFlightsPerDay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // kryptonLabel5
-            // 
-            this.kryptonLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonLabel5.Location = new System.Drawing.Point(312, 13);
-            this.kryptonLabel5.Name = "kryptonLabel5";
-            this.kryptonLabel5.Size = new System.Drawing.Size(28, 20);
-            this.kryptonLabel5.TabIndex = 17;
-            this.kryptonLabel5.Values.Text = "do:";
+            this.flightsPerDay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.flightsPerDay.Location = new System.Drawing.Point(264, 95);
+            this.flightsPerDay.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.flightsPerDay.Name = "flightsPerDay";
+            this.flightsPerDay.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.flightsPerDay.Size = new System.Drawing.Size(226, 22);
+            this.flightsPerDay.TabIndex = 9;
+            this.flightsPerDay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.flightsPerDay.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // kryptonLabel6
             // 
             this.kryptonLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonLabel6.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.kryptonLabel6.Location = new System.Drawing.Point(244, 42);
+            this.kryptonLabel6.Location = new System.Drawing.Point(151, 95);
             this.kryptonLabel6.Name = "kryptonLabel6";
-            this.kryptonLabel6.Size = new System.Drawing.Size(146, 20);
+            this.kryptonLabel6.Size = new System.Drawing.Size(108, 20);
             this.kryptonLabel6.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel6.TabIndex = 19;
-            this.kryptonLabel6.Values.Text = "Ilość wylotów na dzień:";
+            this.kryptonLabel6.Values.Text = "Wyloty na dzień:";
+            // 
+            // numAltitude
+            // 
+            this.numAltitude.Location = new System.Drawing.Point(265, 67);
+            this.numAltitude.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.numAltitude.Name = "numAltitude";
+            this.numAltitude.Size = new System.Drawing.Size(225, 22);
+            this.numAltitude.TabIndex = 23;
+            this.numAltitude.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // kryptonLabel10
+            // 
+            this.kryptonLabel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonLabel10.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
+            this.kryptonLabel10.Location = new System.Drawing.Point(193, 43);
+            this.kryptonLabel10.Name = "kryptonLabel10";
+            this.kryptonLabel10.Size = new System.Drawing.Size(62, 20);
+            this.kryptonLabel10.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
+            this.kryptonLabel10.TabIndex = 25;
+            this.kryptonLabel10.Values.Text = "Samolot:";
+            // 
+            // kryptonLabel11
+            // 
+            this.kryptonLabel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonLabel11.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
+            this.kryptonLabel11.Location = new System.Drawing.Point(208, 69);
+            this.kryptonLabel11.Name = "kryptonLabel11";
+            this.kryptonLabel11.Size = new System.Drawing.Size(47, 20);
+            this.kryptonLabel11.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
+            this.kryptonLabel11.TabIndex = 25;
+            this.kryptonLabel11.Values.Text = "Pułap:";
+            // 
+            // cmbAirplane
+            // 
+            this.cmbAirplane.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbAirplane.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbAirplane.DropDownWidth = 175;
+            this.cmbAirplane.Location = new System.Drawing.Point(265, 40);
+            this.cmbAirplane.Name = "cmbAirplane";
+            this.cmbAirplane.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.cmbAirplane.Size = new System.Drawing.Size(225, 21);
+            this.cmbAirplane.TabIndex = 26;
+            this.cmbAirplane.Text = "Brak";
             // 
             // FrmGlobalSettings
             // 
@@ -750,6 +820,7 @@
             this.kryptonPanelEx6.ResumeLayout(false);
             this.kryptonPanelEx6.PerformLayout();
             this.kryptonPanelEx7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cmbAirplane)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -764,11 +835,10 @@
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkSunday;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel4;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkSaturday;
-        private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker dateTermSince;
+        private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker dateFrom;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkFriday;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel5;
-        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox cmbThursday;
-        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numFlightsPerDay;
+        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkThursday;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown flightsPerDay;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkTuesday;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkMonday;
@@ -798,6 +868,10 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnOperatorDelete;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnOperatorAdd;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel7;
-        private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker dateTermTo;
+        private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker dateTo;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel11;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel10;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numAltitude;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox cmbAirplane;
     }
 }

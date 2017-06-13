@@ -13,6 +13,7 @@ namespace DataLayer.Result.Repository
     {
         private readonly DLModelContainer context = new DLModelContainer();
         private IDbSet<T> Entity;
+        private IDbSet<List<T>> ListEntity;
         string errorMessage = string.Empty;
 
         public DLModelRepository()
@@ -55,6 +56,40 @@ namespace DataLayer.Result.Repository
                 }
 
                 return new ResultType<T>() { Value = null, Error = errorMessage };
+            }
+
+        }
+
+        public ColletionResult<T> InsertMany(List<T> entity)
+        {
+            try
+            {
+                if (entity == null)
+                {
+                    return new ColletionResult<T>() { Value = null };
+                }
+                this.ListEntity.Add(entity);
+                this.context.SaveChanges();
+
+                return new ColletionResult<T>() { Value = entity };
+            }
+            catch (DbUpdateException ex)
+            {
+                errorMessage = ex.InnerException?.Message;
+                return new ColletionResult<T>() { Value = null, Error = errorMessage };
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        errorMessage += string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage) + Environment.NewLine;
+                    }
+                }
+
+                return new ColletionResult<T>() { Value = null, Error = errorMessage };
             }
 
         }
@@ -178,11 +213,28 @@ namespace DataLayer.Result.Repository
                     context.Configuration.ValidateOnSaveEnabled = false;
 
                     Entity = context.Set<T>();
-
                 }
                 return Entity;
             }
         }
-       
+
+        private IDbSet<List<T>> ListEntities
+        {
+            get
+            {
+                if (Entity == null)
+                {
+
+                    context.Configuration.AutoDetectChangesEnabled = false;
+                    context.Configuration.LazyLoadingEnabled = false;
+                    context.Configuration.ProxyCreationEnabled = false;
+                    context.Configuration.ValidateOnSaveEnabled = false;
+
+                    ListEntity = context.Set<List<T>>();
+                }
+                return ListEntity;
+            }
+        }
+
     }
 }
