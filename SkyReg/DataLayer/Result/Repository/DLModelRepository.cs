@@ -13,12 +13,12 @@ namespace DataLayer.Result.Repository
     {
         private readonly DLModelContainer context = new DLModelContainer();
         private IDbSet<T> Entity;
-        private IDbSet<List<T>> ListEntity;
+
         string errorMessage = string.Empty;
 
         public DLModelRepository()
         {
-            context.Database.Initialize(true);
+           
         }
 
         public T GetById(object id)
@@ -64,11 +64,11 @@ namespace DataLayer.Result.Repository
         {
             try
             {
-                if (entity == null)
+                if (entity?.Count  == 0)
                 {
                     return new ColletionResult<T>() { Value = null };
                 }
-                this.ListEntity.Add(entity);
+                entity.ForEach(p => this.Entities.Add(p));
                 this.context.SaveChanges();
 
                 return new ColletionResult<T>() { Value = entity };
@@ -215,24 +215,6 @@ namespace DataLayer.Result.Repository
                     Entity = context.Set<T>();
                 }
                 return Entity;
-            }
-        }
-
-        private IDbSet<List<T>> ListEntities
-        {
-            get
-            {
-                if (Entity == null)
-                {
-
-                    context.Configuration.AutoDetectChangesEnabled = false;
-                    context.Configuration.LazyLoadingEnabled = false;
-                    context.Configuration.ProxyCreationEnabled = false;
-                    context.Configuration.ValidateOnSaveEnabled = false;
-
-                    ListEntity = context.Set<List<T>>();
-                }
-                return ListEntity;
             }
         }
 
