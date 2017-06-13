@@ -16,9 +16,8 @@ namespace DataLayer
     public partial class DLModelContainer : DbContext
     {
         public DLModelContainer()
-            : base()
+            : base("name=DLModelContainer")
         {
-            this.Database.Connection.ConnectionString = DatabaseConfig.ConnectionString;
             this.Configuration.LazyLoadingEnabled = false;
         }
     

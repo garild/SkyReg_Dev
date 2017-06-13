@@ -39,7 +39,7 @@ namespace SkyReg
 
         private void LoadPayData()
         {
-            using(DLModelContainer model = new DLModelContainer())
+            using (DLModelContainer model = new DLModelContainer())
             {
                 var pay = model
                     .Payment
@@ -48,7 +48,7 @@ namespace SkyReg
                     .AsNoTracking()
                     .Where(p => p.Id == _payId)
                     .FirstOrDefault();
-                if(pay != null)
+                if (pay != null)
                 {
                     cmbPayType.SelectedValue = pay.PaymentsSetting.Id;
                     cmbUser.SelectedValue = pay.User.Id;
@@ -62,7 +62,7 @@ namespace SkyReg
 
         private void LoadUsers()
         {
-            using(DLModelContainer model = new DLModelContainer())
+            using (DLModelContainer model = new DLModelContainer())
             {
                 var allUsers = model
                     .User.OrderBy(p => p.SurName)
@@ -84,7 +84,7 @@ namespace SkyReg
 
         private void LoadPayTypes()
         {
-            using(DLModelContainer model = new DLModelContainer())
+            using (DLModelContainer model = new DLModelContainer())
             {
                 var allPayments = model.PaymentsSetting.OrderBy(p => p.Name).ToList();
                 if (allPayments != null)
@@ -100,7 +100,7 @@ namespace SkyReg
         private void cmbPayType_SelectedIndexChanged(object sender, EventArgs e)
         {
             PaymentsSetting paySet = (PaymentsSetting)cmbPayType.SelectedItem;
-            if(paySet.Type == (short)PaymentsTypes.Pakiet)
+            if (paySet.Type == (short)PaymentsTypes.Pakiet)
             {
                 numValue.Value = paySet.Value.Value;
                 numValue.Enabled = false;
@@ -110,12 +110,13 @@ namespace SkyReg
                 numValue.Value = 0;
                 numValue.Enabled = true;
             }
-            
+
         }
 
         private void btnSaveCfg_Click(object sender, EventArgs e)
         {
-            if(PayValidate() == true)
+           
+            if (PayValidate() == true)
             {
                 SaveData();
             }
@@ -152,7 +153,7 @@ namespace SkyReg
                 {
                     _pay.Update(pay);
                 }
-               
+
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -161,11 +162,30 @@ namespace SkyReg
         private bool PayValidate()
         {
             bool result = true;
-            errorProvider1.Clear();
-            if(numValue.Value == 0 )
+            using (DLModelContainer model = new DLModelContainer())
             {
-                errorProvider1.SetError(numValue, "Wartość musi być większa od zera!");
-                result = false;
+
+                errorProvider1.Clear();
+                if (cmbUser.SelectedValue != null)
+                {
+                    if (numValue.Value == 0)
+                    {
+                        errorProvider1.SetError(numValue, "Wartość musi być większa od zera!");
+                        result = false;
+                    }
+
+                    string surName = default(string);
+                    string firstName = default(string);
+                    string[] surAndFirstName = cmbUser.Text.Split(' ');
+                    surName = surAndFirstName[0];
+                    if (surAndFirstName.Count() >= 2)
+                        firstName = surAndFirstName[1];
+                    if (!model.User.Any(p => p.SurName == surName && p.FirstName == firstName))
+                    {
+                        errorProvider1.SetError(cmbUser, "Taka osoba nie widnieje w bazie danych!");
+                    }
+                }
+
             }
             return result;
         }

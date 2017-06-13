@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using DataLayer;
 using DataLayer.Result.Repository;
+using SkyRegEnums;
 
 namespace SkyReg
 {

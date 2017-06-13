@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleForm));
             this.kryptonPanelEx1 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
+            this.btnRightCopyRecord = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnLeftCopyRecord = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnDown = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnUp = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -41,12 +42,8 @@
             this.btnRemove = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnDelete = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnEdit = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnMultiAdd = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnAdd = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnPrint = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnStatusChange = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.cmbStatuses = new System.Windows.Forms.ComboBox();
-            this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.grdPlaner = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.kryptonHeaderGroup1 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.kryptonPanelEx3 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
@@ -62,7 +59,6 @@
             this.txtAirplane = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnRightCopyRecord = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonPanelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3.Panel)).BeginInit();
@@ -108,6 +104,17 @@
             this.kryptonPanelEx1.Size = new System.Drawing.Size(1221, 692);
             this.kryptonPanelEx1.TabIndex = 0;
             // 
+            // btnRightCopyRecord
+            // 
+            this.btnRightCopyRecord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRightCopyRecord.Location = new System.Drawing.Point(838, 394);
+            this.btnRightCopyRecord.Name = "btnRightCopyRecord";
+            this.btnRightCopyRecord.Size = new System.Drawing.Size(41, 41);
+            this.btnRightCopyRecord.TabIndex = 6;
+            this.btnRightCopyRecord.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnRightCopyRecord.Values.Image")));
+            this.btnRightCopyRecord.Values.Text = "";
+            this.btnRightCopyRecord.Click += new System.EventHandler(this.btnRightCopyRecord_Click);
+            // 
             // btnLeftCopyRecord
             // 
             this.btnLeftCopyRecord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -115,7 +122,7 @@
             this.btnLeftCopyRecord.Name = "btnLeftCopyRecord";
             this.btnLeftCopyRecord.Size = new System.Drawing.Size(41, 41);
             this.btnLeftCopyRecord.TabIndex = 5;
-            this.btnLeftCopyRecord.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnCopyRecord.Values.Image")));
+            this.btnLeftCopyRecord.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnLeftCopyRecord.Values.Image")));
             this.btnLeftCopyRecord.Values.Text = "";
             this.btnLeftCopyRecord.Click += new System.EventHandler(this.btnCopyRecord_Click);
             // 
@@ -213,12 +220,8 @@
             this.kryptonPanelEx4.Controls.Add(this.btnRemove);
             this.kryptonPanelEx4.Controls.Add(this.btnDelete);
             this.kryptonPanelEx4.Controls.Add(this.btnEdit);
-            this.kryptonPanelEx4.Controls.Add(this.btnMultiAdd);
             this.kryptonPanelEx4.Controls.Add(this.btnAdd);
             this.kryptonPanelEx4.Controls.Add(this.btnPrint);
-            this.kryptonPanelEx4.Controls.Add(this.btnStatusChange);
-            this.kryptonPanelEx4.Controls.Add(this.cmbStatuses);
-            this.kryptonPanelEx4.Controls.Add(this.kryptonLabel3);
             this.kryptonPanelEx4.Controls.Add(this.grdPlaner);
             this.kryptonPanelEx4.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.kryptonPanelEx4.GradientToogleColors = false;
@@ -234,7 +237,7 @@
             // btnRemove
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemove.Location = new System.Drawing.Point(297, 628);
+            this.btnRemove.Location = new System.Drawing.Point(90, 628);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.btnRemove.Size = new System.Drawing.Size(126, 25);
@@ -247,7 +250,7 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.Location = new System.Drawing.Point(343, 599);
+            this.btnDelete.Location = new System.Drawing.Point(176, 600);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.btnDelete.Size = new System.Drawing.Size(80, 25);
@@ -260,7 +263,7 @@
             // btnEdit
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEdit.Location = new System.Drawing.Point(257, 599);
+            this.btnEdit.Location = new System.Drawing.Point(90, 600);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.btnEdit.Size = new System.Drawing.Size(80, 25);
@@ -270,23 +273,10 @@
             this.btnEdit.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Values.Image")));
             this.btnEdit.Values.Text = "&Edytuj";
             // 
-            // btnMultiAdd
-            // 
-            this.btnMultiAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnMultiAdd.Location = new System.Drawing.Point(176, 628);
-            this.btnMultiAdd.Name = "btnMultiAdd";
-            this.btnMultiAdd.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.btnMultiAdd.Size = new System.Drawing.Size(115, 25);
-            this.btnMultiAdd.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
-            this.btnMultiAdd.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnMultiAdd.TabIndex = 10;
-            this.btnMultiAdd.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnMultiAdd.Values.Image")));
-            this.btnMultiAdd.Values.Text = "Dodaj &seryjnie";
-            // 
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAdd.Location = new System.Drawing.Point(90, 628);
+            this.btnAdd.Location = new System.Drawing.Point(4, 600);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.btnAdd.Size = new System.Drawing.Size(80, 25);
@@ -295,6 +285,7 @@
             this.btnAdd.TabIndex = 9;
             this.btnAdd.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Values.Image")));
             this.btnAdd.Values.Text = "D&odaj";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnPrint
             // 
@@ -308,38 +299,6 @@
             this.btnPrint.TabIndex = 8;
             this.btnPrint.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Values.Image")));
             this.btnPrint.Values.Text = "&Drukuj";
-            // 
-            // btnStatusChange
-            // 
-            this.btnStatusChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnStatusChange.Location = new System.Drawing.Point(176, 600);
-            this.btnStatusChange.Name = "btnStatusChange";
-            this.btnStatusChange.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.btnStatusChange.Size = new System.Drawing.Size(75, 23);
-            this.btnStatusChange.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
-            this.btnStatusChange.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnStatusChange.TabIndex = 7;
-            this.btnStatusChange.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnStatusChange.Values.Image")));
-            this.btnStatusChange.Values.Text = "Z&mień";
-            // 
-            // cmbStatuses
-            // 
-            this.cmbStatuses.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cmbStatuses.FormattingEnabled = true;
-            this.cmbStatuses.Location = new System.Drawing.Point(58, 601);
-            this.cmbStatuses.Name = "cmbStatuses";
-            this.cmbStatuses.Size = new System.Drawing.Size(112, 21);
-            this.cmbStatuses.TabIndex = 2;
-            // 
-            // kryptonLabel3
-            // 
-            this.kryptonLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.kryptonLabel3.Location = new System.Drawing.Point(4, 602);
-            this.kryptonLabel3.Name = "kryptonLabel3";
-            this.kryptonLabel3.Size = new System.Drawing.Size(47, 20);
-            this.kryptonLabel3.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
-            this.kryptonLabel3.TabIndex = 1;
-            this.kryptonLabel3.Values.Text = "Status:";
             // 
             // grdPlaner
             // 
@@ -415,6 +374,7 @@
             this.btnNext.TabIndex = 11;
             this.btnNext.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Values.Image")));
             this.btnNext.Values.Text = "&Następny";
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPreview
             // 
@@ -428,6 +388,7 @@
             this.btnPreview.TabIndex = 10;
             this.btnPreview.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview.Values.Image")));
             this.btnPreview.Values.Text = "Poprz&edni";
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // btnRefreshFlights
             // 
@@ -439,6 +400,7 @@
             this.btnRefreshFlights.TabIndex = 9;
             this.btnRefreshFlights.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnRefreshFlights.Values.Image")));
             this.btnRefreshFlights.Values.Text = "";
+            this.btnRefreshFlights.Click += new System.EventHandler(this.btnRefreshFlights_Click);
             // 
             // datToFlights
             // 
@@ -470,6 +432,7 @@
             this.grdFlights.Name = "grdFlights";
             this.grdFlights.Size = new System.Drawing.Size(264, 530);
             this.grdFlights.TabIndex = 4;
+            this.grdFlights.SelectionChanged += new System.EventHandler(this.grdFlights_SelectionChanged);
             // 
             // kryptonLabel2
             // 
@@ -497,7 +460,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAltitude.Location = new System.Drawing.Point(83, 33);
             this.txtAltitude.Name = "txtAltitude";
-            this.txtAltitude.Size = new System.Drawing.Size(175, 20);
+            this.txtAltitude.ReadOnly = true;
+            this.txtAltitude.Size = new System.Drawing.Size(175, 23);
             this.txtAltitude.TabIndex = 1;
             // 
             // txtAirplane
@@ -506,7 +470,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAirplane.Location = new System.Drawing.Point(83, 4);
             this.txtAirplane.Name = "txtAirplane";
-            this.txtAirplane.Size = new System.Drawing.Size(175, 20);
+            this.txtAirplane.ReadOnly = true;
+            this.txtAirplane.Size = new System.Drawing.Size(175, 23);
             this.txtAirplane.TabIndex = 0;
             // 
             // kryptonPanelEx2
@@ -538,17 +503,6 @@
             this.btnClose.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Values.Image")));
             this.btnClose.Values.Text = "Zamknij";
             // 
-            // btnRightCopyRecord
-            // 
-            this.btnRightCopyRecord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRightCopyRecord.Location = new System.Drawing.Point(838, 394);
-            this.btnRightCopyRecord.Name = "btnRightCopyRecord";
-            this.btnRightCopyRecord.Size = new System.Drawing.Size(41, 41);
-            this.btnRightCopyRecord.TabIndex = 6;
-            this.btnRightCopyRecord.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton1.Values.Image")));
-            this.btnRightCopyRecord.Values.Text = "";
-            this.btnRightCopyRecord.Click += new System.EventHandler(this.btnRightCopyRecord_Click);
-            // 
             // ScheduleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -559,6 +513,7 @@
             this.Name = "ScheduleForm";
             this.Text = "ScheduleForm";
             this.Load += new System.EventHandler(this.ScheduleForm_Load);
+            this.Shown += new System.EventHandler(this.ScheduleForm_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3.Panel)).EndInit();
             this.kryptonHeaderGroup3.Panel.ResumeLayout(false);
@@ -571,7 +526,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2)).EndInit();
             this.kryptonHeaderGroup2.ResumeLayout(false);
             this.kryptonPanelEx4.ResumeLayout(false);
-            this.kryptonPanelEx4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPlaner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).EndInit();
             this.kryptonHeaderGroup1.Panel.ResumeLayout(false);
@@ -611,12 +565,8 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnRemove;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnDelete;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnEdit;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnMultiAdd;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnAdd;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnPrint;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnStatusChange;
-        private System.Windows.Forms.ComboBox cmbStatuses;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnClose;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnNext;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnPreview;

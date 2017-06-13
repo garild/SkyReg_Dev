@@ -38,7 +38,6 @@ namespace SkyReg
                             frm.Close();
                             _frmMain = FormsOpened<FrmMain>.IsOpened(_frmMain);
                             Application.Run(_frmMain);
-
                         }
                         else
                             Application.Exit();

@@ -27,8 +27,8 @@ namespace DataLayer
         public string TeamName { get; set; }
     
         public virtual Flight Flight { get; set; }
-        public virtual User User { get; set; }
         public virtual Parachute Parachute { get; set; }
         public virtual Payment Payments { get; set; }
+        public virtual User User { get; set; }
     }
 }
