@@ -21,6 +21,7 @@ using System.Xml;
 using SkyReg.Forms.DatabaseConfiguration;
 using DataLayer.Result.Repository;
 using SkyReg.Common.Extensions;
+using SkyRegEnums;
 
 namespace SkyReg.MainForm
 {
@@ -127,7 +128,9 @@ namespace SkyReg.MainForm
                 {
                     using (var _loginRepo = new DLModelRepository<User>())
                     {
-                        var user = _loginRepo.GetAll().Value?.Where(p => p.Login.ToLower() == login && p.Password == password.EncryptString()).FirstOrDefault();
+                        var user = _loginRepo.GetAll("Operator").Value?.Where(p => p.Login.ToLower() == login 
+                        && p.Password == password.EncryptString() 
+                        && p.Operator.Any(o=>o.Type == (int)OperatorTypes.Operator)).FirstOrDefault();
                         if (user != null)
                         {
                             SkyRegUser.UserLogin = user.Login;

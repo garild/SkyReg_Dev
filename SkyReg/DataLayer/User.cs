@@ -20,8 +20,8 @@ namespace DataLayer
             this.UsersType = new HashSet<UsersType>();
             this.Operator = new HashSet<Operator>();
             this.Parachute = new HashSet<Parachute>();
-            this.FlightsElem = new HashSet<FlightsElem>();
             this.Order = new HashSet<Order>();
+            this.FlightsElem = new HashSet<FlightsElem>();
         }
     
         public int Id { get; set; }
@@ -39,6 +39,7 @@ namespace DataLayer
         public string Email { get; set; }
         public string FaceBook { get; set; }
         public Nullable<int> IdNr { get; set; }
+        public Nullable<int> IdUser { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersType> UsersType { get; set; }
@@ -47,10 +48,10 @@ namespace DataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Parachute> Parachute { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FlightsElem> FlightsElem { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }
         public virtual Group Group { get; set; }
         public virtual Payment Payments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FlightsElem> FlightsElem { get; set; }
     }
 }

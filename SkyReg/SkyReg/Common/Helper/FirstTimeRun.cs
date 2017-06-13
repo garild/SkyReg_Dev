@@ -4,6 +4,7 @@ using DataLayer;
 using DataLayer.Result.Repository;
 using Msg = AC.ExtendedRenderer.Toolkit.KryptonMessageBox;
 using System.Windows.Forms;
+using SkyRegEnums;
 
 namespace SkyReg
 {

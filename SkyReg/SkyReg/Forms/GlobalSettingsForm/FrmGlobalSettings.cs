@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using DataLayer;
 using SkyReg.Common.Extensions;
+using SkyRegEnums;
 
 namespace SkyReg
 {
@@ -81,8 +82,6 @@ namespace SkyReg
 
             grdOperators.Columns["Type"].Width = 100;
             grdOperators.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            
             
         }
 

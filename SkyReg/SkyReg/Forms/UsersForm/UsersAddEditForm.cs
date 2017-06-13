@@ -193,7 +193,7 @@ namespace SkyReg
                         errorProvider1.SetError(txtSurName, "Użytkownik o tym imieniu i nazwisku już istnieje!");
                         return false;
                     }
-                    if (userList.Value.Any(p => p.Login == txtLogin.Text && p.Id != IdUser))
+                    if (userList.Value.Any(p => p.Login == txtLogin.Text && p.Id != IdUser && p.Login != string.Empty))
                     {
                         errorProvider1.SetError(txtLogin, "Ten login jest już w użyciu!");
                         return false;

@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/11/2017 22:19:31
--- Generated from EDMX file: E:\GitRepositry\SkyReg_Dev\SkyReg\DataLayer\DLModel.edmx
+-- Date Created: 06/12/2017 20:33:36
+-- Generated from EDMX file: F:\Projekty 2017\Repozytorium2\SkyReg_Dev\SkyReg\DataLayer\DLModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -35,9 +35,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_FlightsElemFlight]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[FlightsElem] DROP CONSTRAINT [FK_FlightsElemFlight];
 GO
-IF OBJECT_ID(N'[dbo].[FK_FlightsElemUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FlightsElem] DROP CONSTRAINT [FK_FlightsElemUser];
-GO
 IF OBJECT_ID(N'[dbo].[FK_FlightsElemParachute]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Parachute] DROP CONSTRAINT [FK_FlightsElemParachute];
 GO
@@ -55,6 +52,9 @@ IF OBJECT_ID(N'[dbo].[FK_UserPayments]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_FlightsElemPayments]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[FlightsElem] DROP CONSTRAINT [FK_FlightsElemPayments];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FlightsElemUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_FlightsElemUser];
 GO
 
 -- --------------------------------------------------
@@ -161,6 +161,7 @@ CREATE TABLE [dbo].[User] (
     [Email] nvarchar(max)  NULL,
     [FaceBook] nvarchar(max)  NULL,
     [IdNr] int  NULL,
+    [IdUser] int  NULL,
     [Group_Id] int  NULL
 );
 GO
@@ -201,8 +202,8 @@ CREATE TABLE [dbo].[FlightsElem] (
     [Lp] int  NULL,
     [TeamName] nvarchar(max)  NULL,
     [Flight_Id] int  NOT NULL,
-    [User_Id] int  NOT NULL,
-    [Payments_Id] int  NOT NULL
+    [Payments_Id] int  NOT NULL,
+    [User_Id] int  NULL
 );
 GO
 
@@ -417,21 +418,6 @@ ON [dbo].[FlightsElem]
     ([Flight_Id]);
 GO
 
--- Creating foreign key on [User_Id] in table 'FlightsElem'
-ALTER TABLE [dbo].[FlightsElem]
-ADD CONSTRAINT [FK_FlightsElemUser]
-    FOREIGN KEY ([User_Id])
-    REFERENCES [dbo].[User]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_FlightsElemUser'
-CREATE INDEX [IX_FK_FlightsElemUser]
-ON [dbo].[FlightsElem]
-    ([User_Id]);
-GO
-
 -- Creating foreign key on [FlightsElem_Id] in table 'Parachute'
 ALTER TABLE [dbo].[Parachute]
 ADD CONSTRAINT [FK_FlightsElemParachute]
@@ -520,6 +506,21 @@ GO
 CREATE INDEX [IX_FK_FlightsElemPayments]
 ON [dbo].[FlightsElem]
     ([Payments_Id]);
+GO
+
+-- Creating foreign key on [User_Id] in table 'FlightsElem'
+ALTER TABLE [dbo].[FlightsElem]
+ADD CONSTRAINT [FK_FlightsElemUser]
+    FOREIGN KEY ([User_Id])
+    REFERENCES [dbo].[User]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_FlightsElemUser'
+CREATE INDEX [IX_FK_FlightsElemUser]
+ON [dbo].[FlightsElem]
+    ([User_Id]);
 GO
 
 -- --------------------------------------------------

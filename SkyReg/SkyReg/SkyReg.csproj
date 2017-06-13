@@ -116,6 +116,12 @@
     <Compile Include="Forms\Examples.Designer.cs">
       <DependentUpon>Examples.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Examples2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Examples2.Designer.cs">
+      <DependentUpon>Examples2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FlightsForm\FlightsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +191,12 @@
     <Compile Include="Forms\PaymentsForm\PaymentsForm.Designer.cs">
       <DependentUpon>PaymentsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ScheduleForm\ScheduleAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ScheduleForm\ScheduleAddEditForm.Designer.cs">
+      <DependentUpon>ScheduleAddEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ScheduleForm\ScheduleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +248,9 @@
     <EmbeddedResource Include="Forms\Examples.resx">
       <DependentUpon>Examples.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Examples2.resx">
+      <DependentUpon>Examples2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FlightsForm\FlightsForm.resx">
       <DependentUpon>FlightsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -269,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PaymentsForm\PaymentsForm.resx">
       <DependentUpon>PaymentsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ScheduleForm\ScheduleAddEditForm.resx">
+      <DependentUpon>ScheduleAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScheduleForm\ScheduleForm.resx">
       <DependentUpon>ScheduleForm.cs</DependentUpon>

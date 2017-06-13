@@ -108,6 +108,11 @@
             0,
             0,
             0});
+            this.numValue.Minimum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            -2147483648});
             this.numValue.Name = "numValue";
             this.numValue.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.numValue.Size = new System.Drawing.Size(120, 22);
@@ -119,7 +124,7 @@
             this.txtName.Location = new System.Drawing.Point(176, 20);
             this.txtName.Name = "txtName";
             this.txtName.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.txtName.Size = new System.Drawing.Size(291, 20);
+            this.txtName.Size = new System.Drawing.Size(291, 23);
             this.txtName.TabIndex = 1;
             // 
             // kryptonLabel1
