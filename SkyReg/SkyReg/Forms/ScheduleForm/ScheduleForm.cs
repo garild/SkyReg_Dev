@@ -156,6 +156,7 @@ namespace SkyReg
             ScheduleAddEditForm = FormsOpened<ScheduleAddEditForm>.IsOpened(new ScheduleAddEditForm());
             ScheduleAddEditForm.FormState = FormState.Add;
             ScheduleAddEditForm.IdScheduleElem = default(int);
+            ScheduleAddEditForm.grdFlight = grdFlights;
             if (ScheduleAddEditForm.ShowDialog() == DialogResult.OK)
             {
                 RefreshFlightsList();

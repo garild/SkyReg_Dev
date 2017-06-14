@@ -490,6 +490,16 @@
         k2/EiPn/A/kvL6YCFkEgHYEAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="kryptonButton1.Values.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAABjUExURf///6XW/8bn/3N7pYSt3nOEtXN7rd7v/+/3/87n/73G/+f3//f//5zO/9bv/87W/4Sl
+        1oSczoSUxsbW/3t7rXuEtXuErXuMtbXO/4yt3vf394y1587e/4SUvYyl3oy175S957XKu2cAAACMSURB
+        VChTRYzbEoMgDEQTLAoFQcC7be3/f2UTsHgeMrNnNgtwPBgJlQNg3638XhFgs3SUlLUzKMpKn7cwxmx5
+        5xoKHeKH36ySA4vonOM3q0wZemvEYDh3r2dLYhFChK6QxSQQo8NMFrP3PupCFmPTNAu1iD4LZqIdpoqZ
+        G31/N8bkU0rruv4FzRRa+AFRwgZPm+PRoQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="btnRemove.Values.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
