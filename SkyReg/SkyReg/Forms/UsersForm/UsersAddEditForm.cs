@@ -204,5 +204,10 @@ namespace SkyReg
 
             return true;
         }
+
+        private void UsersAddEditForm_Shown(object sender, EventArgs e)
+        {
+            txtFirstName.Focus();
+        }
     }
 }

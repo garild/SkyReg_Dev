@@ -25,11 +25,14 @@ namespace SkyReg.Common.Extensions
                 newForm.WindowState = System.Windows.Forms.FormWindowState.Normal;
                 newForm.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
                 newForm.TopLevel = true;
-                newForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+                newForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
                 newForm.ShowIcon = false; 
                 newForm.BringToFront();
+                return newForm as TFrom;
             }
-            return form;
+            
+            return form as TFrom; 
         }
+
     }
 }

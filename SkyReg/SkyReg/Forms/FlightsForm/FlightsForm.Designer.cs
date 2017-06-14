@@ -72,27 +72,26 @@
             // 
             // kryptonPanelEx2
             // 
-            this.kryptonPanelEx2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonPanelEx2.Controls.Add(this.btnClose);
             this.kryptonPanelEx2.Controls.Add(this.btnDeleteFlight);
             this.kryptonPanelEx2.Controls.Add(this.btnAddFlight);
             this.kryptonPanelEx2.Controls.Add(this.btnEditFlight);
+            this.kryptonPanelEx2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.kryptonPanelEx2.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.kryptonPanelEx2.GradientToogleColors = false;
             this.kryptonPanelEx2.GradientUseBlend = false;
             this.kryptonPanelEx2.Image = null;
             this.kryptonPanelEx2.ImageLocation = new System.Drawing.Point(4, 4);
-            this.kryptonPanelEx2.Location = new System.Drawing.Point(-1, 537);
+            this.kryptonPanelEx2.Location = new System.Drawing.Point(0, 536);
             this.kryptonPanelEx2.Name = "kryptonPanelEx2";
             this.kryptonPanelEx2.PersistentColors = false;
-            this.kryptonPanelEx2.Size = new System.Drawing.Size(1023, 51);
+            this.kryptonPanelEx2.Size = new System.Drawing.Size(1021, 51);
             this.kryptonPanelEx2.TabIndex = 0;
             // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(925, 14);
+            this.btnClose.Location = new System.Drawing.Point(923, 14);
             this.btnClose.Name = "btnClose";
             this.btnClose.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.btnClose.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -171,6 +170,7 @@
             this.kryptonLabel2.Location = new System.Drawing.Point(762, 252);
             this.kryptonLabel2.Name = "kryptonLabel2";
             this.kryptonLabel2.Size = new System.Drawing.Size(240, 148);
+            this.kryptonLabel2.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel2.TabIndex = 6;
             this.kryptonLabel2.Values.Text = resources.GetString("kryptonLabel2.Values.Text");
             // 
@@ -179,6 +179,7 @@
             this.btnDatRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDatRefresh.Location = new System.Drawing.Point(947, 512);
             this.btnDatRefresh.Name = "btnDatRefresh";
+            this.btnDatRefresh.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.btnDatRefresh.Size = new System.Drawing.Size(64, 22);
             this.btnDatRefresh.TabIndex = 5;
             this.btnDatRefresh.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnDatRefresh.Values.Image")));
@@ -191,6 +192,7 @@
             this.datTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.datTo.Location = new System.Drawing.Point(854, 512);
             this.datTo.Name = "datTo";
+            this.datTo.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.datTo.Size = new System.Drawing.Size(86, 21);
             this.datTo.TabIndex = 4;
             // 
@@ -200,6 +202,7 @@
             this.datSince.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.datSince.Location = new System.Drawing.Point(762, 512);
             this.datSince.Name = "datSince";
+            this.datSince.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.datSince.Size = new System.Drawing.Size(86, 21);
             this.datSince.TabIndex = 3;
             // 
@@ -209,6 +212,7 @@
             this.kryptonLabel1.Location = new System.Drawing.Point(761, 485);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(70, 20);
+            this.kryptonLabel1.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel1.TabIndex = 2;
             this.kryptonLabel1.Values.Text = "Zakres dat:";
             // 

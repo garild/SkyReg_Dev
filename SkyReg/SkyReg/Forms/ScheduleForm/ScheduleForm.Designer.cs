@@ -39,6 +39,7 @@
             this.grdOrders = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.kryptonHeaderGroup2 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.kryptonPanelEx4 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
+            this.btnCopy = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnRemove = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnDelete = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnEdit = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -59,7 +60,6 @@
             this.txtAirplane = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnCopy = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonPanelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3.Panel)).BeginInit();
@@ -236,6 +236,19 @@
             this.kryptonPanelEx4.Size = new System.Drawing.Size(557, 660);
             this.kryptonPanelEx4.TabIndex = 1;
             // 
+            // btnCopy
+            // 
+            this.btnCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCopy.Location = new System.Drawing.Point(176, 628);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnCopy.Size = new System.Drawing.Size(166, 25);
+            this.btnCopy.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
+            this.btnCopy.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnCopy.TabIndex = 15;
+            this.btnCopy.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnCopy.Values.Image")));
+            this.btnCopy.Values.Text = "&Kopiuj zaznaczonych";
+            // 
             // btnRemove
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -274,6 +287,7 @@
             this.btnEdit.TabIndex = 11;
             this.btnEdit.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Values.Image")));
             this.btnEdit.Values.Text = "&Edytuj";
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd
             // 
@@ -463,7 +477,7 @@
             this.txtAltitude.Location = new System.Drawing.Point(83, 33);
             this.txtAltitude.Name = "txtAltitude";
             this.txtAltitude.ReadOnly = true;
-            this.txtAltitude.Size = new System.Drawing.Size(175, 23);
+            this.txtAltitude.Size = new System.Drawing.Size(175, 20);
             this.txtAltitude.TabIndex = 1;
             // 
             // txtAirplane
@@ -473,7 +487,7 @@
             this.txtAirplane.Location = new System.Drawing.Point(83, 4);
             this.txtAirplane.Name = "txtAirplane";
             this.txtAirplane.ReadOnly = true;
-            this.txtAirplane.Size = new System.Drawing.Size(175, 23);
+            this.txtAirplane.Size = new System.Drawing.Size(175, 20);
             this.txtAirplane.TabIndex = 0;
             // 
             // kryptonPanelEx2
@@ -504,19 +518,7 @@
             this.btnClose.TabIndex = 6;
             this.btnClose.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Values.Image")));
             this.btnClose.Values.Text = "Zamknij";
-            // 
-            // btnCopy
-            // 
-            this.btnCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCopy.Location = new System.Drawing.Point(176, 628);
-            this.btnCopy.Name = "btnCopy";
-            this.btnCopy.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.btnCopy.Size = new System.Drawing.Size(166, 25);
-            this.btnCopy.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
-            this.btnCopy.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnCopy.TabIndex = 15;
-            this.btnCopy.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton1.Values.Image")));
-            this.btnCopy.Values.Text = "&Kopiuj zaznaczonych";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // ScheduleForm
             // 

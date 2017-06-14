@@ -115,7 +115,10 @@ namespace SkyReg
 
         }
 
-      
+        private void FrmOperatorAdd_Shown(object sender, EventArgs e)
+        {
+            cmbName.Focus();
+        }
     }
 }
     

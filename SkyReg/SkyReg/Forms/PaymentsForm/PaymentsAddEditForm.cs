@@ -20,11 +20,9 @@ namespace SkyReg
         public FormState _formState { get; set; }
         public int _payId { get; set; }
 
-        public PaymentsAddEditForm(FormState FormState, int PayId)
+        public PaymentsAddEditForm()
         {
             InitializeComponent();
-            this._formState = FormState;
-            this._payId = PayId;
         }
 
         private void PaymentsAddEditForm_Load(object sender, EventArgs e)
@@ -32,9 +30,16 @@ namespace SkyReg
             LoadPayTypes();
             LoadUsers();
             if (_formState == FormState.Edit)
+            {
+                btnSave.Text = "Zapisz";
                 LoadPayData();
+            }
             else
+            {
+                btnSave.Text = "Dodaj";
                 datData.Value = DateTime.Now.Date;
+            }
+               
         }
 
         private void LoadPayData()
@@ -113,7 +118,7 @@ namespace SkyReg
 
         }
 
-        private void btnSaveCfg_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
            
             if (PayValidate() == true)
@@ -188,6 +193,11 @@ namespace SkyReg
 
             }
             return result;
+        }
+
+        private void PaymentsAddEditForm_Shown(object sender, EventArgs e)
+        {
+            datData.Focus();
         }
     }
 }

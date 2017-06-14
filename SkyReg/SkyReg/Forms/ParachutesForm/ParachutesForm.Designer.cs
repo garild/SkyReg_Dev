@@ -51,39 +51,45 @@
             // 
             // kryptonPanelEx2
             // 
-            this.kryptonPanelEx2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonPanelEx2.Controls.Add(this.btnClose);
             this.kryptonPanelEx2.Controls.Add(this.btnDelete);
             this.kryptonPanelEx2.Controls.Add(this.btnEdit);
             this.kryptonPanelEx2.Controls.Add(this.btnAdd);
+            this.kryptonPanelEx2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.kryptonPanelEx2.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.kryptonPanelEx2.GradientToogleColors = false;
             this.kryptonPanelEx2.GradientUseBlend = false;
             this.kryptonPanelEx2.Image = null;
             this.kryptonPanelEx2.ImageLocation = new System.Drawing.Point(4, 4);
-            this.kryptonPanelEx2.Location = new System.Drawing.Point(0, 522);
+            this.kryptonPanelEx2.Location = new System.Drawing.Point(0, 520);
             this.kryptonPanelEx2.Name = "kryptonPanelEx2";
             this.kryptonPanelEx2.PersistentColors = false;
-            this.kryptonPanelEx2.Size = new System.Drawing.Size(1016, 39);
+            this.kryptonPanelEx2.Size = new System.Drawing.Size(1015, 39);
             this.kryptonPanelEx2.TabIndex = 1;
             // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(913, 7);
+            this.btnClose.Location = new System.Drawing.Point(912, 7);
             this.btnClose.Name = "btnClose";
+            this.btnClose.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnClose.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnClose.Size = new System.Drawing.Size(90, 25);
             this.btnClose.TabIndex = 3;
+            this.btnClose.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Values.Image")));
             this.btnClose.Values.Text = "&Zamknij";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDelete.Location = new System.Drawing.Point(204, 7);
             this.btnDelete.Name = "btnDelete";
+            this.btnDelete.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnDelete.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnDelete.Size = new System.Drawing.Size(90, 25);
             this.btnDelete.TabIndex = 2;
+            this.btnDelete.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Values.Image")));
             this.btnDelete.Values.Text = "&Usuń";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -92,8 +98,11 @@
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEdit.Location = new System.Drawing.Point(108, 7);
             this.btnEdit.Name = "btnEdit";
+            this.btnEdit.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnEdit.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnEdit.Size = new System.Drawing.Size(90, 25);
             this.btnEdit.TabIndex = 1;
+            this.btnEdit.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Values.Image")));
             this.btnEdit.Values.Text = "&Edytuj";
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
@@ -102,8 +111,11 @@
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAdd.Location = new System.Drawing.Point(12, 7);
             this.btnAdd.Name = "btnAdd";
+            this.btnAdd.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnAdd.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnAdd.Size = new System.Drawing.Size(90, 25);
             this.btnAdd.TabIndex = 0;
+            this.btnAdd.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Values.Image")));
             this.btnAdd.Values.Text = "&Dodaj";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -143,9 +155,13 @@
             // kryptonLabel1
             // 
             this.kryptonLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonLabel1.Location = new System.Drawing.Point(752, 202);
+            this.kryptonLabel1.Location = new System.Drawing.Point(767, 187);
             this.kryptonLabel1.Name = "kryptonLabel1";
+            this.kryptonLabel1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.kryptonLabel1.Size = new System.Drawing.Size(213, 116);
+            this.kryptonLabel1.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
+            this.kryptonLabel1.StateNormal.ShortText.Color2 = System.Drawing.Color.White;
+            this.kryptonLabel1.StateNormal.ShortText.Prefix = ComponentFactory.Krypton.Toolkit.PaletteTextHotkeyPrefix.Hide;
             this.kryptonLabel1.TabIndex = 2;
             this.kryptonLabel1.Values.Text = resources.GetString("kryptonLabel1.Values.Text");
             // 

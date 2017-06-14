@@ -18,12 +18,14 @@ namespace SkyReg
     {
         public EventHandler EventHandlerAddedEditedFlight;
 
-        public FormState FormState { get; set; }
-        public int FlightId { get; set; }
+        public FormState _formState { get; set; }
+        public int _flightId { get; set; }
 
-        public FlyAddEditForm()
+        public FlyAddEditForm() 
         {
             InitializeComponent();
+            txtFirtPartOfNr.Clear();
+            txtLastPartOfNr.Clear();
         }
 
         private void FlyAddEditForm_Load(object sender, EventArgs e)
@@ -31,7 +33,7 @@ namespace SkyReg
             txtFirtPartOfNr.ReadOnly = true;
             LoadAllAirplanes();
 
-            if(FormState == FormState.Add)
+            if(_formState == FormState.Add)
             {
                 SetDefaultDataFields();
             }
@@ -45,7 +47,7 @@ namespace SkyReg
         {
             using(DLModelContainer model = new DLModelContainer())
             {
-                var flight = model.Flight.Include("Airplane").Where(p => p.Id == FlightId).FirstOrDefault();
+                var flight = model.Flight.Include("Airplane").Where(p => p.Id == _flightId).FirstOrDefault();
                 if(flight != null)
                 {
                     datDate.Value = flight.FlyDateTime;
@@ -107,6 +109,7 @@ namespace SkyReg
             if (FlightValidate() == true)
             {
                 SaveFlight();
+                this.DialogResult = DialogResult.OK;
             }
         }
 
@@ -115,9 +118,9 @@ namespace SkyReg
             Flight fly = new Flight();
             using(DLModelContainer model = new DLModelContainer())
             {
-                if(FormState != FormState.Add)
+                if(_formState != FormState.Add)
                 {
-                    fly = model.Flight.Include("Airplane").Where(p => p.Id == FlightId).FirstOrDefault();
+                    fly = model.Flight.Include("Airplane").Where(p => p.Id == _flightId).FirstOrDefault();
                 }
                 if (fly != null)
                 {
@@ -129,7 +132,7 @@ namespace SkyReg
                         fly.FlyDateTime = datDate.Value.Date;
                         fly.FlyNr = txtLastPartOfNr.Text;
                         fly.FlyStatus = (int)FlightsStatus.Opened;
-                        if(FormState == FormState.Add)
+                        if(_formState == FormState.Add)
                         {
                             model.Flight.Add(fly);
                         }
@@ -152,7 +155,7 @@ namespace SkyReg
                     errorProvider1.SetError(txtLastPartOfNr, "Pole nie może być puste!");
                     result = false;
                 }
-                bool isFlight = model.Flight.Any(p => p.FlyNr == txtLastPartOfNr.Text && p.FlyDateTime == datDate.Value.Date && p.Id != FlightId);
+                bool isFlight = model.Flight.Any(p => p.FlyNr == txtLastPartOfNr.Text && p.FlyDateTime == datDate.Value.Date && p.Id != _flightId);
                 if(isFlight == true)
                 {
                     errorProvider1.SetError(txtLastPartOfNr, "Wylot o tym numerze jest już zaplanowany na wskazany dzień!");
@@ -165,6 +168,11 @@ namespace SkyReg
                 }
             }
             return result;
+        }
+
+        private void FlyAddEditForm_Shown(object sender, EventArgs e)
+        {
+            datDate.Focus();
         }
     }
 }

@@ -38,7 +38,7 @@ namespace SkyReg
 
         private void UsersTypesForm_Shown(object sender, EventArgs e)
         {
-            
+
         }
 
         private void SetUsrTypesListView()
@@ -70,12 +70,12 @@ namespace SkyReg
             using (var model = new DLModelRepository<UsersType>())
             {
                 var usrTypes = model.GetAll().Value?
-                    .Select(p => new 
+                    .Select(p => new
                     {
                         Id = p.Id,
                         Name = p.Name,
                         Value = p.Value,
-                        Camera = p.IsCam ? "Tak": "Nie"
+                        Camera = p.IsCam ? "Tak" : "Nie"
                     })
                     .OrderBy(p => p.Name)
                     .ToList();
@@ -86,15 +86,12 @@ namespace SkyReg
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            userTypeAddEdit = FormsOpened<UserTypeAddEdit>.IsShowDialog(new UserTypeAddEdit(FormState.Add, null));
+            userTypeAddEdit = FormsOpened<UserTypeAddEdit>.IsShowDialog(userTypeAddEdit);
+            userTypeAddEdit._formState = FormState.Add;
+            userTypeAddEdit._idUserType = 0;
             userTypeAddEdit.FormClosed += UserTypeAddEdit_FormClosed;
             userTypeAddEdit.StartPosition = FormStartPosition.CenterParent;
-            userTypeAddEdit.ShowDialog();
-        }
-
-        private void UserTypeAddEdit_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if(userTypeAddEdit.DialogResult == DialogResult.OK)
+            if (userTypeAddEdit.ShowDialog() == DialogResult.OK)
             {
                 RefreshUsersTypesList();
                 SetUsrTypesListView();
@@ -102,14 +99,26 @@ namespace SkyReg
             }
         }
 
+        private void UserTypeAddEdit_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            userTypeAddEdit = null;
+        }
+
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if (grdUsersTypes.SelectedRows.Count > 0)
             {
                 int usrTypeId = (int)grdUsersTypes.SelectedRows[0].Cells["Id"].Value;
-                userTypeAddEdit = new UserTypeAddEdit(FormState.Edit, usrTypeId);
+                userTypeAddEdit = FormsOpened<UserTypeAddEdit>.IsShowDialog(userTypeAddEdit);
+                userTypeAddEdit._formState = FormState.Edit;
+                userTypeAddEdit._idUserType = usrTypeId;
                 userTypeAddEdit.FormClosed += UserTypeAddEdit_FormClosed;
-                userTypeAddEdit.Show();
+                if (userTypeAddEdit.ShowDialog() == DialogResult.OK)
+                {
+                    RefreshUsersTypesList();
+                    SetUsrTypesListView();
+                    grdUsersTypes.Refresh();
+                }
             }
         }
 

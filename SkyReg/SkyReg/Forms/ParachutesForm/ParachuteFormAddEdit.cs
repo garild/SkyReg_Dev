@@ -14,16 +14,15 @@ namespace SkyReg
 {
     public partial class ParachuteFormAddEdit : KryptonForm
     {
-        FormState? _formState;
-        int? _parachuteId = -1;
+        public FormState? _formState;
+        public int? _parachuteId = -1;
 
         public EventHandler ParachuteAddedEdited;//TODO Kod Janusza
 
-        public ParachuteFormAddEdit(FormState? formState=null, int? parachuteId = null)
+        public ParachuteFormAddEdit()
         {
             InitializeComponent();
-            _formState = formState;
-            _parachuteId = parachuteId;
+           
         }
 
         private void chkPrivate_CheckedChanged(object sender, EventArgs e)
@@ -218,6 +217,11 @@ namespace SkyReg
             }
 
             return result;
+        }
+
+        private void ParachuteFormAddEdit_Shown(object sender, EventArgs e)
+        {
+            txtRegNr.Focus();
         }
     }
 }

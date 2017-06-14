@@ -120,8 +120,8 @@ namespace SkyReg
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            UsersAddEditForm = FormsOpened<UsersAddEditForm>.IsOpened(UsersAddEditForm);
-            UsersAddEditForm.EventHandlerAddEditUser += RefreshListAfterAddEdit;
+            UsersAddEditForm = FormsOpened<UsersAddEditForm>.IsShowDialog(UsersAddEditForm);
+            UsersAddEditForm.FormClosed += UsersAddEditForm_FormClosed;
             UsersAddEditForm.TopMost = true;
             UsersAddEditForm.FormState = FormState.Add;
             UsersAddEditForm.IdUser = default(int);
@@ -129,12 +129,16 @@ namespace SkyReg
             UsersAddEditForm.ShowDialog();
         }
 
+        private void UsersAddEditForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            RefreshUsersList();
+            UsersAddEditForm = null;
+        }
+
         private void RefreshListAfterAddEdit(object sender, EventArgs e)
         {
             RefreshUsersList();
         }
-
-        
 
         private void btnEditUser_Click(object sender, EventArgs e)
         {
@@ -142,9 +146,8 @@ namespace SkyReg
             {
                 int idUsr = (int)grdUsers.SelectedRows[0].Cells["Id"].Value;
 
-                UsersAddEditForm = FormsOpened<UsersAddEditForm>.IsOpened(UsersAddEditForm);
-                UsersAddEditForm.EventHandlerAddEditUser += RefreshListAfterAddEdit;
-                UsersAddEditForm.TopMost = true;
+                UsersAddEditForm = FormsOpened<UsersAddEditForm>.IsShowDialog(UsersAddEditForm);
+                 UsersAddEditForm.FormClosed += UsersAddEditForm_FormClosed;
                 UsersAddEditForm.FormState = FormState.Edit;
                 UsersAddEditForm.IdUser = idUsr;
                 UsersAddEditForm.UserGroup = (int)cmbGroup.SelectedValue;

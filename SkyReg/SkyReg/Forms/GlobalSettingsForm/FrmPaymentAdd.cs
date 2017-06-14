@@ -147,5 +147,10 @@ namespace SkyReg
         }
 
         #endregion
+
+        private void FrmPaymentAdd_Shown(object sender, EventArgs e)
+        {
+            txtBoxName.Focus();
+        }
     }
 }

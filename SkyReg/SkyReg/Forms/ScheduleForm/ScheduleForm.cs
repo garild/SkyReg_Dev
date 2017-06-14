@@ -15,7 +15,7 @@ namespace SkyReg
 {
     public partial class ScheduleForm : KryptonForm
     {
-        private ScheduleAddEditForm ScheduleAddEditForm = null;
+        private ScheduleAddEditForm _scheduleAddEditForm = null;
 
 
         public ScheduleForm()
@@ -153,11 +153,11 @@ namespace SkyReg
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            ScheduleAddEditForm = FormsOpened<ScheduleAddEditForm>.IsOpened(new ScheduleAddEditForm());
-            ScheduleAddEditForm.FormState = FormState.Add;
-            ScheduleAddEditForm.IdScheduleElem = default(int);
-            ScheduleAddEditForm.grdFlight = grdFlights;
-            if (ScheduleAddEditForm.ShowDialog() == DialogResult.OK)
+            _scheduleAddEditForm = FormsOpened<ScheduleAddEditForm>.IsShowDialog(_scheduleAddEditForm);
+            _scheduleAddEditForm.FormState = FormState.Add;
+            _scheduleAddEditForm.grdFlight = grdFlights;
+            _scheduleAddEditForm.IdScheduleElem = 0;
+            if (_scheduleAddEditForm.ShowDialog() == DialogResult.OK)
             {
                 RefreshFlightsList();
             }
@@ -254,6 +254,16 @@ namespace SkyReg
 
 
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -81,6 +81,7 @@
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(50, 16);
             this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.kryptonLabel1.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel1.TabIndex = 7;
             this.kryptonLabel1.Values.Text = "Rodzaj:";
             // 
@@ -98,11 +99,14 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(1055, 3);
+            this.btnClose.Location = new System.Drawing.Point(1043, 3);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(5);
             this.btnClose.Name = "btnClose";
+            this.btnClose.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnClose.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnClose.Size = new System.Drawing.Size(90, 25);
-            this.btnClose.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnClose.TabIndex = 5;
+            this.btnClose.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Values.Image")));
             this.btnClose.Values.Text = "&Zamknij";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -110,10 +114,13 @@
             // 
             this.btnDeleteUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDeleteUser.Location = new System.Drawing.Point(198, 3);
+            this.btnDeleteUser.Margin = new System.Windows.Forms.Padding(5);
             this.btnDeleteUser.Name = "btnDeleteUser";
+            this.btnDeleteUser.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnDeleteUser.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnDeleteUser.Size = new System.Drawing.Size(90, 25);
-            this.btnDeleteUser.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnDeleteUser.TabIndex = 4;
+            this.btnDeleteUser.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteUser.Values.Image")));
             this.btnDeleteUser.Values.Text = "U&suń";
             this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
             // 
@@ -121,10 +128,13 @@
             // 
             this.btnEditUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEditUser.Location = new System.Drawing.Point(102, 3);
+            this.btnEditUser.Margin = new System.Windows.Forms.Padding(5);
             this.btnEditUser.Name = "btnEditUser";
+            this.btnEditUser.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnEditUser.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnEditUser.Size = new System.Drawing.Size(90, 25);
-            this.btnEditUser.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnEditUser.TabIndex = 3;
+            this.btnEditUser.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnEditUser.Values.Image")));
             this.btnEditUser.Values.Text = "&Edytuj";
             this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
             // 
@@ -132,11 +142,14 @@
             // 
             this.btnAddUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddUser.Location = new System.Drawing.Point(6, 3);
+            this.btnAddUser.Margin = new System.Windows.Forms.Padding(5);
             this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnAddUser.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnAddUser.Size = new System.Drawing.Size(90, 25);
-            this.btnAddUser.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnAddUser.TabIndex = 2;
-            this.btnAddUser.Values.Text = "D&odaj";
+            this.btnAddUser.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnAddUser.Values.Image")));
+            this.btnAddUser.Values.Text = "D&odaj  ";
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
             // kryptonHeaderGroup1
@@ -205,6 +218,7 @@
             this.kryptonLabel2.Location = new System.Drawing.Point(27, 285);
             this.kryptonLabel2.Name = "kryptonLabel2";
             this.kryptonLabel2.Size = new System.Drawing.Size(253, 84);
+            this.kryptonLabel2.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel2.TabIndex = 1;
             this.kryptonLabel2.Values.Text = "Kartoteka zawierająca listę \r\nskoczków/pasażerów tandemów\r\n- Nazwisko i imię skoc" +
     "zka,\r\n- Miasto,\r\n- Termin wygaśnięcia świadectwa kwalifikacji";

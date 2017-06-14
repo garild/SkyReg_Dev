@@ -101,8 +101,10 @@ namespace SkyReg
 
         private void btnAdd_Click(object sender, EventArgs e) //TODO Kod Janusza
         {
-            _parachuteFormAddEdit = FormsOpened<ParachuteFormAddEdit>.IsShowDialog(new ParachuteFormAddEdit(FormState.Add, null));
-            _parachuteFormAddEdit.StartPosition = FormStartPosition.CenterParent;
+            _parachuteFormAddEdit = FormsOpened<ParachuteFormAddEdit>.IsShowDialog(_parachuteFormAddEdit);
+            _parachuteFormAddEdit.FormClosed += _parachuteFormAddEdit_FormClosed;
+            _parachuteFormAddEdit._formState = FormState.Add;
+            _parachuteFormAddEdit._parachuteId = 0;
             if (_parachuteFormAddEdit.ShowDialog() == DialogResult.OK)
                 RefreshParachuteList();
         }
@@ -112,11 +114,19 @@ namespace SkyReg
             if (grdParachute.SelectedRows.Count > 0)
             {
                 int parId = (int)grdParachute.SelectedRows[0].Cells["Id"].Value;
-                _parachuteFormAddEdit = FormsOpened<ParachuteFormAddEdit>.IsShowDialog(new ParachuteFormAddEdit(FormState.Edit, parId));
-                _parachuteFormAddEdit.StartPosition = FormStartPosition.CenterParent;
+                _parachuteFormAddEdit = FormsOpened<ParachuteFormAddEdit>.IsShowDialog(_parachuteFormAddEdit);
+                _parachuteFormAddEdit.FormClosed += _parachuteFormAddEdit_FormClosed;
+                _parachuteFormAddEdit._formState = FormState.Edit;
+                _parachuteFormAddEdit._parachuteId = parId;
+               
                 if (_parachuteFormAddEdit.ShowDialog() == DialogResult.OK)
                     RefreshParachuteList();
             }
+        }
+
+        private void _parachuteFormAddEdit_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _parachuteFormAddEdit = null;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -142,5 +152,10 @@ namespace SkyReg
         #endregion
 
         private ParachuteFormAddEdit _parachuteFormAddEdit = null;
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

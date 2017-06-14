@@ -89,7 +89,7 @@
             this.cmbTypes.Name = "cmbTypes";
             this.cmbTypes.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.cmbTypes.Size = new System.Drawing.Size(179, 21);
-            this.cmbTypes.TabIndex = 25;
+            this.cmbTypes.TabIndex = 0;
             // 
             // cmbName
             // 
@@ -131,7 +131,7 @@
             this.btnClose.Size = new System.Drawing.Size(80, 25);
             this.btnClose.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
             this.btnClose.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnClose.TabIndex = 6;
+            this.btnClose.TabIndex = 1;
             this.btnClose.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Values.Image")));
             this.btnClose.Values.Text = "Zamknij";
             this.btnClose.Click += new System.EventHandler(this.btnOperatorCancel_Click);
@@ -161,6 +161,7 @@
             this.Name = "FrmOperatorAdd";
             this.Text = "Dodaj";
             this.Load += new System.EventHandler(this.FrmOperatorAdd_Load);
+            this.Shown += new System.EventHandler(this.FrmOperatorAdd_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
             this.kryptonPanelEx1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbTypes)).EndInit();

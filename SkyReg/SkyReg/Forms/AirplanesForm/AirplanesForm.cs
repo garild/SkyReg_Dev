@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using DataLayer;
 using SkyRegEnums;
+using SkyReg.Common.Extensions;
 
 namespace SkyReg
 {
@@ -40,21 +41,29 @@ namespace SkyReg
 
         private void btnAdd_Click(object sender, EventArgs e)//TODO Kod Janusza
         {
-            AirPlanesFormAddEdit apf = new AirPlanesFormAddEdit(FormState.Add, null);
-            apf.MdiParent = this.ParentForm;
-            apf.RefreshAirplanesGridEH += AddedEditedAirplane;
-            apf.Show();
+
+            OpenForm(FormState.Add, null);
+           
+        }
+
+        public void OpenForm(FormState state, int? Id)
+        {
+            _airPlanesFormAddEdit = FormsOpened<AirPlanesFormAddEdit>.IsShowDialog(new AirPlanesFormAddEdit(state, Id));
+            _airPlanesFormAddEdit.FormClosed += _airPlanesFormAddEdit_FormClosed;
+            _airPlanesFormAddEdit.Show();
+        }
+
+        private void _airPlanesFormAddEdit_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _airPlanesFormAddEdit = null;
         }
 
         private void btnEdit_Click(object sender, EventArgs e) //TODO Kod Janusza
         {
             if(grdAirplanes.SelectedRows.Count > 0)
             {
-                int airplaneId = (int)grdAirplanes.SelectedRows[0].Cells["Id"].Value;
-                AirPlanesFormAddEdit apf = new AirPlanesFormAddEdit(FormState.Edit, airplaneId);
-                apf.MdiParent = this.ParentForm;
-                apf.RefreshAirplanesGridEH += AddedEditedAirplane;
-                apf.Show();
+                int Id = (int)grdAirplanes.SelectedRows[0].Cells["Id"].Value;
+                OpenForm(FormState.Edit, Id);
             }
         }
 
@@ -116,5 +125,11 @@ namespace SkyReg
             grdAirplanes.AllowUserToResizeRows = false;
             grdAirplanes.ReadOnly = true;
         }
+
+        #region Forms
+
+        private AirPlanesFormAddEdit _airPlanesFormAddEdit = null;
+
+        #endregion
     }
 }

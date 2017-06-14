@@ -173,6 +173,7 @@
             outlookBarButton10.Tag1 = null;
             outlookBarButton10.Tag2 = null;
             outlookBarButton10.Text = "Test";
+            outlookBarButton10.Visible = false;
             this.outlookBar.Buttons.Add(outlookBarButton1);
             this.outlookBar.Buttons.Add(outlookBarButton2);
             this.outlookBar.Buttons.Add(outlookBarButton3);
@@ -388,13 +389,13 @@
             // customizeToolStripMenuItem
             // 
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.customizeToolStripMenuItem.Text = "&Customize";
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.optionsToolStripMenuItem.Text = "&Options";
             // 
             // helpToolStripMenuItem

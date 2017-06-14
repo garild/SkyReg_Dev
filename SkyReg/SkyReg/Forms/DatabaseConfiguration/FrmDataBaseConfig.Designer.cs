@@ -76,7 +76,7 @@
             this.txtUserName.MaxLength = 40;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(213, 20);
-            this.txtUserName.TabIndex = 14;
+            this.txtUserName.TabIndex = 2;
             // 
             // kryptonPanel1
             // 
@@ -103,7 +103,7 @@
             this.txtServer.MaxLength = 80;
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(213, 20);
-            this.txtServer.TabIndex = 12;
+            this.txtServer.TabIndex = 0;
             // 
             // kryptonLabel1
             // 
@@ -132,7 +132,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '•';
             this.txtPassword.Size = new System.Drawing.Size(213, 20);
-            this.txtPassword.TabIndex = 16;
+            this.txtPassword.TabIndex = 3;
             // 
             // txtDatabase
             // 
@@ -140,7 +140,7 @@
             this.txtDatabase.MaxLength = 80;
             this.txtDatabase.Name = "txtDatabase";
             this.txtDatabase.Size = new System.Drawing.Size(213, 20);
-            this.txtDatabase.TabIndex = 13;
+            this.txtDatabase.TabIndex = 1;
             // 
             // kryptonLabel2
             // 
@@ -167,13 +167,13 @@
             // 
             this.btnSaveCfg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveCfg.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSaveCfg.Location = new System.Drawing.Point(299, 6);
+            this.btnSaveCfg.Location = new System.Drawing.Point(293, 6);
             this.btnSaveCfg.Name = "btnSaveCfg";
             this.btnSaveCfg.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.btnSaveCfg.Size = new System.Drawing.Size(73, 25);
+            this.btnSaveCfg.Size = new System.Drawing.Size(79, 25);
             this.btnSaveCfg.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
             this.btnSaveCfg.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnSaveCfg.TabIndex = 5;
+            this.btnSaveCfg.TabIndex = 1;
             this.btnSaveCfg.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveCfg.Values.Image")));
             this.btnSaveCfg.Values.Text = "Zapisz";
             this.btnSaveCfg.Click += new System.EventHandler(this.btnSaveCfg_Click);
@@ -188,7 +188,7 @@
             this.btnClose.Size = new System.Drawing.Size(80, 25);
             this.btnClose.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
             this.btnClose.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnClose.TabIndex = 5;
+            this.btnClose.TabIndex = 2;
             this.btnClose.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Values.Image")));
             this.btnClose.Values.Text = "Zamknij";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -201,7 +201,7 @@
             this.btGenerateDataBase.Size = new System.Drawing.Size(114, 25);
             this.btGenerateDataBase.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
             this.btGenerateDataBase.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btGenerateDataBase.TabIndex = 4;
+            this.btGenerateDataBase.TabIndex = 0;
             this.btGenerateDataBase.Values.Image = ((System.Drawing.Image)(resources.GetObject("btGenerateDataBase.Values.Image")));
             this.btGenerateDataBase.Values.Text = "Generuj Bazę";
             this.btGenerateDataBase.Click += new System.EventHandler(this.btGenerateDataBase_Click);

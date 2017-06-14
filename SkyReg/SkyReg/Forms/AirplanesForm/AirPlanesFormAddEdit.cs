@@ -32,8 +32,11 @@ namespace SkyReg
             if(formState == FormState.Edit)
             {
                 _airplaneId = airplaneId.Value;
+                btnSave.Text = "Zapisz";
                 LoadAirplaneData(airplaneId);
             }
+            else
+                btnSave.Text = "Dodaj";
         }
 
         private void LoadAirplaneData(int? airplaneId)
@@ -122,10 +125,15 @@ namespace SkyReg
             }
             return result;   
         }
-
-        private void btnCancel_Click(object sender, EventArgs e)
+      
+        private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void AirPlanesFormAddEdit_Shown(object sender, EventArgs e)
+        {
+            txtName.Focus();
         }
     }
 }

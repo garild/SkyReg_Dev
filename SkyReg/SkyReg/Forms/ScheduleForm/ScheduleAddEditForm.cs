@@ -178,5 +178,10 @@ namespace SkyReg
         {
             LoadUserTypes();
         }
+
+        private void ScheduleAddEditForm_Shown(object sender, EventArgs e)
+        {
+            cmbName.Focus();
+        }
     }
 }

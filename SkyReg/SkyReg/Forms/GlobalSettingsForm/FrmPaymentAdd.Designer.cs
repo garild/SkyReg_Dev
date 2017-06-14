@@ -78,7 +78,7 @@
             this.cmbBoxTypes.Name = "cmbBoxTypes";
             this.cmbBoxTypes.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.cmbBoxTypes.Size = new System.Drawing.Size(219, 21);
-            this.cmbBoxTypes.TabIndex = 25;
+            this.cmbBoxTypes.TabIndex = 1;
             this.cmbBoxTypes.SelectedIndexChanged += new System.EventHandler(this.cmbBoxTypes_SelectedIndexChanged);
             // 
             // kryptonLabel4
@@ -99,6 +99,7 @@
             0,
             0});
             this.numCount.Name = "numCount";
+            this.numCount.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.numCount.Size = new System.Drawing.Size(88, 22);
             this.numCount.TabIndex = 3;
             this.numCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -122,6 +123,7 @@
             0,
             0});
             this.numPrice.Name = "numPrice";
+            this.numPrice.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.numPrice.Size = new System.Drawing.Size(88, 22);
             this.numPrice.TabIndex = 2;
             this.numPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -169,7 +171,7 @@
             this.kryptonPanelEx2.Name = "kryptonPanelEx2";
             this.kryptonPanelEx2.PersistentColors = false;
             this.kryptonPanelEx2.Size = new System.Drawing.Size(306, 39);
-            this.kryptonPanelEx2.TabIndex = 75;
+            this.kryptonPanelEx2.TabIndex = 0;
             // 
             // btnClose
             // 
@@ -180,7 +182,7 @@
             this.btnClose.Size = new System.Drawing.Size(88, 25);
             this.btnClose.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
             this.btnClose.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnClose.TabIndex = 6;
+            this.btnClose.TabIndex = 1;
             this.btnClose.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Values.Image")));
             this.btnClose.Values.Text = "Zamknij";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -211,6 +213,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Dodaj płatność / pakiet";
             this.Load += new System.EventHandler(this.FrmPaymentAdd_Load);
+            this.Shown += new System.EventHandler(this.FrmPaymentAdd_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
             this.kryptonPanelEx1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBoxTypes)).EndInit();

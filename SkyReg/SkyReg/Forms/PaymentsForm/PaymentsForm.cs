@@ -9,13 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DataLayer;
+using SkyRegEnums;
 
 namespace SkyReg
 {
     public partial class PaymentsForm : KryptonForm
     {
 
-        private PaymentsAddEditForm PaymentsAddEditForm = null;
+        private PaymentsAddEditForm _paymentsAddEditForm = null;
 
         public PaymentsForm()
         {
@@ -24,9 +25,11 @@ namespace SkyReg
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            PaymentsAddEditForm = FormsOpened<PaymentsAddEditForm>.IsOpened(new SkyReg.PaymentsAddEditForm(SkyRegEnums.FormState.Add, default(int)));
-           
-            if( PaymentsAddEditForm.ShowDialog() == DialogResult.OK)
+            _paymentsAddEditForm = FormsOpened<PaymentsAddEditForm>.IsShowDialog(_paymentsAddEditForm);
+            _paymentsAddEditForm._formState = FormState.Add;
+            _paymentsAddEditForm.FormClosed += _paymentsAddEditForm_FormClosed;
+            _paymentsAddEditForm._payId = 0;
+            if ( _paymentsAddEditForm.ShowDialog() == DialogResult.OK)
             {
                 RefreshPayList();
             }
@@ -43,15 +46,21 @@ namespace SkyReg
             {
                 int selectedId = (int)grdPayments.SelectedRows[0].Cells["Id"].Value;
 
-                PaymentsAddEditForm = FormsOpened<PaymentsAddEditForm>.IsShowDialog(new PaymentsAddEditForm(SkyRegEnums.FormState.Edit, selectedId));
-
-              if (PaymentsAddEditForm.ShowDialog() == DialogResult.OK)
+                _paymentsAddEditForm = FormsOpened<PaymentsAddEditForm>.IsShowDialog(_paymentsAddEditForm);
+                _paymentsAddEditForm._formState = FormState.Edit;
+                _paymentsAddEditForm._payId = selectedId;
+                _paymentsAddEditForm.FormClosed += _paymentsAddEditForm_FormClosed;
+                if (_paymentsAddEditForm.ShowDialog() == DialogResult.OK)
                 {
                     RefreshPayList();
                 }
             }
         }
 
+        private void _paymentsAddEditForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _paymentsAddEditForm = null;
+        }
 
         private void PaymentsForm_Shown(object sender, EventArgs e) //TODO KOD Janusza!!!!!!! 
         {

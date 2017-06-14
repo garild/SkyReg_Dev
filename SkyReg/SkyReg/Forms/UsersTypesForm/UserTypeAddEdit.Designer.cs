@@ -76,7 +76,7 @@
             this.chkCam.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.chkCam.Size = new System.Drawing.Size(65, 20);
             this.chkCam.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
-            this.chkCam.TabIndex = 5;
+            this.chkCam.TabIndex = 2;
             this.chkCam.Text = "Kamera";
             this.chkCam.Values.Text = "Kamera";
             // 
@@ -87,7 +87,7 @@
             this.kryptonLabel3.Name = "kryptonLabel3";
             this.kryptonLabel3.Size = new System.Drawing.Size(177, 20);
             this.kryptonLabel3.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
-            this.kryptonLabel3.TabIndex = 4;
+            this.kryptonLabel3.TabIndex = 2;
             this.kryptonLabel3.Values.Text = "(wartości dodatnie i ujemne)";
             // 
             // kryptonLabel2
@@ -116,7 +116,7 @@
             this.numValue.Name = "numValue";
             this.numValue.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.numValue.Size = new System.Drawing.Size(120, 22);
-            this.numValue.TabIndex = 2;
+            this.numValue.TabIndex = 1;
             this.numValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtName
@@ -124,8 +124,8 @@
             this.txtName.Location = new System.Drawing.Point(176, 20);
             this.txtName.Name = "txtName";
             this.txtName.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.txtName.Size = new System.Drawing.Size(291, 23);
-            this.txtName.TabIndex = 1;
+            this.txtName.Size = new System.Drawing.Size(291, 20);
+            this.txtName.TabIndex = 0;
             // 
             // kryptonLabel1
             // 
@@ -138,16 +138,15 @@
             // 
             // kryptonPanelEx2
             // 
-            this.kryptonPanelEx2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonPanelEx2.Controls.Add(this.btnCancel);
             this.kryptonPanelEx2.Controls.Add(this.btnSave);
+            this.kryptonPanelEx2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.kryptonPanelEx2.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.kryptonPanelEx2.GradientToogleColors = false;
             this.kryptonPanelEx2.GradientUseBlend = false;
             this.kryptonPanelEx2.Image = null;
             this.kryptonPanelEx2.ImageLocation = new System.Drawing.Point(4, 4);
-            this.kryptonPanelEx2.Location = new System.Drawing.Point(0, 124);
+            this.kryptonPanelEx2.Location = new System.Drawing.Point(0, 122);
             this.kryptonPanelEx2.Name = "kryptonPanelEx2";
             this.kryptonPanelEx2.PersistentColors = false;
             this.kryptonPanelEx2.Size = new System.Drawing.Size(492, 38);
@@ -197,6 +196,7 @@
             this.Text = "Typ użytkownika";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.UserTypeAddEdit_Load);
+            this.Shown += new System.EventHandler(this.UserTypeAddEdit_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
             this.kryptonPanelEx1.PerformLayout();
             this.kryptonPanelEx2.ResumeLayout(false);

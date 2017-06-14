@@ -213,7 +213,7 @@
             this.txtPhone.Location = new System.Drawing.Point(412, 145);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(160, 20);
-            this.txtPhone.TabIndex = 11;
+            this.txtPhone.TabIndex = 9;
             // 
             // kryptonLabel11
             // 
@@ -238,14 +238,14 @@
             this.txtCity.Location = new System.Drawing.Point(207, 174);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(144, 20);
-            this.txtCity.TabIndex = 10;
+            this.txtCity.TabIndex = 11;
             // 
             // txtZipCode
             // 
             this.txtZipCode.Location = new System.Drawing.Point(65, 174);
             this.txtZipCode.Name = "txtZipCode";
             this.txtZipCode.Size = new System.Drawing.Size(80, 20);
-            this.txtZipCode.TabIndex = 9;
+            this.txtZipCode.TabIndex = 10;
             // 
             // kryptonLabel8
             // 
@@ -451,6 +451,7 @@
             this.Text = "Użytkownik";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.UsersAddEditForm_Load);
+            this.Shown += new System.EventHandler(this.UsersAddEditForm_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
             this.kryptonPanelEx1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSettlement)).EndInit();

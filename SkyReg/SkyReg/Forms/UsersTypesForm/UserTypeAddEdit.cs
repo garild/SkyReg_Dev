@@ -16,15 +16,15 @@ namespace SkyReg
 {
     public partial class UserTypeAddEdit : KryptonForm
     {
-        FormState? _formState;
-        int? _idUserType;
+        public FormState? _formState = null;
+        public int? _idUserType = 0;
 
-        public UserTypeAddEdit(FormState? formState = null, int? idUserType = null)
+        public UserTypeAddEdit()
         {
             InitializeComponent();
+            txtName.Clear();
+            numValue.Value = 0;
             this.DialogResult = DialogResult.None;
-            _formState = formState;
-            _idUserType = idUserType;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -128,6 +128,11 @@ namespace SkyReg
                     chkCam.Checked = ut.IsCam;
                 }
             }
+        }
+
+        private void UserTypeAddEdit_Shown(object sender, EventArgs e)
+        {
+            txtName.Focus();
         }
     }
 }

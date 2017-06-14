@@ -16,14 +16,14 @@ namespace SkyReg
     public partial class FlightsForm : KryptonForm
     {
         int _lastGridSelectedIndex = -1;
-        FlyAddEditForm FlyAddEditForm = null;
+        FlyAddEditForm _flyAddEditForm = null;
 
         public FlightsForm()
         {
             InitializeComponent();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e) //TODO Do poprawy !!!! Podczas usuwania ma być zablokowane!!!
         {
             if (grdFlights.SelectedRows.Count > 0)
                 _lastGridSelectedIndex = grdFlights.SelectedRows[0].Index;
@@ -96,11 +96,11 @@ namespace SkyReg
 
         private void btnAddFlight_Click(object sender, EventArgs e)
         {
-            FlyAddEditForm = FormsOpened<FlyAddEditForm>.IsOpened(FlyAddEditForm);
-            FlyAddEditForm.EventHandlerAddedEditedFlight += RefreshAfterAddedEditedFlight;
-            FlyAddEditForm.TopMost = true;
-            FlyAddEditForm.FormState = FormState.Add;
-            FlyAddEditForm.ShowDialog();
+            _flyAddEditForm = FormsOpened<FlyAddEditForm>.IsShowDialog(_flyAddEditForm);
+            _flyAddEditForm._formState = FormState.Add;
+            _flyAddEditForm._flightId = 0;
+            if (_flyAddEditForm.ShowDialog() == DialogResult.OK)
+                RefreshFlightsList();
         }
 
         private void btnEditFlight_Click(object sender, EventArgs e)
@@ -109,18 +109,12 @@ namespace SkyReg
             {
                 int flightId = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
 
-                FlyAddEditForm = FormsOpened<FlyAddEditForm>.IsOpened(FlyAddEditForm);
-                FlyAddEditForm.EventHandlerAddedEditedFlight += RefreshAfterAddedEditedFlight;
-                FlyAddEditForm.TopMost = true;
-                FlyAddEditForm.FormState = FormState.Edit;
-                FlyAddEditForm.FlightId = flightId;
-                FlyAddEditForm.ShowDialog();
+                _flyAddEditForm = FormsOpened<FlyAddEditForm>.IsShowDialog(_flyAddEditForm);
+                _flyAddEditForm._formState = FormState.Edit;
+                _flyAddEditForm._flightId = flightId;
+                if (_flyAddEditForm.ShowDialog() == DialogResult.OK)
+                    RefreshFlightsList();
             }
-        }
-
-        private void RefreshAfterAddedEditedFlight(object sender, EventArgs e)
-        {
-            RefreshFlightsList();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
