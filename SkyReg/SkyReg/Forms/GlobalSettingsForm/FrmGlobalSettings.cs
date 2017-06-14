@@ -325,7 +325,6 @@ namespace SkyReg
 
         private void GeneradeFlights()
         {
-            // LOT 17/06/13
             DateTime dateCount = dateFrom.Value.AddDays(-1);
             var dateEnd = dateTo.Value;
             var listFlights = new List<Flight>();
@@ -333,14 +332,13 @@ namespace SkyReg
             var days = (int)Math.Ceiling((dateTo.Value.AddDays(1) - dateFrom.Value).TotalDays);
             int getYear = DateTime.Now.Year;
 
-            using (DLModelRepository<Airplane> _ctxAirplane = new DLModelRepository<Airplane>())
-            using (DLModelRepository<Flight> _ctxFlight = new DLModelRepository<Flight>())
+            if (dayOfWeeks.Count > 0 && ValidateData())
             {
-                var airplane = _ctxAirplane.GetById((int)cmbAirplane.SelectedValue);
-
-
-                if (dayOfWeeks.Count > 0)
+                using (DLModelRepository<Airplane> _ctxAirplane = new DLModelRepository<Airplane>())
+                using (DLModelRepository<Flight> _ctxFlight = new DLModelRepository<Flight>())
                 {
+                    var airplane = _ctxAirplane.GetById((int)cmbAirplane.SelectedValue);
+
                     for (int i = 1; i < days + 1; i++)
                     {
                         dateCount = dateCount.AddDays(1);
@@ -363,11 +361,43 @@ namespace SkyReg
                             break;
 
                     }
+
+                    if (listFlights.Count > 0)
+                    {
+                        var result = _ctxFlight.InsertMany(listFlights);
+                        if (result.IsSuccess)
+                            KryptonMessageBox.Show("Proces generowania został zakońoczny pomyślnie", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else
+                            KryptonMessageBox.Show("Wystąpil błąd podczas generowania wylotów. Proszę spróbować ponownie!", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    }
+
                 }
 
-                if (listFlights.Count > 0)
-                    _ctxFlight.InsertMany(listFlights);
             }
+        }
+
+        private bool ValidateData()
+        {
+            var result = true;
+            errorProvider.Clear();
+
+            if (dateFrom.Value < dateTo.Value)
+            {
+                errorProvider.SetError(dateFrom, "Okres wylotów OD - DO nie jest poprawny");
+                result = false;
+            }
+            if(cmbAirplane.SelectedValue == null)
+            {
+                errorProvider.SetError(cmbAirplane, "Wybierz samolot!");
+                result = false;
+            }
+            if(numAltitude.Value < 1)
+            {
+                errorProvider.SetError(numAltitude, "Pułal nie może być mniejszy od 0!");
+                result = false;
+            }
+
+            return result;
         }
 
         public void AddOrDeleteDayOfWeek(DayOfWeek day, Actions action)

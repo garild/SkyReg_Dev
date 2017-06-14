@@ -133,7 +133,6 @@ namespace DataLayer.Result.Repository
             }
         }
 
-
         public ResultType<T> Update(T entity)
         {
             try

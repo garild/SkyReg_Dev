@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGlobalSettings));
             this.kryptonPanelEx1 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
@@ -54,6 +55,10 @@
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonHeaderGroup2 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.kryptonPanelEx6 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
+            this.cmbAirplane = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.kryptonLabel11 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel10 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.numAltitude = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.kryptonPanelEx7 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.btnSaveCfg = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -71,10 +76,7 @@
             this.dateFrom = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.flightsPerDay = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.kryptonLabel6 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.numAltitude = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
-            this.kryptonLabel10 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel11 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.cmbAirplane = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.kryptonPanelEx1.SuspendLayout();
             this.kryptonPanelEx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).BeginInit();
@@ -102,8 +104,9 @@
             this.kryptonHeaderGroup2.Panel.SuspendLayout();
             this.kryptonHeaderGroup2.SuspendLayout();
             this.kryptonPanelEx6.SuspendLayout();
-            this.kryptonPanelEx7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbAirplane)).BeginInit();
+            this.kryptonPanelEx7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonPanelEx1
@@ -496,6 +499,53 @@
             this.kryptonPanelEx6.Size = new System.Drawing.Size(511, 312);
             this.kryptonPanelEx6.TabIndex = 20;
             // 
+            // cmbAirplane
+            // 
+            this.cmbAirplane.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbAirplane.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbAirplane.DropDownWidth = 175;
+            this.cmbAirplane.Location = new System.Drawing.Point(265, 40);
+            this.cmbAirplane.Name = "cmbAirplane";
+            this.cmbAirplane.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.cmbAirplane.Size = new System.Drawing.Size(225, 21);
+            this.cmbAirplane.TabIndex = 26;
+            this.cmbAirplane.Text = "Brak";
+            // 
+            // kryptonLabel11
+            // 
+            this.kryptonLabel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonLabel11.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
+            this.kryptonLabel11.Location = new System.Drawing.Point(208, 69);
+            this.kryptonLabel11.Name = "kryptonLabel11";
+            this.kryptonLabel11.Size = new System.Drawing.Size(47, 20);
+            this.kryptonLabel11.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
+            this.kryptonLabel11.TabIndex = 25;
+            this.kryptonLabel11.Values.Text = "Pułap:";
+            // 
+            // kryptonLabel10
+            // 
+            this.kryptonLabel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonLabel10.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
+            this.kryptonLabel10.Location = new System.Drawing.Point(193, 43);
+            this.kryptonLabel10.Name = "kryptonLabel10";
+            this.kryptonLabel10.Size = new System.Drawing.Size(62, 20);
+            this.kryptonLabel10.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
+            this.kryptonLabel10.TabIndex = 25;
+            this.kryptonLabel10.Values.Text = "Samolot:";
+            // 
+            // numAltitude
+            // 
+            this.numAltitude.Location = new System.Drawing.Point(265, 67);
+            this.numAltitude.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.numAltitude.Name = "numAltitude";
+            this.numAltitude.Size = new System.Drawing.Size(225, 22);
+            this.numAltitude.TabIndex = 23;
+            this.numAltitude.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // kryptonPanelEx7
             // 
             this.kryptonPanelEx7.Controls.Add(this.btnSaveCfg);
@@ -729,52 +779,11 @@
             this.kryptonLabel6.TabIndex = 19;
             this.kryptonLabel6.Values.Text = "Wyloty na dzień:";
             // 
-            // numAltitude
+            // errorProvider
             // 
-            this.numAltitude.Location = new System.Drawing.Point(265, 67);
-            this.numAltitude.Maximum = new decimal(new int[] {
-            999999,
-            0,
-            0,
-            0});
-            this.numAltitude.Name = "numAltitude";
-            this.numAltitude.Size = new System.Drawing.Size(225, 22);
-            this.numAltitude.TabIndex = 23;
-            this.numAltitude.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // kryptonLabel10
-            // 
-            this.kryptonLabel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonLabel10.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.kryptonLabel10.Location = new System.Drawing.Point(193, 43);
-            this.kryptonLabel10.Name = "kryptonLabel10";
-            this.kryptonLabel10.Size = new System.Drawing.Size(62, 20);
-            this.kryptonLabel10.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
-            this.kryptonLabel10.TabIndex = 25;
-            this.kryptonLabel10.Values.Text = "Samolot:";
-            // 
-            // kryptonLabel11
-            // 
-            this.kryptonLabel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonLabel11.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.kryptonLabel11.Location = new System.Drawing.Point(208, 69);
-            this.kryptonLabel11.Name = "kryptonLabel11";
-            this.kryptonLabel11.Size = new System.Drawing.Size(47, 20);
-            this.kryptonLabel11.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
-            this.kryptonLabel11.TabIndex = 25;
-            this.kryptonLabel11.Values.Text = "Pułap:";
-            // 
-            // cmbAirplane
-            // 
-            this.cmbAirplane.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cmbAirplane.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbAirplane.DropDownWidth = 175;
-            this.cmbAirplane.Location = new System.Drawing.Point(265, 40);
-            this.cmbAirplane.Name = "cmbAirplane";
-            this.cmbAirplane.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.cmbAirplane.Size = new System.Drawing.Size(225, 21);
-            this.cmbAirplane.TabIndex = 26;
-            this.cmbAirplane.Text = "Brak";
+            this.errorProvider.BlinkRate = 500;
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
+            this.errorProvider.ContainerControl = this;
             // 
             // FrmGlobalSettings
             // 
@@ -819,8 +828,9 @@
             this.kryptonHeaderGroup2.ResumeLayout(false);
             this.kryptonPanelEx6.ResumeLayout(false);
             this.kryptonPanelEx6.PerformLayout();
-            this.kryptonPanelEx7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cmbAirplane)).EndInit();
+            this.kryptonPanelEx7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -873,5 +883,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel10;
         private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numAltitude;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cmbAirplane;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
