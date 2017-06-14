@@ -67,6 +67,8 @@ namespace SkyReg
                             Group = gpSkoczkowie
                         };
 
+                        _contextUser.Insert(usr);
+
                         var opr = new Operator()
                         {
                             User = usr,

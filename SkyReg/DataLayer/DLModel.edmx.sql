@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/14/2017 18:16:12
+-- Date Created: 06/14/2017 19:51:00
 -- Generated from EDMX file: F:\Projekty 2017\Repozytorium2\SkyReg_Dev\SkyReg\DataLayer\DLModel.edmx
 -- --------------------------------------------------
 
@@ -35,8 +35,11 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_FlightsElemFlight]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[FlightsElem] DROP CONSTRAINT [FK_FlightsElemFlight];
 GO
-IF OBJECT_ID(N'[dbo].[FK_FlightsElemParachute]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Parachute] DROP CONSTRAINT [FK_FlightsElemParachute];
+IF OBJECT_ID(N'[dbo].[FK_FlightsElemParachute_FlightsElem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FlightsElemParachute] DROP CONSTRAINT [FK_FlightsElemParachute_FlightsElem];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FlightsElemParachute_Parachute]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FlightsElemParachute] DROP CONSTRAINT [FK_FlightsElemParachute_Parachute];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserOrder]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Order] DROP CONSTRAINT [FK_UserOrder];
@@ -100,6 +103,9 @@ GO
 IF OBJECT_ID(N'[dbo].[UserUsersType]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UserUsersType];
 GO
+IF OBJECT_ID(N'[dbo].[FlightsElemParachute]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[FlightsElemParachute];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -131,7 +137,7 @@ GO
 CREATE TABLE [dbo].[Operator] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Type] smallint  NOT NULL,
-    [User_Id] int  NOT NULL
+    [User_Id] int  NULL
 );
 GO
 

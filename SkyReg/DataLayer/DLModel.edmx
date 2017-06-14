@@ -105,7 +105,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Type" Type="smallint" Nullable="false" />
-    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="UsersType">
     <Key>
@@ -229,7 +229,7 @@
     <Property Name="Parachute_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="UserOperator">
-    <End Role="User" Type="DLModel.Store.User" Multiplicity="1" />
+    <End Role="User" Type="DLModel.Store.User" Multiplicity="0..1" />
     <End Role="Operator" Type="DLModel.Store.Operator" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
@@ -536,7 +536,7 @@
           <End Type="DLModel.UsersType" Role="UsersType" Multiplicity="*" />
         </Association>
         <Association Name="UserOperator">
-          <End Type="DLModel.User" Role="User" Multiplicity="1" />
+          <End Type="DLModel.User" Role="User" Multiplicity="0..1" />
           <End Type="DLModel.Operator" Role="Operator" Multiplicity="*" />
         </Association>
         <EntityType Name="Airplane">
@@ -817,6 +817,7 @@
       <EndProperty Name="Operator">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="User_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="FlightAirplane" TypeName="DLModel.FlightAirplane" StoreEntitySet="Flight">
       <EndProperty Name="Airplane">
