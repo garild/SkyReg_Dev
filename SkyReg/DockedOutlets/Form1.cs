@@ -34,13 +34,7 @@ namespace DockedOutlets
 
             InitializeComponent();
             LoadSettings();
-            //Get the original connection string with the full payload  
-            //var entityCnxStringBuilder = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["DLModelContainer"].ConnectionString);
-
-            ////Swap out the provider specific connection string  
-            //entityCnxStringBuilder.ProviderConnectionString = DatabaseConfig.ConnectionString;
-            //ConfigurationManager.ConnectionStrings.Add(new ConnectionStringSettings() { ConnectionString = entityCnxStringBuilder.ConnectionString});
-            ////Return the payload with the change in connection string.   
+          
             CreateConnectionString(DatabaseConfig.ConnectionString);
             TEST();
         }
@@ -49,17 +43,12 @@ namespace DockedOutlets
         {
             try
             {
-                //Integrated security will be off if either UserID or Password is supplied
-               
-                //Create the connection string using the connection builder
-                
                 var entityCnxStringBuilder = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["DLModelContainer"].ConnectionString);
 
-                //Swap out the provider specific connection string  
                 entityCnxStringBuilder.ProviderConnectionString = ConnectionString;
-                //Open the app.config for modification
+               
                 var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                //Retreive connection string setting
+              
                 var connectionString = config.ConnectionStrings.ConnectionStrings["ConnectionStringName"];
                 if (connectionString == null)
                 {
@@ -68,16 +57,15 @@ namespace DockedOutlets
                     {
                         Name = "DLModel",
                         ConnectionString = entityCnxStringBuilder.ConnectionString,
-                        ProviderName = "System.Data.SqlClient" //Depends on the provider, this is for SQL Server
+                        ProviderName = "System.Data.SqlClient" 
                     });
                 }
                 else
                 {
-                    //Only modify the connection string if it does exist
+                    
                     connectionString.ConnectionString = entityCnxStringBuilder.ConnectionString;
                 }
 
-                //Save changes in the app.config
                 config.Save(ConfigurationSaveMode.Modified);
             }
             catch (Exception)

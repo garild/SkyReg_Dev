@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyReg", "SkyReg\SkyReg.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{5CB51742-7C31-4D1A-BD08-F783A0AA485B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DockedOutlets", "DockedOutlets\DockedOutlets.csproj", "{95B0101A-5CEF-433A-9C53-16D13AFEEE01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5CB51742-7C31-4D1A-BD08-F783A0AA485B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CB51742-7C31-4D1A-BD08-F783A0AA485B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CB51742-7C31-4D1A-BD08-F783A0AA485B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95B0101A-5CEF-433A-9C53-16D13AFEEE01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95B0101A-5CEF-433A-9C53-16D13AFEEE01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95B0101A-5CEF-433A-9C53-16D13AFEEE01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95B0101A-5CEF-433A-9C53-16D13AFEEE01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
