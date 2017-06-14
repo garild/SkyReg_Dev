@@ -14,6 +14,12 @@ namespace DataLayer
     
     public partial class Parachute
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Parachute()
+        {
+            this.FlightsElem = new HashSet<FlightsElem>();
+        }
+    
         public int Id { get; set; }
         public string IdNr { get; set; }
         public string Name { get; set; }
@@ -21,6 +27,7 @@ namespace DataLayer
         public Nullable<decimal> AssemblyValue { get; set; }
     
         public virtual User User { get; set; }
-        public virtual FlightsElem FlightsElem { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FlightsElem> FlightsElem { get; set; }
     }
 }

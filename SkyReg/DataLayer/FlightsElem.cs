@@ -19,6 +19,7 @@ namespace DataLayer
         {
             this.AssemblySelf = false;
             this.TeamName = "Null";
+            this.Parachute = new HashSet<Parachute>();
         }
     
         public int Id { get; set; }
@@ -27,7 +28,8 @@ namespace DataLayer
         public string TeamName { get; set; }
     
         public virtual Flight Flight { get; set; }
-        public virtual Parachute Parachute { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Parachute> Parachute { get; set; }
         public virtual Payment Payments { get; set; }
         public virtual User User { get; set; }
     }

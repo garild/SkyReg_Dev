@@ -19,6 +19,7 @@
     <EntitySet Name="Group" EntityType="DLModel.Store.Group" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Payment" EntityType="DLModel.Store.Payment" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserUsersType" EntityType="DLModel.Store.UserUsersType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FlightsElemParachute" EntityType="DLModel.Store.FlightsElemParachute" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_UserUsersType_User" Association="DLModel.Store.FK_UserUsersType_User">
       <End Role="User" EntitySet="User" />
       <End Role="UserUsersType" EntitySet="UserUsersType" />
@@ -43,9 +44,13 @@
       <End Role="FlightsElem" EntitySet="FlightsElem" />
       <End Role="Flight" EntitySet="Flight" />
     </AssociationSet>
-    <AssociationSet Name="FlightsElemParachute" Association="DLModel.Store.FlightsElemParachute">
+    <AssociationSet Name="FK_FlightsElemParachute_FlightsElem" Association="DLModel.Store.FK_FlightsElemParachute_FlightsElem">
       <End Role="FlightsElem" EntitySet="FlightsElem" />
+      <End Role="FlightsElemParachute" EntitySet="FlightsElemParachute" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlightsElemParachute_Parachute" Association="DLModel.Store.FK_FlightsElemParachute_Parachute">
       <End Role="Parachute" EntitySet="Parachute" />
+      <End Role="FlightsElemParachute" EntitySet="FlightsElemParachute" />
     </AssociationSet>
     <AssociationSet Name="UserOrder" Association="DLModel.Store.UserOrder">
       <End Role="User" EntitySet="User" />
@@ -184,7 +189,6 @@
     <Property Name="RentValue" Type="decimal" Nullable="true" Precision="8" Scale="2" />
     <Property Name="AssemblyValue" Type="decimal" Nullable="true" Precision="8" Scale="2" />
     <Property Name="User_Id" Type="int" Nullable="true" />
-    <Property Name="FlightsElem_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Group">
     <Key>
@@ -215,6 +219,14 @@
     </Key>
     <Property Name="User_Id" Type="int" Nullable="false" />
     <Property Name="UsersType_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FlightsElemParachute">
+    <Key>
+      <PropertyRef Name="FlightsElem_Id" />
+      <PropertyRef Name="Parachute_Id" />
+    </Key>
+    <Property Name="FlightsElem_Id" Type="int" Nullable="false" />
+    <Property Name="Parachute_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="UserOperator">
     <End Role="User" Type="DLModel.Store.User" Multiplicity="1" />
@@ -261,18 +273,6 @@
       </Principal>
       <Dependent Role="FlightsElem">
         <PropertyRef Name="Flight_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FlightsElemParachute">
-    <End Role="FlightsElem" Type="DLModel.Store.FlightsElem" Multiplicity="0..1" />
-    <End Role="Parachute" Type="DLModel.Store.Parachute" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FlightsElem">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Parachute">
-        <PropertyRef Name="FlightsElem_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -369,6 +369,30 @@
       </Principal>
       <Dependent Role="UserUsersType">
         <PropertyRef Name="UsersType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlightsElemParachute_FlightsElem">
+    <End Role="FlightsElem" Type="DLModel.Store.FlightsElem" Multiplicity="1" />
+    <End Role="FlightsElemParachute" Type="DLModel.Store.FlightsElemParachute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FlightsElem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FlightsElemParachute">
+        <PropertyRef Name="FlightsElem_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlightsElemParachute_Parachute">
+    <End Role="FlightsElemParachute" Type="DLModel.Store.FlightsElemParachute" Multiplicity="*" />
+    <End Role="Parachute" Type="DLModel.Store.Parachute" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Parachute">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FlightsElemParachute">
+        <PropertyRef Name="Parachute_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -584,8 +608,8 @@
           <End Type="DLModel.Flight" Role="Flight" Multiplicity="1" />
         </Association>
         <Association Name="FlightsElemParachute">
-          <End Type="DLModel.FlightsElem" Role="FlightsElem" Multiplicity="0..1" />
-          <End Type="DLModel.Parachute" Role="Parachute" Multiplicity="0..1" />
+          <End Type="DLModel.FlightsElem" Role="FlightsElem" Multiplicity="*" />
+          <End Type="DLModel.Parachute" Role="Parachute" Multiplicity="*" />
         </Association>
         <Association Name="UserOrder">
           <End Type="DLModel.User" Role="User" Multiplicity="0..1" />
@@ -820,14 +844,13 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="FlightsElemParachute" TypeName="DLModel.FlightsElemParachute" StoreEntitySet="Parachute">
+    <AssociationSetMapping Name="FlightsElemParachute" TypeName="DLModel.FlightsElemParachute" StoreEntitySet="FlightsElemParachute">
       <EndProperty Name="FlightsElem">
         <ScalarProperty Name="Id" ColumnName="FlightsElem_Id" />
       </EndProperty>
       <EndProperty Name="Parachute">
-        <ScalarProperty Name="Id" ColumnName="Id" />
+        <ScalarProperty Name="Id" ColumnName="Parachute_Id" />
       </EndProperty>
-      <Condition ColumnName="FlightsElem_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="UserOrder" TypeName="DLModel.UserOrder" StoreEntitySet="Order">
       <EndProperty Name="User">
