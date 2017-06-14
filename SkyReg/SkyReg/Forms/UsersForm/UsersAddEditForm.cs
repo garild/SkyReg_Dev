@@ -198,6 +198,7 @@ namespace SkyReg
                         errorProvider1.SetError(txtLogin, "Ten login jest już w użyciu!");
                         return false;
                     }
+
                 }
             }
 
