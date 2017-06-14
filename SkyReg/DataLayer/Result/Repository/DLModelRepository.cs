@@ -18,7 +18,7 @@ namespace DataLayer.Result.Repository
 
         public DLModelRepository()
         {
-           
+            
         }
 
         public T GetById(object id)
@@ -34,7 +34,10 @@ namespace DataLayer.Result.Repository
                 {
                     return new ResultType<T>() { Value = null };
                 }
+
+                this.Entities.Attach(entity);
                 this.Entities.Add(entity);
+
                 this.context.SaveChanges();
 
                 return new ResultType<T>() { Value = entity };
@@ -64,11 +67,15 @@ namespace DataLayer.Result.Repository
         {
             try
             {
-                if (entity?.Count  == 0)
+                if (entity?.Count == 0)
                 {
                     return new ColletionResult<T>() { Value = null };
                 }
-                entity.ForEach(p => this.Entities.Add(p));
+                entity.ForEach(p =>
+                {
+                    this.Entities.Attach(p);
+                    this.Entities.Add(p);
+                    });
                 this.context.SaveChanges();
 
                 return new ColletionResult<T>() { Value = entity };
