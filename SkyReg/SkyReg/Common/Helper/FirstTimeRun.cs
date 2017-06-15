@@ -35,7 +35,7 @@ namespace SkyReg
                         gp.Name = "Skoczkowie";
                         gp.Color = "White";
                         gp.AllowDelete = false;
-                        if (_contextGroup.Insert(gp).IsSuccess)
+                        if (_contextGroup.InsertEntity(gp).IsSuccess)
                             gpSkoczkowie = gp;
                     }
 
@@ -47,7 +47,7 @@ namespace SkyReg
                         gp.Name = "Pasażerowie tandemów";
                         gp.Color = "LightPink";
                         gp.AllowDelete = false;
-                        _contextGroup.Insert(gp);
+                        _contextGroup.InsertEntity(gp);
                     }
                 }
                 using (_contextUser)
@@ -67,15 +67,13 @@ namespace SkyReg
                             Group = gpSkoczkowie
                         };
 
-                        _contextUser.Insert(usr);
-
                         var opr = new Operator()
                         {
                             User = usr,
                             Type = (int)OperatorTypes.Operator
                         };
 
-                        _contextOperator.Insert(opr);
+                        _contextOperator.InsertEntity(opr,false);
                     }
                 }
                 using (DLModelContainer model = new DLModelContainer())
@@ -83,6 +81,8 @@ namespace SkyReg
                     //Czy jest zdefiniowane KP
                     var inComeCash = (short)PaymentsTypes.KP;
                     var outComeCash = (short)PaymentsTypes.KW;
+                    var charge = (short)PaymentsTypes.Naleznosc;
+                    var commitment = (short)PaymentsTypes.Zobowiazanie;
                     bool isIncomeCash = model.PaymentsSetting.Any(p => p.Type == inComeCash);
                     if (isIncomeCash == false)
                     {
@@ -106,6 +106,25 @@ namespace SkyReg
                         model.SaveChanges();
                     }
 
+                    bool isCharge = model.PaymentsSetting.Any(p => p.Type == charge);
+                    if (isCharge  == false)
+                    {
+                        PaymentsSetting ps = new PaymentsSetting();
+                        ps.Type = charge;
+                        ps.Name = "Należność";
+                        model.PaymentsSetting.Add(ps);
+                        model.SaveChanges();
+                    }
+
+                    bool isCommitment = model.PaymentsSetting.Any(p => p.Type == commitment);
+                    if (isCommitment == false)
+                    {
+                        PaymentsSetting ps = new PaymentsSetting();
+                        ps.Type = commitment;
+                        ps.Name = "Zobowiązanie";
+                        model.PaymentsSetting.Add(ps);
+                        model.SaveChanges();
+                    }
                 }
             }
             catch (Exception ex)

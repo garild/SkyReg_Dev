@@ -198,6 +198,9 @@
     <Compile Include="Forms\ScheduleForm\ScheduleAddEditForm.Designer.cs">
       <DependentUpon>ScheduleAddEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ScheduleForm\ScheduleAddEditPartialGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\ScheduleForm\ScheduleForm.cs">
       <SubType>Form</SubType>
     </Compile>

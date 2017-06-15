@@ -24,7 +24,14 @@ namespace DataLayer
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            modelBuilder.Entity<FlightsElem>()
+                .HasOptional(p => p.Payments)
+                .WithOptionalDependent().WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<FlightsElem>()
+                .HasOptional(p => p.Flight)
+                .WithOptionalDependent().WillCascadeOnDelete(true);
+
         }
     
         public virtual DbSet<PaymentsSetting> PaymentsSetting { get; set; }

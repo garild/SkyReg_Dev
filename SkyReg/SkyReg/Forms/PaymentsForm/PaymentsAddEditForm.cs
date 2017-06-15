@@ -53,6 +53,12 @@ namespace SkyReg
                     .AsNoTracking()
                     .Where(p => p.Id == _payId)
                     .FirstOrDefault();
+
+                //var pay = model
+                //    .PaymentsSetting.OrderBy(p => p.Name).ToList();
+
+
+
                 if (pay != null)
                 {
                     cmbPayType.SelectedValue = pay.PaymentsSetting.Id;
@@ -91,7 +97,7 @@ namespace SkyReg
         {
             using (DLModelContainer model = new DLModelContainer())
             {
-                var allPayments = model.PaymentsSetting.OrderBy(p => p.Name).ToList();
+                var allPayments = model.PaymentsSetting.AsNoTracking().OrderBy(p => p.Name).ToList();
                 if (allPayments != null)
                 {
                     cmbPayType.DataSource = allPayments;
@@ -149,10 +155,14 @@ namespace SkyReg
                 pay.PaymentsSetting = ps;
                 pay.User = usr;
                 pay.Value = numValue.Value;
+                if (ps.Count == null)
+                    pay.Count = 0;
+                else
+                    pay.Count = ps.Count;
 
                 if (_formState == FormState.Add)
                 {
-                    _pay.Insert(pay);
+                    _pay.InsertEntity(pay);
                 }
                 else
                 {

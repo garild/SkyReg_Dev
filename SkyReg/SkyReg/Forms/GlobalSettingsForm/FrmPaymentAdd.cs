@@ -106,7 +106,7 @@ namespace SkyReg
                 ps.Name = txtBoxName.Text;
                 ps.Type = (short)cmbBoxTypes.SelectedIndex;
                 ps.Value = numPrice.Value;
-                var result = _paySetting.Insert(ps);
+                var result = _paySetting.InsertEntity(ps);
                 if (result.IsSuccess)
                 {
                     DialogResult = DialogResult.OK;

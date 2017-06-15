@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/14/2017 19:51:00
+-- Date Created: 06/15/2017 13:01:36
 -- Generated from EDMX file: F:\Projekty 2017\Repozytorium2\SkyReg_Dev\SkyReg\DataLayer\DLModel.edmx
 -- --------------------------------------------------
 
@@ -137,7 +137,7 @@ GO
 CREATE TABLE [dbo].[Operator] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Type] smallint  NOT NULL,
-    [User_Id] int  NULL
+    [User_Id] int  NOT NULL
 );
 GO
 
@@ -208,7 +208,6 @@ CREATE TABLE [dbo].[FlightsElem] (
     [Lp] int  NULL,
     [TeamName] nvarchar(max)  NULL,
     [Flight_Id] int  NOT NULL,
-    [Payments_Id] int  NOT NULL,
     [User_Id] int  NULL
 );
 GO
@@ -242,7 +241,8 @@ CREATE TABLE [dbo].[Payment] (
     [IsBooked] bit  NULL,
     [Date] datetime  NULL,
     [PaymentsSetting_Id] int  NOT NULL,
-    [User_Id] int  NOT NULL
+    [User_Id] int  NOT NULL,
+    [FlightsElem_Id] int  NULL
 );
 GO
 
@@ -520,19 +520,19 @@ ON [dbo].[Payment]
     ([User_Id]);
 GO
 
--- Creating foreign key on [Payments_Id] in table 'FlightsElem'
-ALTER TABLE [dbo].[FlightsElem]
+-- Creating foreign key on [FlightsElem_Id] in table 'Payment'
+ALTER TABLE [dbo].[Payment]
 ADD CONSTRAINT [FK_FlightsElemPayments]
-    FOREIGN KEY ([Payments_Id])
-    REFERENCES [dbo].[Payment]
+    FOREIGN KEY ([FlightsElem_Id])
+    REFERENCES [dbo].[FlightsElem]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_FlightsElemPayments'
 CREATE INDEX [IX_FK_FlightsElemPayments]
-ON [dbo].[FlightsElem]
-    ([Payments_Id]);
+ON [dbo].[Payment]
+    ([FlightsElem_Id]);
 GO
 
 -- Creating foreign key on [User_Id] in table 'FlightsElem'
