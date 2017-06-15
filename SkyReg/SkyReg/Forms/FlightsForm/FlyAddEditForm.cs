@@ -11,12 +11,13 @@ using DataLayer;
 using System.Text.RegularExpressions;
 using DataLayer.Result.Repository;
 using SkyRegEnums;
+using SkyReg.Common.Extensions;
 
 namespace SkyReg
 {
     public partial class FlyAddEditForm : KryptonForm
     {
-        public EventHandler EventHandlerAddedEditedFlight;
+        public EventHandler EventHandlerAddedEditedFlight;//TODO DO wyjebania!
 
         public FormState _formState { get; set; }
         public int _flightId { get; set; }
@@ -63,10 +64,15 @@ namespace SkyReg
         {
             using(DLModelRepository<Airplane> _ctxAirplane = new DLModelRepository<Airplane>())
             {
-                List<Airplane> airplanes = _ctxAirplane.GetAll().Value;
-                cmbAirplane.ValueMember = "Id";
-                cmbAirplane.DisplayMember = "RegNr";
-                cmbAirplane.DataSource = airplanes;
+                var result = _ctxAirplane.GetAll();
+                if(result.IsSuccess)
+                {
+                    List<Airplane> airplanes = result.Value;
+                    cmbAirplane.ValueMember = "Id";
+                    cmbAirplane.DisplayMember = "RegNr";
+                    cmbAirplane.DataSource = airplanes;
+                }
+               
             }
         }
 
@@ -82,16 +88,14 @@ namespace SkyReg
 
         private int GetLastDayNumber(DateTime date)
         {
-            int result = default(int);
+            int result = 0;
             using(DLModelContainer model = new DLModelContainer())
             {
                 var lastDayNr = model.Flight.Where(p => p.FlyDateTime == date).OrderByDescending(p => p.FlyNr).Select(p => p.FlyNr).FirstOrDefault();
-                if (lastDayNr == null)
-                    result = 0;
-                else
-                {
+                if (lastDayNr.HasValue())
+                { 
                     lastDayNr = Regex.Match(lastDayNr, @"\d+").Value;
-                    result = int.Parse(lastDayNr);
+                    int.TryParse(lastDayNr, out result);
                 }           
             }
 
@@ -106,7 +110,7 @@ namespace SkyReg
 
         private void btnSaveCfg_Click(object sender, EventArgs e)
         {
-            if (FlightValidate() == true)
+            if (FlightValidate())
             {
                 SaveFlight();
                 this.DialogResult = DialogResult.OK;
@@ -156,7 +160,7 @@ namespace SkyReg
                     result = false;
                 }
                 bool isFlight = model.Flight.Any(p => p.FlyNr == txtLastPartOfNr.Text && p.FlyDateTime == datDate.Value.Date && p.Id != _flightId);
-                if(isFlight == true)
+                if(isFlight)
                 {
                     errorProvider1.SetError(txtLastPartOfNr, "Wylot o tym numerze jest już zaplanowany na wskazany dzień!");
                     result = false;

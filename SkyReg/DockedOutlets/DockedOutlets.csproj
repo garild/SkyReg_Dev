@@ -76,16 +76,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="FormOutlets.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormOutlets.Designer.cs">
+      <DependentUpon>FormOutlets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelSettings.Designer.cs">
+      <DependentUpon>PanelSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormOutlets.resx">
+      <DependentUpon>FormOutlets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelSettings.resx">
+      <DependentUpon>PanelSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
