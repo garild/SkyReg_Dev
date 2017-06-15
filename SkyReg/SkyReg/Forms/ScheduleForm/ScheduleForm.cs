@@ -246,6 +246,19 @@ namespace SkyReg
                     if (KryptonMessageBox.Show("Czy usunąć zaznaczony element?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         int idFlightElem = (int)grdPlaner.SelectedRows[0].Cells["Id"].Value;
+                        
+                        List<Payment> pays = model.Payment.Include("FlightsElem").Include("PaymentsSetting").Include("User").AsNoTracking().Where(p => p.FlightsElem.Id == idFlightElem).ToList();
+
+
+                       
+
+                        //foreach (Payment pay in pays)
+                        //{
+                        //    model.Entry(pay).State = System.Data.Entity.EntityState.Deleted;
+                        //    model.SaveChanges();
+                        //}
+
+
                         FlightsElem fe = model.FlightsElem
                             .Include("Parachute")
                             .Include("User")
@@ -254,7 +267,9 @@ namespace SkyReg
                             .Where(p => p.Id == idFlightElem)
                             .FirstOrDefault();
 
+                       
                         model.Entry(fe).State = System.Data.Entity.EntityState.Deleted;
+                        
                         model.SaveChanges();
 
                         int lastSelIndex = grdFlights.SelectedRows[0].Index;
@@ -262,6 +277,9 @@ namespace SkyReg
                         RefreshPlanerList();
                         grdFlights.Rows[lastSelIndex].Selected = true;
 
+
+
+                        
                     }
                 }
             }
