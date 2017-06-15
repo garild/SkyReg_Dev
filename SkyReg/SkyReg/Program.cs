@@ -22,8 +22,8 @@ namespace SkyReg
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            try
-            {
+            //try
+            //{
                 if (CommonMethods.isNetworkWorking())
                 {
                     _splashScreen = FormsOpened<SplashScreen>.IsOpened(_splashScreen);
@@ -46,14 +46,14 @@ namespace SkyReg
                 }
                 else
                     Msg.Show("Brak połaczenia z internetem", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            catch (Exception ex)
-            {
-                _splashScreen.Close();
-                Msg.Show("Wystąpił błąd, treść : " + ex.Message, "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //}
+            //catch (Exception ex)
+            //{
+            //    _splashScreen.Close();
+            //    Msg.Show("Wystąpił błąd, treść : " + ex.Message, "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                Application.Exit();
-            }
+            //    Application.Exit();
+            //}
             
         }
 

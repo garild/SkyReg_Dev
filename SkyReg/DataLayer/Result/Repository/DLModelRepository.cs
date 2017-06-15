@@ -101,13 +101,15 @@ namespace DataLayer.Result.Repository
 
         }
 
-        public ColletionResult<T> GetAll(string include = null)
+        public ColletionResult<T> GetAll(string include = null, string nextInclude = null)
         {
             try
             {
                 List<T> result = new List<T>();
                 if (!string.IsNullOrEmpty(include))
                     result = Table.Include(include).AsNoTracking().ToList();
+                //if(!string.IsNullOrEmpty(include) && !string.IsNullOrEmpty(nextInclude))
+                //    result = Table.Include(include).Include(nextInclude).AsNoTracking().ToList();
                 else
                     result = Table.AsNoTracking().ToList();
 

@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleAddEditForm));
             this.kryptonTabControl1 = new AC.ExtendedRenderer.Navigator.KryptonTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.kryptonGroup1 = new ComponentFactory.Krypton.Toolkit.KryptonGroup();
-            this.kryptonNumericUpDown2 = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
-            this.kryptonNumericUpDown1 = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
+            this.numBalanceMoney = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
+            this.numBalancePackage = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel6 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.grdFlightsListSelectedForUser = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
@@ -54,6 +55,7 @@
             this.kryptonPanelEx1 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.btnSaveCfg = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.kryptonTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.kryptonPanelEx2.SuspendLayout();
@@ -64,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdFlightsListSelectedForUser)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.kryptonPanelEx1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonTabControl1
@@ -139,52 +142,52 @@
             // 
             // kryptonGroup1.Panel
             // 
-            this.kryptonGroup1.Panel.Controls.Add(this.kryptonNumericUpDown2);
-            this.kryptonGroup1.Panel.Controls.Add(this.kryptonNumericUpDown1);
+            this.kryptonGroup1.Panel.Controls.Add(this.numBalanceMoney);
+            this.kryptonGroup1.Panel.Controls.Add(this.numBalancePackage);
             this.kryptonGroup1.Panel.Controls.Add(this.kryptonLabel7);
             this.kryptonGroup1.Panel.Controls.Add(this.kryptonLabel6);
             this.kryptonGroup1.Size = new System.Drawing.Size(338, 78);
             this.kryptonGroup1.TabIndex = 24;
             // 
-            // kryptonNumericUpDown2
+            // numBalanceMoney
             // 
-            this.kryptonNumericUpDown2.DecimalPlaces = 2;
-            this.kryptonNumericUpDown2.Location = new System.Drawing.Point(198, 40);
-            this.kryptonNumericUpDown2.Maximum = new decimal(new int[] {
+            this.numBalanceMoney.DecimalPlaces = 2;
+            this.numBalanceMoney.Location = new System.Drawing.Point(198, 40);
+            this.numBalanceMoney.Maximum = new decimal(new int[] {
             9999999,
             0,
             0,
             0});
-            this.kryptonNumericUpDown2.Minimum = new decimal(new int[] {
+            this.numBalanceMoney.Minimum = new decimal(new int[] {
             999999,
             0,
             0,
             -2147483648});
-            this.kryptonNumericUpDown2.Name = "kryptonNumericUpDown2";
-            this.kryptonNumericUpDown2.ReadOnly = true;
-            this.kryptonNumericUpDown2.Size = new System.Drawing.Size(120, 22);
-            this.kryptonNumericUpDown2.TabIndex = 3;
-            this.kryptonNumericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numBalanceMoney.Name = "numBalanceMoney";
+            this.numBalanceMoney.ReadOnly = true;
+            this.numBalanceMoney.Size = new System.Drawing.Size(120, 22);
+            this.numBalanceMoney.TabIndex = 3;
+            this.numBalanceMoney.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // kryptonNumericUpDown1
+            // numBalancePackage
             // 
-            this.kryptonNumericUpDown1.DecimalPlaces = 2;
-            this.kryptonNumericUpDown1.Location = new System.Drawing.Point(198, 12);
-            this.kryptonNumericUpDown1.Maximum = new decimal(new int[] {
+            this.numBalancePackage.DecimalPlaces = 2;
+            this.numBalancePackage.Location = new System.Drawing.Point(198, 12);
+            this.numBalancePackage.Maximum = new decimal(new int[] {
             9999999,
             0,
             0,
             0});
-            this.kryptonNumericUpDown1.Minimum = new decimal(new int[] {
+            this.numBalancePackage.Minimum = new decimal(new int[] {
             999999,
             0,
             0,
             -2147483648});
-            this.kryptonNumericUpDown1.Name = "kryptonNumericUpDown1";
-            this.kryptonNumericUpDown1.ReadOnly = true;
-            this.kryptonNumericUpDown1.Size = new System.Drawing.Size(120, 22);
-            this.kryptonNumericUpDown1.TabIndex = 2;
-            this.kryptonNumericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numBalancePackage.Name = "numBalancePackage";
+            this.numBalancePackage.ReadOnly = true;
+            this.numBalancePackage.Size = new System.Drawing.Size(120, 22);
+            this.numBalancePackage.TabIndex = 2;
+            this.numBalancePackage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // kryptonLabel7
             // 
@@ -240,7 +243,7 @@
             this.btnColor.Location = new System.Drawing.Point(113, 145);
             this.btnColor.Name = "btnColor";
             this.btnColor.SchemeStandard = ComponentFactory.Krypton.Toolkit.ColorScheme.Basic16;
-            this.btnColor.SchemeThemes = ComponentFactory.Krypton.Toolkit.ColorScheme.Basic16;
+            this.btnColor.SchemeThemes = ComponentFactory.Krypton.Toolkit.ColorScheme.None;
             this.btnColor.Size = new System.Drawing.Size(96, 25);
             this.btnColor.TabIndex = 20;
             this.btnColor.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnColor.Values.Image")));
@@ -256,6 +259,7 @@
             // 
             // cmbAssemblyType
             // 
+            this.cmbAssemblyType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAssemblyType.FormattingEnabled = true;
             this.cmbAssemblyType.Location = new System.Drawing.Point(113, 89);
             this.cmbAssemblyType.Name = "cmbAssemblyType";
@@ -272,11 +276,13 @@
             // 
             // cmbParachute
             // 
+            this.cmbParachute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbParachute.FormattingEnabled = true;
             this.cmbParachute.Location = new System.Drawing.Point(113, 62);
             this.cmbParachute.Name = "cmbParachute";
             this.cmbParachute.Size = new System.Drawing.Size(209, 21);
             this.cmbParachute.TabIndex = 16;
+            this.cmbParachute.SelectedIndexChanged += new System.EventHandler(this.cmbParachute_SelectedIndexChanged);
             // 
             // kryptonLabel2
             // 
@@ -288,6 +294,7 @@
             // 
             // cmbUsersType
             // 
+            this.cmbUsersType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUsersType.FormattingEnabled = true;
             this.cmbUsersType.Location = new System.Drawing.Point(113, 35);
             this.cmbUsersType.Name = "cmbUsersType";
@@ -312,6 +319,7 @@
             this.cmbName.Size = new System.Drawing.Size(209, 21);
             this.cmbName.TabIndex = 12;
             this.cmbName.SelectedIndexChanged += new System.EventHandler(this.cmbName_SelectedIndexChanged);
+            this.cmbName.TextChanged += new System.EventHandler(this.cmbName_TextChanged);
             // 
             // tabPage2
             // 
@@ -368,6 +376,7 @@
             this.btnSaveCfg.TabIndex = 6;
             this.btnSaveCfg.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveCfg.Values.Image")));
             this.btnSaveCfg.Values.Text = "Zapisz";
+            this.btnSaveCfg.Click += new System.EventHandler(this.btnSaveCfg_Click);
             // 
             // btnClose
             // 
@@ -383,6 +392,10 @@
             this.btnClose.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Values.Image")));
             this.btnClose.Values.Text = "Zamknij";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // ScheduleAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -390,6 +403,9 @@
             this.ClientSize = new System.Drawing.Size(350, 658);
             this.Controls.Add(this.kryptonPanelEx1);
             this.Controls.Add(this.kryptonTabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ScheduleAddEditForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Element wylotu";
@@ -406,6 +422,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdFlightsListSelectedForUser)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.kryptonPanelEx1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -433,9 +450,10 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private System.Windows.Forms.ComboBox cmbName;
         private ComponentFactory.Krypton.Toolkit.KryptonGroup kryptonGroup1;
-        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown kryptonNumericUpDown2;
-        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown kryptonNumericUpDown1;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numBalanceMoney;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numBalancePackage;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel7;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

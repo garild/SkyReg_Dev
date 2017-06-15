@@ -104,7 +104,7 @@ namespace SkyReg
         {
             using(DLModelContainer model = new DLModelContainer())
             {
-
+                //TODO do zrobienia PS
             }
         }
 
@@ -153,13 +153,16 @@ namespace SkyReg
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            ScheduleAddEditForm = FormsOpened<ScheduleAddEditForm>.IsOpened(new ScheduleAddEditForm());
-            ScheduleAddEditForm.FormState = FormState.Add;
-            ScheduleAddEditForm.IdScheduleElem = default(int);
-            ScheduleAddEditForm.grdFlight = grdFlights;
-            if (ScheduleAddEditForm.ShowDialog() == DialogResult.OK)
+            if (grdFlights.SelectedRows.Count > 0)
             {
-                RefreshFlightsList();
+                ScheduleAddEditForm = FormsOpened<ScheduleAddEditForm>.IsOpened(new ScheduleAddEditForm());
+                ScheduleAddEditForm.FormState = FormState.Add;
+                ScheduleAddEditForm.IdScheduleElem = default(int);
+                ScheduleAddEditForm.grdFlight = grdFlights;
+                if (ScheduleAddEditForm.ShowDialog() == DialogResult.OK)
+                {
+                    RefreshFlightsList();
+                }
             }
         }
 
