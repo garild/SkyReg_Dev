@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Examples));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.btnSaveCfg = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -89,9 +89,11 @@
             this.dataGridView2 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.DataGridScheduleBudget = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.rdCopyBudgetWithoutCustomers = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
+            this.kryptonComboBox2 = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.txtPassword = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.btGenerateDataBase = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonComboBox2 = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.kryptonHeaderGroup4 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
+            this.virtualListBox = new AC.StdControls.Toolkit.LBox.KryptonVirtualListBox();
             ((System.ComponentModel.ISupportInitialize)(this.cbParentUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel3)).BeginInit();
             this.kryptonPanel3.SuspendLayout();
@@ -127,6 +129,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridScheduleBudget)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup4.Panel)).BeginInit();
+            this.kryptonHeaderGroup4.Panel.SuspendLayout();
+            this.kryptonHeaderGroup4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClose
@@ -197,6 +203,7 @@
             // 
             // kryptonPanel3
             // 
+            this.kryptonPanel3.Controls.Add(this.kryptonHeaderGroup4);
             this.kryptonPanel3.Controls.Add(this.kryptonHeaderGroup3);
             this.kryptonPanel3.Controls.Add(this.kryptonButton4);
             this.kryptonPanel3.Controls.Add(this.btnLogin);
@@ -225,7 +232,7 @@
             this.kryptonPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonPanel3.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanel3.Name = "kryptonPanel3";
-            this.kryptonPanel3.Size = new System.Drawing.Size(1249, 539);
+            this.kryptonPanel3.Size = new System.Drawing.Size(1779, 792);
             this.kryptonPanel3.StateCommon.Color1 = System.Drawing.SystemColors.ActiveCaption;
             this.kryptonPanel3.StateNormal.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.kryptonPanel3.TabIndex = 18;
@@ -252,10 +259,10 @@
             this.kryptonDataGridView2.AllowUserToAddRows = false;
             this.kryptonDataGridView2.AllowUserToDeleteRows = false;
             this.kryptonDataGridView2.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.kryptonDataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.Format = "N2";
+            dataGridViewCellStyle13.NullValue = null;
+            this.kryptonDataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.kryptonDataGridView2.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.kryptonDataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.kryptonDataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -277,7 +284,7 @@
             // kryptonButton4
             // 
             this.kryptonButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.kryptonButton4.Location = new System.Drawing.Point(456, 401);
+            this.kryptonButton4.Location = new System.Drawing.Point(455, 477);
             this.kryptonButton4.Name = "kryptonButton4";
             this.kryptonButton4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.kryptonButton4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -301,7 +308,7 @@
             // kryptonButton3
             // 
             this.kryptonButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.kryptonButton3.Location = new System.Drawing.Point(364, 401);
+            this.kryptonButton3.Location = new System.Drawing.Point(363, 477);
             this.kryptonButton3.Name = "kryptonButton3";
             this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.kryptonButton3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -589,7 +596,7 @@
             this.RegionListBox.Location = new System.Drawing.Point(0, 0);
             this.RegionListBox.Name = "RegionListBox";
             this.RegionListBox.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.RegionListBox.Size = new System.Drawing.Size(325, 184);
+            this.RegionListBox.Size = new System.Drawing.Size(325, 190);
             this.RegionListBox.TabIndex = 0;
             // 
             // DataGridFiltrs
@@ -597,11 +604,11 @@
             this.DataGridFiltrs.AllowUserToAddRows = false;
             this.DataGridFiltrs.AllowUserToDeleteRows = false;
             this.DataGridFiltrs.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Maroon;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Maroon;
-            this.DataGridFiltrs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Maroon;
+            this.DataGridFiltrs.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle14;
             this.DataGridFiltrs.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.DataGridFiltrs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataGridFiltrs.ColumnHeadersVisible = false;
@@ -616,12 +623,12 @@
             this.DataGridFiltrs.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Black;
             this.DataGridFiltrs.RowHeadersVisible = false;
             this.DataGridFiltrs.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Maroon;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Maroon;
-            this.DataGridFiltrs.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Maroon;
+            this.DataGridFiltrs.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.DataGridFiltrs.RowTemplate.DefaultCellStyle.Format = "N2";
             this.DataGridFiltrs.RowTemplate.DefaultCellStyle.NullValue = "0,00";
             this.DataGridFiltrs.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -667,10 +674,10 @@
             this.StatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TsUsersCount,
             this.toolStripRegionCount});
-            this.StatusBar.Location = new System.Drawing.Point(0, 478);
+            this.StatusBar.Location = new System.Drawing.Point(0, 731);
             this.StatusBar.Name = "StatusBar";
             this.StatusBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.StatusBar.Size = new System.Drawing.Size(1249, 22);
+            this.StatusBar.Size = new System.Drawing.Size(1779, 22);
             this.StatusBar.SizingGrip = false;
             this.StatusBar.TabIndex = 75;
             this.StatusBar.Text = "statusStrip1";
@@ -700,10 +707,10 @@
             this.kryptonPanelEx1.GradientUseBlend = false;
             this.kryptonPanelEx1.Image = null;
             this.kryptonPanelEx1.ImageLocation = new System.Drawing.Point(4, 4);
-            this.kryptonPanelEx1.Location = new System.Drawing.Point(0, 500);
+            this.kryptonPanelEx1.Location = new System.Drawing.Point(0, 753);
             this.kryptonPanelEx1.Name = "kryptonPanelEx1";
             this.kryptonPanelEx1.PersistentColors = false;
-            this.kryptonPanelEx1.Size = new System.Drawing.Size(1249, 39);
+            this.kryptonPanelEx1.Size = new System.Drawing.Size(1779, 39);
             this.kryptonPanelEx1.TabIndex = 74;
             // 
             // BtnDelete
@@ -797,10 +804,10 @@
             this.kryptonDataGridView1.AllowUserToAddRows = false;
             this.kryptonDataGridView1.AllowUserToDeleteRows = false;
             this.kryptonDataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.kryptonDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.Format = "N2";
+            dataGridViewCellStyle16.NullValue = null;
+            this.kryptonDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.kryptonDataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.kryptonDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.kryptonDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -847,10 +854,10 @@
             this.dataGridView2.AllowDrop = true;
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.Format = "N2";
+            dataGridViewCellStyle17.NullValue = null;
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridView2.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -876,9 +883,9 @@
             this.DataGridScheduleBudget.AllowUserToAddRows = false;
             this.DataGridScheduleBudget.AllowUserToDeleteRows = false;
             this.DataGridScheduleBudget.AllowUserToResizeRows = false;
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = "0,00";
-            this.DataGridScheduleBudget.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle18.Format = "N2";
+            dataGridViewCellStyle18.NullValue = "0,00";
+            this.DataGridScheduleBudget.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle18;
             this.DataGridScheduleBudget.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.DataGridScheduleBudget.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataGridScheduleBudget.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
@@ -910,6 +917,16 @@
             this.rdCopyBudgetWithoutCustomers.TabIndex = 27;
             this.rdCopyBudgetWithoutCustomers.Values.Text = "Skopiuj cały budżet na wybranego użytkownika - nie przypisuj kotrahentów";
             // 
+            // kryptonComboBox2
+            // 
+            this.kryptonComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.kryptonComboBox2.DropDownWidth = 175;
+            this.kryptonComboBox2.Location = new System.Drawing.Point(102, 32);
+            this.kryptonComboBox2.Name = "kryptonComboBox2";
+            this.kryptonComboBox2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.kryptonComboBox2.Size = new System.Drawing.Size(122, 21);
+            this.kryptonComboBox2.TabIndex = 24;
+            // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(30, 96);
@@ -931,21 +948,54 @@
             this.btGenerateDataBase.Values.Image = ((System.Drawing.Image)(resources.GetObject("btGenerateDataBase.Values.Image")));
             this.btGenerateDataBase.Values.Text = "Generuj Bazę";
             // 
-            // kryptonComboBox2
+            // kryptonHeaderGroup4
             // 
-            this.kryptonComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.kryptonComboBox2.DropDownWidth = 175;
-            this.kryptonComboBox2.Location = new System.Drawing.Point(102, 32);
-            this.kryptonComboBox2.Name = "kryptonComboBox2";
-            this.kryptonComboBox2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.kryptonComboBox2.Size = new System.Drawing.Size(122, 21);
-            this.kryptonComboBox2.TabIndex = 24;
+            this.kryptonHeaderGroup4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
+            this.kryptonHeaderGroup4.GroupBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ButtonStandalone;
+            this.kryptonHeaderGroup4.GroupBorderStyle = ComponentFactory.Krypton.Toolkit.PaletteBorderStyle.ButtonAlternate;
+            this.kryptonHeaderGroup4.HeaderStylePrimary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Calendar;
+            this.kryptonHeaderGroup4.HeaderVisibleSecondary = false;
+            this.kryptonHeaderGroup4.Location = new System.Drawing.Point(1264, 5);
+            this.kryptonHeaderGroup4.Margin = new System.Windows.Forms.Padding(0);
+            this.kryptonHeaderGroup4.Name = "kryptonHeaderGroup4";
+            this.kryptonHeaderGroup4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleBlue;
+            // 
+            // kryptonHeaderGroup4.Panel
+            // 
+            this.kryptonHeaderGroup4.Panel.Controls.Add(this.virtualListBox);
+            this.kryptonHeaderGroup4.Size = new System.Drawing.Size(480, 512);
+            this.kryptonHeaderGroup4.StateNormal.HeaderPrimary.Content.Padding = new System.Windows.Forms.Padding(-20, 2, 2, 2);
+            this.kryptonHeaderGroup4.StateNormal.HeaderPrimary.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.kryptonHeaderGroup4.TabIndex = 80;
+            this.kryptonHeaderGroup4.ValuesPrimary.Heading = "             LOT NR 5 BLAALALALALA";
+            this.kryptonHeaderGroup4.ValuesPrimary.Image = null;
+            // 
+            // virtualListBox
+            // 
+            this.virtualListBox.BackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ControlGroupBox;
+            this.virtualListBox.BorderStyle = ComponentFactory.Krypton.Toolkit.PaletteBorderStyle.ButtonStandalone;
+            this.virtualListBox.Count = 0;
+            this.virtualListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.virtualListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.virtualListBox.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.virtualListBox.Items.AddRange(new object[] {
+            "sdasd"});
+            this.virtualListBox.ItemStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Form;
+            this.virtualListBox.Location = new System.Drawing.Point(0, 0);
+            this.virtualListBox.Margin = new System.Windows.Forms.Padding(0);
+            this.virtualListBox.Name = "virtualListBox";
+            this.virtualListBox.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleBlue;
+            this.virtualListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.virtualListBox.Size = new System.Drawing.Size(476, 487);
+            this.virtualListBox.StateCommon.Item.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.virtualListBox.StateCommon.Item.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.virtualListBox.TabIndex = 13;
             // 
             // Examples
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1249, 539);
+            this.ClientSize = new System.Drawing.Size(1779, 792);
             this.Controls.Add(this.kryptonPanel3);
             this.Name = "Examples";
             this.Text = "Exsamples";
@@ -989,6 +1039,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridScheduleBudget)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup4.Panel)).EndInit();
+            this.kryptonHeaderGroup4.Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup4)).EndInit();
+            this.kryptonHeaderGroup4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1052,5 +1106,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dataGridView2;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox2;
+        private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup kryptonHeaderGroup4;
+        private AC.StdControls.Toolkit.LBox.KryptonVirtualListBox virtualListBox;
     }
 }

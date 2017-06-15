@@ -1,7 +1,9 @@
-﻿using ComponentFactory.Krypton.Toolkit;
+﻿using AC.StdControls.Toolkit.LBox;
+using ComponentFactory.Krypton.Toolkit;
 using DataLayer;
 using DataLayer.Result.Repository;
 using DataLayer.Utils;
+using DockedOutlets.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,9 +22,11 @@ using System.Xml.Serialization;
 
 namespace DockedOutlets
 {
-    public partial class ListViewOutlets : KryptonForm
+    public partial class FormOutlets : KryptonForm
     {
-        public ListViewOutlets()
+        public static BasicSettings settings = null;
+
+        public FormOutlets()
         {
             SkyRegUser.GlobalPathFile = Environment.GetFolderPath((Environment.SpecialFolder.LocalApplicationData)) + @"\SkyReg";
             SkyRegUser.DatabaseConfigFile = string.Format("{0}\\DatabaseConfig.xml", SkyRegUser.GlobalPathFile);
@@ -36,82 +40,83 @@ namespace DockedOutlets
             LoadSettings();
 
             EntityConnectionString.Configuration(DatabaseConfig.ConnectionString);
-            GenerateDynamicControls();
+           
             TEST();
         }
 
         private void GenerateDynamicControls()
         {
-            var dataitem = new List<string>();
-            using (DLModelRepository<Flight> _contextOperator = new DLModelRepository<Flight>())
+            if (settings != null)
             {
-                var flishts = _contextOperator.GetAll();
-                var items = new ListViewItem();
-                int i = 1;
-                
-                flishts?.Value.Take(24).ToList().ForEach(
-                    p =>
-                    {
-                        dataitem.Add($"{i++.ToString("00")}.             GARIB TIGRANYAN");
-                    });
-
-              
-
-
-            }
-            
-
-            for (int i = 1; i < 8; i++)
-            {
-                var controls = new AC.StdControls.Toolkit.LBox.KryptonVirtualListBox();
-                controls.BackStyle = PaletteBackStyle.ControlGroupBox;
-                controls.BorderStyle = PaletteBorderStyle.ButtonStandalone;
-                controls.Count = 0;
-                controls.Dock = DockStyle.Fill;
-                controls.DrawMode = DrawMode.OwnerDrawFixed;
-                controls.HorizontalScrollbar = true;
-                controls.ImeMode = ImeMode.NoControl;
-                controls.ItemStyle = ButtonStyle.Form;
-                controls.Location = new Point(0, 0);
-                controls.Margin = new Padding(4);
-                controls.PaletteMode = PaletteMode.SparkleBlue;
-                controls.SelectionMode = SelectionMode.None;
-                controls.Size = new Size(476, 487);
-                controls.StateCommon.Item.Content.ShortText.Color1 = System.Drawing.Color.White;
-                controls.StateCommon.Item.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-                controls.TabIndex = 0;
-                controls.Padding = new Padding(0);
-                controls.Name = $"virtualListBox{i}";
-                
-
-                var group = new KryptonHeaderGroup();
-                group.AutoSizeMode = AutoSizeMode.GrowOnly;
-                group.GroupBackStyle = PaletteBackStyle.ButtonStandalone;
-                group.GroupBorderStyle = PaletteBorderStyle.ButtonAlternate;
-                group.HeaderStylePrimary = HeaderStyle.Calendar;
-                group.HeaderVisibleSecondary = false;
-                group.Location = new Point(0, 0);
-                group.Margin = new Padding(0);
-                group.Name = $"KryptonGroup{i}";
-                group.PaletteMode = PaletteMode.SparkleBlue;
-                // 
-                // kryptonHeaderGroup1.Panel
-                // 
-                group.Panel.Controls.Add(controls);
-                group.Size = new System.Drawing.Size(480, 512);
-                group.StateNormal.HeaderPrimary.Content.Padding = new System.Windows.Forms.Padding(10, 2, 2, 2);
-                group.StateNormal.HeaderPrimary.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-                group.TabIndex = 13;
-                group.ValuesPrimary.Heading = "   Nr Lot: 1254587558741  Pułap: 4000m  Miejsca: 24";
-                group.ValuesPrimary.Image = null;
-
-
-                dataitem.ForEach(p =>
+                flowLayoutPanel1.Controls.Clear();
+                var dataitem = new List<string>();
+                using (DLModelRepository<Flight> _contextOperator = new DLModelRepository<Flight>())
                 {
-                    controls.Items.Add(p);
-                });
-                flowLayoutPanel1.Controls.Add(group);
-                
+                    var flishts = _contextOperator.GetAll();
+                    var items = new ListViewItem();
+                    int i = 1;
+
+                    flishts?.Value.Take(24).ToList().ForEach(
+                        p =>
+                        {
+                            dataitem.Add($"{i++.ToString("00")}.  GARIB TIGRANYAN");
+                        });
+                }
+
+                KryptonVirtualListBox controls = null;
+                for (int i = 0; i < settings.Amount; i++)
+                {
+                    controls = new KryptonVirtualListBox();
+                    controls.BackStyle = PaletteBackStyle.ControlGroupBox;
+                    controls.BorderStyle = PaletteBorderStyle.ButtonStandalone;
+                    controls.Count = 0;
+                    controls.Dock = DockStyle.Fill;
+                    controls.DrawMode = DrawMode.OwnerDrawFixed;
+                    controls.HorizontalScrollbar = true;
+                    controls.ImeMode = ImeMode.NoControl;
+                    controls.ItemStyle = settings.ListItemsStyle;
+                    controls.Location = new Point(0, 0);
+                    controls.Margin = settings.ListItemsMargin;
+                    controls.PaletteMode = settings.ListItemsPaletteMode;
+                    controls.SelectionMode = SelectionMode.None;
+                    controls.Size = settings.ListItemsSize;
+                    controls.StateCommon.Item.Content.ShortText.Color1 = settings.ListItemTextColor;
+                    controls.StateCommon.Item.Content.ShortText.Font = settings.ListItemsFont;
+                    controls.TabIndex = 0;
+                    controls.Padding = settings.ListItemsPadding;
+                    controls.Name = $"virtualListBox{i}";
+
+
+                    var group = new KryptonHeaderGroup();
+                    group.AutoSizeMode = AutoSizeMode.GrowOnly;
+                    group.GroupBackStyle = PaletteBackStyle.ButtonStandalone;
+                    group.GroupBorderStyle = PaletteBorderStyle.ButtonAlternate;
+                    group.HeaderStylePrimary = settings.HeaderStyle;
+                    group.HeaderVisibleSecondary = false;
+                    group.Location = new Point(0, 0);
+                    group.Margin = settings.HeaderMargin;
+                    group.Name = $"KryptonGroup{i}";
+                    group.PaletteMode = settings.HeaderPaletteMode;
+                    // 
+                    // kryptonHeaderGroup1.Panel
+                    // 
+                    group.Panel.Controls.Add(controls);
+                    group.Size = settings.HeaderSize;
+                    group.StateNormal.HeaderPrimary.Content.Padding = settings.HeaderTitlePadding;
+                    group.StateNormal.HeaderPrimary.Content.ShortText.Font = settings.HeaderFont;
+                    group.StateNormal.HeaderPrimary.Content.ShortText.Color1 = settings.HeaderTitleColor;
+                    group.TabIndex = 13;
+                    group.ValuesPrimary.Heading = "   Nr Lot: 1254587558741  Pułap: 4000m  Miejsca: 24";
+                    group.ValuesPrimary.Image = null;
+
+
+                    dataitem.ForEach(p =>
+                    {
+                        controls.Items.Add(p);
+                    });
+                    flowLayoutPanel1.Controls.Add(group);
+
+                }
             }
            
         }
@@ -127,22 +132,8 @@ namespace DockedOutlets
                 flishts?.Value.Take(24).ToList().ForEach(
                     p =>
                     {
-                        dataitem.Add($"{i++.ToString("00")}.             {p.FlyNr.ToUpper()}");                        
+                        dataitem.Add($"{i++.ToString("00")}.             {p.FlyNr.ToUpper()}");
                     });
-               
-                dataitem.ForEach(p =>
-                {
-                    virtualListBox.Items.Add(p);
-                    //kryptonVirtualListBox7.Items.Add(p);
-                    
-                    //kryptonVirtualListBox8.Items.Add(p);
-                    //kryptonVirtualListBox9.Items.Add(p);
-                    //kryptonVirtualListBox10.Items.Add(p);
-                    //kryptonVirtualListBox4.Items.Add(p);
-
-                });
-              
-
             }
         }
 
@@ -173,8 +164,20 @@ namespace DockedOutlets
 
         private void tsmSettings_Click(object sender, EventArgs e)
         {
-            PanelSettings _panel = new PanelSettings();
+             _panel = new PanelSettings();
+            _panel.FormClosed += _panel_FormClosed;
             _panel.Show();
+            
         }
+
+        private void _panel_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (_panel.DialogResult == DialogResult.OK)
+            {
+                GenerateDynamicControls();
+            }
+        }
+
+        PanelSettings _panel = null;
     }
 }

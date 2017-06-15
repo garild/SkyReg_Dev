@@ -16,7 +16,7 @@ namespace DockedOutlets
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ListViewOutlets());
+            Application.Run(new FormOutlets());
         }
     }
 }
