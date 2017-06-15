@@ -157,7 +157,7 @@ namespace SkyReg
 
                 if (_formState == FormState.Add)
                 {
-                    _pay.Insert(pay);
+                    _pay.InsertEntity(pay);
                 }
                 else
                 {

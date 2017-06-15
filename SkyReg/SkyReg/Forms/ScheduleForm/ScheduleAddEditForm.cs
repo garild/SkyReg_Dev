@@ -18,6 +18,7 @@ namespace SkyReg
         public FormState FormState { get; set; }
         public int IdScheduleElem { get; set; }
         public KryptonDataGridView grdFlight { get; set; }
+        public KryptonDataGridView grdPlaner { get; set; }
 
         private int selectedUserId = default(int);
 
@@ -29,6 +30,7 @@ namespace SkyReg
         private void ScheduleAddEditForm_Load(object sender, EventArgs e)
         {
             LoadFlightsOnGrid();
+            LoadFlightsOnGridGroup();
             LoadUsers();
             LoadParachutes();
 
@@ -60,46 +62,118 @@ namespace SkyReg
 
                 //TODO dodać bieżący skok
 
+                Payment payJump = null;
+                Payment packJump = null;
+                Payment payParachuteRent = null;
+                Payment payAssembly = null;
+                string nrLotu = default(string);
+                int flightId = default(int);
 
+
+                //Bieżący skok
+                flightId = (int)grdFlight.SelectedRows[0].Cells["Id"].Value;
+                FlightsElem fe = SaveFlghtElemToDB(flightId, usr.Id);
+                
+                nrLotu = grdFlight.SelectedRows[0].Cells["Number"].Value.ToString();
+                if (parachuteRentPrice.Value > 0)
+                    payParachuteRent = SaveOneJump(usr.Id, parachuteRentPrice.Value, false, string.Format("Spadochron {0}", nrLotu), fe.Id);
+                if (parachuteAssemblyPrice.Value > 0 && assemblySelf == false)
+                    payAssembly = SaveOneJump(usr.Id, parachuteAssemblyPrice, false, string.Format("Układanie {0}", nrLotu), fe.Id);
+                if (usersPackages > 0)
+                {
+                    packJump = SaveOneJump(usr.Id, 0, true, string.Format("Skok {0}", nrLotu), fe.Id);
+                    usersPackages -= 1;
+                }
+                else
+                {
+                    payJump = SaveOneJump(usr.Id, oneJumpPrice, false, string.Format("Skok {0}", nrLotu), fe.Id);
+                }
+
+
+                //skoki z listy formatki dodawania FlightsElem inne niż bieżący
                 foreach (DataGridViewRow item in grdFlightsListSelectedForUser.Rows)
                 {
                     if (item.Cells["Check"].Value != null && (int)item.Cells["Id"].Value != currentFlightId)
                     {
-                        //if(usersPackages > 0)
-                        //{
+                        nrLotu = item.Cells["Nr"].Value.ToString();
+                        flightId = (int)item.Cells["Id"].Value;
+                        fe = SaveFlghtElemToDB(flightId, usr.Id);
 
-                        //    usersPackages -= 1;
-                        //}
-                        //else
-                        //{
-                            Payment payJump = SaveOneJump(model, usr, parachute, oneJumpPrice, false);
-                        //}
-                    }
-                        
+                        if (parachuteRentPrice.Value > 0)
+                            payParachuteRent = SaveOneJump(usr.Id, parachuteRentPrice.Value, false, string.Format("Spadochron {0}", nrLotu), fe.Id);
+                        if (parachuteAssemblyPrice.Value > 0 && assemblySelf == false)
+                            payAssembly = SaveOneJump(usr.Id, parachuteAssemblyPrice, false, string.Format("Układanie {0}", nrLotu), fe.Id);
+                        if (usersPackages > 0)
+                        {
+                            packJump = SaveOneJump(usr.Id, 0, true, string.Format("Skok {0}", nrLotu), fe.Id);
+                            usersPackages -= 1;
+                        }
+                        else
+                        {
+                            payJump = SaveOneJump(usr.Id, oneJumpPrice, false, string.Format("Skok {0}", nrLotu), fe.Id);
+                        }
+                    }         
                 }
             }
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
-        private Payment SaveOneJump(DLModelContainer model, User usr, Parachute parachute, decimal? oneJumpPrice, bool count)
+        private FlightsElem SaveFlghtElemToDB(int flightId, int usrId)
+        {
+            using(DLModelContainer model = new DLModelContainer())
+            {
+                Flight fly = model.Flight.Where(p => p.Id == flightId).FirstOrDefault();
+
+                FlightsElem fe = new FlightsElem();
+                fe.Flight = fly;
+                if (cmbAssemblyType.Text == "Układam sam")
+                    fe.AssemblySelf = true;
+                else
+                    fe.AssemblySelf = false;
+                fe.Lp = model.FlightsElem.Where(p=>p.Flight.Id == flightId).ToList().Count + 1;
+                fe.Parachute = model.Parachute.Where(p => p.Id == (int)cmbParachute.SelectedValue).ToList();
+                fe.User = model.User.Where(p => p.Id == usrId).FirstOrDefault();
+                fe.Color = btnColor.SelectedColor.Name;
+                model.FlightsElem.Attach(fe);
+                model.FlightsElem.Add(fe);
+                model.SaveChanges();
+                return fe;
+            }
+            
+        }
+
+
+
+        private Payment SaveOneJump(int usrId, decimal? oneJumpPrice, bool count, string description, int flyElem)
         {
 
-            PaymentsSetting ps = model.PaymentsSetting.Where(p => p.Type == (short)SkyRegEnums.PaymentsTypes.Naleznosc).FirstOrDefault();
-
+            //PaymentsSetting ps = model.PaymentsSetting.Where(p => p.Type == (short)SkyRegEnums.PaymentsTypes.Naleznosc).FirstOrDefault();
+            Payment pay = null;
+            using (var _paySettings = new DLModelRepository<PaymentsSetting>())
+            using (var _user = new DLModelRepository<User>())
             using (var _pay = new DLModelRepository<Payment>())
-            using (var _ps = new DLModelRepository<PaymentsSetting>())
-            using (var _usr = new DLModelRepository<User>())
+            using( var _FlyElem = new DLModelRepository<FlightsElem>())
             {
-                Payment pay = new Payment();
+                pay = new Payment();
+                PaymentsSetting ps = _paySettings.Table.Where(p => p.Type == (short)SkyRegEnums.PaymentsTypes.Naleznosc).FirstOrDefault();
+                var flightElem = _FlyElem.Table.Where(p => p.Id == flyElem).FirstOrDefault();
+                var user = _user.Table.Where(p => p.Id == usrId).FirstOrDefault();
 
+                pay.FlightsElem = flightElem;
                 pay.Date = DateTime.Now;
-                pay.Description = "Szybka wpłata";
+                pay.Description = description;
                 pay.IsBooked = true;
                 pay.PaymentsSetting = ps;
-                pay.User = usr;
+                pay.User = user;
                 pay.Value = oneJumpPrice.Value;
-                pay.Count = 0;
+                if (count == false)
+                    pay.Count = 0;
+                else
+                    pay.Count = 1;
 
-                _pay.Insert(pay);
+                _pay.InsertEntity(pay);
 
                 return pay;
             }
@@ -156,8 +230,36 @@ namespace SkyReg
                 }
             }
 
+            //Sprawdzam wolne miejsca
+            string message = default(string);
 
+            if(result == true)
+            {
+                if (FormState == FormState.Add)
+                {
+                    //zaznaczony wylot
+                    if ((int)grdFlight.SelectedRows[0].Cells["Places"].Value < 1)
+                    {
+                        message += string.Format("W wylocie {0} brak miejsc!\n", grdFlight.SelectedRows[0].Cells["Number"].Value.ToString());
+                        result = false;
+                    }
 
+                    //Wyloty z list na formatce dodawania
+                    foreach (DataGridViewRow item in grdFlightsListSelectedForUser.Rows)
+                    {
+                        if (item.Cells["Check"].Value != null)
+                        {
+                            if ((int)item.Cells["AllSeats"].Value - (int)item.Cells["BusySeats"].Value < 1)
+                            {
+                                message += string.Format("W wylocie {0} brak miejsc!\n", item.Cells["Nr"].Value.ToString());
+                                result = false;
+                            }
+                        }
+                    }
+                    if (message != default(string))
+                        KryptonMessageBox.Show(message, "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+            }
 
             return result;
         }
@@ -231,7 +333,7 @@ namespace SkyReg
                 pay.Value = value;
                 pay.Count = 0;
 
-                _pay.Insert(pay);
+                _pay.InsertEntity(pay);
             }
         }
 
@@ -365,7 +467,9 @@ namespace SkyReg
                     .Select(p => new
                     {
                         Id = p.Id,
-                        Nr = "LOT " + p.FlyDateTime.Year + @"/" + p.FlyDateTime.Month + @"/" + p.FlyDateTime.Day + @"/" + p.FlyNr
+                        Nr = "LOT " + p.FlyDateTime.Year + @"/" + p.FlyDateTime.Month + @"/" + p.FlyDateTime.Day + @"/" + p.FlyNr,
+                        AllSeats = p.Airplane.Seats,
+                        BusySeats = p.FlightsElem.Count
                     })
                     .ToList();
                 if (flightsList != null)
@@ -425,7 +529,8 @@ namespace SkyReg
             grdFlightsListSelectedForUser.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             grdFlightsListSelectedForUser.MultiSelect = false;
 
-
+            grdFlightsListSelectedForUser.Columns["AllSeats"].Visible = false;
+            grdFlightsListSelectedForUser.Columns["BusySeats"].Visible = false;
 
         }
 
@@ -510,15 +615,15 @@ namespace SkyReg
             {
                 if (ValidateAdd() == true)
                 {
-                    SaveToBaseAdd();
+                    if (FormState == FormState.Add)
+                        SaveToBaseAdd();
                 }
             }
             else
             {
-
+                TryAddGroup();
             }
         }
 
-        
     }
 }

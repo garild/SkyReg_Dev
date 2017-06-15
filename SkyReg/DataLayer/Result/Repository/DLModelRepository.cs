@@ -26,7 +26,13 @@ namespace DataLayer.Result.Repository
             return Entities.Find(id);
         }
 
-        public ResultType<T> Insert(T entity)
+        /// <summary>
+        /// Attach with FALSE :Insert new Entity data object with references and associations class,
+        /// attach with TRUE :Add new Entity data where references and associations class does not exists
+        /// 
+        /// </summary>
+
+        public ResultType<T> InsertEntity(T entity, bool Attach = true)
         {
             try
             {
@@ -35,14 +41,15 @@ namespace DataLayer.Result.Repository
                     return new ResultType<T>() { Value = null };
                 }
 
-                this.Entities.Attach(entity);
+                if (Attach)
+                    this.Entities.Attach(entity);
                 this.Entities.Add(entity);
 
                 this.context.SaveChanges();
 
                 return new ResultType<T>() { Value = entity };
             }
-            catch(DbUpdateException ex)
+            catch (DbUpdateException ex)
             {
                 errorMessage = ex.InnerException?.Message;
                 return new ResultType<T>() { Value = null, Error = errorMessage };
@@ -63,6 +70,11 @@ namespace DataLayer.Result.Repository
 
         }
 
+        /// <summary>
+        ///  Insert multi Entity objects at one
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public ColletionResult<T> InsertMany(List<T> entity)
         {
             try
@@ -101,15 +113,13 @@ namespace DataLayer.Result.Repository
 
         }
 
-        public ColletionResult<T> GetAll(string include = null, string nextInclude = null)
+        public ColletionResult<T> GetAll(string include = null)
         {
             try
             {
                 List<T> result = new List<T>();
                 if (!string.IsNullOrEmpty(include))
                     result = Table.Include(include).AsNoTracking().ToList();
-                //if(!string.IsNullOrEmpty(include) && !string.IsNullOrEmpty(nextInclude))
-                //    result = Table.Include(include).Include(nextInclude).AsNoTracking().ToList();
                 else
                     result = Table.AsNoTracking().ToList();
 
@@ -176,8 +186,8 @@ namespace DataLayer.Result.Repository
                 {
                     throw new ArgumentNullException("entity");
                 }
-
                 context.Entry(entity).State = EntityState.Deleted;
+               
                 context.SaveChanges();
 
                 return new ResultType<T>() { IsSuccess = true };

@@ -62,7 +62,7 @@ namespace SkyReg
                 op.Type = (short)typ;
                 op.User = _user.GetAll().Value?.Where(p => p.Id == (int)cmbName.SelectedValue).FirstOrDefault();
 
-                if (_operator.Insert(op).IsSuccess)
+                if (_operator.InsertEntity(op).IsSuccess)
                 {
                     DialogResult = DialogResult.OK;
                     this.Close();

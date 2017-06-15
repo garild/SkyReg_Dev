@@ -56,6 +56,12 @@
             this.btnSaveCfg = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtGroupName = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.kryptonLabel8 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.numUsersCount = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
+            this.kryptonLabel9 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.grdFlightsForGroup = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.btnColorGroup = new ComponentFactory.Krypton.Toolkit.KryptonColorButton();
             this.kryptonTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.kryptonPanelEx2.SuspendLayout();
@@ -65,8 +71,10 @@
             this.kryptonGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdFlightsListSelectedForUser)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.kryptonPanelEx3.SuspendLayout();
             this.kryptonPanelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdFlightsForGroup)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonTabControl1
@@ -244,10 +252,11 @@
             this.btnColor.Name = "btnColor";
             this.btnColor.SchemeStandard = ComponentFactory.Krypton.Toolkit.ColorScheme.Basic16;
             this.btnColor.SchemeThemes = ComponentFactory.Krypton.Toolkit.ColorScheme.None;
+            this.btnColor.SelectedColor = System.Drawing.Color.White;
             this.btnColor.Size = new System.Drawing.Size(96, 25);
             this.btnColor.TabIndex = 20;
             this.btnColor.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnColor.Values.Image")));
-            this.btnColor.Values.Text = "kryptonColorButton1";
+            this.btnColor.Values.Text = "Kolor";
             // 
             // kryptonLabel4
             // 
@@ -335,6 +344,12 @@
             // 
             // kryptonPanelEx3
             // 
+            this.kryptonPanelEx3.Controls.Add(this.btnColorGroup);
+            this.kryptonPanelEx3.Controls.Add(this.grdFlightsForGroup);
+            this.kryptonPanelEx3.Controls.Add(this.kryptonLabel9);
+            this.kryptonPanelEx3.Controls.Add(this.numUsersCount);
+            this.kryptonPanelEx3.Controls.Add(this.kryptonLabel8);
+            this.kryptonPanelEx3.Controls.Add(this.txtGroupName);
             this.kryptonPanelEx3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonPanelEx3.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.kryptonPanelEx3.GradientToogleColors = false;
@@ -396,6 +411,65 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // txtGroupName
+            // 
+            this.txtGroupName.Location = new System.Drawing.Point(131, 18);
+            this.txtGroupName.Name = "txtGroupName";
+            this.txtGroupName.Size = new System.Drawing.Size(189, 23);
+            this.txtGroupName.TabIndex = 0;
+            // 
+            // kryptonLabel8
+            // 
+            this.kryptonLabel8.Location = new System.Drawing.Point(31, 21);
+            this.kryptonLabel8.Name = "kryptonLabel8";
+            this.kryptonLabel8.Size = new System.Drawing.Size(85, 20);
+            this.kryptonLabel8.TabIndex = 1;
+            this.kryptonLabel8.Values.Text = "Nazwa grupy:";
+            // 
+            // numUsersCount
+            // 
+            this.numUsersCount.Location = new System.Drawing.Point(131, 48);
+            this.numUsersCount.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.numUsersCount.Name = "numUsersCount";
+            this.numUsersCount.Size = new System.Drawing.Size(96, 22);
+            this.numUsersCount.TabIndex = 2;
+            this.numUsersCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // kryptonLabel9
+            // 
+            this.kryptonLabel9.Location = new System.Drawing.Point(17, 50);
+            this.kryptonLabel9.Name = "kryptonLabel9";
+            this.kryptonLabel9.Size = new System.Drawing.Size(108, 20);
+            this.kryptonLabel9.TabIndex = 3;
+            this.kryptonLabel9.Values.Text = "Ilość uczestników:";
+            // 
+            // grdFlightsForGroup
+            // 
+            this.grdFlightsForGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdFlightsForGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdFlightsForGroup.Location = new System.Drawing.Point(3, 107);
+            this.grdFlightsForGroup.Name = "grdFlightsForGroup";
+            this.grdFlightsForGroup.Size = new System.Drawing.Size(335, 470);
+            this.grdFlightsForGroup.TabIndex = 24;
+            // 
+            // btnColorGroup
+            // 
+            this.btnColorGroup.Location = new System.Drawing.Point(131, 76);
+            this.btnColorGroup.Name = "btnColorGroup";
+            this.btnColorGroup.SchemeStandard = ComponentFactory.Krypton.Toolkit.ColorScheme.Basic16;
+            this.btnColorGroup.SchemeThemes = ComponentFactory.Krypton.Toolkit.ColorScheme.None;
+            this.btnColorGroup.SelectedColor = System.Drawing.Color.White;
+            this.btnColorGroup.Size = new System.Drawing.Size(96, 25);
+            this.btnColorGroup.TabIndex = 25;
+            this.btnColorGroup.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonColorButton1.Values.Image")));
+            this.btnColorGroup.Values.Text = "Kolor";
+            // 
             // ScheduleAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -421,8 +495,11 @@
             this.kryptonGroup1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdFlightsListSelectedForUser)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.kryptonPanelEx3.ResumeLayout(false);
+            this.kryptonPanelEx3.PerformLayout();
             this.kryptonPanelEx1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdFlightsForGroup)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -455,5 +532,11 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel7;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private ComponentFactory.Krypton.Toolkit.KryptonColorButton btnColorGroup;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView grdFlightsForGroup;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel9;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown numUsersCount;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel8;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtGroupName;
     }
 }

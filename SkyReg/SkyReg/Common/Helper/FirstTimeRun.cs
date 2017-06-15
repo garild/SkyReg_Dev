@@ -35,7 +35,7 @@ namespace SkyReg
                         gp.Name = "Skoczkowie";
                         gp.Color = "White";
                         gp.AllowDelete = false;
-                        if (_contextGroup.Insert(gp).IsSuccess)
+                        if (_contextGroup.InsertEntity(gp).IsSuccess)
                             gpSkoczkowie = gp;
                     }
 
@@ -47,7 +47,7 @@ namespace SkyReg
                         gp.Name = "Pasażerowie tandemów";
                         gp.Color = "LightPink";
                         gp.AllowDelete = false;
-                        _contextGroup.Insert(gp);
+                        _contextGroup.InsertEntity(gp);
                     }
                 }
                 using (_contextUser)
@@ -66,14 +66,14 @@ namespace SkyReg
                             SurName = "Admin",
                             Group = gpSkoczkowie
                         };
-
+                       
                         var opr = new Operator()
                         {
                             User = usr,
                             Type = (int)OperatorTypes.Operator
                         };
 
-                        _contextOperator.Insert(opr);
+                        _contextOperator.InsertEntity(opr,false);
                     }
                 }
                 using (DLModelContainer model = new DLModelContainer())

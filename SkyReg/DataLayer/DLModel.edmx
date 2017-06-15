@@ -175,8 +175,8 @@
     <Property Name="AssemblySelf" Type="bit" Nullable="true" DefaultValue="false" />
     <Property Name="Lp" Type="int" Nullable="true" />
     <Property Name="TeamName" Type="nvarchar(max)" Nullable="true" DefaultValue="Null" />
-    <Property Name="Flight_Id" Type="int" Nullable="false" />
-    <Property Name="Payments_Id" Type="int" Nullable="false" />
+    <Property Name="Color" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Flight_Id" Type="int" Nullable="true" />
     <Property Name="User_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Parachute">
@@ -211,6 +211,7 @@
     <Property Name="Date" Type="datetime" Nullable="true" />
     <Property Name="PaymentsSetting_Id" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="FlightsElem_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="UserUsersType">
     <Key>
@@ -266,7 +267,7 @@
   </Association>
   <Association Name="FlightsElemFlight">
     <End Role="FlightsElem" Type="DLModel.Store.FlightsElem" Multiplicity="*" />
-    <End Role="Flight" Type="DLModel.Store.Flight" Multiplicity="1" />
+    <End Role="Flight" Type="DLModel.Store.Flight" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Flight">
         <PropertyRef Name="Id" />
@@ -325,14 +326,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FlightsElemPayments">
-    <End Role="FlightsElem" Type="DLModel.Store.FlightsElem" Multiplicity="*" />
-    <End Role="Payments" Type="DLModel.Store.Payment" Multiplicity="1" />
+    <End Role="FlightsElem" Type="DLModel.Store.FlightsElem" Multiplicity="0..1" />
+    <End Role="Payments" Type="DLModel.Store.Payment" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Payments">
+      <Principal Role="FlightsElem">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="FlightsElem">
-        <PropertyRef Name="Payments_Id" />
+      <Dependent Role="Payments">
+        <PropertyRef Name="FlightsElem_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -586,6 +587,7 @@
           <Property Name="TeamName" Type="String" Nullable="true" DefaultValue="Null" />
           <NavigationProperty Name="Payments" Relationship="DLModel.FlightsElemPayments" FromRole="FlightsElem" ToRole="Payments" />
           <NavigationProperty Name="User" Relationship="DLModel.FlightsElemUser" FromRole="FlightsElem" ToRole="User" />
+          <Property Name="Color" Type="String" Nullable="true" />
         </EntityType>
         <EntityType Name="Parachute">
           <Key>
@@ -605,7 +607,7 @@
         </Association>
         <Association Name="FlightsElemFlight">
           <End Type="DLModel.FlightsElem" Role="FlightsElem" Multiplicity="*" />
-          <End Type="DLModel.Flight" Role="Flight" Multiplicity="1" />
+          <End Type="DLModel.Flight" Role="Flight" Multiplicity="0..1" />
         </Association>
         <Association Name="FlightsElemParachute">
           <End Type="DLModel.FlightsElem" Role="FlightsElem" Multiplicity="*" />
@@ -653,7 +655,7 @@
         </Association>
         <Association Name="FlightsElemPayments">
           <End Type="DLModel.FlightsElem" Role="FlightsElem" Multiplicity="0..1" />
-          <End Type="DLModel.Payment" Role="Payments" Multiplicity="1" />
+          <End Type="DLModel.Payment" Role="Payments" Multiplicity="*" />
         </Association>
         <Association Name="FlightsElemUser">
           <End Type="DLModel.FlightsElem" Role="FlightsElem" Multiplicity="*" />
@@ -766,6 +768,7 @@
           <ScalarProperty Name="AssemblySelf" ColumnName="AssemblySelf" />
           <ScalarProperty Name="Lp" ColumnName="Lp" />
           <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -843,6 +846,7 @@
       <EndProperty Name="FlightsElem">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Flight_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="FlightsElemParachute" TypeName="DLModel.FlightsElemParachute" StoreEntitySet="FlightsElemParachute">
       <EndProperty Name="FlightsElem">
@@ -886,13 +890,14 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="FlightsElemPayments" TypeName="DLModel.FlightsElemPayments" StoreEntitySet="FlightsElem">
-      <EndProperty Name="Payments">
-        <ScalarProperty Name="Id" ColumnName="Payments_Id" />
-      </EndProperty>
+    <AssociationSetMapping Name="FlightsElemPayments" TypeName="DLModel.FlightsElemPayments" StoreEntitySet="Payment">
       <EndProperty Name="FlightsElem">
+        <ScalarProperty Name="Id" ColumnName="FlightsElem_Id" />
+      </EndProperty>
+      <EndProperty Name="Payments">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="FlightsElem_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="FlightsElemUser" TypeName="DLModel.FlightsElemUser" StoreEntitySet="FlightsElem">
       <EndProperty Name="User">
