@@ -141,7 +141,6 @@ namespace SkyReg
                             model.Flight.Add(fly);
                         }
                         model.SaveChanges();
-                        EventHandlerAddedEditedFlight.Invoke(null, null);
                         this.Close();
                     }
                 }

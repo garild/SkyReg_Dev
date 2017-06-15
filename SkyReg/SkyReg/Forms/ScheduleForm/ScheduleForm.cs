@@ -223,7 +223,7 @@ namespace SkyReg
         {
             if (grdFlights.SelectedRows.Count > 0)
             {
-                ScheduleAddEditForm = FormsOpened<ScheduleAddEditForm>.IsOpened(new ScheduleAddEditForm());
+                ScheduleAddEditForm = FormsOpened<ScheduleAddEditForm>.IsOpened(ScheduleAddEditForm);
                 ScheduleAddEditForm.FormState = FormState.Add;
                 ScheduleAddEditForm.IdScheduleElem = default(int);
                 ScheduleAddEditForm.grdFlight = grdFlights;

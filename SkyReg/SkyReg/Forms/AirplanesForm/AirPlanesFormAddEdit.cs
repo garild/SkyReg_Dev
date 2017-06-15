@@ -84,7 +84,7 @@ namespace SkyReg
                     }
                 }
                 model.SaveChanges();
-                RefreshAirplanesGridEH.Invoke(null, null);
+               
                 this.Close();
             }
         }

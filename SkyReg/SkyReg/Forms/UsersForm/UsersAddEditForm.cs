@@ -161,8 +161,6 @@ namespace SkyReg
                 }
 
                 model.SaveChanges();
-                EventHandlerAddEditUser.Invoke(null, null);
-             
                 this.Close();
             }
         }
