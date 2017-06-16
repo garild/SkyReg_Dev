@@ -15,6 +15,8 @@ namespace DockedOutlets
     public partial class PanelSettings : KryptonForm
     {
         public static BasicSettings _basicSettings = new BasicSettings();
+      
+
         public PanelSettings()
         {
             InitializeComponent();

@@ -41,6 +41,7 @@
             this.btnGroupColor = new ComponentFactory.Krypton.Toolkit.KryptonColorButton();
             this.kryptonHeaderGroup3 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.kryptonPanelEx3 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
+            this.listFont = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnListColor = new ComponentFactory.Krypton.Toolkit.KryptonColorButton();
             this.listMargins = new System.Windows.Forms.TextBox();
             this.txtItemPadding = new System.Windows.Forms.TextBox();
@@ -72,7 +73,6 @@
             this.gridAmount = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.listFont = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonPanelEx4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2.Panel)).BeginInit();
@@ -268,6 +268,20 @@
             this.kryptonPanelEx3.PersistentColors = false;
             this.kryptonPanelEx3.Size = new System.Drawing.Size(293, 304);
             this.kryptonPanelEx3.TabIndex = 1;
+            // 
+            // listFont
+            // 
+            this.listFont.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.listFont.Location = new System.Drawing.Point(100, 21);
+            this.listFont.Name = "listFont";
+            this.listFont.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.listFont.Size = new System.Drawing.Size(177, 24);
+            this.listFont.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
+            this.listFont.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.listFont.TabIndex = 79;
+            this.listFont.Values.Image = ((System.Drawing.Image)(resources.GetObject("listFont.Values.Image")));
+            this.listFont.Values.Text = "Wybierz";
+            this.listFont.Click += new System.EventHandler(this.listFont_Click);
             // 
             // btnListColor
             // 
@@ -587,7 +601,7 @@
             // kryptonLabel5
             // 
             this.kryptonLabel5.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.kryptonLabel5.Location = new System.Drawing.Point(21, 47);
+            this.kryptonLabel5.Location = new System.Drawing.Point(13, 47);
             this.kryptonLabel5.Name = "kryptonLabel5";
             this.kryptonLabel5.Size = new System.Drawing.Size(87, 20);
             this.kryptonLabel5.StateNormal.ShortText.Color1 = System.Drawing.Color.Black;
@@ -597,26 +611,12 @@
             // kryptonLabel1
             // 
             this.kryptonLabel1.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.BoldControl;
-            this.kryptonLabel1.Location = new System.Drawing.Point(22, 21);
+            this.kryptonLabel1.Location = new System.Drawing.Point(52, 24);
             this.kryptonLabel1.Name = "kryptonLabel1";
-            this.kryptonLabel1.Size = new System.Drawing.Size(86, 20);
+            this.kryptonLabel1.Size = new System.Drawing.Size(48, 20);
             this.kryptonLabel1.StateNormal.ShortText.Color1 = System.Drawing.Color.Black;
             this.kryptonLabel1.TabIndex = 28;
-            this.kryptonLabel1.Values.Text = "Ilość Gridów:";
-            // 
-            // listFont
-            // 
-            this.listFont.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.listFont.Location = new System.Drawing.Point(100, 21);
-            this.listFont.Name = "listFont";
-            this.listFont.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.listFont.Size = new System.Drawing.Size(177, 24);
-            this.listFont.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
-            this.listFont.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.listFont.TabIndex = 79;
-            this.listFont.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton1.Values.Image")));
-            this.listFont.Values.Text = "Wybierz";
-            this.listFont.Click += new System.EventHandler(this.listFont_Click);
+            this.kryptonLabel1.Values.Text = "Pokaż:";
             // 
             // PanelSettings
             // 

@@ -4,12 +4,14 @@ using DataLayer;
 using DataLayer.Result.Repository;
 using DataLayer.Utils;
 using DockedOutlets.Common;
+using SkyRegEnums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.Entity.Core.EntityClient;
+using System.Data.Entity.Core.Objects;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
@@ -25,6 +27,7 @@ namespace DockedOutlets
     public partial class FormOutlets : KryptonForm
     {
         public static BasicSettings settings = null;
+        private Timer _timer = new Timer();
 
         public FormOutlets()
         {
@@ -41,99 +44,111 @@ namespace DockedOutlets
 
             EntityConnectionString.Configuration(DatabaseConfig.ConnectionString);
            
-            TEST();
         }
 
         private void GenerateDynamicControls()
         {
             if (settings != null)
             {
-                flowLayoutPanel1.Controls.Clear();
-                var dataitem = new List<string>();
-                using (DLModelRepository<Flight> _contextOperator = new DLModelRepository<Flight>())
-                {
-                    var flishts = _contextOperator.GetAll();
-                    var items = new ListViewItem();
-                    int i = 1;
-
-                    flishts?.Value.Take(24).ToList().ForEach(
-                        p =>
-                        {
-                            dataitem.Add($"{i++.ToString("00")}.  GARIB TIGRANYAN");
-                        });
-                }
-
-                KryptonVirtualListBox controls = null;
-                for (int i = 0; i < settings.Amount; i++)
-                {
-                    controls = new KryptonVirtualListBox();
-                    controls.BackStyle = PaletteBackStyle.ControlGroupBox;
-                    controls.BorderStyle = PaletteBorderStyle.ButtonStandalone;
-                    controls.Count = 0;
-                    controls.Dock = DockStyle.Fill;
-                    controls.DrawMode = DrawMode.OwnerDrawFixed;
-                    controls.HorizontalScrollbar = true;
-                    controls.ImeMode = ImeMode.NoControl;
-                    controls.ItemStyle = settings.ListItemsStyle;
-                    controls.Location = new Point(0, 0);
-                    controls.Margin = settings.ListItemsMargin;
-                    controls.PaletteMode = settings.ListItemsPaletteMode;
-                    controls.SelectionMode = SelectionMode.None;
-                    controls.Size = settings.ListItemsSize;
-                    controls.StateCommon.Item.Content.ShortText.Color1 = settings.ListItemTextColor;
-                    controls.StateCommon.Item.Content.ShortText.Font = settings.ListItemsFont;
-                    controls.TabIndex = 0;
-                    controls.Padding = settings.ListItemsPadding;
-                    controls.Name = $"virtualListBox{i}";
-
-
-                    var group = new KryptonHeaderGroup();
-                    group.AutoSizeMode = AutoSizeMode.GrowOnly;
-                    group.GroupBackStyle = PaletteBackStyle.ButtonStandalone;
-                    group.GroupBorderStyle = PaletteBorderStyle.ButtonAlternate;
-                    group.HeaderStylePrimary = settings.HeaderStyle;
-                    group.HeaderVisibleSecondary = false;
-                    group.Location = new Point(0, 0);
-                    group.Margin = settings.HeaderMargin;
-                    group.Name = $"KryptonGroup{i}";
-                    group.PaletteMode = settings.HeaderPaletteMode;
-                    // 
-                    // kryptonHeaderGroup1.Panel
-                    // 
-                    group.Panel.Controls.Add(controls);
-                    group.Size = settings.HeaderSize;
-                    group.StateNormal.HeaderPrimary.Content.Padding = settings.HeaderTitlePadding;
-                    group.StateNormal.HeaderPrimary.Content.ShortText.Font = settings.HeaderFont;
-                    group.StateNormal.HeaderPrimary.Content.ShortText.Color1 = settings.HeaderTitleColor;
-                    group.TabIndex = 13;
-                    group.ValuesPrimary.Heading = "   Nr Lot: 1254587558741  Pułap: 4000m  Miejsca: 24";
-                    group.ValuesPrimary.Image = null;
-
-
-                    dataitem.ForEach(p =>
-                    {
-                        controls.Items.Add(p);
-                    });
-                    flowLayoutPanel1.Controls.Add(group);
-
-                }
+                _timer.Interval = 60 * 1000 * settings.RefreshTimer; //4h
+                _timer.Tick += _timer_Tick;
+                _timer.Start();
             }
            
         }
 
-        private void TEST()
+        private void _timer_Tick(object sender, EventArgs e)
         {
-            using (DLModelRepository<Flight> _contextOperator = new DLModelRepository<Flight>())
+            int index = 0;
+            List<Flight> toDayFlights = new List<Flight>();
+            FlightsElem users = null;
+
+            flowLayoutPanel1.Controls.Clear();
+
+            using (var _cxtFlight = new DLModelRepository<Flight>())
+            using (var _cxtFlightEl = new DLModelRepository<FlightsElem>())
             {
-                var flishts = _contextOperator.GetAll();
+                var flights = _cxtFlight.GetAll("FlightsElem,Airplane");
                 var items = new ListViewItem();
                 int i = 1;
-                var dataitem = new List<string>();
-                flishts?.Value.Take(24).ToList().ForEach(
-                    p =>
+
+                if (flights.IsSuccess)
+                {
+                    //1 - Loty danego dnia - FlyDateTime -  opened & closed
+                    var flightsOpenClose = flights.Value.Where(p => p.FlyStatus == (int)FlightsStatus.Closed || p.FlyStatus == (int)FlightsStatus.Opened).ToList();
+
+                    toDayFlights = flightsOpenClose.Where(p => p.FlyDateTime.Date == DateTime.Now.Date).OrderBy(p => p.FlyDateTime).Take(8).ToList();
+                }
+
+
+                KryptonVirtualListBox controls = null;
+                if (toDayFlights.Count > 0)
+                {
+                    var headerString = "";
+                    var itemString = "";
+                    toDayFlights.ForEach(p =>
                     {
-                        dataitem.Add($"{i++.ToString("00")}.             {p.FlyNr.ToUpper()}");
+
+                        headerString = $"Nr: {p.Airplane.RegNr} Lotu: {p.FlyNr} {p.Altitude}m Wolnych: {p.Airplane.Seats - p.FlightsElem.Count}";
+
+                        controls = new KryptonVirtualListBox();
+                        controls.BackStyle = PaletteBackStyle.ControlGroupBox;
+                        controls.BorderStyle = PaletteBorderStyle.ButtonStandalone;
+                        controls.Count = 0;
+                        controls.Dock = DockStyle.Fill;
+                        controls.DrawMode = DrawMode.OwnerDrawFixed;
+                        controls.HorizontalScrollbar = true;
+                        controls.ImeMode = ImeMode.NoControl;
+                        controls.ItemStyle = settings.ListItemsStyle;
+                        controls.Location = new Point(0, 0);
+                        controls.Margin = settings.ListItemsMargin;
+                        controls.PaletteMode = settings.ListItemsPaletteMode;
+                        controls.SelectionMode = SelectionMode.None;
+                        controls.Size = settings.ListItemsSize;
+                        controls.StateCommon.Item.Content.ShortText.Color1 = settings.ListItemTextColor;
+                        controls.StateCommon.Item.Content.ShortText.Font = settings.ListItemsFont;
+                        controls.TabIndex = 0;
+                        controls.Padding = settings.ListItemsPadding;
+                        controls.Name = $"virtualListBox{index++}";
+
+                        var group = new KryptonHeaderGroup();
+                        group.AutoSizeMode = AutoSizeMode.GrowOnly;
+                        group.GroupBackStyle = PaletteBackStyle.ButtonStandalone;
+                        group.GroupBorderStyle = PaletteBorderStyle.ButtonAlternate;
+                        group.HeaderStylePrimary = settings.HeaderStyle;
+                        group.HeaderVisibleSecondary = false;
+                        group.Location = new Point(0, 0);
+                        group.Margin = settings.HeaderMargin;
+                        group.Name = $"KryptonGroup{index++}";
+                        group.PaletteMode = settings.HeaderPaletteMode;
+                        // 
+                        // kryptonHeaderGroup1.Panel
+                        // 
+                        group.Panel.Controls.Add(controls);
+                        group.Size = settings.HeaderSize;
+                        group.StateNormal.HeaderPrimary.Content.Padding = settings.HeaderTitlePadding;
+                        group.StateNormal.HeaderPrimary.Content.ShortText.Font = settings.HeaderFont;
+                        group.StateNormal.HeaderPrimary.Content.ShortText.Color1 = settings.HeaderTitleColor;
+                        group.TabIndex = 13;
+                        group.ValuesPrimary.Heading = headerString;
+                        group.ValuesPrimary.Image = null;
+
+                        p.FlightsElem.ToList().ForEach(f =>
+                        {
+                            users = _cxtFlightEl.GetAll("User").Value?.Where(o => o.Id == f.Id).FirstOrDefault();
+
+                            if (users.User != null)
+                                itemString = $"{index++.ToString("00")} - {f.User.FirstName} {f.User.SurName }";
+                            else
+                                itemString = $"{index++.ToString("00")} - {f.TeamName}";
+
+                            controls.Items.Add(itemString);
+                        });
+
+
+                        flowLayoutPanel1.Controls.Add(group);
                     });
+                }
             }
         }
 
@@ -164,10 +179,11 @@ namespace DockedOutlets
 
         private void tsmSettings_Click(object sender, EventArgs e)
         {
-             _panel = new PanelSettings();
+            _timer.Stop();
+            _panel = new PanelSettings();
             _panel.FormClosed += _panel_FormClosed;
             _panel.Show();
-            
+
         }
 
         private void _panel_FormClosed(object sender, FormClosedEventArgs e)

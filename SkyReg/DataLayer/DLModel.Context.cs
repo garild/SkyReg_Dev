@@ -16,22 +16,14 @@ namespace DataLayer
     public partial class DLModelContainer : DbContext
     {
         public DLModelContainer()
-            : base()
+            : base("name=DLModelContainer")
         {
-            this.Database.Connection.ConnectionString = DatabaseConfig.ConnectionString;
             this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<FlightsElem>()
-                .HasOptional(p => p.Payments)
-                .WithOptionalDependent().WillCascadeOnDelete(true);
-
-            modelBuilder.Entity<FlightsElem>()
-                .HasOptional(p => p.Flight)
-                .WithOptionalDependent().WillCascadeOnDelete(true);
-
+            throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<PaymentsSetting> PaymentsSetting { get; set; }

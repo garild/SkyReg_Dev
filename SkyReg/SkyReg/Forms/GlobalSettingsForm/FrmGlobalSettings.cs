@@ -381,7 +381,7 @@ namespace SkyReg
             var result = true;
             errorProvider.Clear();
 
-            if (dateFrom.Value < dateTo.Value)
+            if (dateFrom.Value > dateTo.Value)
             {
                 errorProvider.SetError(dateFrom, "Okres wylotów OD - DO nie jest poprawny");
                 result = false;

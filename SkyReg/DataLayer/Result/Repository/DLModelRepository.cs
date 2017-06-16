@@ -113,13 +113,24 @@ namespace DataLayer.Result.Repository
 
         }
 
-        public ColletionResult<T> GetAll(string include = null)
+        public ColletionResult<T> GetAll(string path = null)
         {
             try
             {
                 List<T> result = new List<T>();
-                if (!string.IsNullOrEmpty(include))
-                    result = Table.Include(include).AsNoTracking().ToList();
+                
+                if (!string.IsNullOrEmpty(path) && path.Contains(','))
+                {
+                    var includes = path.Split(',');
+
+                    if(includes.Count() > 2 && includes.Count() < 3 )
+                       result = Table.Include(includes[0]).Include(includes[1]).Include(includes[3]).AsNoTracking().ToList();
+                    if (includes.Count() >= 2)
+                        result = Table.Include(includes[0]).Include(includes[1]).AsNoTracking().ToList();
+                    else
+                        result = Table.Include(includes[0]).AsNoTracking().ToList();
+                }
+                    
                 else
                     result = Table.AsNoTracking().ToList();
 
