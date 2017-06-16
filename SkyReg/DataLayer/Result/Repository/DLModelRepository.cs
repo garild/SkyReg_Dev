@@ -127,10 +127,10 @@ namespace DataLayer.Result.Repository
                        result = Table.Include(includes[0]).Include(includes[1]).Include(includes[3]).AsNoTracking().ToList();
                     if (includes.Count() >= 2)
                         result = Table.Include(includes[0]).Include(includes[1]).AsNoTracking().ToList();
-                    else
-                        result = Table.Include(includes[0]).AsNoTracking().ToList();
+                   
                 }
-                    
+                if(!string.IsNullOrEmpty(path) && !path.Contains(','))
+                    result = Table.Include(path).AsNoTracking().ToList();
                 else
                     result = Table.AsNoTracking().ToList();
 

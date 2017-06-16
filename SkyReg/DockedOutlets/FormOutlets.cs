@@ -50,7 +50,7 @@ namespace DockedOutlets
         {
             if (settings != null)
             {
-                _timer.Interval = 60 * 1000 * settings.RefreshTimer; //4h
+                _timer.Interval =  1000 * settings.RefreshTimer; //4h
                 _timer.Tick += _timer_Tick;
                 _timer.Start();
             }
