@@ -70,8 +70,7 @@ namespace DockedOutlets
             {
                 var flights = _cxtFlight.GetAll("FlightsElem,Airplane");
                 var items = new ListViewItem();
-                int i = 1;
-
+                
                 if (flights.IsSuccess)
                 {
                     //1 - Loty danego dnia - FlyDateTime -  opened & closed
@@ -79,7 +78,6 @@ namespace DockedOutlets
 
                     toDayFlights = flightsOpenClose.Where(p => p.FlyDateTime.Date == DateTime.Now.Date).OrderBy(p => p.FlyDateTime).Take(8).ToList();
                 }
-
 
                 KryptonVirtualListBox controls = null;
                 if (toDayFlights.Count > 0)
