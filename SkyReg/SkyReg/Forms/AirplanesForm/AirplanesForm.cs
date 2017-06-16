@@ -49,6 +49,7 @@ namespace SkyReg
         public void OpenForm(FormState state, int? Id)
         {
             _airPlanesFormAddEdit = FormsOpened<AirPlanesFormAddEdit>.IsShowDialog(new AirPlanesFormAddEdit(state, Id));
+
             _airPlanesFormAddEdit.FormClosed += _airPlanesFormAddEdit_FormClosed;
             _airPlanesFormAddEdit.Show();
         }
@@ -56,6 +57,7 @@ namespace SkyReg
         private void _airPlanesFormAddEdit_FormClosed(object sender, FormClosedEventArgs e)
         {
             _airPlanesFormAddEdit = null;
+            RefreshAirplanesList();
         }
 
         private void btnEdit_Click(object sender, EventArgs e) //TODO Kod Janusza

@@ -50,7 +50,7 @@ namespace DockedOutlets
         {
             if (settings != null)
             {
-                _timer.Interval =  1000 * settings.RefreshTimer; //4h
+                _timer.Interval =  60*1000 * settings.RefreshTimer; //4h
                 _timer.Tick += _timer_Tick;
                 _timer.Start();
             }
@@ -86,7 +86,6 @@ namespace DockedOutlets
                     var itemString = "";
                     toDayFlights.ForEach(p =>
                     {
-
                         headerString = $"Nr: {p.Airplane.RegNr} Lotu: {p.FlyNr} {p.Altitude}m Wolnych: {p.Airplane.Seats - p.FlightsElem.Count}";
 
                         controls = new KryptonVirtualListBox();
