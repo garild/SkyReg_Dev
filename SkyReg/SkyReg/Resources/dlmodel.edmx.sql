@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/15/2017 13:01:36
+-- Date Created: 06/15/2017 20:03:10
 -- Generated from EDMX file: F:\Projekty 2017\Repozytorium2\SkyReg_Dev\SkyReg\DataLayer\DLModel.edmx
 -- --------------------------------------------------
 
@@ -54,7 +54,7 @@ IF OBJECT_ID(N'[dbo].[FK_UserPayments]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Payment] DROP CONSTRAINT [FK_UserPayments];
 GO
 IF OBJECT_ID(N'[dbo].[FK_FlightsElemPayments]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FlightsElem] DROP CONSTRAINT [FK_FlightsElemPayments];
+    ALTER TABLE [dbo].[Payment] DROP CONSTRAINT [FK_FlightsElemPayments];
 GO
 IF OBJECT_ID(N'[dbo].[FK_FlightsElemUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[FlightsElem] DROP CONSTRAINT [FK_FlightsElemUser];
@@ -207,7 +207,8 @@ CREATE TABLE [dbo].[FlightsElem] (
     [AssemblySelf] bit  NULL,
     [Lp] int  NULL,
     [TeamName] nvarchar(max)  NULL,
-    [Flight_Id] int  NOT NULL,
+    [Color] nvarchar(max)  NULL,
+    [Flight_Id] int  NULL,
     [User_Id] int  NULL
 );
 GO
