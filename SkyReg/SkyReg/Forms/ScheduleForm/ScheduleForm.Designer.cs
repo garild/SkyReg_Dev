@@ -300,6 +300,7 @@
             this.btnPrint.TabIndex = 8;
             this.btnPrint.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Values.Image")));
             this.btnPrint.Values.Text = "&Drukuj";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // grdPlaner
             // 
