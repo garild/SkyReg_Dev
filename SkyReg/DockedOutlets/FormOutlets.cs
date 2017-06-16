@@ -28,7 +28,7 @@ namespace DockedOutlets
     {
         public static BasicSettings settings = null;
         private Timer _timer = new Timer();
-
+         
         public FormOutlets()
         {
             SkyRegUser.GlobalPathFile = Environment.GetFolderPath((Environment.SpecialFolder.LocalApplicationData)) + @"\SkyReg";
