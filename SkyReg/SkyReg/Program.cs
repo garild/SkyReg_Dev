@@ -25,28 +25,28 @@ namespace SkyReg
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             //try
             //{
-                if (DateTime.Now < Convert.ToDateTime(expDate))
-                {
-                    _splashScreen = FormsOpened<SplashScreen>.IsOpened(_splashScreen);
-                    _splashScreen.WindowState = FormWindowState.Normal;
-                    _splashScreen.StartPosition = FormStartPosition.CenterScreen;
-                    
-                    if (_splashScreen.ShowDialog() == DialogResult.OK)
-                    {
-                        FrmLogin frm = new FrmLogin();
-                        if (frm.ShowDialog() == DialogResult.OK)
-                        {
-                            frm.Close();
-                            _frmMain = FormsOpened<FrmMain>.IsOpened(_frmMain);
-                            Application.Run(_frmMain);
-                        }
-                        else
-                            Application.Exit();
-                    }
+            if (DateTime.Now < Convert.ToDateTime(expDate))
+            {
+                _splashScreen = FormsOpened<SplashScreen>.IsOpened(_splashScreen);
+                _splashScreen.WindowState = FormWindowState.Normal;
+                _splashScreen.StartPosition = FormStartPosition.CenterScreen;
 
+                if (_splashScreen.ShowDialog() == DialogResult.OK)
+                {
+                    FrmLogin frm = new FrmLogin();
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        frm.Close();
+                        _frmMain = FormsOpened<FrmMain>.IsOpened(_frmMain);
+                        Application.Run(_frmMain);
+                    }
+                    else
+                        Application.Exit();
                 }
-                else
-                    Msg.Show("Termin wersji demo SkyReg upłynął", "Informacja!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else
+                Msg.Show("Termin wersji demo SkyReg upłynął", "Informacja!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             //}
             //catch (Exception ex)
             //{
@@ -55,7 +55,7 @@ namespace SkyReg
 
             //    Application.Exit();
             //}
-            
+
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
