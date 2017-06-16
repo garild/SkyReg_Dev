@@ -219,6 +219,7 @@
     <Compile Include="Forms\UsersForm\UsersAddEditForm.Designer.cs">
       <DependentUpon>UsersAddEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UsersForm\UsersFinances.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\Extensions\CommonMethods.cs" />

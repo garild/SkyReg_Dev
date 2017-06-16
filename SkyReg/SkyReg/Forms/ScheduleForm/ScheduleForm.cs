@@ -164,16 +164,7 @@ namespace SkyReg
         private void grdFlights_SelectionChanged(object sender, EventArgs e)
         {
             LoadAirplaneAndAltitude();
-            LoadScheduleData();
             RefreshPlanerList();
-        }
-
-        private void LoadScheduleData()
-        {
-            using (DLModelContainer model = new DLModelContainer())
-            {
-                //TODO do zrobienia PS
-            }
         }
 
         private void LoadAirplaneAndAltitude()
@@ -223,16 +214,31 @@ namespace SkyReg
         {
             if (grdFlights.SelectedRows.Count > 0)
             {
-                ScheduleAddEditForm = FormsOpened<ScheduleAddEditForm>.IsOpened(ScheduleAddEditForm);
-                ScheduleAddEditForm.FormState = FormState.Add;
-                ScheduleAddEditForm.IdScheduleElem = default(int);
-                ScheduleAddEditForm.grdFlight = grdFlights;
-                ScheduleAddEditForm.grdPlaner = grdPlaner;
-                if (ScheduleAddEditForm.ShowDialog() == DialogResult.OK)
+                int flyStatus = int.Parse( grdFlights.SelectedRows[0].Cells["Status"].Value.ToString() ); 
+                bool allowShowForm = true;
+
+                if (flyStatus == (int)SkyRegEnums.FlightsStatus.Executed || flyStatus == (int)SkyRegEnums.FlightsStatus.Canceled)
                 {
-                    int lastSelIndex = grdFlights.SelectedRows[0].Index;
-                    RefreshFlightsList();
-                    grdFlights.Rows[lastSelIndex].Selected = true;
+                    allowShowForm = false;
+                    if (KryptonMessageBox.Show("Zaznaczony lot posiada status zrealizowany lub anulowany.\nCzy kontynuować?", "Kontynuować?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        allowShowForm = true;
+                    }
+                }
+
+                if (allowShowForm == true)
+                {
+                    ScheduleAddEditForm = FormsOpened<ScheduleAddEditForm>.IsOpened(ScheduleAddEditForm);
+                    ScheduleAddEditForm.FormState = FormState.Add;
+                    ScheduleAddEditForm.IdScheduleElem = default(int);
+                    ScheduleAddEditForm.grdFlight = grdFlights;
+                    ScheduleAddEditForm.grdPlaner = grdPlaner;
+                    if (ScheduleAddEditForm.ShowDialog() == DialogResult.OK)
+                    {
+                        int lastSelIndex = grdFlights.SelectedRows[0].Index;
+                        RefreshFlightsList();
+                        grdFlights.Rows[lastSelIndex].Selected = true;
+                    }
                 }
             }
         }
@@ -247,18 +253,8 @@ namespace SkyReg
                     {
                         int idFlightElem = (int)grdPlaner.SelectedRows[0].Cells["Id"].Value;
                         
-                        List<Payment> pays = model.Payment.Include("FlightsElem").Include("PaymentsSetting").Include("User").AsNoTracking().Where(p => p.FlightsElem.Id == idFlightElem).ToList();
-
-
-                       
-
-                        //foreach (Payment pay in pays)
-                        //{
-                        //    model.Entry(pay).State = System.Data.Entity.EntityState.Deleted;
-                        //    model.SaveChanges();
-                        //}
-
-
+                        List<int> paysId = model.Payment.Include("FlightsElem").Include("PaymentsSetting").Include("User").AsNoTracking().Where(p => p.FlightsElem.Id == idFlightElem).Select(p=>p.Id).ToList();
+                        
                         FlightsElem fe = model.FlightsElem
                             .Include("Parachute")
                             .Include("User")
@@ -272,14 +268,21 @@ namespace SkyReg
                         
                         model.SaveChanges();
 
+
+                        foreach(int idPay in paysId)
+                        {
+                            Payment pay = model.Payment.Where(p => p.Id == idPay).FirstOrDefault();
+                            if (pay != null)
+                            {
+                                model.Payment.Remove(pay);
+                                model.SaveChanges();
+                            }
+                        }
+
                         int lastSelIndex = grdFlights.SelectedRows[0].Index;
                         RefreshFlightsList();
                         RefreshPlanerList();
                         grdFlights.Rows[lastSelIndex].Selected = true;
-
-
-
-                        
                     }
                 }
             }
@@ -379,6 +382,27 @@ namespace SkyReg
             }
         }
 
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            using (DLModelContainer model = new DLModelContainer())
+            {
+                if (grdFlights.SelectedRows.Count > 0)
+                {
+                    int flyId = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
+                    Flight fly = model.Flight.Where(p => p.Id == flyId).FirstOrDefault();
+                    if (fly != null)
+                    {
+                        if (KryptonMessageBox.Show("Zmienić status lotu na zrealizowany?", "Zmienić?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            fly.FlyStatus = (int)SkyRegEnums.FlightsStatus.Executed;
+                            model.SaveChanges();
+                            RefreshFlightsList();
+                            RefreshPlanerList();
+                        }
+                    }
 
+                }
+            }
+        }
     }
 }

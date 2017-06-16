@@ -31,8 +31,122 @@ namespace SkyReg
         private void UsersAddEditForm_Load(object sender, EventArgs e)
         {
             LoadAllUsersTypes();
+
             if (FormState == FormState.Edit)
+            {
                 LoadEditedUserData();
+                LoadJumpsList();
+                LoadUsersFinancesList();
+                LoadBalance();
+            }
+        }
+
+        private void LoadUsersFinancesList()
+        {
+            using(DLModelContainer model =new DLModelContainer())
+            {
+                var list = model
+                    .Payment
+                    .Include("User")
+                    .Include("FlightsElem")
+                    .Include("Flight")
+                    .AsNoTracking()
+                    .Where(p => p.User.Id == IdUser)
+                    .OrderBy(p => p.Date)
+                    .Select(p => new UsersFinances
+                    {
+                        Date = p.Date.Value,
+                        Type = p.PaymentsSetting.Type,
+                        Description = p.Description,
+                        Value = p.Value,
+                        Count = p.Count.Value
+                    })
+                    .ToList();
+
+                foreach(var item in list)
+                {
+                    item.Date = item.Date.Date;
+                    switch ( item.Type)
+                    {
+                        case (int)SkyRegEnums.PaymentsTypes.KP:
+                            item.Description = string.Format("KP {0}", item.Description);
+                            break;
+                        case (int)SkyRegEnums.PaymentsTypes.KW:
+                            item.Description = string.Format("KW {0}", item.Description);
+                            item.Value = -item.Value;
+                            break;
+                        case (int)SkyRegEnums.PaymentsTypes.BP:
+                            item.Description = string.Format("BP {0}", item.Description);
+                            break;
+                        case (int)SkyRegEnums.PaymentsTypes.BW:
+                            item.Description = string.Format("BW {0}", item.Description);
+                            item.Value = -item.Value;
+                            break;
+                        case (int)SkyRegEnums.PaymentsTypes.Pakiet:
+                            item.Description = string.Format("Pakiet {0}", item.Description);
+                            break;
+                        case (int)SkyRegEnums.PaymentsTypes.Naleznosc:
+                            item.Value = -item.Value;
+                            item.Count = -item.Count;
+                            break;
+                    }
+                }
+                grdFinances.DataSource = list;
+
+                grdFinances.Columns["Type"].Visible = false;
+
+                grdFinances.Columns["Date"].HeaderText = "Data";
+                grdFinances.Columns["Description"].HeaderText = "Opis";
+                grdFinances.Columns["Value"].HeaderText = "Wartość";
+                grdFinances.Columns["Count"].HeaderText = "Pakiet";
+
+                grdFinances.Columns["Date"].Width = 80;
+                grdFinances.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                grdFinances.Columns["Value"].Width = 100;
+                grdFinances.Columns["Count"].Width = 100;
+
+                grdFinances.ReadOnly = true;
+                grdFinances.RowHeadersVisible = false;
+                grdFinances.AllowUserToResizeRows = false;
+                grdFinances.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                grdFinances.MultiSelect = false;
+            }
+        }
+
+        private void LoadJumpsList()
+        {
+            using(DLModelContainer model = new DLModelContainer())
+            {
+                var usersJumps = model
+                    .FlightsElem
+                    .Include("Flight")
+                    .Include("User")
+                    .AsNoTracking()
+                    .Where(p => p.User.Id == IdUser)
+                    .OrderBy(p => p.Flight.FlyDateTime)
+                    .Select(p => new
+                    {
+                        Date = p.Flight.FlyDateTime,
+                        FlyNr = "LOT " + p.Flight.FlyDateTime.Year + "/" + p.Flight.FlyDateTime.Month + "/" + p.Flight.FlyDateTime.Day + "/" + p.Flight.FlyNr,
+                        Altitude = p.Flight.Altitude
+                    })
+                    .ToList();
+                grdJumpsList.DataSource = usersJumps;
+
+                grdJumpsList.Columns["FlyNr"].HeaderText = "Nr lotu";
+                grdJumpsList.Columns["Altitude"].HeaderText = "Pułap";
+                grdJumpsList.Columns["Date"].HeaderText = "Data";
+
+                grdJumpsList.Columns["Date"].Width = 100;
+                grdJumpsList.Columns["FlyNr"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                grdJumpsList.Columns["Altitude"].Width = 80;
+
+                grdJumpsList.ReadOnly = true;
+                grdJumpsList.RowHeadersVisible = false;
+                grdJumpsList.AllowUserToResizeRows = false;
+                grdJumpsList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                grdJumpsList.MultiSelect = false;
+            }
         }
 
         private void LoadEditedUserData()
@@ -159,8 +273,26 @@ namespace SkyReg
                 {
                     model.User.Add(usr);
                 }
-
+                else
+                {
+                    model.User.Include("UsersType").AsNoTracking();
+                    model.Entry<User>(usr).State = System.Data.Entity.EntityState.Modified;
+                }
                 model.SaveChanges();
+
+                if(FormState == FormState.Edit)
+                {
+                    string qry = "delete from dbo.userUsersType ";
+                    qry += string.Format("where User_Id = {0}", usr.Id);
+                    model.Database.ExecuteSqlCommand(qry);
+
+                    foreach( UsersType ut in listUsersTypes)
+                    {
+                        qry = "insert into dbo.UserUsersType (User_Id, UsersType_Id)";
+                        qry += string.Format("values ({0}, {1})", usr.Id, ut.Id);
+                        model.Database.ExecuteSqlCommand(qry);
+                    }
+                }     
                 this.Close();
             }
         }
@@ -207,5 +339,52 @@ namespace SkyReg
         {
             txtFirstName.Focus();
         }
+
+        private void LoadBalance()
+        {
+            using (var model = new DLModelContainer())
+            {
+                int userId = IdUser.Value;
+                var incomeM = model
+                    .Payment
+                    .Include("User")
+                    .Include("PaymentsSetting")
+                    .AsNoTracking()
+                    .Where(p => p.User.Id == userId && p.Count == 0 && (p.PaymentsSetting.Type == 0 || p.PaymentsSetting.Type == 2 || p.PaymentsSetting.Type == 6))
+                    .ToList();
+                var incomeMoney = incomeM.Sum(p => p.Value);
+
+                var outcomeM = model
+                    .Payment
+                    .Include("User")
+                    .Include("PaymentsSetting")
+                    .AsNoTracking()
+                    .Where(p => p.User.Id == userId && p.Count == 0 && (p.PaymentsSetting.Type == 1 || p.PaymentsSetting.Type == 4 || p.PaymentsSetting.Type == 5))
+                    .ToList();
+                var outcomeMoney = outcomeM.Sum(p => p.Value);
+
+                var incomeP = model
+                    .Payment
+                    .Include("User")
+                    .Include("PaymentsSetting")
+                    .AsNoTracking()
+                    .Where(p => p.User.Id == userId && p.Count != 0 && (p.PaymentsSetting.Type == 0 || p.PaymentsSetting.Type == 2 || p.PaymentsSetting.Type == 6))
+                    .ToList();
+                var incomePackage = incomeP.Sum(p => p.Count);
+
+                var outcomeP = model
+                    .Payment
+                    .Include("User")
+                    .Include("PaymentsSetting")
+                    .AsNoTracking()
+                    .Where(p => p.User.Id == userId && p.Count != 0 && (p.PaymentsSetting.Type == 1 || p.PaymentsSetting.Type == 4 || p.PaymentsSetting.Type == 5))
+                    .ToList();
+                var outcomePackage = outcomeP.Sum(p => p.Count);
+
+                numBalanceMoney.Value = incomeMoney - outcomeMoney;
+                numBalancePack.Value = incomePackage.Value - outcomePackage.Value;
+            }
+        }
+
     }
 }

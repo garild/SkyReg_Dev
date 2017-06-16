@@ -55,8 +55,12 @@ namespace SkyReg
                 int selectedGroupId = default(int);
                 int.TryParse(cmbGroup.SelectedValue.ToString(), out selectedGroupId);
 
+                //var users = model.User.AsNoTracking().OrderBy(p => p.SurName).ThenBy(p => p.FirstName).ToList();
+                //grdUsers.DataSource = users;
+
                 grdUsers.DataSource = model.User
                     .Include("Group")
+                    .AsNoTracking()
                     .Where(p => p.Group.Id == selectedGroupId)
                     .OrderBy(p => p.SurName)
                     .ThenBy(p => p.FirstName)
