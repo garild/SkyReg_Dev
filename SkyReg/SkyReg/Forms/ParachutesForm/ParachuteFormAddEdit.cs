@@ -9,6 +9,8 @@ using System.Text;
 using System.Windows.Forms;
 using DataLayer;
 using SkyRegEnums;
+using DataLayer.Entities.DBContext;
+using DataLayer.Result.Repository;
 
 namespace SkyReg
 {
@@ -52,7 +54,7 @@ namespace SkyReg
 
         private void LoadParachuteData(int? parachuteId)
         {
-            using(DLModelContainer model = new DLModelContainer())
+            using(SkyRegContext model = new SkyRegContext())
             {
                 Parachute par = model.Parachute.Include("User").Where(p => p.Id == parachuteId).FirstOrDefault();
                 if (par != null)
@@ -64,20 +66,19 @@ namespace SkyReg
                     if (par.User != null)
                     {
                         chkPrivate.Checked = true;
-                        cmbOwner.SelectedIndex = GetCmbIndexByName(par.User.SurName, par.User.FirstName);
+                        cmbOwner.SelectedIndex = GetCmbIndexByName(par.User.Name);
                     }
                 }
             }
         }
 
-        private int GetCmbIndexByName(string surName, string firstName)
+        private int GetCmbIndexByName(string Name)
         {
             int result=0;
 
-            string fullName = string.Format("{0} {1}", surName, firstName);
             for(int i = 0; i < cmbOwner.Items.Count; i++)
             {
-                if (cmbOwner.GetItemText(cmbOwner.Items[i]) == fullName)
+                if (cmbOwner.GetItemText(cmbOwner.Items[i]) == Name)
                     result = i;
             }
 
@@ -87,11 +88,11 @@ namespace SkyReg
         private void OwnersComboBoxLoad()
         {
             //TODO dorobić sprawdzanie czy to nie jest pasażer, żeby nie ładowało długiej listy
-            using(DLModelContainer model = new DLModelContainer())
+            using(SkyRegContext model = new SkyRegContext())
             {
                 var users = model.User.Select(p => new
                 {
-                    Name = p.SurName + " " + p.FirstName,
+                    Name = p.Name,
                     Id = p.Id
                 })
                 .OrderBy(p => p.Name)
@@ -122,34 +123,26 @@ namespace SkyReg
 
         private void ParachuteSave() //TODO Kod Janusza Edycja nie działa!!
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (var _ctx = new SkyRegContextRepository<Parachute>())
             {
+                int? userId = null;
+                if (chkPrivate.Checked)
+                    userId = _ctx.Model.User.Where(p => p.Id == (int)cmbOwner.SelectedValue).FirstOrDefault().Id;
+
+                Parachute par = _formState == FormState.Add ? new Parachute() : _ctx.GetById(_parachuteId);
+
+                par.IdNr = txtRegNr.Text;
+                par.Name = txtName.Text;
+                par.RentValue = numRentValue.Value;
+                par.AssemblyValue = numAssembyValue.Value;
+                par.User_Id = userId;
+
                 if (_formState == FormState.Add)
-                {
-                    Parachute par = new Parachute();
-                    par.IdNr = txtRegNr.Text;
-                    par.Name = txtName.Text;
-                    par.RentValue = numRentValue.Value;
-                    par.AssemblyValue = numAssembyValue.Value;
-                    if (chkPrivate.Checked)
-                        par.User = model.User.Where(p => p.Id == (int)cmbOwner.SelectedValue).FirstOrDefault();
-                    model.Parachute.Add(par);
-                }
+                    _ctx.InsertEntity(par);
                 else
-                {
-                    Parachute par = model.Parachute.Where(p => p.Id == _parachuteId).FirstOrDefault();
-                    if (par != null)
-                    {
-                        par.IdNr = txtRegNr.Text;
-                        par.Name = txtName.Text;
-                        par.RentValue = numRentValue.Value;
-                        par.AssemblyValue = numAssembyValue.Value;
-                        if (chkPrivate.Checked)
-                            par.User = model.User.Where(p => p.Id == (int)cmbOwner.SelectedValue).FirstOrDefault();
-                    }
-                }
-                model.SaveChanges();
+                    _ctx.Update(par);
             }
+
         }
 
         private bool ParachuteValidate()
@@ -157,9 +150,7 @@ namespace SkyReg
 
             //TODO dorobić sprawdzanie numeru ewidencyjnego po edycji czy nie ma już takiego w bazie
             bool result = true;
-            errorProvider1.SetError(txtRegNr, string.Empty);
-            errorProvider1.SetError(txtName, string.Empty);
-            errorProvider1.SetError(cmbOwner, string.Empty);
+            errorProvider1.Clear();
 
             if(txtRegNr.Text == string.Empty)
             {
@@ -173,27 +164,15 @@ namespace SkyReg
             }
             if (chkPrivate.Checked)
             {
-                using(DLModelContainer model = new DLModelContainer())
+                if (cmbOwner.SelectedValue == null)
                 {
-                    if (cmbOwner.SelectedValue != null)
-                    {
-                        bool isUser = model.User.Any(p => p.Id == (int)cmbOwner.SelectedValue);
-                        if (isUser == false)
-                        {
-                            errorProvider1.SetError(cmbOwner, "Nie odnaleziono użytkownika!");
-                            result = false;
-                        }
-                    }
-                    else
-                    {
-                        errorProvider1.SetError(cmbOwner, "Niewłaściwa wartość pola!");
-                        result = false;
-                    }
+                    errorProvider1.SetError(cmbOwner, "Niewłaściwa wartość pola!");
+                    result = false;
                 }
             }
-            if(_formState == FormState.Add)
+            if (_formState == FormState.Add)
             {
-                using(DLModelContainer model = new DLModelContainer())
+                using (SkyRegContext model = new SkyRegContext())
                 {
                     bool isParachute = model.Parachute.Any(p => p.IdNr == txtRegNr.Text);
                     if(isParachute == true)
@@ -205,7 +184,7 @@ namespace SkyReg
             }
             else
             {
-                using(DLModelContainer model = new DLModelContainer())
+                using(SkyRegContext model = new SkyRegContext())
                 {
                     bool isParachute = model.Parachute.Any(p => p.IdNr == txtRegNr.Text && p.Id != _parachuteId);
                     if(isParachute == true)

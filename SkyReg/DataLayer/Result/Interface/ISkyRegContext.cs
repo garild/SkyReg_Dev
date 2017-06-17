@@ -5,9 +5,9 @@ using System.Text;
 
 namespace DataLayer.Result.Interface
 {
-    public interface IDLModel<TEntity> where TEntity : class,new()
+    public interface ISkyRegContext<TEntity> where TEntity : class,new()
     {
-        ResultType<TEntity> InsertEntity(TEntity entity,bool Attach = true);
+        ResultType<TEntity> InsertEntity(TEntity entity);
         ResultType<TEntity> Delete(TEntity entity);
         ResultType<TEntity> Update(TEntity entity);
         TEntity GetById(object id);

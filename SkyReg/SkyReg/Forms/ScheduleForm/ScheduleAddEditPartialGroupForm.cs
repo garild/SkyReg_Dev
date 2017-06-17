@@ -10,6 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using DataLayer;
 using DataLayer.Result.Repository;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -25,7 +26,7 @@ namespace SkyReg
 
         private void AddGroupToDB()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 foreach (DataGridViewRow item in grdFlightsForGroup.Rows)
                 {
@@ -103,7 +104,7 @@ namespace SkyReg
 
         private void LoadFlightsOnGridGroup()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 DateTime dateNow = DateTime.Now.Date;
 

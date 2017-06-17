@@ -11,6 +11,7 @@ using DataLayer;
 using SkyRegEnums;
 using SkyReg.Common.Extensions;
 using DataLayer.Result.Repository;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -33,7 +34,7 @@ namespace SkyReg
 
         private void RefreshPlanerList()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 if (grdFlights.SelectedRows.Count > 0)
                 {
@@ -48,8 +49,8 @@ namespace SkyReg
                             {
                                 Id = p.Id,
                                 Lp = p.Lp,
-                                UserName = p.User == null ? p.TeamName : p.User.SurName + " " + p.User.FirstName,
-                                Type = p.User.UsersType.FirstOrDefault().Name,
+                                UserName = p.User == null ? p.TeamName : p.User.Name,
+                                //Type = p.User.DefinedUserType.Name,
                                 Parachute = p.Parachute.FirstOrDefault().IdNr + " " + p.Parachute.FirstOrDefault().Name,
                                 AssemblyType = p.AssemblySelf == true ? "Układa sam" : "Układalnia",
                                 Color = p.Color
@@ -100,7 +101,7 @@ namespace SkyReg
 
         private void RefreshFlightsList()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 var flightsList = model
                     .Flight
@@ -172,7 +173,7 @@ namespace SkyReg
             if (grdFlights.SelectedRows.Count > 0)
             {
                 int idFlight = int.Parse(grdFlights.SelectedRows[0].Cells["Id"].Value.ToString());
-                using (DLModelContainer model = new DLModelContainer())
+                using (SkyRegContext model = new SkyRegContext())
                 {
                     var flight = model
                         .Flight
@@ -245,7 +246,7 @@ namespace SkyReg
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 if (grdPlaner.SelectedRows.Count > 0)
                 {
@@ -384,7 +385,7 @@ namespace SkyReg
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 if (grdFlights.SelectedRows.Count > 0)
                 {

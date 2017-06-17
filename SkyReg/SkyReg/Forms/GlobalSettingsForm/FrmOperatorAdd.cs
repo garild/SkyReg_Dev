@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DataLayer;
 using DataLayer.Result.Repository;
 using SkyRegEnums;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -24,12 +25,12 @@ namespace SkyReg
         {
             cmbTypes.DataSource = Enum.GetNames(typeof(OperatorTypes));
 
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 var userList = model.User.Select(p => new
                 {
                     Id = p.Id,
-                    Name = p.SurName + " " + p.FirstName
+                    Name = p.Name
                 }).OrderBy(p => p.Name)
                 .ToList();
 
@@ -52,15 +53,15 @@ namespace SkyReg
 
         private void AddOperator()
         {
-            using (var _operator = new DLModelRepository<Operator>())
-            using (var _user = new DLModelRepository<User>())
+            using (var _operator = new SkyRegContextRepository<Operator>())
+            using (var _user = new SkyRegContextRepository<User>())
             {
-                OperatorTypes typ;
+                OperatorTypes typ = OperatorTypes.Operator;
                 Enum.TryParse(cmbTypes.Text, out typ);
 
                 var op = new Operator();
                 op.Type = (short)typ;
-                op.User = _user.GetAll().Value?.Where(p => p.Id == (int)cmbName.SelectedValue).FirstOrDefault();
+                op.User_Id = _user.GetById((int)cmbName.SelectedValue).Id;
 
                 if (_operator.InsertEntity(op).IsSuccess)
                 {
@@ -93,7 +94,7 @@ namespace SkyReg
 
                 if (idUser > 0)
                 {
-                    using (DLModelContainer model = new DLModelContainer())
+                    using (SkyRegContext model = new SkyRegContext())
                     {
 
                         if (model.Operator.Include("User").Any(p => p.User.Id == idUser && p.Type == cmbTypes.SelectedIndex) == true)

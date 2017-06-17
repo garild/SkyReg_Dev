@@ -65,8 +65,8 @@ namespace DockedOutlets
 
             flowLayoutPanel1.Controls.Clear();
 
-            using (var _cxtFlight = new DLModelRepository<Flight>())
-            using (var _cxtFlightEl = new DLModelRepository<FlightsElem>())
+            using (var _cxtFlight = new SkyRegContextRepository<Flight>())
+            using (var _cxtFlightEl = new SkyRegContextRepository<FlightsElem>())
             {
                 var flights = _cxtFlight.GetAll("FlightsElem,Airplane");
                 var items = new ListViewItem();

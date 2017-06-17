@@ -155,6 +155,7 @@
             outlookBarButton7.Tag1 = null;
             outlookBarButton7.Tag2 = null;
             outlookBarButton7.Text = "Zgłoszenia";
+            outlookBarButton7.Visible = false;
             outlookBarButton8.BuddyPage1 = "Moneys";
             outlookBarButton8.BuddyPage2 = null;
             outlookBarButton8.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton8.Image")));

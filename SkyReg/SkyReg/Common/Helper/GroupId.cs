@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataLayer;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg.Helper
 {
@@ -14,7 +15,7 @@ namespace SkyReg.Helper
         public static int Skoczkowie
         {
             get {
-                using(DLModelContainer model = new DLModelContainer())
+                using(SkyRegContext model = new SkyRegContext())
                 {
                     skoczkowie = model.Group.Where(p => p.Name == "Skoczkowie").Select(p=>p.Id).First();
                 }
@@ -26,7 +27,7 @@ namespace SkyReg.Helper
         {
             get
             {
-                using(DLModelContainer model = new DLModelContainer())
+                using(SkyRegContext model = new SkyRegContext())
                 {
                     pasazerowie = model.Group.Where(p => p.Name == "Pasażerowie tandemów").Select(p => p.Id).First();
                 }

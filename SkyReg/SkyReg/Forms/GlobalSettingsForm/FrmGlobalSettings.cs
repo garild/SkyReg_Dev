@@ -12,6 +12,7 @@ using SkyReg.Common.Extensions;
 using System.Globalization;
 using SkyRegEnums;
 using DataLayer.Result.Repository;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -40,7 +41,7 @@ namespace SkyReg
 
         private void LoadAirplanes()
         {
-            using (DLModelRepository<Airplane> _ctxAirplane = new DLModelRepository<Airplane>())
+            using (SkyRegContextRepository<Airplane> _ctxAirplane = new SkyRegContextRepository<Airplane>())
             {
                 var airplanes = _ctxAirplane.GetAll();
                 if (airplanes.IsSuccess)
@@ -55,7 +56,7 @@ namespace SkyReg
 
         private void LoadGlobalSettingsFields()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 GlobalSetting gs = model.GlobalSetting.Select(p => p).FirstOrDefault();
                 if (gs != null)
@@ -69,7 +70,7 @@ namespace SkyReg
 
         private void OperatorsLoad() //TODO Kod Janusza
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 var operators = model
                     .Operator
@@ -78,7 +79,7 @@ namespace SkyReg
                     .Select(p => new
                     {
                         Id = p.Id,
-                        Name = p.User.SurName + " " + p.User.FirstName,
+                        Name = p.User.Name,
                         Type = p.Type == (int)OperatorTypes.Operator ? "Operator" : "Rejestrujący",
                     })
                     .OrderBy(p => Name)
@@ -159,7 +160,7 @@ namespace SkyReg
 
         private void PaymentsTypesLoad()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 var paymSetList = model.PaymentsSetting.Select(p => new
                 {
@@ -186,7 +187,7 @@ namespace SkyReg
                 {
                     foreach (DataGridViewRow item in grdOperators.SelectedRows)
                     {
-                        using (DLModelContainer model = new DLModelContainer())
+                        using (SkyRegContext model = new SkyRegContext())
                         {
                             int opeID = (int)item.Cells["Id"].Value;
                             var opeToDelete = model.Operator.Where(p => p.Id == opeID).FirstOrDefault();
@@ -211,7 +212,7 @@ namespace SkyReg
                 {
                     foreach (DataGridViewRow item in grdPayment.SelectedRows)
                     {
-                        using (DLModelContainer model = new DLModelContainer())
+                        using (SkyRegContext model = new SkyRegContext())
                         {
                             int IDps = (int)item.Cells["Id"].Value;
                             var paySetToDelete = model.PaymentsSetting.Where(p => p.Id == IDps).FirstOrDefault();
@@ -246,7 +247,7 @@ namespace SkyReg
 
         private void saveGlobalSettings()//TODO KOD Janusza
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 GlobalSetting gs = model.GlobalSetting.Select(p => p).FirstOrDefault();
                 if (gs == null)
@@ -333,10 +334,10 @@ namespace SkyReg
             int getYear = DateTime.Now.Year;
             int maxCount = 0;
             string flyString = "";
-            if (dayOfWeeks.Count > 0 && ValidateData())
+            if (ValidateData())
             {
-                using (DLModelRepository<Airplane> _ctxAirplane = new DLModelRepository<Airplane>())
-                using (DLModelRepository<Flight> _ctxFlight = new DLModelRepository<Flight>())
+                using (SkyRegContextRepository<Airplane> _ctxAirplane = new SkyRegContextRepository<Airplane>())
+                using (SkyRegContextRepository<Flight> _ctxFlight = new SkyRegContextRepository<Flight>())
                 {
                     var airplane = _ctxAirplane.GetById((int)cmbAirplane.SelectedValue);
 
@@ -364,6 +365,7 @@ namespace SkyReg
 
                                 flight = new Flight();
                                 flight.Airplane = airplane;
+                                flight.Altitude = (int)numAltitude.Value;
                                 flight.FlyDateTime = dateCount.Date;
                                 flight.FlyStatus = (int)FlightsStatus.Opened;
                                 flight.FlyNr = flyString;
@@ -393,26 +395,30 @@ namespace SkyReg
 
         private bool ValidateData()
         {
-            var result = true;
             errorProvider.Clear();
 
-            if (dateFrom.Value > dateTo.Value)
+            if (dayOfWeeks.Count == 0)
+            {
+                KryptonMessageBox.Show("Wybierz chociaż 1 dzień tygodnia!", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return false;
+            }
+            if (dateFrom.Value.Date < dateTo.Value.Date)
             {
                 errorProvider.SetError(dateFrom, "Okres wylotów OD - DO nie jest poprawny");
-                result = false;
+                return false;
             }
             if(cmbAirplane.SelectedValue == null)
             {
                 errorProvider.SetError(cmbAirplane, "Wybierz samolot!");
-                result = false;
+                return false;
             }
             if(numAltitude.Value < 1)
             {
                 errorProvider.SetError(numAltitude, "Pułal nie może być mniejszy od 0!");
-                result = false;
+                return false;
             }
-
-            return result;
+           
+            return true;
         }
 
         public void AddOrDeleteDayOfWeek(DayOfWeek day, Actions action)

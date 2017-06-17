@@ -8,8 +8,9 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>SkyReg</RootNamespace>
     <AssemblyName>SkyReg</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -20,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -29,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>SkyReg.ico</ApplicationIcon>
@@ -85,7 +88,6 @@
     <Compile Include="Common\Enums\FlightsStatus.cs" />
     <Compile Include="Common\Extensions\FormsOpened.cs" />
     <Compile Include="Common\Extensions\PrimitiveTypeExtensions.cs" />
-    <Compile Include="Common\FluentValidator\UserValidator.cs" />
     <Compile Include="Forms\AirplanesForm\AirplanesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,8 +100,6 @@
     <Compile Include="Forms\AirplanesForm\AirPlanesFormAddEdit.Designer.cs">
       <DependentUpon>AirPlanesFormAddEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="BLL\Login\ILoginRepository.cs" />
-    <Compile Include="BLL\Login\LoginRepository.cs" />
     <Compile Include="Common\Enums\FormState.cs" />
     <Compile Include="Common\Enums\OperatorTypes.cs" />
     <Compile Include="Common\Enums\PaymentsTypes.cs" />
@@ -455,7 +455,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BLL\Repository\" />
+    <Folder Include="Common\FluentValidator\" />
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <ItemGroup>

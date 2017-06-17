@@ -11,10 +11,10 @@ namespace SkyReg
     public static class FirstTimeRun
     {
         //Uruchamiane podczas startu programu - za pierwszym razem dodaje stałe elementy do bazy
-        private static readonly DLModelRepository<Group> _contextGroup = new DLModelRepository<Group>();
-        private static readonly DLModelRepository<User> _contextUser = new DLModelRepository<User>();
-        private static readonly DLModelRepository<Operator> _contextOperator = new DLModelRepository<Operator>();
-        private static readonly DLModelRepository<PaymentsSetting> _contextPaymentsSetting = new DLModelRepository<PaymentsSetting>();
+        private static readonly SkyRegContextRepository<Group> _contextGroup = new SkyRegContextRepository<Group>();
+        private static readonly SkyRegContextRepository<User> _contextUser = new SkyRegContextRepository<User>();
+        private static readonly SkyRegContextRepository<Operator> _contextOperator = new SkyRegContextRepository<Operator>();
+        private static readonly SkyRegContextRepository<PaymentsSetting> _contextPaymentsSetting = new SkyRegContextRepository<PaymentsSetting>();
         
         public static void CheckAndAdd()
         {
@@ -62,8 +62,7 @@ namespace SkyReg
                         {
                             Login = "admin",
                             Password = "s7PNTS7UQzg=",
-                            FirstName = "Admin",
-                            SurName = "Admin",
+                            Name ="Dev",
                             Group = gpSkoczkowie
                         };
 
@@ -73,57 +72,50 @@ namespace SkyReg
                             Type = (int)OperatorTypes.Operator
                         };
 
-                        _contextOperator.InsertEntity(opr,false);
+                        _contextOperator.InsertEntity(opr);
                     }
                 }
-                using (DLModelContainer model = new DLModelContainer())
+                using (var _ctxPaySettings = new SkyRegContextRepository<PaymentsSetting>())
                 {
                     //Czy jest zdefiniowane KP
                     var inComeCash = (short)PaymentsTypes.KP;
                     var outComeCash = (short)PaymentsTypes.KW;
                     var charge = (short)PaymentsTypes.Naleznosc;
                     var commitment = (short)PaymentsTypes.Zobowiazanie;
-                    bool isIncomeCash = model.PaymentsSetting.Any(p => p.Type == inComeCash);
-                    if (isIncomeCash == false)
+                  
+                    if (!_ctxPaySettings.Table.Any(p => p.Type == inComeCash))
                     {
                         PaymentsSetting ps = new PaymentsSetting();
                         ps.Type = inComeCash;
                         ps.Name = "KP";
-                        model.PaymentsSetting.Add(ps);
-                        model.SaveChanges();
+                        _ctxPaySettings.InsertEntity(ps);
                     }
 
                     //Czy jest zdefiniowane KW
-                    bool isExpenditureCash = model.PaymentsSetting.Any(p => p.Type == outComeCash);
-                    if (isExpenditureCash == false)
+                    if (!_ctxPaySettings.Table.Any(p => p.Type == outComeCash))
                     {
                         PaymentsSetting ps = new PaymentsSetting();
                         ps.Type = outComeCash;
                         ps.Name = Enum.GetName(typeof(PaymentsTypes), PaymentsTypes.KW);
                         ps.Value = 0;
                         ps.Count = 0;
-                        model.PaymentsSetting.Add(ps);
-                        model.SaveChanges();
+                        _ctxPaySettings.InsertEntity(ps);
                     }
-
-                    bool isCharge = model.PaymentsSetting.Any(p => p.Type == charge);
-                    if (isCharge  == false)
+               
+                    if (!_ctxPaySettings.Table.Any(p => p.Type == charge))
                     {
                         PaymentsSetting ps = new PaymentsSetting();
                         ps.Type = charge;
                         ps.Name = "Należność";
-                        model.PaymentsSetting.Add(ps);
-                        model.SaveChanges();
+                        _ctxPaySettings.InsertEntity(ps);
                     }
 
-                    bool isCommitment = model.PaymentsSetting.Any(p => p.Type == commitment);
-                    if (isCommitment == false)
+                    if (!_contextPaymentsSetting.Table.Any(p => p.Type == commitment))
                     {
                         PaymentsSetting ps = new PaymentsSetting();
                         ps.Type = commitment;
                         ps.Name = "Zobowiązanie";
-                        model.PaymentsSetting.Add(ps);
-                        model.SaveChanges();
+                        _ctxPaySettings.InsertEntity(ps);
                     }
                 }
             }

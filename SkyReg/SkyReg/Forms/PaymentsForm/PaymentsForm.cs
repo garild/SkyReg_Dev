@@ -10,6 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using DataLayer;
 using SkyRegEnums;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -69,7 +70,7 @@ namespace SkyReg
 
         private void RefreshPayList()
         {
-            using(DLModelContainer model = new DLModelContainer())
+            using(SkyRegContext model = new SkyRegContext())
             {
                 var payList = model.Payment
                     .Include("User")
@@ -84,7 +85,7 @@ namespace SkyReg
                         Count = p.Count.HasValue ? p.Count : default(decimal),
                         Description = p.Description,
                         PayType = p.PaymentsSetting.Name,
-                        UserName = p.User.SurName + " " + p.User.FirstName
+                        UserName = p.User.Name
                     })
                     .OrderBy(p => p.Date).ToList();
                 if (payList != null)
@@ -143,7 +144,7 @@ namespace SkyReg
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 if (grdPayments.SelectedRows.Count > 0)
                 {

@@ -1,4 +1,5 @@
-﻿using DataLayer.Result.Interface;
+﻿using DataLayer.Entities.DBContext;
+using DataLayer.Result.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,16 +10,16 @@ using System.Text;
 
 namespace DataLayer.Result.Repository
 {
-    public class DLModelRepository<T> : DbContext ,IDLModel<T> where T : class, new() //TODO zmienić obsługę błędów
+    public class SkyRegContextRepository<T> : DbContext ,ISkyRegContext<T> where T : class, new() //TODO zmienić obsługę błędów
     {
-        private readonly DLModelContainer context = new DLModelContainer();
+        private readonly SkyRegContext context = new SkyRegContext();
         private IDbSet<T> Entity;
 
         string errorMessage = string.Empty;
 
-        public DLModelRepository()
+        public SkyRegContextRepository()
         {
-            
+            context.Database.Initialize(false);
         }
 
         public T GetById(object id)
@@ -29,10 +30,8 @@ namespace DataLayer.Result.Repository
         /// <summary>
         /// Attach with FALSE :Insert new Entity data object with references and associations class,
         /// attach with TRUE :Add new Entity data where references and associations class does not exists
-        /// 
         /// </summary>
-
-        public ResultType<T> InsertEntity(T entity, bool Attach = true)
+        public ResultType<T> InsertEntity(T entity)
         {
             try
             {
@@ -40,9 +39,7 @@ namespace DataLayer.Result.Repository
                 {
                     return new ResultType<T>() { Value = null };
                 }
-
-                if (Attach)
-                    this.Entities.Attach(entity);
+              
                 this.Entities.Add(entity);
 
                 this.context.SaveChanges();
@@ -85,9 +82,9 @@ namespace DataLayer.Result.Repository
                 }
                 entity.ForEach(p =>
                 {
-                    this.Entities.Attach(p);
                     this.Entities.Add(p);
                     });
+
                 this.context.SaveChanges();
 
                 return new ColletionResult<T>() { Value = entity };
@@ -113,28 +110,23 @@ namespace DataLayer.Result.Repository
 
         }
 
-        public ColletionResult<T> GetAll(string path = null)
+        public ColletionResult<T> GetAll(Tuple<string,string,string> path = null)
         {
             try
             {
-                List<T> result = new List<T>();
-                
-                if (!string.IsNullOrEmpty(path) && path.Contains(','))
+                if (path != null)
                 {
-                    var includes = path.Split(',');
-
-                    if(includes.Count() > 2 && includes.Count() < 3 )
-                       result = Table.Include(includes[0]).Include(includes[1]).Include(includes[3]).AsNoTracking().ToList();
-                    if (includes.Count() >= 2)
-                        result = Table.Include(includes[0]).Include(includes[1]).AsNoTracking().ToList();
-                   
+                    if (!string.IsNullOrEmpty(path.Item1) && !string.IsNullOrEmpty(path.Item2) && !string.IsNullOrEmpty(path.Item3))
+                        return new ColletionResult<T>() { Value = Table.Include(path.Item1).Include(path.Item2).Include(path.Item3).AsNoTracking().ToList() };
+                    if (!string.IsNullOrEmpty(path.Item1) && !string.IsNullOrEmpty(path.Item2))
+                        return new ColletionResult<T>() { Value = Table.Include(path.Item1).Include(path.Item2).AsNoTracking().ToList() };
+                    if (!string.IsNullOrEmpty(path.Item1))
+                        return new ColletionResult<T>() { Value = Table.Include(path.Item1).AsNoTracking().ToList() };
                 }
-                if(!string.IsNullOrEmpty(path) && !path.Contains(','))
-                    result = Table.Include(path).AsNoTracking().ToList();
                 else
-                    result = Table.AsNoTracking().ToList();
+                    return new ColletionResult<T>() { Value = Table.AsNoTracking().ToList() };
 
-                return new ColletionResult<T>() { Value = result };
+                return new ColletionResult<T>() { Value = null, IsSuccess = true };
             }
             catch (DbUpdateException ex)
             {
@@ -221,6 +213,9 @@ namespace DataLayer.Result.Repository
             }
         }
 
+
+        public SkyRegContext Model => context;
+       
         public virtual IQueryable<T> Table
         {
             get

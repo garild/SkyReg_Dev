@@ -1,21 +1,15 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
-using SkyReg.BLL.Services;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DataLayer.Utils;
 using DataLayer;
-using System.Threading.Tasks;
 using System.IO;
 using System.Xml.Serialization;
 using SkyReg.Extensions;
-using SkyReg.Utils;
-using SkyReg.Common.FluentValidator;
 using FluentValidation.Results;
 using System.Xml;
 using SkyReg.Forms.DatabaseConfiguration;
@@ -28,7 +22,6 @@ namespace SkyReg.MainForm
     public partial class FrmLogin : KryptonForm
     {
         private ErrorProvider validateControl = new ErrorProvider();
-        private ValidationResult _validator = null;
         private  bool IsDbExists = false;
 
         public FrmLogin()
@@ -126,9 +119,9 @@ namespace SkyReg.MainForm
             {
                 if (ValidateControls())
                 {
-                    using (var _loginRepo = new DLModelRepository<User>())
+                    using (var _loginRepo = new SkyRegContextRepository<User>())
                     {
-                        var user = _loginRepo.GetAll("Operator").Value?.Where(p => p.Login.ToLower() == login 
+                        var user = _loginRepo.GetAll(Tuple.Create(nameof(Operator),"","")).Value?.Where(p => p.Login.ToLower() == login 
                         && p.Password == password.EncryptString() 
                         && p.Operator.Any(o=>o.Type == (int)OperatorTypes.Operator)).FirstOrDefault();
                         if (user != null)

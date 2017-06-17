@@ -9,6 +9,8 @@ using System.Text;
 using System.Windows.Forms;
 using DataLayer;
 using SkyRegEnums;
+using DataLayer.Entities.DBContext;
+using DataLayer.Result.Repository;
 
 namespace SkyReg
 {
@@ -41,7 +43,7 @@ namespace SkyReg
 
         private void LoadAirplaneData(int? airplaneId)
         {
-            using(DLModelContainer model = new DLModelContainer())
+            using(SkyRegContext model = new SkyRegContext())
             {
                 Airplane ap = model.Airplane.Where(p => p.Id == airplaneId.Value).FirstOrDefault();
                 if (ap != null)
@@ -61,29 +63,20 @@ namespace SkyReg
             }
         }
 
-        private void SaveAirplane() //TODO Kod Janusza
+        private void SaveAirplane()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (var _ctx = new SkyRegContextRepository<Airplane>())
             {
+                Airplane ap = _formState == FormState.Add ? new Airplane() : _ctx.GetById(_airplaneId);
+
+                ap.Name = txtName.Text;
+                ap.RegNr = txtID.Text;
+                ap.Seats = (int)numSeatsCount.Value;
+
                 if (_formState == FormState.Add)
-                {
-                    Airplane ap = new Airplane();
-                    ap.Name = txtName.Text;
-                    ap.RegNr = txtID.Text;
-                    ap.Seats = (int)numSeatsCount.Value;
-                    model.Airplane.Add(ap);
-                }
+                    _ctx.InsertEntity(ap);
                 else
-                {
-                    Airplane ap = model.Airplane.Where(p => p.Id == _airplaneId).FirstOrDefault();
-                    if (ap != null)
-                    {
-                        ap.Name = txtName.Text;
-                        ap.RegNr = txtID.Text;
-                        ap.Seats = (int)numSeatsCount.Value;
-                    }
-                }
-                model.SaveChanges();
+                    _ctx.Update(ap);
                
                 this.Close();
             }
@@ -113,7 +106,7 @@ namespace SkyReg
             }
             if(_formState == FormState.Add)
             {
-                using(DLModelContainer model = new DLModelContainer()) //TODO KOD JANUSZA
+                using(SkyRegContext model = new SkyRegContext()) //TODO KOD JANUSZA
                 {
                     bool isAirplane = model.Airplane.Any(p => p.RegNr == txtID.Text);
                     if(isAirplane == true)

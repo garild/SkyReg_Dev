@@ -10,6 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using DataLayer;
 using DataLayer.Result.Repository;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -42,20 +43,20 @@ namespace SkyReg
 
         private void SaveToBaseAdd()
         {
-            using(DLModelContainer model = new DLModelContainer())
+            using(SkyRegContext model = new SkyRegContext())
             {
                 int selUserType = (int)cmbUsersType.SelectedValue;
                 int selParachute = (int)cmbParachute.SelectedValue;
                 bool assemblySelf = false;
 
                 User usr = model.User.Where(p => p.Id == selectedUserId).FirstOrDefault();
-                UsersType usrType = model.UsersType.Where(p => p.Id == selUserType).FirstOrDefault();
+                DefinedUserType usrType = model.DefinedUserType.Where(p => p.Id == selUserType).FirstOrDefault();
                 Parachute parachute = model.Parachute.Where(p => p.Id == selParachute).FirstOrDefault();
                 if (cmbAssemblyType.SelectedText == "Układam sam")
                     assemblySelf = true;
                 decimal usersMoney = numBalanceMoney.Value + numCashIncome.Value;
                 decimal usersPackages = numBalancePackage.Value;
-                decimal? oneJumpPrice = model.UsersType.Where(p => p.Id == (int)cmbUsersType.SelectedValue).Select(p => p.Value).FirstOrDefault();
+                decimal? oneJumpPrice = model.DefinedUserType.Where(p => p.Id == (int)cmbUsersType.SelectedValue).Select(p => p.Value).FirstOrDefault();
                 decimal? parachuteRentPrice = model.Parachute.Where(p => p.Id == (int)cmbParachute.SelectedValue).Select(p => p.RentValue).FirstOrDefault();
                 decimal? parachuteAssemblyPrice = model.Parachute.AsNoTracking().Where(p => p.Id == (int)cmbParachute.SelectedValue).Select(p => p.AssemblyValue).FirstOrDefault();
                 int currentFlightId = (int)grdFlight.SelectedRows[0].Cells["Id"].Value;
@@ -122,7 +123,7 @@ namespace SkyReg
 
         private FlightsElem SaveFlghtElemToDB(int flightId, int usrId)
         {
-            using(DLModelContainer model = new DLModelContainer())
+            using(SkyRegContext model = new SkyRegContext())
             {
                 Flight fly = model.Flight.Where(p => p.Id == flightId).FirstOrDefault();
 
@@ -151,10 +152,10 @@ namespace SkyReg
 
             //PaymentsSetting ps = model.PaymentsSetting.Where(p => p.Type == (short)SkyRegEnums.PaymentsTypes.Naleznosc).FirstOrDefault();
             Payment pay = null;
-            using (var _paySettings = new DLModelRepository<PaymentsSetting>())
-            using (var _user = new DLModelRepository<User>())
-            using (var _pay = new DLModelRepository<Payment>())
-            using( var _FlyElem = new DLModelRepository<FlightsElem>())
+            using (var _paySettings = new SkyRegContextRepository<PaymentsSetting>())
+            using (var _user = new SkyRegContextRepository<User>())
+            using (var _pay = new SkyRegContextRepository<Payment>())
+            using( var _FlyElem = new SkyRegContextRepository<FlightsElem>())
             {
                 pay = new Payment();
                 PaymentsSetting ps = _paySettings.Table.Where(p => p.Type == (short)SkyRegEnums.PaymentsTypes.Naleznosc).FirstOrDefault();
@@ -266,15 +267,14 @@ namespace SkyReg
 
         private bool checkBalances()
         {
-            bool result = true;
-
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 decimal usersMoney = numBalanceMoney.Value + numCashIncome.Value;
                 decimal usersPackages = numBalancePackage.Value;
-                decimal? oneJumpPrice = model.UsersType.Where(p => p.Id == (int)cmbUsersType.SelectedValue).Select(p => p.Value).FirstOrDefault();
+                decimal? oneJumpPrice = model.DefinedUserType.Where(p => p.Id == (int)cmbUsersType.SelectedValue).Select(p => p.Value).FirstOrDefault();
                 decimal? parachuteRentPrice = model.Parachute.Where(p => p.Id == (int)cmbParachute.SelectedValue).Select(p => p.RentValue).FirstOrDefault();
                 decimal? parachuteAssemblyPrice = model.Parachute.AsNoTracking().Where(p => p.Id == (int)cmbParachute.SelectedValue).Select(p => p.AssemblyValue).FirstOrDefault();
+
                 if (cmbAssemblyType.Text == "Układam sam")//układa sam
                     parachuteAssemblyPrice = 0;
 
@@ -303,22 +303,22 @@ namespace SkyReg
 
                 if(numBalanceMoney.Value < needMoneyForAll)
                 {
-                    if(KryptonMessageBox.Show(string.Format("Potrzeba {0}, a saldo wynosi {1}. Czy zezwolić na kredyt?", needMoneyForAll, usersMoney), "Kredyt?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    if(KryptonMessageBox.Show($"Potrzeba {needMoneyForAll}, a saldo wynosi {usersMoney}. Czy zezwolić na kredyt?", "Kredyt?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     {
-                        result = false;
+                        return false;
                     }
                 }
 
             }
 
-            return result;
+            return true;
         }
 
         private void AddPaymentForUser(int idUser, decimal value)
         {
-            using (var _pay = new DLModelRepository<Payment>())
-            using (var _ps = new DLModelRepository<PaymentsSetting>())
-            using (var _usr = new DLModelRepository<User>())
+            using (var _pay = new SkyRegContextRepository<Payment>())
+            using (var _ps = new SkyRegContextRepository<PaymentsSetting>())
+            using (var _usr = new SkyRegContextRepository<User>())
             {
                 Payment pay = new Payment();
 
@@ -339,9 +339,9 @@ namespace SkyReg
 
         private int AddNewUserToBase()
         {
-            int result = default(int);
+            int userId = 0;
 
-            using(DLModelContainer model = new DLModelContainer())
+            using(var _ctx = new SkyRegContextRepository<User>())
             {
                 string[] userName = cmbName.Text.Split(' ');
                 string firstName = default(string);
@@ -357,37 +357,38 @@ namespace SkyReg
                     firstName = cmbName.Text;
                 }
                 User usr = new User();
-                usr.SurName = surName;
-                usr.FirstName = firstName;
-                model.User.Add(usr);
-                model.SaveChanges();
-                result = usr.Id;
+                usr.Name = "";//TODO Dodać imię
+                var result = _ctx.InsertEntity(usr);
+
+                if(result.IsSuccess)
+                    userId = result.Value.Id;
             }
-            return result;
+            return userId;
         }
 
         private void LoadParachutes()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (var _contexFlightEl = new SkyRegContextRepository<FlightsElem>())
+            using (var _contextParachute = new SkyRegContextRepository<Parachute>())
             {
                 if (grdFlight.SelectedRows.Count > 0)
                 {
                     int curFlightsIndex = grdFlight.SelectedRows[0].Cells["Id"].RowIndex;
                     int curFlightId = (int)grdFlight.SelectedRows[0].Cells["Id"].Value;
                     List<Parachute> parachuteNotAvaliable = new List<Parachute>();
-                    parachuteNotAvaliable.AddRange(model.FlightsElem.Where(p => p.Flight.Id == curFlightId).SelectMany(p => p.Parachute).ToList());
+                    parachuteNotAvaliable.AddRange(_contexFlightEl.Table.Where(p => p.Flight.Id == curFlightId).SelectMany(p => p.Parachute).ToList());
                     if (curFlightsIndex > 0)
                     {
                         int prevFlightId = (int)grdFlight.Rows[curFlightsIndex - 1].Cells["Id"].Value;
-                        parachuteNotAvaliable.AddRange(model.FlightsElem.Where(p => p.Flight.Id == prevFlightId).SelectMany(p => p.Parachute).ToList());
+                        parachuteNotAvaliable.AddRange(_contexFlightEl.Table.Where(p => p.Flight.Id == prevFlightId).SelectMany(p => p.Parachute).ToList());
                     }
                     if (curFlightsIndex < grdFlight.Rows.Count - 1)
                     {
                         int nextFlightId = (int)grdFlight.Rows[curFlightsIndex + 1].Cells["Id"].Value;
-                        parachuteNotAvaliable.AddRange(model.FlightsElem.Where(p => p.Flight.Id == nextFlightId).SelectMany(p => p.Parachute).ToList());
+                        parachuteNotAvaliable.AddRange(_contexFlightEl.Table.Where(p => p.Flight.Id == nextFlightId).SelectMany(p => p.Parachute).ToList());
                     }
 
-                    var allParachutes = model.Parachute.OrderBy(p => p.IdNr).ToList();
+                    var allParachutes = _contextParachute.Table.OrderBy(p => p.IdNr).ToList();
                     List<Parachute> avaliableParachutes = new List<Parachute>();
                     foreach (var item in allParachutes)
                     {
@@ -405,49 +406,54 @@ namespace SkyReg
 
         private void LoadUserTypes()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (var _ctx = new SkyRegContextRepository<User>())
             {
 
-                cmbName.DisplayMember = "Name";
-                cmbName.ValueMember = "Id";
+                var result = _ctx.GetAll(Tuple.Create(nameof(DefinedUserType),"",""));
+                if (result.IsSuccess)
+                {
 
-                int? selectedUser = null;
-                if (cmbName.SelectedValue != null)
-                    selectedUser = (int)cmbName.SelectedValue;
-                List<UsersType> usersTypesList = null;
-                if (selectedUser != null)
-                {
-                    var user = model.User.Where(p => p.Id == selectedUser).FirstOrDefault();
-                    if (user != null)
+
+                    cmbName.DisplayMember = "Name";
+                    cmbName.ValueMember = "Id";
+
+                    int? selectedUser = null;
+                    if (cmbName.SelectedValue != null)
+                        selectedUser = (int)cmbName.SelectedValue;
+                    List<DefinedUserType> usersTypesList = null;
+                    if (selectedUser != null)
                     {
-                        usersTypesList = model.User.Where(p => p.Id == selectedUser).SelectMany(p => p.UsersType).ToList();
+                        var user = result.Value.Where(p => p.Id == selectedUser).FirstOrDefault();
+                        if (user != null)
+                        {
+                           // usersTypesList = result.Value.Where(p => p.DefinedUserType.Id == selectedUser).Select(p=>p.DefinedUserType).ToList();
+                        }
                     }
+                    else
+                    {
+                        //usersTypesList = result.Value.Select(p => p.DefinedUserType)
+                        //    .OrderBy(p => p.Name)
+                        //    .ToList();
+                    }
+                    cmbUsersType.DataSource = usersTypesList;
+                    cmbUsersType.DisplayMember = "Name";
+                    cmbUsersType.ValueMember = "Id";
                 }
-                else
-                {
-                    usersTypesList = model
-                        .UsersType
-                        .OrderBy(p => p.Name)
-                        .ToList();
-                }
-                cmbUsersType.DataSource = usersTypesList;
-                cmbUsersType.DisplayMember = "Name";
-                cmbUsersType.ValueMember = "Id";
             }
         }
 
         private void LoadUsers()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (var _ctx = new SkyRegContextRepository<User>())
             {
-                var users = model.User
-                    .OrderBy(p => p.SurName)
-                    .ThenBy(p => p.FirstName)
+                var users = _ctx.Table
+                    .OrderBy(p => p.Name)
                     .Select(p => new
                     {
-                        Name = p.SurName + " " + p.FirstName,
+                        Name = p.Name,
                         Id = p.Id
                     }).ToList();
+
                 cmbName.DataSource = users;
                 cmbName.DisplayMember = "Name";
                 cmbName.ValueMember = "Id";
@@ -456,13 +462,14 @@ namespace SkyReg
 
         private void LoadFlightsOnGrid()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (var _ctx = new SkyRegContextRepository<Flight>())
             {
                 DateTime dateNow = DateTime.Now.Date;
 
-                var flightsList = model
-                    .Flight
-                    .Where(p => p.FlyDateTime == dateNow && (p.FlyStatus == (int)FlightsStatus.Opened || p.FlyStatus == (int)FlightsStatus.Closed))
+                var flightsList = _ctx.Table
+                    .Where(p => p.FlyDateTime == dateNow
+                    && (p.FlyStatus == (int)FlightsStatus.Opened
+                    || p.FlyStatus == (int)FlightsStatus.Closed))
                     .OrderBy(p => p.FlyNr)
                     .Select(p => new
                     {
@@ -472,6 +479,7 @@ namespace SkyReg
                         BusySeats = p.FlightsElem.Count
                     })
                     .ToList();
+
                 if (flightsList != null)
                 {
                     grdFlightsListSelectedForUser.DataSource = flightsList;
@@ -484,14 +492,14 @@ namespace SkyReg
         private void LoadAssemblyType()
         {
             cmbAssemblyType.Items.Clear();
-            using (DLModelContainer model = new DLModelContainer())
+            using (var _ctx = new SkyRegContextRepository<Parachute>())
             {
                 cmbParachute.DisplayMember = "IdNr";
                 cmbParachute.ValueMember = "Id";
 
                 if (cmbParachute.SelectedValue != null)
                 {
-                    var parachute = model.Parachute.Include("User").Where(p => p.Id == (int)cmbParachute.SelectedValue).FirstOrDefault();
+                    var parachute = _ctx.GetAll(Tuple.Create(nameof(User),"","")).Value?.Where(p => p.Id == (int)cmbParachute.SelectedValue).FirstOrDefault();
                     if (parachute.User != null)
                     {
                         cmbAssemblyType.Items.Add("Układam sam");
@@ -546,50 +554,43 @@ namespace SkyReg
 
         private void LoadBalance()
         {
-            using (var model = new DLModelContainer())
+            using (var _ctxUser = new SkyRegContextRepository<Payment>())
             {
                 if (cmbName.SelectedValue != null)
                 {
                     int userId = (int)cmbName.SelectedValue;
-                    var incomeM = model
-                        .Payment
-                        .Include("User")
-                        .Include("PaymentsSetting")
-                        .AsNoTracking()
-                        .Where(p => p.User.Id == userId && p.Count == 0 && (p.PaymentsSetting.Type == 0 || p.PaymentsSetting.Type == 2 || p.PaymentsSetting.Type == 6) )
-                        .ToList();
-                    var incomeMoney = incomeM.Sum(p => p.Value);
+                    var result = _ctxUser.GetAll(Tuple.Create(nameof(User),nameof(PaymentsSetting),""));
 
-                    var outcomeM = model
-                        .Payment
-                        .Include("User")
-                        .Include("PaymentsSetting")
-                        .AsNoTracking()
-                        .Where(p => p.User.Id == userId && p.Count == 0 && (p.PaymentsSetting.Type == 1 || p.PaymentsSetting.Type == 4 || p.PaymentsSetting.Type == 5))
-                        .ToList();
-                    var outcomeMoney = outcomeM.Sum(p => p.Value);
+                    if(result.IsSuccess)
+                    {
+                        var incomeMoney = result.Value.Where(p => p.User.Id == userId
+                        && p.Count == 0
+                        && (p.PaymentsSetting.Type == 0
+                        || p.PaymentsSetting.Type == 2
+                        || p.PaymentsSetting.Type == 6))
 
-                    var incomeP = model
-                        .Payment
-                        .Include("User")
-                        .Include("PaymentsSetting")
-                        .AsNoTracking()
-                        .Where(p => p.User.Id == userId && p.Count != 0 && (p.PaymentsSetting.Type == 0 || p.PaymentsSetting.Type == 2 || p.PaymentsSetting.Type == 6))
-                        .ToList();
-                    var incomePackage = incomeP.Sum(p => p.Count);
+                        .Sum(p => p.Value);
 
-                    var outcomeP = model
-                        .Payment
-                        .Include("User")
-                        .Include("PaymentsSetting")
-                        .AsNoTracking()
-                        .Where(p => p.User.Id == userId && p.Count != 0 && (p.PaymentsSetting.Type == 1 || p.PaymentsSetting.Type == 4 || p.PaymentsSetting.Type == 5))
-                        .ToList();
-                    var outcomePackage = outcomeP.Sum(p => p.Count);
+                        var outcomeMoney = result.Value
+                            .Where(p => p.User.Id == userId
+                            && p.Count == 0
+                            && (p.PaymentsSetting.Type == 1
+                            || p.PaymentsSetting.Type == 4
+                            || p.PaymentsSetting.Type == 5))
+                            .Sum(p => p.Value);
 
-                    numBalanceMoney.Value = incomeMoney - outcomeMoney;
-                    numBalancePackage.Value = incomePackage.Value - outcomePackage.Value;
+                        var incomePackage = result.Value
+                            .Where(p => p.User.Id == userId && p.Count != 0 && (p.PaymentsSetting.Type == 0 || p.PaymentsSetting.Type == 2 || p.PaymentsSetting.Type == 6))
+                            .Sum(p => p.Value);
 
+
+                        var outcomePackage = result.Value
+                            .Where(p => p.User.Id == userId && p.Count != 0 && (p.PaymentsSetting.Type == 1 || p.PaymentsSetting.Type == 4 || p.PaymentsSetting.Type == 5))
+                            .Sum(p => p.Value);
+
+                        numBalanceMoney.Value = incomeMoney - outcomeMoney;
+                        numBalancePackage.Value = incomePackage - outcomePackage;
+                    }
                 }
                 else
                 {

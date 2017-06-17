@@ -11,6 +11,7 @@ using DataLayer;
 using DataLayer.Result.Repository;
 using SkyReg.Common.Extensions;
 using SkyRegEnums;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -43,7 +44,7 @@ namespace SkyReg
 
         private void LoadUsersFinancesList()
         {
-            using(DLModelContainer model =new DLModelContainer())
+            using(SkyRegContext model =new SkyRegContext())
             {
                 var list = model
                     .Payment
@@ -115,7 +116,7 @@ namespace SkyReg
 
         private void LoadJumpsList()
         {
-            using(DLModelContainer model = new DLModelContainer())
+            using(SkyRegContext model = new SkyRegContext())
             {
                 var usersJumps = model
                     .FlightsElem
@@ -151,7 +152,7 @@ namespace SkyReg
 
         private void LoadEditedUserData()
         {
-            using(var model =  new DLModelRepository<User>())
+            using(var model =  new SkyRegContextRepository<User>())
             {
                 var usr = model.GetAll().Value?.Where(p => p.Id == IdUser).FirstOrDefault();
                 if (usr != null)
@@ -160,13 +161,12 @@ namespace SkyReg
                     txtCity.Text = usr.City;
                     txtEmail.Text = usr.Email;
                     txtFacebook.Text = usr.FaceBook;
-                    txtFirstName.Text = usr.FirstName;
                     txtLogin.Text = usr.Login;
                     txtPassword.Text = usr.Password;
                     txtPhone.Text = usr.Phone;
                     txtStreet.Text = usr.Street;
                     txtStreetNr.Text = usr.StreetNr;
-                    txtSurName.Text = usr.SurName;
+                    txtSurName.Text = usr.Name;
                     txtZipCode.Text = usr.ZipCode;
                     dateCertDate.Value = usr.CertDate.HasValue ? usr.CertDate.Value : dateCertDate.MaxDate;
                 }
@@ -176,19 +176,19 @@ namespace SkyReg
         private void LoadAllUsersTypes()
         {
             chkListUserTypes.Items.Clear();
-            using(var model = new DLModelContainer())
+            using(var model = new SkyRegContext())
             {
-                var allUserTypes = model.UsersType.ToList();
+                var allUserTypes = model.DefinedUserType.ToList();
                 if (FormState == FormState.Edit)
                 {
-                    var currentUserTypes = model.User.Where(p => p.Id == IdUser).SelectMany(p => p.UsersType).ToList();
-                    allUserTypes?.ForEach(item =>
-                    {
-                        if (currentUserTypes.Any(p => p.Id == item.Id))
-                            chkListUserTypes.Items.Add(item.Name, true);
-                        else
-                            chkListUserTypes.Items.Add(item.Name, false);
-                    });
+                   // var currentUserTypes = model.User.Where(p => p.Id == IdUser).Select(p => p.DefinedUserType).ToList();
+                    //allUserTypes?.ForEach(item =>
+                    //{
+                    //    if (currentUserTypes.Any(p => p.Id == item.Id))
+                    //        chkListUserTypes.Items.Add(item.Name, true);
+                    //    else
+                    //        chkListUserTypes.Items.Add(item.Name, false);
+                    //});
                     
                 }
                 else
@@ -204,7 +204,7 @@ namespace SkyReg
 
         private void btnCheckLogin_Click(object sender, EventArgs e)
         {
-            using(var model = new DLModelRepository<User>())
+            using(var model = new SkyRegContextRepository<User>())
             {
                 var isUser = model.GetAll().Value?.Any(p => p.Login == txtLogin.Text);
                 if (!isUser.HasValue)
@@ -233,66 +233,63 @@ namespace SkyReg
 
         private void SaveUser()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (var _ctx = new SkyRegContextRepository<User>())
             {
-                User usr = new User();
+                User usr = FormState == FormState.Add ? new User() : _ctx.GetById(IdUser);
 
-                if (FormState != FormState.Add)
-                {
-                    usr = model.User.Include("UsersType").AsNoTracking().Where(p => p.Id == IdUser).FirstOrDefault();
-                }
 
-                var listUsersTypes = new List<UsersType>();
+                var listUsersTypes = new List<DefinedUserType>();
               
-                foreach (var item in chkListUserTypes.CheckedItems)
-                {
-                    listUsersTypes.Add(model.UsersType.Where(p => p.Name == item.ToString()).FirstOrDefault());
-                }
+                //foreach (var item in chkListUserTypes.CheckedItems)
+                //{
+                //    listUsersTypes.Add(model.DefinedUserType.Where(p => p.Name == item.ToString()).FirstOrDefault());
+                //}
 
                 if (txtCertyfikate.Text.HasValue())
                     usr.CertDate = dateCertDate.Value.Date;
                 else
                     usr.CertDate = dateCertDate.MaxDate;
 
-                usr.Certificate = txtCertyfikate.Text;
-                usr.City = txtCity.Text;
-                usr.Email = txtEmail.Text;
-                usr.FaceBook = txtFacebook.Text;
-                usr.FirstName = txtFirstName.Text;
-                usr.Group = model.Group.Where(p => p.Id == UserGroup).First();
-                usr.Login = txtLogin.Text;
-                usr.Password = txtPassword.Text;
-                usr.Phone = txtPhone.Text;
-                usr.Street = txtStreet.Text;
-                usr.StreetNr = txtStreetNr.Text;
-                usr.SurName = txtSurName.Text;
-                usr.ZipCode = txtZipCode.Text;
-                usr.UsersType = listUsersTypes;
+                //TODO Po poprawy
 
-                if (FormState == FormState.Add)
-                {
-                    model.User.Add(usr);
-                }
-                else
-                {
-                    model.User.Include("UsersType").AsNoTracking();
-                    model.Entry<User>(usr).State = System.Data.Entity.EntityState.Modified;
-                }
-                model.SaveChanges();
+                //usr.Certificate = txtCertyfikate.Text;
+                //usr.City = txtCity.Text;
+                //usr.Email = txtEmail.Text;
+                //usr.FaceBook = txtFacebook.Text;
+                //usr.Group = model.Group.Where(p => p.Id == UserGroup).First();
+                //usr.Login = txtLogin.Text;
+                //usr.Password = txtPassword.Text;
+                //usr.Phone = txtPhone.Text;
+                //usr.Street = txtStreet.Text;
+                //usr.StreetNr = txtStreetNr.Text;
+                //usr.Name = txtSurName.Text;
+                //usr.ZipCode = txtZipCode.Text;
+                //usr.UsersType = listUsersTypes;
 
-                if(FormState == FormState.Edit)
-                {
-                    string qry = "delete from dbo.userUsersType ";
-                    qry += string.Format("where User_Id = {0}", usr.Id);
-                    model.Database.ExecuteSqlCommand(qry);
+                //if (FormState == FormState.Add)
+                //{
+                //    model.User.Add(usr);
+                //}
+                //else
+                //{
+                //    model.User.Include("UsersType").AsNoTracking();
+                //    model.Entry<User>(usr).State = System.Data.Entity.EntityState.Modified;
+                //}
+                //model.SaveChanges();
 
-                    foreach( UsersType ut in listUsersTypes)
-                    {
-                        qry = "insert into dbo.UserUsersType (User_Id, UsersType_Id)";
-                        qry += string.Format("values ({0}, {1})", usr.Id, ut.Id);
-                        model.Database.ExecuteSqlCommand(qry);
-                    }
-                }     
+                //if(FormState == FormState.Edit)
+                //{
+                //    string qry = "delete from dbo.userUsersType ";
+                //    qry += string.Format("where User_Id = {0}", usr.Id);
+                //    model.Database.ExecuteSqlCommand(qry);
+
+                //    //foreach( DefinedUserType ut in listUsersTypes)
+                //    //{
+                //    //    qry = "insert into dbo.UserUsersType (User_Id, UsersType_Id)";
+                //    //    qry += string.Format("values ({0}, {1})", usr.Id, ut.Id);
+                //    //    model.Database.ExecuteSqlCommand(qry);
+                //    //}
+                //}     
                 this.Close();
             }
         }
@@ -301,7 +298,7 @@ namespace SkyReg
         {
             errorProvider1.Clear();
 
-            using(DLModelRepository<User> _ctxUsr = new DLModelRepository<User>())
+            using(SkyRegContextRepository<User> _ctxUsr = new SkyRegContextRepository<User>())
             {
                 var userList = _ctxUsr.GetAll();
                 if (userList.IsSuccess)
@@ -317,7 +314,7 @@ namespace SkyReg
                         return false;
                     }
                 
-                    if (userList.Value.Where(p => p.FirstName == txtFirstName.Text && p.SurName == txtSurName.Text && p.Id != IdUser).FirstOrDefault() != null)
+                    if (userList.Value.Where(p => p.Name == txtSurName.Text && p.Id != IdUser).FirstOrDefault() != null)
                     {
                         errorProvider1.SetError(txtFirstName, "Użytkownik o tym imieniu i nazwisku już istnieje!");
                         errorProvider1.SetError(txtSurName, "Użytkownik o tym imieniu i nazwisku już istnieje!");
@@ -342,7 +339,7 @@ namespace SkyReg
 
         private void LoadBalance()
         {
-            using (var model = new DLModelContainer())
+            using (var model = new SkyRegContext())
             {
                 int userId = IdUser.Value;
                 var incomeM = model

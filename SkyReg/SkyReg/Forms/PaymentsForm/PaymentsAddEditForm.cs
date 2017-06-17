@@ -1,17 +1,12 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DataLayer;
-using SkyReg.BLL.Services;
 using DataLayer.Result.Repository;
-using DataLayer.Utils;
 using SkyRegEnums;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -44,20 +39,11 @@ namespace SkyReg
 
         private void LoadPayData()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (var _ctx = new SkyRegContextRepository<Payment>())
             {
-                var pay = model
-                    .Payment
-                    .Include("PaymentsSetting")
-                    .Include("User")
-                    .AsNoTracking()
+                var pay = _ctx.GetAll(Tuple.Create(nameof(User),nameof(PaymentsSetting),"")).Value?
                     .Where(p => p.Id == _payId)
                     .FirstOrDefault();
-
-                //var pay = model
-                //    .PaymentsSetting.OrderBy(p => p.Name).ToList();
-
-
 
                 if (pay != null)
                 {
@@ -73,15 +59,15 @@ namespace SkyReg
 
         private void LoadUsers()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 var allUsers = model
-                    .User.OrderBy(p => p.SurName)
-                    .ThenBy(p => p.FirstName)
+                    .User.OrderBy(p => p.Name)
                     .Select(p => new
                     {
                         Id = p.Id,
-                        Name = p.SurName + " " + p.FirstName
+                        Name = p.Name
+
                     }).ToList();
                 if (allUsers != null)
                 {
@@ -95,7 +81,7 @@ namespace SkyReg
 
         private void LoadPayTypes()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 var allPayments = model.PaymentsSetting.AsNoTracking().OrderBy(p => p.Name).ToList();
                 if (allPayments != null)
@@ -135,39 +121,29 @@ namespace SkyReg
 
         private void SaveData()
         {
-            using (var _pay = new DLModelRepository<Payment>())
-            using (var _ps = new DLModelRepository<PaymentsSetting>())
-            using (var _usr = new DLModelRepository<User>())
+            int selectedUserId = (int)cmbUser.SelectedValue;
+            int selectedPaySetId = (int)cmbPayType.SelectedValue;
+
+            using (var _pay = new SkyRegContextRepository<Payment>())
             {
-                Payment pay = new Payment();
+                Payment pay = _formState == FormState.Add ? new Payment() : _pay.GetById(_payId);
 
-                if (_formState != FormState.Add)
-                    pay = _pay.Table.Where(p => p.Id == _payId).FirstOrDefault();
+                PaymentsSetting ps = _pay.Model.PaymentsSetting.Where(p => p.Id == selectedPaySetId).FirstOrDefault();
 
-                int selectedUserId = (int)cmbUser.SelectedValue;
-                int selectedPaySetId = (int)cmbPayType.SelectedValue;
-                PaymentsSetting ps = _ps.Table.Where(p => p.Id == selectedPaySetId).FirstOrDefault();
-                User usr = _usr.Table.Where(p => p.Id == selectedUserId).FirstOrDefault();
+                User usr = _pay.Model.User.Where(p => p.Id == selectedUserId).FirstOrDefault();
 
+                pay.IsBooked = false;
                 pay.Date = datData.Value.Date;
                 pay.Description = txtDescription.Text;
-                pay.IsBooked = false;
-                pay.PaymentsSetting = ps;
-                pay.User = usr;
                 pay.Value = numValue.Value;
-                if (ps.Count == null)
-                    pay.Count = 0;
-                else
-                    pay.Count = ps.Count;
+                pay.Count = ps.Count ?? ps.Count;
+                pay.User_Id = usr.Id;
+                pay.PaymentsSetting_Id = ps.Id;
 
-                if (_formState == FormState.Add)
-                {
-                    _pay.InsertEntity(pay);
-                }
-                else
-                {
+                if (_formState != FormState.Add)
                     _pay.Update(pay);
-                }
+                else
+                    _pay.InsertEntity(pay);
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -177,7 +153,7 @@ namespace SkyReg
         private bool PayValidate()
         {
             bool result = true;
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
 
                 errorProvider1.Clear();
@@ -195,7 +171,7 @@ namespace SkyReg
                     surName = surAndFirstName[0];
                     if (surAndFirstName.Count() >= 2)
                         firstName = surAndFirstName[1];
-                    if (!model.User.Any(p => p.SurName == surName && p.FirstName == firstName))
+                    if (!model.User.Any(p => p.Name.ToLower() == "")) // TODO Dodać 1 pole imie i nazwisko
                     {
                         errorProvider1.SetError(cmbUser, "Taka osoba nie widnieje w bazie danych!");
                     }

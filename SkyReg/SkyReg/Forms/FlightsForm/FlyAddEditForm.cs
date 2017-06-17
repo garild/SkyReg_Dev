@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using DataLayer.Result.Repository;
 using SkyRegEnums;
 using SkyReg.Common.Extensions;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -46,7 +47,7 @@ namespace SkyReg
 
         private void LoadEditedData()
         {
-            using(DLModelContainer model = new DLModelContainer())
+            using(SkyRegContext model = new SkyRegContext())
             {
                 var flight = model.Flight.Include("Airplane").Where(p => p.Id == _flightId).FirstOrDefault();
                 if(flight != null)
@@ -62,7 +63,7 @@ namespace SkyReg
 
         private void LoadAllAirplanes()
         {
-            using(DLModelRepository<Airplane> _ctxAirplane = new DLModelRepository<Airplane>())
+            using(SkyRegContextRepository<Airplane> _ctxAirplane = new SkyRegContextRepository<Airplane>())
             {
                 var result = _ctxAirplane.GetAll();
                 if(result.IsSuccess)
@@ -89,7 +90,7 @@ namespace SkyReg
         private int GetLastDayNumber(DateTime date)
         {
             int result = 0;
-            using(DLModelContainer model = new DLModelContainer())
+            using(SkyRegContext model = new SkyRegContext())
             {
                 var lastDayNr = model.Flight.Where(p => p.FlyDateTime == date).OrderByDescending(p => p.FlyNr).Select(p => p.FlyNr).FirstOrDefault();
                 if (lastDayNr.HasValue())
@@ -117,33 +118,28 @@ namespace SkyReg
             }
         }
 
-        private void SaveFlight() //TODO poprawić kod janusza!
+        private void SaveFlight()
         {
-            Flight fly = new Flight();
-            using(DLModelContainer model = new DLModelContainer())
+            using(var  _ctx = new SkyRegContextRepository<Flight>())
             {
-                if(_formState != FormState.Add)
-                {
-                    fly = model.Flight.Include("Airplane").Where(p => p.Id == _flightId).FirstOrDefault();
-                }
-                if (fly != null)
-                {
-                    Airplane air = model.Airplane.Where(p => p.Id == (int)cmbAirplane.SelectedValue).FirstOrDefault();
-                    if(air != null)
+                Flight fly = _formState == FormState.Add ? new Flight() : _ctx.GetById(_flightId);
+                Airplane air = _ctx.Model.Airplane.Where(p => p.Id == (int)cmbAirplane.SelectedValue).FirstOrDefault();
+
+                if (air != null)
                     {
-                        fly.Airplane = air;
+                        fly.Airplane_Id = air.Id;
                         fly.Altitude = (int)numAltitude.Value;
                         fly.FlyDateTime = datDate.Value.Date;
                         fly.FlyNr = txtLastPartOfNr.Text;
                         fly.FlyStatus = (int)FlightsStatus.Opened;
-                        if(_formState == FormState.Add)
-                        {
-                            model.Flight.Add(fly);
-                        }
-                        model.SaveChanges();
-                        this.Close();
+
+                    if (_formState == FormState.Add)
+                        _ctx.InsertEntity(fly);
+                    else
+                        _ctx.InsertEntity(fly);
+
+                    this.Close();
                     }
-                }
             }
         }
 
@@ -151,7 +147,7 @@ namespace SkyReg
         {
             bool result = true;
             errorProvider1.Clear();
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 if(txtLastPartOfNr.Text == string.Empty)
                 {

@@ -22,11 +22,10 @@ namespace SkyReg.Forms.SplashScreen
 {
     public partial class SplashScreen : KryptonForm
     {
-        private bool IsDbExists = false;
         private int blockProgerss => 25;
         private object _lock = new object();
         private BackgroundWorker bgw = new BackgroundWorker();
-        string error = "";
+        
         public SplashScreen()
         {
             InitializeComponent();
@@ -82,7 +81,7 @@ namespace SkyReg.Forms.SplashScreen
             {
                 bgw.ReportProgress(25);
 
-                Thread.Sleep(500);
+                Thread.Sleep(350);
 
                 CreateSkyregFolder();
                 bgw.ReportProgress(75);
@@ -132,11 +131,6 @@ namespace SkyReg.Forms.SplashScreen
 
             }
            
-        }
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-
         }
     }
 }

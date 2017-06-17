@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DataLayer;
 using SkyReg.Common.Extensions;
 using SkyRegEnums;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -59,7 +60,7 @@ namespace SkyReg
         private void RefreshFlightsList()
         {
             grdFlights.DataSource = null;
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 grdFlights.DataSource = model.Flight
                     .Include("Airplane")
@@ -131,7 +132,7 @@ namespace SkyReg
         {
             if (grdFlights.SelectedRows.Count > 0)
             {
-                using (DLModelContainer model = new DLModelContainer())
+                using (SkyRegContext model = new SkyRegContext())
                 {
                     int idFlight = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
                     Flight fly = model.Flight.Where(p => p.Id == idFlight).FirstOrDefault();

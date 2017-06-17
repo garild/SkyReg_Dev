@@ -11,6 +11,7 @@ using DataLayer;
 using DataLayer.Result.Repository;
 using SkyRegEnums;
 using SkyReg.Common.Extensions;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -67,7 +68,7 @@ namespace SkyReg
         private void RefreshUsersTypesList()
         {
             grdUsersTypes.DataSource = null;
-            using (var model = new DLModelRepository<UsersType>())
+            using (var model = new SkyRegContextRepository<DefinedUserType>())
             {
                 var usrTypes = model.GetAll().Value?
                     .Select(p => new
@@ -127,14 +128,14 @@ namespace SkyReg
             if (grdUsersTypes.SelectedRows.Count > 0)
             {
                 int usrTypeId = (int)grdUsersTypes.SelectedRows[0].Cells["Id"].Value;
-                using (DLModelContainer model = new DLModelContainer())
+                using (SkyRegContext model = new SkyRegContext())
                 {
                     if (KryptonMessageBox.Show("Usunąć zaznaczoną pozycję?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        UsersType usrType = model.UsersType.Where(p => p.Id == usrTypeId).FirstOrDefault();
+                        DefinedUserType usrType = model.DefinedUserType.Where(p => p.Id == usrTypeId).FirstOrDefault();
                         if (usrType != null)
                         {
-                            model.UsersType.Remove(usrType);
+                            model.DefinedUserType.Remove(usrType);
                             model.SaveChanges();
                             RefreshUsersTypesList();
                         }

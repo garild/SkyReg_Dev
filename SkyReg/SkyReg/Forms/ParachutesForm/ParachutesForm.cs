@@ -68,10 +68,10 @@ namespace SkyReg
 
         private void RefreshParachuteList()
         {
-            using (var _context = new DLModelRepository<Parachute>())
+            using (var _context = new SkyRegContextRepository<Parachute>())
             {
                 grdParachute.DataSource = _context
-                    .GetAll("User").Value
+                    .GetAll(Tuple.Create(nameof(User),"","")).Value
                     .Select(p => new
                     {
                         Id = p.Id,
@@ -79,7 +79,7 @@ namespace SkyReg
                         Name = p.Name,
                         AssemblyValue = p.AssemblyValue.Value,
                         RentValue = p.RentValue.Value,
-                        OwnerName = p.User != null ? p.User.SurName + " " + p.User.FirstName : string.Empty,
+                        OwnerName = p.User != null ? p.User.Name : string.Empty,
                         UserId = p.User != null ? p.User.Id : -1
                     })
                     .OrderBy(p => p.IdNr)
@@ -134,7 +134,7 @@ namespace SkyReg
             if (grdParachute.SelectedRows.Count > 0)
             {
                 int parId = (int)grdParachute.SelectedRows[0].Cells["Id"].Value;
-                using (var _parachute = new DLModelRepository<Parachute>())
+                using (var _parachute = new SkyRegContextRepository<Parachute>())
                 {
                     if (KryptonMessageBox.Show("Usunąć zaznaczoną pozycję?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {

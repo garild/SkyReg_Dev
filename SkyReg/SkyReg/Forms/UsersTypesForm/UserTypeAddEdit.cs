@@ -11,6 +11,7 @@ using DataLayer;
 using SkyReg.Common.Extensions;
 using DataLayer.Result.Repository;
 using SkyRegEnums;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -37,28 +38,19 @@ namespace SkyReg
 
         private void SaveUserType()
         {
-            using (var model = new DLModelRepository<UsersType>())
+            using (var _ctx = new SkyRegContextRepository<DefinedUserType>())
             {
+                DefinedUserType ut = _formState == FormState.Add ? new DefinedUserType() : _ctx.GetById(_idUserType);
+
+                ut.Name = txtName.Text;
+                ut.Value = numValue.Value;
+                ut.IsCam = chkCam.Checked;
+
                 if (_formState == FormState.Add)
-                {
-                    UsersType ut = new UsersType();
-                    ut.Name = txtName.Text;
-                    ut.Value = numValue.Value;
-                    ut.IsCam = chkCam.Checked;
-                    model.InsertEntity(ut);
-                  
-                }
+                    _ctx.InsertEntity(ut);
                 else
-                {
-                    var ut = model.GetAll().Value?.Where(p => p.Id == _idUserType).FirstOrDefault();
-                    if (ut != null)
-                    {
-                        ut.Name = txtName.Text;
-                        ut.Value = numValue.Value;
-                        ut.IsCam = chkCam.Checked;
-                        model.Update(ut);
-                    }
-                }
+                    _ctx.Update(ut);
+
             }
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -67,7 +59,6 @@ namespace SkyReg
         private bool ValidateUserType()
         {
             bool result = true;
-            errorProvider1.Clear();
             errorProvider1.Clear();
 
             if (!txtName.Text.HasValue())
@@ -81,11 +72,11 @@ namespace SkyReg
                 result = false;
             }
 
-            using(DLModelContainer model = new DLModelContainer())
+            using(SkyRegContext model = new SkyRegContext())
             {
                 if(_formState == FormState.Add)
                 {
-                    var isUserType = model.UsersType.Any(p => p.Name == txtName.Text);
+                    var isUserType = model.DefinedUserType.Any(p => p.Name == txtName.Text);
                     if(isUserType == true)
                     {
                         errorProvider1.SetError(txtName, "Typ skoczka już istnieje!");
@@ -94,7 +85,7 @@ namespace SkyReg
                 }
                 else
                 {
-                    if (model.UsersType.Any(p => p.Name == txtName.Text && p.Id != _idUserType))
+                    if (model.DefinedUserType.Any(p => p.Name == txtName.Text && p.Id != _idUserType))
                     {
                         errorProvider1.SetError(txtName, "Typ skoczka już istnieje!");
                         result = false;
@@ -118,9 +109,9 @@ namespace SkyReg
 
         private void LoadUserType()
         {
-            using(DLModelContainer model = new DLModelContainer())
+            using(SkyRegContext model = new SkyRegContext())
             {
-                UsersType ut = model.UsersType.Where(p => p.Id == _idUserType).FirstOrDefault();
+                DefinedUserType ut = model.DefinedUserType.Where(p => p.Id == _idUserType).FirstOrDefault();
                 if(ut != null)
                 {
                     txtName.Text = ut.Name;

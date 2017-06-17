@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DataLayer;
 using SkyRegEnums;
 using SkyReg.Common.Extensions;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -80,7 +81,7 @@ namespace SkyReg
             {
                 if (KryptonMessageBox.Show("Czy chcesz usunąć zaznaczone samoloty?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    using (DLModelContainer model = new DLModelContainer())
+                    using (SkyRegContext model = new SkyRegContext())
                     {
                         List<int> listaId = new List<int>();
                         foreach (DataGridViewRow airplane in grdAirplanes.SelectedRows)
@@ -102,7 +103,7 @@ namespace SkyReg
 
         private void RefreshAirplanesList()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 grdAirplanes.DataSource = model.Airplane.Select(p => p).OrderBy(p => p.Name).ToList();
                 SetViewOfAirplanesGrid();

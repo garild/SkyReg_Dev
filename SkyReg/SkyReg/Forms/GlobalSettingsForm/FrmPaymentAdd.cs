@@ -11,6 +11,7 @@ using DataLayer;
 using DataLayer.Result.Repository;
 using SkyReg.Common.Extensions;
 using SkyRegEnums;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -53,7 +54,7 @@ namespace SkyReg
                 result = false;
             }
 
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 if ((model.PaymentsSetting.Any(p => p.Name == txtBoxName.Text)) == true)
                 {
@@ -99,7 +100,7 @@ namespace SkyReg
         {
             PaymentsTypes type;
             Enum.TryParse(cmbBoxTypes.Text, out type);
-            using (var _paySetting = new DLModelRepository<PaymentsSetting>())
+            using (var _paySetting = new SkyRegContextRepository<PaymentsSetting>())
             {
                 var ps = new PaymentsSetting();
                 ps.Count = numCount.Value;

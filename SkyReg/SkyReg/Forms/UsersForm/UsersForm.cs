@@ -11,6 +11,7 @@ using DataLayer;
 using DataLayer.Result.Repository;
 using SkyReg.Common.Extensions;
 using SkyRegEnums;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -31,7 +32,7 @@ namespace SkyReg
 
         private void LoadGroupToCmbGroup()
         {
-            using (DLModelRepository<Group> _contextGroup = new DLModelRepository<Group>())
+            using (SkyRegContextRepository<Group> _contextGroup = new SkyRegContextRepository<Group>())
             {
                 var allGroup = _contextGroup.GetAll().Value;
 
@@ -50,7 +51,7 @@ namespace SkyReg
 
         private void RefreshUsersList()
         {
-            using (DLModelContainer model = new DLModelContainer())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 int selectedGroupId = default(int);
                 int.TryParse(cmbGroup.SelectedValue.ToString(), out selectedGroupId);
@@ -62,8 +63,7 @@ namespace SkyReg
                     .Include("Group")
                     .AsNoTracking()
                     .Where(p => p.Group.Id == selectedGroupId)
-                    .OrderBy(p => p.SurName)
-                    .ThenBy(p => p.FirstName)
+                    .OrderBy(p => p.Name)
                     .ToList();
             }
 
@@ -82,7 +82,7 @@ namespace SkyReg
             grdUsers.Columns["Phone"].Visible = false;
             grdUsers.Columns["Email"].Visible = false;
             grdUsers.Columns["FaceBook"].Visible = false;
-            grdUsers.Columns["IdNr"].Visible = false;
+          
             grdUsers.Columns["UsersType"].Visible = false;
             grdUsers.Columns["Operator"].Visible = false;
             grdUsers.Columns["Parachute"].Visible = false;
@@ -90,18 +90,15 @@ namespace SkyReg
             grdUsers.Columns["Order"].Visible = false;
             grdUsers.Columns["Group"].Visible = false;
 
-            grdUsers.Columns["SurName"].DisplayIndex = 0;
-            grdUsers.Columns["FirstName"].DisplayIndex = 1;
+          
             grdUsers.Columns["City"].DisplayIndex = 2;
             grdUsers.Columns["CertDate"].DisplayIndex = 3;
 
-            grdUsers.Columns["SurName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            grdUsers.Columns["FirstName"].Width = 200;
+   
             grdUsers.Columns["City"].Width = 200;
             grdUsers.Columns["CertDate"].Width = 200;
 
-            grdUsers.Columns["SurName"].HeaderText = "Nazwisko";
-            grdUsers.Columns["FirstName"].HeaderText = "Imię";
+      
             grdUsers.Columns["City"].HeaderText = "Miasto";
             grdUsers.Columns["CertDate"].HeaderText = "Data wygaśnięcia licencji";
 
@@ -171,7 +168,7 @@ namespace SkyReg
                 if (KryptonMessageBox.Show("Usunąć zaznaczoną pozycję?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int idUsr = (int)grdUsers.SelectedRows[0].Cells["Id"].Value;
-                    using(DLModelContainer model = new DLModelContainer())
+                    using(SkyRegContext model = new SkyRegContext())
                     {
                         User usr = model.User.Include("UsersType").Where(p => p.Id == idUsr).FirstOrDefault();
                         if (usr != null)
