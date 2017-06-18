@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleAddEditForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.kryptonTabControl1 = new AC.ExtendedRenderer.Navigator.KryptonTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
@@ -232,6 +232,8 @@
             // 
             this.grdFlightsListSelectedForUser.AllowUserToAddRows = false;
             this.grdFlightsListSelectedForUser.AllowUserToDeleteRows = false;
+            this.grdFlightsListSelectedForUser.AllowUserToResizeColumns = false;
+            this.grdFlightsListSelectedForUser.AllowUserToResizeRows = false;
             this.grdFlightsListSelectedForUser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -487,9 +489,9 @@
             // 
             // Check
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = false;
-            this.Check.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = false;
+            this.Check.DefaultCellStyle = dataGridViewCellStyle2;
             this.Check.FalseValue = "false";
             this.Check.HeaderText = "Wybór";
             this.Check.IndeterminateValue = "false";
