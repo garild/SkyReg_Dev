@@ -26,26 +26,25 @@ namespace SkyReg
 
         private void AddGroupToDB()
         {
-            using (SkyRegContext model = new SkyRegContext())
+            using (var _ctx = new SkyRegContextRepository<FlightsElem>())
             {
                 foreach (DataGridViewRow item in grdFlightsForGroup.Rows)
                 {
-                    if (item.Cells["Check"].Value != null)
+                    if (item.Cells["CheckColumn"].Value != null)
                     {
                         int idFly = (int)item.Cells["Id"].Value;
-                        Flight fly = model.Flight.Where(p => p.Id == idFly).FirstOrDefault();
+                        Flight fly = _ctx.Model.Flight.Where(p => p.Id == idFly).FirstOrDefault();
                         if (fly != null)
                         {
                             for (int n = 0; n < numUsersCount.Value; n++)
                             {
                                 FlightsElem fe = new FlightsElem();
                                 fe.Color = btnColorGroup.SelectedColor.Name;
-                                fe.Flight = fly;
-                                fe.Lp = model.FlightsElem.Where(p => p.Flight.Id == idFly).ToList().Count + 1;
+                                fe.Flight_Id = fly.Id;
+                                fe.Lp = _ctx.Model.FlightsElem.Where(p => p.Flight.Id == idFly).ToList().Count + 1;
                                 fe.TeamName = txtGroupName.Text;
-                                model.FlightsElem.Attach(fe);
-                                model.FlightsElem.Add(fe);
-                                model.SaveChanges();
+
+                                _ctx.InsertEntity(fe);
                                 this.DialogResult = DialogResult.OK;
                                 this.Close();
                             }
@@ -85,7 +84,7 @@ namespace SkyReg
 
                 foreach (DataGridViewRow item in grdFlightsForGroup.Rows)
                 {
-                    if (item.Cells["Check"].Value != null)
+                    if (item.Cells["CheckColumn"].Value != null)
                     {
                         if ((int)item.Cells["AllSeats"].Value - (int)item.Cells["BusySeats"].Value < numUsersCount.Value)
                         {
@@ -133,12 +132,12 @@ namespace SkyReg
         {
             grdFlightsForGroup.ReadOnly = false;
             grdFlightsForGroup.Columns["Id"].Visible = false;
-            DataGridViewCheckBoxColumn col = new DataGridViewCheckBoxColumn();
-            col.ReadOnly = false;
-            col.Name = "Check";
-            col.HeaderText = "Wybór";
-            col.Width = 50;
-            grdFlightsForGroup.Columns.Add(col);
+            //DataGridViewCheckBoxColumn col = new DataGridViewCheckBoxColumn();
+            //col.ReadOnly = false;
+            //col.Name = "CheckColumn";
+            //col.HeaderText = "Wybór";
+            //col.Width = 50;
+            //grdFlightsForGroup*/.Columns.Add(col);
             grdFlightsForGroup.Columns["Nr"].HeaderText = "Numer";
             grdFlightsForGroup.Columns["Nr"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
@@ -146,7 +145,7 @@ namespace SkyReg
             grdFlightsForGroup.AllowUserToResizeRows = false;
             grdFlightsForGroup.RowHeadersVisible = false;
 
-            grdFlightsForGroup.Columns["Check"].DisplayIndex = 0;
+            grdFlightsForGroup.Columns["CheckColumn"].DisplayIndex = 0;
             grdFlightsForGroup.Columns["Nr"].DisplayIndex = 1;
 
             grdFlightsForGroup.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

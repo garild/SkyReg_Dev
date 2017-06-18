@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleAddEditForm));
             this.kryptonTabControl1 = new AC.ExtendedRenderer.Navigator.KryptonTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -64,6 +64,7 @@
             this.btnSaveCfg = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.CheckColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.kryptonTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.kryptonPanelEx2.SuspendLayout();
@@ -252,9 +253,9 @@
             // 
             // Check
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.NullValue = false;
-            this.Check.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = false;
+            this.Check.DefaultCellStyle = dataGridViewCellStyle2;
             this.Check.FalseValue = "false";
             this.Check.HeaderText = "Wybór";
             this.Check.IndeterminateValue = "false";
@@ -363,7 +364,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 39);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(341, 581);
+            this.tabPage2.Size = new System.Drawing.Size(342, 469);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Tag = false;
             this.tabPage2.Text = "Grupa";
@@ -385,7 +386,7 @@
             this.kryptonPanelEx3.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanelEx3.Name = "kryptonPanelEx3";
             this.kryptonPanelEx3.PersistentColors = false;
-            this.kryptonPanelEx3.Size = new System.Drawing.Size(341, 581);
+            this.kryptonPanelEx3.Size = new System.Drawing.Size(342, 469);
             this.kryptonPanelEx3.TabIndex = 0;
             // 
             // btnColorGroup
@@ -402,14 +403,23 @@
             // 
             // grdFlightsForGroup
             // 
+            this.grdFlightsForGroup.AllowUserToAddRows = false;
+            this.grdFlightsForGroup.AllowUserToDeleteRows = false;
+            this.grdFlightsForGroup.AllowUserToResizeColumns = false;
+            this.grdFlightsForGroup.AllowUserToResizeRows = false;
             this.grdFlightsForGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdFlightsForGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdFlightsForGroup.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CheckColumn});
             this.grdFlightsForGroup.Location = new System.Drawing.Point(3, 107);
             this.grdFlightsForGroup.Name = "grdFlightsForGroup";
-            this.grdFlightsForGroup.Size = new System.Drawing.Size(335, 470);
+            this.grdFlightsForGroup.ReadOnly = true;
+            this.grdFlightsForGroup.RowHeadersVisible = false;
+            this.grdFlightsForGroup.Size = new System.Drawing.Size(336, 358);
             this.grdFlightsForGroup.TabIndex = 24;
+            this.grdFlightsForGroup.MouseClick += new System.Windows.Forms.MouseEventHandler(this.grdFlightsForGroup_MouseClick);
             // 
             // kryptonLabel9
             // 
@@ -444,7 +454,7 @@
             // 
             this.txtGroupName.Location = new System.Drawing.Point(131, 18);
             this.txtGroupName.Name = "txtGroupName";
-            this.txtGroupName.Size = new System.Drawing.Size(189, 20);
+            this.txtGroupName.Size = new System.Drawing.Size(189, 23);
             this.txtGroupName.TabIndex = 0;
             // 
             // kryptonPanelEx1
@@ -496,6 +506,16 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // CheckColumn
+            // 
+            this.CheckColumn.FalseValue = "False";
+            this.CheckColumn.HeaderText = "Wybór";
+            this.CheckColumn.IndeterminateValue = "False";
+            this.CheckColumn.Name = "CheckColumn";
+            this.CheckColumn.ReadOnly = true;
+            this.CheckColumn.TrueValue = "True";
+            this.CheckColumn.Width = 50;
+            // 
             // ScheduleAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -510,7 +530,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Element wylotu";
             this.Load += new System.EventHandler(this.ScheduleAddEditForm_Load);
-            this.Shown += new System.EventHandler(this.ScheduleAddEditForm_Shown);
             this.kryptonTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.kryptonPanelEx2.ResumeLayout(false);
@@ -567,5 +586,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtGroupName;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cmbName;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn Check;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn CheckColumn;
     }
 }

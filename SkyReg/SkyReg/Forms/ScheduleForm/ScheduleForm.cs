@@ -118,10 +118,14 @@ namespace SkyReg
                         Status = p.FlyStatus
                     }).ToList();
 
-                grdFlights.DataSource = null;
-                grdFlights.DataSource = flightsList;
-                grdFlights.Refresh();
-                SetFlightsListView();
+                if(flightsList.Count > 0)
+                {
+                    grdFlights.DataSource = null;
+                    grdFlights.DataSource = flightsList;
+                    grdFlights.Refresh();
+                    SetFlightsListView();
+                }
+               
             }
         }
 

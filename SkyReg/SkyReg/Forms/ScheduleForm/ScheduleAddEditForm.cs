@@ -640,9 +640,26 @@ namespace SkyReg
             }
         }
 
-        private void ScheduleAddEditForm_Shown(object sender, EventArgs e)
-        {
 
+
+        private void grdFlightsForGroup_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && grdFlightsForGroup.SelectedRows.Count == 1)
+            {
+                bool state = false;
+                if (grdFlightsForGroup.SelectedRows[0].Cells[0].Value != null)
+                {
+                    state = (bool)grdFlightsForGroup.SelectedRows[0].Cells[0].Value;
+
+                    if (state)
+                        grdFlightsForGroup.SelectedRows[0].Cells[0].Value = false;
+                    else
+                        grdFlightsForGroup.SelectedRows[0].Cells[0].Value = true;
+                }
+                else
+                    grdFlightsForGroup.SelectedRows[0].Cells[0].Value = true;
+
+            }
         }
     }
 }
