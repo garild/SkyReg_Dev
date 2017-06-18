@@ -136,7 +136,7 @@ namespace SkyReg
                 pay.Date = datData.Value.Date;
                 pay.Description = txtDescription.Text;
                 pay.Value = numValue.Value;
-                pay.Count = ps.Count ?? ps.Count;
+                pay.Count = ps.Count ?? 0;
                 pay.User_Id = usr.Id;
                 pay.PaymentsSetting_Id = ps.Id;
 

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleAddEditForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.kryptonTabControl1 = new AC.ExtendedRenderer.Navigator.KryptonTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
@@ -240,6 +240,8 @@
             this.grdFlightsListSelectedForUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdFlightsListSelectedForUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Check});
+            this.grdFlightsListSelectedForUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.grdFlightsListSelectedForUser.HideOuterBorders = true;
             this.grdFlightsListSelectedForUser.Location = new System.Drawing.Point(3, 265);
             this.grdFlightsListSelectedForUser.MultiSelect = false;
             this.grdFlightsListSelectedForUser.Name = "grdFlightsListSelectedForUser";
@@ -489,9 +491,9 @@
             // 
             // Check
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = false;
-            this.Check.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = false;
+            this.Check.DefaultCellStyle = dataGridViewCellStyle4;
             this.Check.FalseValue = "false";
             this.Check.HeaderText = "Wybór";
             this.Check.IndeterminateValue = "false";

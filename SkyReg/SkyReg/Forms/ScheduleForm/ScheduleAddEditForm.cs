@@ -547,48 +547,42 @@ namespace SkyReg
          private void LoadBalance()
         {
             using (var _ctx = new SkyRegContextRepository<Payment>())
-            using (var model = new SkyRegContext())
             {
                 if (cmbName.SelectedValue != null)
                 {
                     int userId = (int)cmbName.SelectedValue;
-                    _ctx.GetAll(Tuple.Create(nameof(User), nameof(PaymentsSetting), "")).Value?.Where(p => p.User_Id == userId).ToList();
 
                     var dataUser = _ctx.GetAll(Tuple.Create(nameof(User), nameof(PaymentsSetting), "")).Value?.Where(p => p.User_Id == userId).ToList();
 
-                    var incomeM = model
-                        .Payment
-                        .Include("User")
-                        .Include("PaymentsSetting")
-                        .AsNoTracking()
-                        .Where(p => p.User.Id == userId && p.Count == 0 && (p.PaymentsSetting.Type == 0 || p.PaymentsSetting.Type == 2 || p.PaymentsSetting.Type == 6) )
+                    var incomeM = dataUser
+                        .Where(p=> p.Count == 0 
+                        && (p.PaymentsSetting.Type == 0 
+                        || p.PaymentsSetting.Type == 2 
+                        || p.PaymentsSetting.Type == 6) )
                         .ToList();
                     var incomeMoney = incomeM.Sum(p => p.Value);
 
-                    var outcomeM = model
-                        .Payment
-                        .Include("User")
-                        .Include("PaymentsSetting")
-                        .AsNoTracking()
-                        .Where(p => p.User.Id == userId && p.Count == 0 && (p.PaymentsSetting.Type == 1 || p.PaymentsSetting.Type == 4 || p.PaymentsSetting.Type == 5))
+                    var outcomeM = dataUser
+                        .Where(p => p.Count == 0 
+                        && (p.PaymentsSetting.Type == 1 
+                        || p.PaymentsSetting.Type == 4 
+                        || p.PaymentsSetting.Type == 5))
                         .ToList();
                     var outcomeMoney = outcomeM.Sum(p => p.Value);
 
-                    var incomeP = model
-                        .Payment
-                        .Include("User")
-                        .Include("PaymentsSetting")
-                        .AsNoTracking()
-                        .Where(p => p.User.Id == userId && p.Count != 0 && (p.PaymentsSetting.Type == 0 || p.PaymentsSetting.Type == 2 || p.PaymentsSetting.Type == 6))
+                    var incomeP = dataUser
+                        .Where(p => p.Count != 0 
+                        && (p.PaymentsSetting.Type == 0 
+                        || p.PaymentsSetting.Type == 2 
+                        || p.PaymentsSetting.Type == 6))
                         .ToList();
                     var incomePackage = incomeP.Sum(p => p.Count);
 
-                    var outcomeP = model
-                        .Payment
-                        .Include("User")
-                        .Include("PaymentsSetting")
-                        .AsNoTracking()
-                        .Where(p => p.User.Id == userId && p.Count != 0 && (p.PaymentsSetting.Type == 1 || p.PaymentsSetting.Type == 4 || p.PaymentsSetting.Type == 5))
+                    var outcomeP = dataUser
+                        .Where(p => p.Count != 0 
+                        && (p.PaymentsSetting.Type == 1 
+                        || p.PaymentsSetting.Type == 4 
+                        || p.PaymentsSetting.Type == 5))
                         .ToList();
                     var outcomePackage = outcomeP.Sum(p => p.Count);
 
