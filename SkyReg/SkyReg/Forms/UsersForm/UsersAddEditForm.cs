@@ -286,28 +286,14 @@ namespace SkyReg
                     {
                         _ctxDefineUser.Delete(p);
                     });
-                  
-                    var newUser = _ctxUser.GetAll(Tuple.Create(nameof(DefinedUserType), "", "")).Value?.FirstOrDefault(p => p.Id == IdUser);
 
-                    if (txtCertyfikate.Text.HasValue())
-                        newUser.CertDate = dateCertDate.Value.Date;
-                    else
-                        newUser.CertDate = dateCertDate.MaxDate;
+                    listType.ForEach(p =>
+                    {
+                        p.User.Add(usr);
+                    });
 
-                    newUser.Certificate = txtCertyfikate.Text;
-                    newUser.City = txtCity.Text;
-                    newUser.Email = txtEmail.Text;
-                    newUser.FaceBook = txtFacebook.Text;
-                    newUser.Group_Id = _ctxUser.Model.Group.Where(p => p.Id == UserGroup).FirstOrDefault().Id;
-                    newUser.Login = txtLogin.Text;
-                    newUser.Password = txtPassword.Text;
-                    newUser.Phone = txtPhone.Text;
-                    newUser.Street = txtStreet.Text;
-                    newUser.StreetNr = txtStreetNr.Text;
-                    newUser.Name = txtUserName.Text;
-                    newUser.ZipCode = txtZipCode.Text;
-                    newUser.DefinedUserType = listType;
-                    newUser.DefinedUserType = listType;
+                    _ctxDefineUser.InsertMany(listType);
+
 
                     
 
