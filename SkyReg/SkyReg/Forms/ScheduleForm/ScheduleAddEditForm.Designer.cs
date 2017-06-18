@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleAddEditForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.kryptonTabControl1 = new AC.ExtendedRenderer.Navigator.KryptonTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
@@ -41,6 +41,7 @@
             this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel6 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.grdFlightsListSelectedForUser = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.Check = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn();
             this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.numCashIncome = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.btnColor = new ComponentFactory.Krypton.Toolkit.KryptonColorButton();
@@ -63,7 +64,6 @@
             this.btnSaveCfg = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.Check = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn();
             this.kryptonTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.kryptonPanelEx2.SuspendLayout();
@@ -86,9 +86,6 @@
             this.kryptonTabControl1.AllowContextButton = true;
             this.kryptonTabControl1.AllowNavigatorButtons = false;
             this.kryptonTabControl1.AllowSelectedTabHigh = false;
-            this.kryptonTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonTabControl1.BorderWidth = 1;
             this.kryptonTabControl1.Controls.Add(this.tabPage1);
             this.kryptonTabControl1.Controls.Add(this.tabPage2);
@@ -96,28 +93,29 @@
             this.kryptonTabControl1.CornerSymmetry = AC.ExtendedRenderer.Navigator.KryptonTabControl.CornSymmetry.Both;
             this.kryptonTabControl1.CornerType = AC.ExtendedRenderer.Toolkit.Drawing.DrawingMethods.CornerType.Rounded;
             this.kryptonTabControl1.CornerWidth = AC.ExtendedRenderer.Navigator.KryptonTabControl.CornWidth.Thin;
+            this.kryptonTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonTabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.kryptonTabControl1.HotTrack = true;
             this.kryptonTabControl1.ItemSize = new System.Drawing.Size(66, 35);
-            this.kryptonTabControl1.Location = new System.Drawing.Point(1, 0);
+            this.kryptonTabControl1.Location = new System.Drawing.Point(0, 0);
             this.kryptonTabControl1.Name = "kryptonTabControl1";
             this.kryptonTabControl1.PreserveTabColor = false;
             this.kryptonTabControl1.SelectedIndex = 0;
-            this.kryptonTabControl1.Size = new System.Drawing.Size(349, 624);
+            this.kryptonTabControl1.Size = new System.Drawing.Size(350, 512);
             this.kryptonTabControl1.TabIndex = 0;
             this.kryptonTabControl1.UseExtendedLayout = false;
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Window;
             this.tabPage1.Controls.Add(this.kryptonPanelEx2);
             this.tabPage1.Location = new System.Drawing.Point(4, 39);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(341, 581);
+            this.tabPage1.Size = new System.Drawing.Size(342, 469);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Tag = false;
             this.tabPage1.Text = "Skoczek";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // kryptonPanelEx2
             // 
@@ -143,12 +141,12 @@
             this.kryptonPanelEx2.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanelEx2.Name = "kryptonPanelEx2";
             this.kryptonPanelEx2.PersistentColors = false;
-            this.kryptonPanelEx2.Size = new System.Drawing.Size(341, 581);
+            this.kryptonPanelEx2.Size = new System.Drawing.Size(342, 469);
             this.kryptonPanelEx2.TabIndex = 0;
             // 
             // cmbName
             // 
-            this.cmbName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cmbName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cmbName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbName.DropDownWidth = 175;
             this.cmbName.Location = new System.Drawing.Point(113, 9);
@@ -234,14 +232,10 @@
             this.grdFlightsListSelectedForUser.AllowUserToDeleteRows = false;
             this.grdFlightsListSelectedForUser.AllowUserToResizeColumns = false;
             this.grdFlightsListSelectedForUser.AllowUserToResizeRows = false;
-            this.grdFlightsListSelectedForUser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grdFlightsListSelectedForUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdFlightsListSelectedForUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Check});
             this.grdFlightsListSelectedForUser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.grdFlightsListSelectedForUser.HideOuterBorders = true;
             this.grdFlightsListSelectedForUser.Location = new System.Drawing.Point(3, 265);
             this.grdFlightsListSelectedForUser.MultiSelect = false;
             this.grdFlightsListSelectedForUser.Name = "grdFlightsListSelectedForUser";
@@ -252,9 +246,22 @@
             this.grdFlightsListSelectedForUser.ShowCellToolTips = false;
             this.grdFlightsListSelectedForUser.ShowEditingIcon = false;
             this.grdFlightsListSelectedForUser.ShowRowErrors = false;
-            this.grdFlightsListSelectedForUser.Size = new System.Drawing.Size(335, 316);
+            this.grdFlightsListSelectedForUser.Size = new System.Drawing.Size(336, 166);
             this.grdFlightsListSelectedForUser.TabIndex = 23;
             this.grdFlightsListSelectedForUser.MouseClick += new System.Windows.Forms.MouseEventHandler(this.grdFlightsListSelectedForUser_MouseClick);
+            // 
+            // Check
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.NullValue = false;
+            this.Check.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Check.FalseValue = "false";
+            this.Check.HeaderText = "Wybór";
+            this.Check.IndeterminateValue = "false";
+            this.Check.Name = "Check";
+            this.Check.ReadOnly = true;
+            this.Check.TrueValue = "true";
+            this.Check.Width = 50;
             // 
             // kryptonLabel5
             // 
@@ -351,6 +358,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.Window;
             this.tabPage2.Controls.Add(this.kryptonPanelEx3);
             this.tabPage2.Location = new System.Drawing.Point(4, 39);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(0);
@@ -359,7 +367,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Tag = false;
             this.tabPage2.Text = "Grupa";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // kryptonPanelEx3
             // 
@@ -451,7 +458,7 @@
             this.kryptonPanelEx1.GradientUseBlend = false;
             this.kryptonPanelEx1.Image = null;
             this.kryptonPanelEx1.ImageLocation = new System.Drawing.Point(4, 4);
-            this.kryptonPanelEx1.Location = new System.Drawing.Point(-3, 622);
+            this.kryptonPanelEx1.Location = new System.Drawing.Point(-3, 476);
             this.kryptonPanelEx1.Name = "kryptonPanelEx1";
             this.kryptonPanelEx1.PersistentColors = false;
             this.kryptonPanelEx1.Size = new System.Drawing.Size(353, 39);
@@ -489,27 +496,14 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // Check
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.NullValue = false;
-            this.Check.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Check.FalseValue = "false";
-            this.Check.HeaderText = "Wybór";
-            this.Check.IndeterminateValue = "false";
-            this.Check.Name = "Check";
-            this.Check.ReadOnly = true;
-            this.Check.TrueValue = "true";
-            this.Check.Width = 50;
-            // 
             // ScheduleAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(350, 658);
+            this.ClientSize = new System.Drawing.Size(350, 512);
             this.Controls.Add(this.kryptonPanelEx1);
             this.Controls.Add(this.kryptonTabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ScheduleAddEditForm";

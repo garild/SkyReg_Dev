@@ -112,14 +112,13 @@ namespace SkyReg
                     PaymentsForm.Show();
                     PaymentsForm.Activate();
                     break;
-                case "Test":
-                    examples = FormsOpened<Examples>.IsOpened(examples);
-                    examples.MdiParent = this;
-                    examples.WindowState = FormWindowState.Maximized;
-                    examples.BringToFront();
-                    examples.TopLevel = false;
-                    examples.Show();
-                    examples.Activate();
+                case "PassangerList":
+                    PassangerList = new PassangerList();
+                    PassangerList.WindowState = FormWindowState.Maximized;
+                    PassangerList.BringToFront();
+
+                    PassangerList.ShowDialog();
+                    PassangerList.Activate();
                     break;
             }
         }
@@ -177,9 +176,8 @@ namespace SkyReg
         private ScheduleForm ScheduleForm = null;
         private PaymentsForm PaymentsForm = null;
 
-        private Examples examples = null;
-        private SplashScreen splashScreen = null;
-
+        private PassangerList PassangerList = null;
+        
         #endregion
 
     }

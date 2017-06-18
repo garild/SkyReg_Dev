@@ -168,13 +168,12 @@
             outlookBarButton9.Tag1 = null;
             outlookBarButton9.Tag2 = null;
             outlookBarButton9.Text = "Ustawienia";
-            outlookBarButton10.BuddyPage1 = "Test";
-            outlookBarButton10.BuddyPage2 = "Test";
+            outlookBarButton10.BuddyPage1 = "PassangerList";
+            outlookBarButton10.BuddyPage2 = "PassangerList";
             outlookBarButton10.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton10.Image")));
             outlookBarButton10.Tag1 = null;
             outlookBarButton10.Tag2 = null;
-            outlookBarButton10.Text = "Test";
-            outlookBarButton10.Visible = false;
+            outlookBarButton10.Text = "Lista Pasażerów";
             this.outlookBar.Buttons.Add(outlookBarButton1);
             this.outlookBar.Buttons.Add(outlookBarButton2);
             this.outlookBar.Buttons.Add(outlookBarButton3);

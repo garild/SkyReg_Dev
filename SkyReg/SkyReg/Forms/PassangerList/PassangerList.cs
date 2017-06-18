@@ -2,40 +2,27 @@
 using ComponentFactory.Krypton.Toolkit;
 using DataLayer;
 using DataLayer.Result.Repository;
-using DataLayer.Utils;
-using DockedOutlets.Common;
+using SkyReg.Common;
+using SkyReg.Common.Extensions;
 using SkyRegEnums;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Serialization;
 
-namespace DockedOutlets
+namespace SkyReg
 {
-    public partial class FormOutlets : KryptonForm
+    public partial class PassangerList : KryptonForm
     {
         public static BasicSettings settings = null;
         private Timer _timer = new Timer();
          
-        public FormOutlets()
+        public PassangerList()
         {
-            SkyRegUser.GlobalPathFile = Environment.GetFolderPath((Environment.SpecialFolder.LocalApplicationData)) + @"\SkyReg";
-            SkyRegUser.DatabaseConfigFile = string.Format("{0}\\DatabaseConfig.xml", SkyRegUser.GlobalPathFile);
-            SkyRegUser.UserConfigFile = string.Format("{0}\\UserConfig.xml", SkyRegUser.GlobalPathFile);
-            SkyRegUser.LocalMachineName = Environment.MachineName;
-            Version curVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-
-            SkyRegUser.AppVer = $"wersja {curVersion}";
 
             InitializeComponent();
-            LoadSettings();
-
-            EntityConnectionString.Configuration(DatabaseConfig.ConnectionString);
            
         }
 
@@ -43,7 +30,7 @@ namespace DockedOutlets
         {
             if (settings != null)
             {
-                _timer.Interval =  60*1000 * settings.RefreshTimer; //4h
+                _timer.Interval =  4000 * settings.RefreshTimer; //4h
                 _timer.Tick += _timer_Tick;
                 _timer.Start();
             }
@@ -61,7 +48,7 @@ namespace DockedOutlets
             using (var _cxtFlight = new SkyRegContextRepository<Flight>())
             using (var _cxtFlightEl = new SkyRegContextRepository<FlightsElem>())
             {
-                var flights = _cxtFlight.GetAll(Tuple.Create("FlightsElem","Airplane",""));
+                var flights = _cxtFlight.GetAll(Tuple.Create(nameof(FlightsElem), nameof(Airplane),""));
                 var items = new ListViewItem();
                 
                 if (flights.IsSuccess)
@@ -125,12 +112,12 @@ namespace DockedOutlets
 
                         p.FlightsElem.ToList().ForEach(f =>
                         {
-                            users = _cxtFlightEl.GetAll(Tuple.Create("User","","")).Value?.Where(o => o.Id == f.Id).FirstOrDefault();
+                        users = _cxtFlightEl.GetAll(Tuple.Create(nameof(User),"","")).Value?.Where(o => o.Id == f.Id).FirstOrDefault();
 
                             if (users.User != null)
-                                itemString = $"{index++.ToString("00")} - {f.User.Name}";
+                                itemString = $"{index++.ToString("00")} - {users.User.Name}";
                             else
-                                itemString = $"{index++.ToString("00")} - {f.TeamName}";
+                                itemString = $"{index++.ToString("00")} - {users.TeamName}";
 
                             controls.Items.Add(itemString);
                         });
@@ -142,35 +129,10 @@ namespace DockedOutlets
             }
         }
 
-        private void LoadSettings()
-        {
-            if (File.Exists(SkyRegUser.DatabaseConfigFile))
-            {
-                using (TextReader tr = new StreamReader(SkyRegUser.DatabaseConfigFile))
-                {
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(SkyRegUser.DatabaseConfigFile);
-                    XmlSerializer deserializer;
-
-                    //odczyt ustawień z nowej wersji pliku
-                    var ConfigSettings = new DatabaseAccess();
-                    deserializer = new XmlSerializer(ConfigSettings.GetType());
-                    ConfigSettings = ((DatabaseAccess)deserializer.Deserialize(tr));
-                    tr.Close();
-                    ConfigSettings.Password = ConfigSettings.Password.DecryptString();
-                    ConfigSettings.User = ConfigSettings.User.DecryptString();
-                    new DatabaseConfig(ConfigSettings);
-                    SkyRegUser.IsDbExists = true;
-                }
-
-            }
-        }
-
-
         private void tsmSettings_Click(object sender, EventArgs e)
         {
             _timer.Stop();
-            _panel = new PanelSettings();
+            _panel = FormsOpened<PanelSettings>.IsShowDialog(_panel);
             _panel.FormClosed += _panel_FormClosed;
             _panel.Show();
 
@@ -181,6 +143,7 @@ namespace DockedOutlets
             if (_panel.DialogResult == DialogResult.OK)
             {
                 GenerateDynamicControls();
+                _panel = null;
             }
         }
 

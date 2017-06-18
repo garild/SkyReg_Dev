@@ -181,6 +181,19 @@
     <Compile Include="Forms\ParachutesForm\ParachutesForm.Designer.cs">
       <DependentUpon>ParachutesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PassangerList\BasicSettings.cs" />
+    <Compile Include="Forms\PassangerList\PassangerList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PassangerList\PassangerList.Designer.cs">
+      <DependentUpon>PassangerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PassangerList\PanelSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PassangerList\PanelSettings.Designer.cs">
+      <DependentUpon>PanelSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PaymentsForm\PaymentsAddEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -284,6 +297,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ParachutesForm\ParachutesForm.resx">
       <DependentUpon>ParachutesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PassangerList\PassangerList.resx">
+      <DependentUpon>PassangerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PassangerList\PanelSettings.resx">
+      <DependentUpon>PanelSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PaymentsForm\PaymentsAddEditForm.resx">
       <DependentUpon>PaymentsAddEditForm.cs</DependentUpon>
