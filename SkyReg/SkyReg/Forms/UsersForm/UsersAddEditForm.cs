@@ -271,7 +271,7 @@ namespace SkyReg
                 usr.StreetNr = txtStreetNr.Text;
                 usr.Name = txtUserName.Text;
                 usr.ZipCode = txtZipCode.Text;
-                usr.DefinedUserType = listType;
+
                 if (FormState == FormState.Add)
                 {
                     usr.DefinedUserType = listType;
@@ -281,18 +281,14 @@ namespace SkyReg
                 else // TODO UPDATE POPRAWIĆ
                 {
 
-                    var userdef = _ctxDefineUser.GetAll(Tuple.Create(nameof(User), "", "")).Value?.Where(p => p.Id == IdUser).ToList();
-                    userdef.ForEach(p =>
-                    {
-                        _ctxDefineUser.Delete(p);
-                    });
-
+                    usr.DefinedUserType.Clear();
                     listType.ForEach(p =>
                     {
                         p.User.Add(usr);
+                        usr.DefinedUserType.Add(p);
                     });
 
-                    _ctxDefineUser.InsertMany(listType);
+                    _ctxUser.Update(usr);
 
 
                     

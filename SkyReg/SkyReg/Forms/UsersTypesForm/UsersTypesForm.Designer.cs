@@ -217,7 +217,6 @@
             this.Name = "UsersTypesForm";
             this.Text = "Typy skoczków";
             this.Load += new System.EventHandler(this.UsersTypesForm_Load);
-            this.Shown += new System.EventHandler(this.UsersTypesForm_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).EndInit();
             this.kryptonHeaderGroup1.Panel.ResumeLayout(false);
