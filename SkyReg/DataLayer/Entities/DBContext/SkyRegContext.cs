@@ -1,34 +1,31 @@
 namespace DataLayer.Entities.DBContext
 {
-    using System;
     using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
 
     public partial class SkyRegContext : DbContext
     {
         public SkyRegContext()
             : base(DatabaseConfig.ConnectionString)
         {
-            Database.CommandTimeout = 5;
             this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.AutoDetectChangesEnabled = false;
             this.Configuration.ProxyCreationEnabled = false;
-            this.Configuration.ValidateOnSaveEnabled = false;
         }
 
-        public DbSet<Airplane> Airplane { get; set; }
-        public DbSet<Flight> Flight { get; set; }
-        public DbSet<FlightsElem> FlightsElem { get; set; }
-        public DbSet<GlobalSetting> GlobalSetting { get; set; }
-        public DbSet<Group> Group { get; set; }
-        public DbSet<Operator> Operator { get; set; }
-        public DbSet<Order> Order { get; set; }
-        public DbSet<Parachute> Parachute { get; set; }
-        public DbSet<Payment> Payment { get; set; }
-        public DbSet<PaymentsSetting> PaymentsSetting { get; set; }
-        public DbSet<User> User { get; set; }
-        public DbSet<DefinedUserType> DefinedUserType { get; set; }
-        public DbSet<UsersType> UsersType { get; set; }
+       
+        public virtual DbSet<Airplane> Airplane { get; set; }
+        public virtual DbSet<DefinedUserType> DefinedUserType { get; set; }
+        public virtual DbSet<Flight> Flight { get; set; }
+        public virtual DbSet<FlightsElem> FlightsElem { get; set; }
+        public virtual DbSet<GlobalSetting> GlobalSetting { get; set; }
+        public virtual DbSet<Group> Group { get; set; }
+        public virtual DbSet<Operator> Operator { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<Parachute> Parachute { get; set; }
+        public virtual DbSet<Payment> Payment { get; set; }
+        public virtual DbSet<PaymentsSetting> PaymentsSetting { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        //public virtual DbSet<UsersType> UsersType { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -36,6 +33,18 @@ namespace DataLayer.Entities.DBContext
                 .HasMany(e => e.Flight)
                 .WithOptional(e => e.Airplane)
                 .HasForeignKey(e => e.Airplane_Id);
+
+            modelBuilder.Entity<DefinedUserType>()
+                .Property(e => e.Value)
+                .HasPrecision(8, 2);
+
+            modelBuilder.Entity<DefinedUserType>()
+                .HasMany(e => e.User)
+                .WithMany(e => e.DefinedUserType)
+                .Map(m => { m.ToTable("UsersType");
+                    m.MapLeftKey("DefinedUserType_Id");
+                    m.MapRightKey("User_Id");
+                    });
 
             modelBuilder.Entity<Flight>()
                 .HasMany(e => e.FlightsElem)
@@ -51,6 +60,10 @@ namespace DataLayer.Entities.DBContext
                 .HasMany(e => e.Parachute)
                 .WithMany(e => e.FlightsElem)
                 .Map(m => m.ToTable("FlightsElemParachute"));
+
+            modelBuilder.Entity<FlightsElem>()
+              .HasMany(e => e.Parachute)
+              .WithMany(e => e.FlightsElem);
 
             modelBuilder.Entity<GlobalSetting>()
                 .Property(e => e.CamPrice)
@@ -116,11 +129,6 @@ namespace DataLayer.Entities.DBContext
                 .WithRequired(e => e.User)
                 .HasForeignKey(e => e.User_Id)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<DefinedUserType>()
-                .Property(e => e.Value)
-                .HasPrecision(8, 2);
-
         }
     }
 }

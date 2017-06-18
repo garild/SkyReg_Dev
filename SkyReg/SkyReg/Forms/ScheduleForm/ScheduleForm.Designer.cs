@@ -463,7 +463,7 @@
             this.txtAltitude.Location = new System.Drawing.Point(83, 33);
             this.txtAltitude.Name = "txtAltitude";
             this.txtAltitude.ReadOnly = true;
-            this.txtAltitude.Size = new System.Drawing.Size(175, 23);
+            this.txtAltitude.Size = new System.Drawing.Size(175, 20);
             this.txtAltitude.TabIndex = 1;
             // 
             // txtAirplane
@@ -473,7 +473,7 @@
             this.txtAirplane.Location = new System.Drawing.Point(83, 4);
             this.txtAirplane.Name = "txtAirplane";
             this.txtAirplane.ReadOnly = true;
-            this.txtAirplane.Size = new System.Drawing.Size(175, 23);
+            this.txtAirplane.Size = new System.Drawing.Size(175, 20);
             this.txtAirplane.TabIndex = 0;
             // 
             // kryptonPanelEx2
@@ -504,6 +504,7 @@
             this.btnClose.TabIndex = 6;
             this.btnClose.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Values.Image")));
             this.btnClose.Values.Text = "Zamknij";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // ScheduleForm
             // 

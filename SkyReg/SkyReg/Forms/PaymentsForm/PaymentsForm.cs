@@ -1,15 +1,11 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using SkyReg.Common.Extensions;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using DataLayer;
 using SkyRegEnums;
+using DataLayer.Entities;
 using DataLayer.Entities.DBContext;
 
 namespace SkyReg

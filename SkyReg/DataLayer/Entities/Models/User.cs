@@ -16,6 +16,7 @@ namespace DataLayer
             Order = new HashSet<Order>();
             Parachute = new HashSet<Parachute>();
             Payment = new HashSet<Payment>();
+            DefinedUserType = new HashSet<DefinedUserType>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -71,7 +72,6 @@ namespace DataLayer
 
         public virtual ICollection<Payment> Payment { get; set; }
 
-        public virtual ICollection<UsersType> UsersType { get; set; }
-
+        public virtual ICollection<DefinedUserType> DefinedUserType { get; set; }
     }
 }

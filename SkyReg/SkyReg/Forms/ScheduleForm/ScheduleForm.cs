@@ -72,12 +72,12 @@ namespace SkyReg
                 grdPlaner.Columns["Color"].Visible = false;
 
                 grdPlaner.Columns["Lp"].Width = 40;
-                grdPlaner.Columns["Type"].Width = 200;
+                //grdPlaner.Columns["Type"].Width = 200;
                 grdPlaner.Columns["Parachute"].Width = 200;
                 grdPlaner.Columns["AssemblyType"].Width = 90;
                 grdPlaner.Columns["UserName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                grdPlaner.Columns["Type"].HeaderText = "Typ skoczka";
+                //grdPlaner.Columns["Type"].HeaderText = "Typ skoczka";
                 grdPlaner.Columns["Parachute"].HeaderText = "Spadochron";
                 grdPlaner.Columns["AssemblyType"].HeaderText = "Typ układania";
                 grdPlaner.Columns["UserName"].HeaderText = "Nazwisko i imię";
@@ -118,7 +118,9 @@ namespace SkyReg
                         Status = p.FlyStatus
                     }).ToList();
 
+                grdFlights.DataSource = null;
                 grdFlights.DataSource = flightsList;
+                grdFlights.Refresh();
                 SetFlightsListView();
             }
         }
@@ -236,9 +238,7 @@ namespace SkyReg
                     ScheduleAddEditForm.grdPlaner = grdPlaner;
                     if (ScheduleAddEditForm.ShowDialog() == DialogResult.OK)
                     {
-                        int lastSelIndex = grdFlights.SelectedRows[0].Index;
                         RefreshFlightsList();
-                        grdFlights.Rows[lastSelIndex].Selected = true;
                     }
                 }
             }
@@ -246,55 +246,37 @@ namespace SkyReg
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            using (SkyRegContext model = new SkyRegContext())
+            using (var _ctx = new SkyRegContextRepository<FlightsElem>())
+            using (var _ctxPayment = new SkyRegContextRepository<Payment>())
             {
                 if (grdPlaner.SelectedRows.Count > 0)
                 {
                     if (KryptonMessageBox.Show("Czy usunąć zaznaczony element?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         int idFlightElem = (int)grdPlaner.SelectedRows[0].Cells["Id"].Value;
-                        
-                        List<int> paysId = model.Payment.Include("FlightsElem").Include("PaymentsSetting").Include("User").AsNoTracking().Where(p => p.FlightsElem.Id == idFlightElem).Select(p=>p.Id).ToList();
-                        
-                        FlightsElem fe = model.FlightsElem
-                            .Include("Parachute")
-                            .Include("User")
-                            .Include("Payments")
-                            .AsNoTracking()
-                            .Where(p => p.Id == idFlightElem)
-                            .FirstOrDefault();
 
-                       
-                        model.Entry(fe).State = System.Data.Entity.EntityState.Deleted;
-                        
-                        model.SaveChanges();
+                        List<int> paysId = _ctx.Model.Payment.Include("FlightsElem").Include("PaymentsSetting").Include("User").AsNoTracking().Where(p => p.FlightsElem.Id == idFlightElem).Select(p => p.Id).ToList();
 
-
-                        foreach(int idPay in paysId)
+                        foreach (int idPay in paysId)
                         {
-                            Payment pay = model.Payment.Where(p => p.Id == idPay).FirstOrDefault();
+                            Payment pay = _ctx.Model.Payment.Where(p => p.Id == idPay).FirstOrDefault();
                             if (pay != null)
                             {
-                                model.Payment.Remove(pay);
-                                model.SaveChanges();
+                                _ctxPayment.Delete(pay);
                             }
                         }
 
-                        int lastSelIndex = grdFlights.SelectedRows[0].Index;
-                        RefreshFlightsList();
-                        RefreshPlanerList();
-                        grdFlights.Rows[lastSelIndex].Selected = true;
+                        FlightsElem fe = _ctx.GetById(idFlightElem);
+                        _ctx.Delete(fe);
+
                     }
                 }
+                RefreshFlightsList();
+                RefreshPlanerList();
             }
-
         }
 
-
         #region Test
-
-
-
         private void GetLoadData()
         {
             grdOrders.Columns.Add("name", "Name");
@@ -362,8 +344,6 @@ namespace SkyReg
                     grdPlaner.Rows.Insert(rowCount > 0 ? rowCount - 1 : rowCount, p.Cells[0].Value);
                     grdOrders.Rows.RemoveAt(p.Index);
                 }
-
-
             }
         }
 
@@ -378,8 +358,6 @@ namespace SkyReg
                     grdOrders.Rows.Insert(rowCount > 0 ? rowCount - 1 : rowCount, p.Cells[0].Value);
                     grdPlaner.Rows.RemoveAt(p.Index);
                 }
-
-
             }
         }
 
@@ -395,7 +373,7 @@ namespace SkyReg
                     {
                         if (KryptonMessageBox.Show("Zmienić status lotu na zrealizowany?", "Zmienić?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            fly.FlyStatus = (int)SkyRegEnums.FlightsStatus.Executed;
+                            fly.FlyStatus = (int)FlightsStatus.Executed;
                             model.SaveChanges();
                             RefreshFlightsList();
                             RefreshPlanerList();
@@ -404,6 +382,11 @@ namespace SkyReg
 
                 }
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

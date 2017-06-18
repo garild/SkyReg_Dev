@@ -94,7 +94,6 @@
             this.cmbGroup.Name = "cmbGroup";
             this.cmbGroup.Size = new System.Drawing.Size(174, 21);
             this.cmbGroup.TabIndex = 6;
-            this.cmbGroup.SelectedIndexChanged += new System.EventHandler(this.cmbGroup_SelectedIndexChanged);
             // 
             // btnClose
             // 
@@ -246,7 +245,6 @@
             this.Name = "UsersForm";
             this.Text = "Skoczkowie";
             this.Load += new System.EventHandler(this.UsersForm_Load);
-            this.Shown += new System.EventHandler(this.UsersForm_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
             this.kryptonPanelEx1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).EndInit();

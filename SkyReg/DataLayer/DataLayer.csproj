@@ -51,7 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseAccess.cs" />
+    <Compile Include="Entities\DBContext\UsersType.cs" />
     <Compile Include="Entities\Models\Airplane.cs" />
+    <Compile Include="Entities\Models\DefinedUserType.cs" />
     <Compile Include="Entities\Models\Flight.cs" />
     <Compile Include="Entities\Models\FlightsElem.cs" />
     <Compile Include="Entities\Models\GlobalSetting.cs" />
@@ -63,8 +65,6 @@
     <Compile Include="Entities\Models\PaymentsSetting.cs" />
     <Compile Include="Entities\DBContext\SkyRegContext.cs" />
     <Compile Include="Entities\Models\User.cs" />
-    <Compile Include="Entities\Models\DefinedUserType.cs" />
-    <Compile Include="Entities\Models\UsersType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result\Interface\ISkyRegContext.cs" />
     <Compile Include="Result\Repository\SkyRegContextRepository.cs" />

@@ -80,8 +80,12 @@ namespace SkyReg
                     })
                     .OrderBy(p => p.Name)
                     .ToList();
-                //if(usrTypes.Count > 0)
-                grdUsersTypes.DataSource = usrTypes;
+                if (usrTypes.Count > 0)
+                {
+                    grdUsersTypes.DataSource = usrTypes;
+                    SetUsrTypesListView();
+                }
+                    
             }
         }
 

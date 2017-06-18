@@ -402,7 +402,7 @@ namespace SkyReg
                 KryptonMessageBox.Show("Wybierz chociaż 1 dzień tygodnia!", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return false;
             }
-            if (dateFrom.Value.Date < dateTo.Value.Date)
+            if (dateFrom.Value.Date > dateTo.Value.Date)
             {
                 errorProvider.SetError(dateFrom, "Okres wylotów OD - DO nie jest poprawny");
                 return false;

@@ -26,9 +26,9 @@ namespace SkyReg
 
         private void timer1_Tick(object sender, EventArgs e) //TODO Do poprawy !!!! Podczas usuwania ma być zablokowane!!!
         {
-            if (grdFlights.SelectedRows.Count > 0)
-                _lastGridSelectedIndex = grdFlights.SelectedRows[0].Index;
-            RefreshFlightsList();
+            //if (grdFlights.SelectedRows.Count > 0)
+            //    _lastGridSelectedIndex = grdFlights.SelectedRows[0].Index;
+            //RefreshFlightsList();
         }
 
         private void FlightsForm_Shown(object sender, EventArgs e)

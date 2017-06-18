@@ -25,6 +25,5 @@ namespace DataLayer
         public bool IsCam { get; set; }
 
         public virtual ICollection<User> User { get; set; }
-
     }
 }

@@ -39,35 +39,38 @@ namespace SkyReg
                 cmbGroup.DataSource = allGroup.Select(p => p).OrderBy(p => p.Id).ToList();
                 cmbGroup.ValueMember = "Id";
                 cmbGroup.DisplayMember = "Name";
+
+                cmbGroup.SelectedIndexChanged += cmbGroup_SelectedIndexChanged;
+
+
                 if (cmbGroup.Items.Count > 0)
                     cmbGroup.SelectedIndex = 0;
-            }
-        }
 
-        private void UsersForm_Shown(object sender, EventArgs e)
-        {
-            RefreshUsersList();
+                if (cmbGroup.Items.Count > 0)
+                    RefreshUsersList();
+            }
         }
 
         private void RefreshUsersList()
         {
-            using (SkyRegContext model = new SkyRegContext())
+            using (var _ctx = new SkyRegContextRepository<User>())
             {
                 int selectedGroupId = default(int);
                 int.TryParse(cmbGroup.SelectedValue.ToString(), out selectedGroupId);
 
                 //var users = model.User.AsNoTracking().OrderBy(p => p.SurName).ThenBy(p => p.FirstName).ToList();
                 //grdUsers.DataSource = users;
-
-                grdUsers.DataSource = model.User
-                    .Include("Group")
-                    .AsNoTracking()
-                    .Where(p => p.Group.Id == selectedGroupId)
-                    .OrderBy(p => p.Name)
-                    .ToList();
+                var result = _ctx.GetAll().Value.Where(p => p.Group_Id == selectedGroupId).OrderBy(p => p.Name).ToList();
+                if (result.Count > 0)
+                {
+                    grdUsers.DataSource = result;
+                    UsersSetListView();
+                }
+              
+                    
             }
 
-            UsersSetListView();
+           
         }
 
         private void UsersSetListView()
@@ -83,14 +86,14 @@ namespace SkyReg
             grdUsers.Columns["Email"].Visible = false;
             grdUsers.Columns["FaceBook"].Visible = false;
           
-            grdUsers.Columns["UsersType"].Visible = false;
+            grdUsers.Columns["DefinedUserType"].Visible = false;
             grdUsers.Columns["Operator"].Visible = false;
             grdUsers.Columns["Parachute"].Visible = false;
             grdUsers.Columns["FlightsElem"].Visible = false;
             grdUsers.Columns["Order"].Visible = false;
+            grdUsers.Columns["Group_Id"].Visible = false;
             grdUsers.Columns["Group"].Visible = false;
 
-          
             grdUsers.Columns["City"].DisplayIndex = 2;
             grdUsers.Columns["CertDate"].DisplayIndex = 3;
 
@@ -168,13 +171,12 @@ namespace SkyReg
                 if (KryptonMessageBox.Show("Usunąć zaznaczoną pozycję?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int idUsr = (int)grdUsers.SelectedRows[0].Cells["Id"].Value;
-                    using(SkyRegContext model = new SkyRegContext())
+                    using(var _ctx = new SkyRegContextRepository<User>())
                     {
-                        User usr = model.User.Include("UsersType").Where(p => p.Id == idUsr).FirstOrDefault();
+                        User usr = _ctx.GetById(idUsr);
                         if (usr != null)
                         {
-                            model.User.Remove(usr);
-                            model.SaveChanges();
+                            _ctx.Delete(usr);
                             RefreshUsersList();
                         }
                     }

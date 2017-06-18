@@ -64,8 +64,7 @@
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtPassword = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.txtLogin = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.txtSurName = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.txtFirstName = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.txtUserName = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -116,8 +115,7 @@
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel2);
             this.kryptonPanelEx1.Controls.Add(this.txtPassword);
             this.kryptonPanelEx1.Controls.Add(this.txtLogin);
-            this.kryptonPanelEx1.Controls.Add(this.txtSurName);
-            this.kryptonPanelEx1.Controls.Add(this.txtFirstName);
+            this.kryptonPanelEx1.Controls.Add(this.txtUserName);
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel1);
             this.kryptonPanelEx1.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.kryptonPanelEx1.GradientToogleColors = false;
@@ -197,7 +195,7 @@
             this.chkListUserTypes.FormattingEnabled = true;
             this.chkListUserTypes.Location = new System.Drawing.Point(12, 255);
             this.chkListUserTypes.Name = "chkListUserTypes";
-            this.chkListUserTypes.Size = new System.Drawing.Size(200, 109);
+            this.chkListUserTypes.Size = new System.Drawing.Size(200, 106);
             this.chkListUserTypes.TabIndex = 14;
             // 
             // grdFinances
@@ -395,11 +393,11 @@
             // 
             // btnCheckLogin
             // 
-            this.btnCheckLogin.Location = new System.Drawing.Point(377, 47);
+            this.btnCheckLogin.Location = new System.Drawing.Point(362, 13);
             this.btnCheckLogin.Name = "btnCheckLogin";
             this.btnCheckLogin.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
             this.btnCheckLogin.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btnCheckLogin.Size = new System.Drawing.Size(195, 25);
+            this.btnCheckLogin.Size = new System.Drawing.Size(210, 25);
             this.btnCheckLogin.TabIndex = 3;
             this.btnCheckLogin.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnCheckLogin.Values.Image")));
             this.btnCheckLogin.Values.Text = "&Sprawdź login";
@@ -439,19 +437,12 @@
             this.txtLogin.Size = new System.Drawing.Size(183, 20);
             this.txtLogin.TabIndex = 2;
             // 
-            // txtSurName
+            // txtUserName
             // 
-            this.txtSurName.Location = new System.Drawing.Point(377, 16);
-            this.txtSurName.Name = "txtSurName";
-            this.txtSurName.Size = new System.Drawing.Size(195, 20);
-            this.txtSurName.TabIndex = 1;
-            // 
-            // txtFirstName
-            // 
-            this.txtFirstName.Location = new System.Drawing.Point(168, 15);
-            this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(183, 20);
-            this.txtFirstName.TabIndex = 0;
+            this.txtUserName.Location = new System.Drawing.Point(168, 15);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(183, 20);
+            this.txtUserName.TabIndex = 0;
             // 
             // kryptonLabel1
             // 
@@ -546,8 +537,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtPassword;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtLogin;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtSurName;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtFirstName;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtUserName;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView grdFinances;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel16;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel15;

@@ -13,7 +13,6 @@ namespace DataLayer
         {
             User = new HashSet<User>();
         }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

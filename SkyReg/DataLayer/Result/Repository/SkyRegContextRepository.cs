@@ -31,7 +31,7 @@ namespace DataLayer.Result.Repository
         /// Attach with FALSE :Insert new Entity data object with references and associations class,
         /// attach with TRUE :Add new Entity data where references and associations class does not exists
         /// </summary>
-        public ResultType<T> InsertEntity(T entity)
+        public ResultType<T> InsertEntity(T entity,bool Attached = false)
         {
             try
             {
@@ -39,8 +39,11 @@ namespace DataLayer.Result.Repository
                 {
                     return new ResultType<T>() { Value = null };
                 }
-              
-                this.Entities.Add(entity);
+
+                if (!Attached)
+                    this.Entities.Add(entity);
+                else
+                    this.Entities.Attach(entity);
 
                 this.context.SaveChanges();
 

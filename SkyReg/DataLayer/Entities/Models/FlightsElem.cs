@@ -1,5 +1,5 @@
 namespace DataLayer
-{
+{ 
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -34,9 +34,9 @@ namespace DataLayer
 
         public virtual Flight Flight { get; set; }
 
-        public virtual ICollection<Payment> Payment { get; set; }
-
         public virtual User User { get; set; }
+
+        public virtual ICollection<Payment> Payment { get; set; }
 
         public virtual ICollection<Parachute> Parachute { get; set; }
     }
