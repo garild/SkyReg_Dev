@@ -117,7 +117,7 @@ namespace SkyReg
                     PassangerList.WindowState = FormWindowState.Maximized;
                     PassangerList.BringToFront();
 
-                    PassangerList.ShowDialog();
+                    PassangerList.Show();
                     PassangerList.Activate();
                     break;
             }

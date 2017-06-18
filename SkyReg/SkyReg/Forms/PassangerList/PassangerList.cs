@@ -132,18 +132,10 @@ namespace SkyReg
         private void tsmSettings_Click(object sender, EventArgs e)
         {
             _timer.Stop();
-            _panel = FormsOpened<PanelSettings>.IsShowDialog(_panel);
-            _panel.FormClosed += _panel_FormClosed;
-            _panel.Show();
-
-        }
-
-        private void _panel_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (_panel.DialogResult == DialogResult.OK)
+            _panel = new PanelSettings();
+            if (_panel.ShowDialog() == DialogResult.OK)
             {
                 GenerateDynamicControls();
-                _panel = null;
             }
         }
 
