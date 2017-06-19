@@ -27,6 +27,9 @@ namespace DataLayer.Models
         [StringLength(500)]
         public string ReportByUser { get; set; }
 
+        [Column(TypeName = "Date")]
+        public DateTime CreateDate { get; set; }
+
         [ForeignKey("User")]
         public int? User_Id { get; set; }
         

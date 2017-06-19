@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportedUsersList));
             this.kryptonHeaderGroup1 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.grdReportedUsers = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
@@ -69,11 +71,18 @@
             // 
             this.grdReportedUsers.AllowUserToAddRows = false;
             this.grdReportedUsers.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdReportedUsers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.grdReportedUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdReportedUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdReportedUsers.Location = new System.Drawing.Point(0, 0);
             this.grdReportedUsers.Name = "grdReportedUsers";
             this.grdReportedUsers.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdReportedUsers.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.grdReportedUsers.RowTemplate.ReadOnly = true;
             this.grdReportedUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdReportedUsers.Size = new System.Drawing.Size(558, 458);
             this.grdReportedUsers.TabIndex = 3;
@@ -98,14 +107,12 @@
             // kryptonLabel2
             // 
             this.kryptonLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonLabel2.Location = new System.Drawing.Point(28, 252);
+            this.kryptonLabel2.Location = new System.Drawing.Point(25, 252);
             this.kryptonLabel2.Name = "kryptonLabel2";
-            this.kryptonLabel2.Size = new System.Drawing.Size(262, 100);
+            this.kryptonLabel2.Size = new System.Drawing.Size(265, 116);
             this.kryptonLabel2.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
             this.kryptonLabel2.TabIndex = 6;
-            this.kryptonLabel2.Values.Text = "Kartoteka zawierająca listę osób oczekujących, \r\nzgłoszonych przez inne osoby.\r\nO" +
-    "bszar merytoryczny zawiera:\r\n- nazwę - imię, nazwisko lub alias osoby, grpy\r\n- i" +
-    "mię i nazwisko osoby zagłaszającej.\r\n\r\n";
+            this.kryptonLabel2.Values.Text = resources.GetString("kryptonLabel2.Values.Text");
             // 
             // pictureBox1
             // 

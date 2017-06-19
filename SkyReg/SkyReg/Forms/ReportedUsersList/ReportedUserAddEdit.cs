@@ -37,6 +37,7 @@ namespace SkyReg.Forms
                     var user = new ReportedUsers();
                     user.ReportByUser = txtReportedByUser.Text.Trim();
                     user.UserName = i > 0 ? $"{userName}{i}" : userName;
+                    user.CreateDate = DateTime.Now;
                     userList.Add(user);
                 }
 

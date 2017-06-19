@@ -52,6 +52,7 @@ namespace SkyReg.Forms
                 {
                     Name = p.UserName,
                     ReportedByUser = p.ReportByUser,
+                    CreateDate = p.CreateDate,
                     Id = p.Id
                 }).ToList();
                 if (userList?.Count >0 )
@@ -68,10 +69,12 @@ namespace SkyReg.Forms
             {
                 grdReportedUsers.Columns["Id"].Visible = false;
 
-                grdReportedUsers.Columns["Name"].HeaderText = "Osoba oczekująca";
+                grdReportedUsers.Columns["Name"].HeaderText = "Osoba Oczekująca";
                 grdReportedUsers.Columns["ReportedByUser"].HeaderText = "Zgłoszony przez";
+                grdReportedUsers.Columns["CreateDate"].HeaderText = "Data Zgłoszenia";
                 grdReportedUsers.Columns["Name"].Width = 200;
                 grdReportedUsers.Columns["ReportedByUser"].Width = 200;
+                grdReportedUsers.Columns["CreateDate"].Width = 120;
             }
         }
 
