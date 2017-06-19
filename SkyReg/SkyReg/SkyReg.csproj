@@ -206,6 +206,18 @@
     <Compile Include="Forms\PaymentsForm\PaymentsForm.Designer.cs">
       <DependentUpon>PaymentsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ReportedUsersList\ReportedUsersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReportedUsersList\ReportedUsersList.Designer.cs">
+      <DependentUpon>ReportedUsersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ReportedUsersList\ReportedUserAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReportedUsersList\ReportedUserAddEdit.Designer.cs">
+      <DependentUpon>ReportedUserAddEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ScheduleForm\ScheduleAddEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -309,6 +321,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PaymentsForm\PaymentsForm.resx">
       <DependentUpon>PaymentsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReportedUsersList\ReportedUsersList.resx">
+      <DependentUpon>ReportedUsersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReportedUsersList\ReportedUserAddEdit.resx">
+      <DependentUpon>ReportedUserAddEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScheduleForm\ScheduleAddEditForm.resx">
       <DependentUpon>ScheduleAddEditForm.cs</DependentUpon>

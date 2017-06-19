@@ -22,6 +22,8 @@ namespace SkyReg
         public FlightsForm()
         {
             InitializeComponent();
+            datSince.Value = DateTime.Now.Date;
+            datTo.Value = DateTime.Now.Date;
         }
 
         private void timer1_Tick(object sender, EventArgs e) //TODO Do poprawy !!!! Podczas usuwania ma być zablokowane!!!
@@ -29,14 +31,6 @@ namespace SkyReg
             //if (grdFlights.SelectedRows.Count > 0)
             //    _lastGridSelectedIndex = grdFlights.SelectedRows[0].Index;
             //RefreshFlightsList();
-        }
-
-        private void FlightsForm_Shown(object sender, EventArgs e)
-        {
-            datSince.Value = DateTime.Now.Date;
-            datTo.Value = DateTime.Now.Date;
-            RefreshFlightsList();
-
         }
 
         private void SetFlightsListView()

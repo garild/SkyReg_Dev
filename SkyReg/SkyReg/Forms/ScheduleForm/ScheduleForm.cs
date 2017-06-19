@@ -12,6 +12,7 @@ using SkyRegEnums;
 using SkyReg.Common.Extensions;
 using DataLayer.Result.Repository;
 using DataLayer.Entities.DBContext;
+using DataLayer.Models;
 
 namespace SkyReg
 {
@@ -29,7 +30,7 @@ namespace SkyReg
         private void ScheduleForm_Load(object sender, EventArgs e)
         {
             RefreshFlightsList();
-            //GetLoadData();
+            RefreshDataList();
         }
 
         private void RefreshPlanerList()
@@ -39,35 +40,30 @@ namespace SkyReg
                 if (grdFlights.SelectedRows.Count > 0)
                 {
                     var flyId = grdFlights.SelectedRows[0].Cells["Id"].Value;
-
-                    if (flyId != null)
-                    {
-                        var elems = model
-                            .FlightsElem.Where(p => p.Flight.Id == (int)flyId)
-                            .OrderBy(p => p.Lp)
-                            .Select(p => new
-                            {
-                                Id = p.Id,
-                                Lp = p.Lp,
-                                UserName = p.User == null ? p.TeamName : p.User.Name,
+                    grdPlaner.DataSource = model
+                        .FlightsElem.Where(p => p.Flight.Id == (int)flyId)
+                        .OrderBy(p => p.Lp)
+                        .Select(p => new
+                        {
+                            Id = p.Id,
+                            Lp = p.Lp,
+                            UserName = p.User == null ? p.TeamName : p.User.Name,
                                 //Type = p.User.DefinedUserType.Name,
                                 Parachute = p.Parachute.FirstOrDefault().IdNr + " " + p.Parachute.FirstOrDefault().Name,
-                                AssemblyType = p.AssemblySelf == true ? "Układa sam" : "Układalnia",
-                                Color = p.Color
-                            })
-                            .ToList();
-                        grdPlaner.DataSource = elems;
-                        SetPlanerListView();
-                    }
+                            AssemblyType = p.AssemblySelf == true ? "Układa sam" : "Układalnia",
+                            Color = p.Color
+                        })
+                        .ToList();
+
+                    SetPlanerListView();
+
                 }
             }
         }
 
         private void SetPlanerListView()
         {
-            if (grdPlaner.Rows.Count > 0)
-            {
-               // grdPlaner.Columns["Name"].Visible = false;
+                // grdPlaner.Columns["Name"].Visible = false;
                 grdPlaner.Columns["Id"].Visible = false;
                 grdPlaner.Columns["Color"].Visible = false;
 
@@ -88,22 +84,21 @@ namespace SkyReg
                 grdPlaner.MultiSelect = false;
                 grdPlaner.RowHeadersVisible = false;
 
-                foreach (DataGridViewRow item in grdPlaner.Rows)
-                {
-                    if (item != null)
+                if (grdPlaner.Rows.Count > 0)
+                    foreach (DataGridViewRow item in grdPlaner.Rows)
                     {
-                        item.DefaultCellStyle.BackColor = Color.FromName(item.Cells["Color"].Value.ToString());
+                        if (item != null)
+                        {
+                            item.DefaultCellStyle.BackColor = Color.FromName(item.Cells["Color"].Value.ToString());
+                        }
                     }
-                }
-
-            }
         }
 
         private void RefreshFlightsList()
         {
             using (SkyRegContext model = new SkyRegContext())
             {
-                var flightsList = model
+                grdFlights.DataSource = model
                     .Flight
                     .Include("FlightsElem")
                     .Include("Airplanes")
@@ -118,14 +113,8 @@ namespace SkyReg
                         Status = p.FlyStatus
                     }).ToList();
 
-                if(flightsList.Count > 0)
-                {
-                    grdFlights.DataSource = null;
-                    grdFlights.DataSource = flightsList;
-                    grdFlights.Refresh();
-                    SetFlightsListView();
-                }
-               
+                grdFlights.Refresh();
+                SetFlightsListView();
             }
         }
 
@@ -159,12 +148,6 @@ namespace SkyReg
         private void btnRefreshFlights_Click(object sender, EventArgs e)
         {
             RefreshFlightsList();
-            RefreshPlanerList();
-        }
-
-        private void ScheduleForm_Shown(object sender, EventArgs e)
-        {
-            SetFlightsListView();
             RefreshPlanerList();
         }
 
@@ -221,7 +204,7 @@ namespace SkyReg
         {
             if (grdFlights.SelectedRows.Count > 0)
             {
-                int flyStatus = int.Parse( grdFlights.SelectedRows[0].Cells["Status"].Value.ToString() ); 
+                int flyStatus = int.Parse(grdFlights.SelectedRows[0].Cells["Status"].Value.ToString());
                 bool allowShowForm = true;
 
                 if (flyStatus == (int)SkyRegEnums.FlightsStatus.Executed || flyStatus == (int)SkyRegEnums.FlightsStatus.Canceled)
@@ -283,18 +266,15 @@ namespace SkyReg
         #region Test
         private void GetLoadData()
         {
-            grdOrders.Columns.Add("name", "Name");
+            grdReportedUser.Columns.Add("name", "Name");
             grdPlaner.Columns.Add("name", "Name");
-            grdOrders.Rows.Add(5);
-            grdOrders.Rows[0].Cells[0].Value = "Garib";
-            grdOrders.Rows[1].Cells[0].Value = "Paweł";
-            grdOrders.Rows[2].Cells[0].Value = "Wojtek";
-            grdOrders.Rows[3].Cells[0].Value = "Aneta";
-            grdOrders.Rows[4].Cells[0].Value = "Jasio";
+            grdReportedUser.Rows.Add(5);
+            grdReportedUser.Rows[0].Cells[0].Value = "Garib";
+            grdReportedUser.Rows[1].Cells[0].Value = "Paweł";
+            grdReportedUser.Rows[2].Cells[0].Value = "Wojtek";
+            grdReportedUser.Rows[3].Cells[0].Value = "Aneta";
+            grdReportedUser.Rows[4].Cells[0].Value = "Jasio";
         }
-
-
-
 
         int rowToDelete;
         List<DataGridViewRow> rw = new List<DataGridViewRow>();
@@ -316,7 +296,7 @@ namespace SkyReg
                 {
                     rowCount = grdPlaner.Rows.Count;
                     grdPlaner.Rows.Insert(rowCount > 0 ? rowCount - 1 : rowCount, p.Cells[0].Value); //TODO otworzyć formatkę i dodać dane
-                    grdOrders.Rows.RemoveAt(p.Index);
+                    grdReportedUser.Rows.RemoveAt(p.Index);
 
                 });
 
@@ -327,26 +307,26 @@ namespace SkyReg
         {
             rowToDelete = (int)e.RowIndex;
             rw = new List<DataGridViewRow>();
-            foreach (DataGridViewRow item in grdOrders.SelectedRows)
+            foreach (DataGridViewRow item in grdReportedUser.SelectedRows)
             {
-                rw.Add(grdOrders.Rows[item.Index]);
+                rw.Add(grdReportedUser.Rows[item.Index]);
 
             }
-            grdOrders.DoDragDrop(rw, DragDropEffects.Copy);
+            grdReportedUser.DoDragDrop(rw, DragDropEffects.Copy);
         }
 
         #endregion
 
         private void btnCopyRecord_Click(object sender, EventArgs e)
         {
-            if (grdOrders.SelectedRows.Count > 0)
+            if (grdReportedUser.SelectedRows.Count > 0)
             {
                 int rowCount = 0;
-                foreach (DataGridViewRow p in grdOrders.SelectedRows)
+                foreach (DataGridViewRow p in grdReportedUser.SelectedRows)
                 {
                     rowCount = grdPlaner.Rows.Count;
                     grdPlaner.Rows.Insert(rowCount > 0 ? rowCount - 1 : rowCount, p.Cells[0].Value);
-                    grdOrders.Rows.RemoveAt(p.Index);
+                    grdReportedUser.Rows.RemoveAt(p.Index);
                 }
             }
         }
@@ -358,8 +338,8 @@ namespace SkyReg
                 int rowCount = 0;
                 foreach (DataGridViewRow p in grdPlaner.SelectedRows)
                 {
-                    rowCount = grdOrders.Rows.Count;
-                    grdOrders.Rows.Insert(rowCount > 0 ? rowCount - 1 : rowCount, p.Cells[0].Value);
+                    rowCount = grdReportedUser.Rows.Count;
+                    grdReportedUser.Rows.Insert(rowCount > 0 ? rowCount - 1 : rowCount, p.Cells[0].Value);
                     grdPlaner.Rows.RemoveAt(p.Index);
                 }
             }
@@ -392,5 +372,39 @@ namespace SkyReg
         {
             this.Close();
         }
+
+
+        #region Zgłoszenia
+
+
+        private void RefreshDataList()
+        {
+            grdReportedUser.DataSource = null;
+            using (var _ctx = new SkyRegContextRepository<ReportedUsers>())
+            {
+                var userList = _ctx.Table.OrderByDescending(p => p.Id).Select(p => new
+                {
+                    Name = p.UserName,
+                    ReportedByUser = p.ReportByUser,
+                    Id = p.Id
+                }).ToList();
+
+                grdReportedUser.DataSource = userList;
+                MapCollumns();
+            }
+        }
+
+        private void MapCollumns()
+        {
+            grdReportedUser.Columns["Id"].Visible = false;
+
+            grdReportedUser.Columns["Name"].HeaderText = "Osoba oczekująca";
+            grdReportedUser.Columns["ReportedByUser"].HeaderText = "Zgłoszony przez";
+            grdReportedUser.Columns["Name"].Width = 150;
+            grdReportedUser.Columns["ReportedByUser"].Width = 150;
+
+        }
+
+        #endregion
     }
 }

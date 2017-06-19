@@ -116,9 +116,18 @@ namespace SkyReg
                     PassangerList = new PassangerList();
                     PassangerList.WindowState = FormWindowState.Maximized;
                     PassangerList.BringToFront();
-
                     PassangerList.Show();
                     PassangerList.Activate();
+                    break;
+                case "ReportedUsers":
+                    ReportedUsersList = FormsOpened<ReportedUsersList>.IsOpened(ReportedUsersList);
+                    ReportedUsersList.MdiParent = this;
+                    ReportedUsersList.WindowState = FormWindowState.Maximized;
+                    ReportedUsersList.FormClosed += ReportedUsersList_FormClosed;
+                    ReportedUsersList.BringToFront();
+                    ReportedUsersList.TopLevel = false;
+                    ReportedUsersList.Show();
+                    ReportedUsersList.Activate();
                     break;
             }
         }
@@ -131,7 +140,7 @@ namespace SkyReg
         private void ScheduleForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             ScheduleForm = null;
-              
+
         }
 
         private void FlightsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -163,6 +172,10 @@ namespace SkyReg
         {
             UsersForm = null;
         }
+        private void ReportedUsersList_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ReportedUsersList = null;
+        }
 
 
         #region Forms
@@ -175,10 +188,10 @@ namespace SkyReg
         private FlightsForm FlightsForm = null;
         private ScheduleForm ScheduleForm = null;
         private PaymentsForm PaymentsForm = null;
-
         private PassangerList PassangerList = null;
-        
+        private ReportedUsersList ReportedUsersList = null;
+
         #endregion
 
-    }
-}
+
+    } }

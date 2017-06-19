@@ -1,5 +1,6 @@
 namespace DataLayer.Entities.DBContext
 {
+    using DataLayer.Models;
     using System.Data.Entity;
 
     public partial class SkyRegContext : DbContext
@@ -25,6 +26,8 @@ namespace DataLayer.Entities.DBContext
         public virtual DbSet<Payment> Payment { get; set; }
         public virtual DbSet<PaymentsSetting> PaymentsSetting { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<ReportedUsers> ReportedUsers { get; set; }
+        
         //public virtual DbSet<UsersType> UsersType { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

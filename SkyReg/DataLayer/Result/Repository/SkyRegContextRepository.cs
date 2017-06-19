@@ -86,8 +86,8 @@ namespace DataLayer.Result.Repository
                 entity.ForEach(p =>
                 {
                     this.Entities.Add(p);
-                    });
-
+                });
+               
                 this.context.SaveChanges();
 
                 return new ColletionResult<T>() { Value = entity };
