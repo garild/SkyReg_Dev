@@ -226,6 +226,10 @@ namespace SkyReg
                     if (ScheduleAddEditForm.ShowDialog() == DialogResult.OK)
                     {
                         RefreshFlightsList();
+                        if (Application.OpenForms["PassangerList"] != null)
+                        {
+                            (Application.OpenForms["PassangerList"] as PassangerList).GenerateDynamicControls();
+                        }
                     }
                 }
             }
@@ -406,5 +410,13 @@ namespace SkyReg
         }
 
         #endregion
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            if (grdPlaner.SelectedRows?.Count > 0)
+            {
+
+            }
+        }
     }
 }

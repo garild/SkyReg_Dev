@@ -88,6 +88,7 @@
     <Compile Include="Common\Enums\FlightsStatus.cs" />
     <Compile Include="Common\Extensions\FormsOpened.cs" />
     <Compile Include="Common\Extensions\PrimitiveTypeExtensions.cs" />
+    <Compile Include="Common\Helper\SkyRegUser.cs" />
     <Compile Include="Forms\AirplanesForm\AirplanesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,7 +182,6 @@
     <Compile Include="Forms\ParachutesForm\ParachutesForm.Designer.cs">
       <DependentUpon>ParachutesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PassangerList\BasicSettings.cs" />
     <Compile Include="Forms\PassangerList\PassangerList.cs">
       <SubType>Form</SubType>
     </Compile>

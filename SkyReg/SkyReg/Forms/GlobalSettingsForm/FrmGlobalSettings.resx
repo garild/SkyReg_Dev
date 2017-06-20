@@ -121,7 +121,7 @@
   <data name="btnPaymentsDelete.Values.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
-        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAsRAAALEQF/ZF+RAAABwUlEQVQ4T2MYXGC5jGTyWhX5
+        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAsQAAALEAGtI711AAABwUlEQVQ4T2MYXGC5jGTyWhX5
         yVAuBpjPwMCxVUvt4Gp52UaoEAIskxFPuunj/P9hsNf/1XIy7VBhOJgoJMS3U1f96vNI//87tTVuQIUR
         YLWMVNtdL6f/L4AG3PV0/L9SWqIQKsUwjZtbbI+O+kOQ3H497Wez+fiEoFKoYKW0ePkNR6v/z31c/t9w
         sPq/XEI0dj4/v8JBXc3XILHDBprv53BySkGVYwfLxEWSLlsY/3vmavf/ooXRvyM6Gl9A7ON6Wt/m8fKq
@@ -150,7 +150,7 @@
   <data name="btnOperatorDelete.Values.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
-        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAsRAAALEQF/ZF+RAAABwUlEQVQ4T2MYXGC5jGTyWhX5
+        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAsQAAALEAGtI711AAABwUlEQVQ4T2MYXGC5jGTyWhX5
         yVAuBpjPwMCxVUvt4Gp52UaoEAIskxFPuunj/P9hsNf/1XIy7VBhOJgoJMS3U1f96vNI//87tTVuQIUR
         YLWMVNtdL6f/L4AG3PV0/L9SWqIQKsUwjZtbbI+O+kOQ3H497Wez+fiEoFKoYKW0ePkNR6v/z31c/t9w
         sPq/XEI0dj4/v8JBXc3XILHDBprv53BySkGVYwfLxEWSLlsY/3vmavf/ooXRvyM6Gl9A7ON6Wt/m8fKq

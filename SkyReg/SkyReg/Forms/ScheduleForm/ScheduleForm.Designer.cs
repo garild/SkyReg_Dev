@@ -39,6 +39,7 @@
             this.grdReportedUser = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.kryptonHeaderGroup2 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.kryptonPanelEx4 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
+            this.grdPlaner = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.btnCopy = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnRemove = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnDelete = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -58,7 +59,6 @@
             this.txtAirplane = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.grdPlaner = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.kryptonPanelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3.Panel)).BeginInit();
@@ -71,6 +71,7 @@
             this.kryptonHeaderGroup2.Panel.SuspendLayout();
             this.kryptonHeaderGroup2.SuspendLayout();
             this.kryptonPanelEx4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPlaner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).BeginInit();
             this.kryptonHeaderGroup1.Panel.SuspendLayout();
@@ -78,7 +79,6 @@
             this.kryptonPanelEx3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdFlights)).BeginInit();
             this.kryptonPanelEx2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdPlaner)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonPanelEx1
@@ -135,6 +135,7 @@
             this.btnDown.TabIndex = 4;
             this.btnDown.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnDown.Values.Image")));
             this.btnDown.Values.Text = "";
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // btnUp
             // 
@@ -233,6 +234,30 @@
             this.kryptonPanelEx4.PersistentColors = false;
             this.kryptonPanelEx4.Size = new System.Drawing.Size(522, 660);
             this.kryptonPanelEx4.TabIndex = 1;
+            // 
+            // grdPlaner
+            // 
+            this.grdPlaner.AllowDrop = true;
+            this.grdPlaner.AllowUserToAddRows = false;
+            this.grdPlaner.AllowUserToDeleteRows = false;
+            this.grdPlaner.AllowUserToResizeColumns = false;
+            this.grdPlaner.AllowUserToResizeRows = false;
+            this.grdPlaner.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdPlaner.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdPlaner.Location = new System.Drawing.Point(-1, 1);
+            this.grdPlaner.Name = "grdPlaner";
+            this.grdPlaner.ReadOnly = true;
+            this.grdPlaner.RowHeadersVisible = false;
+            this.grdPlaner.ShowCellErrors = false;
+            this.grdPlaner.ShowCellToolTips = false;
+            this.grdPlaner.ShowEditingIcon = false;
+            this.grdPlaner.ShowRowErrors = false;
+            this.grdPlaner.Size = new System.Drawing.Size(523, 591);
+            this.grdPlaner.TabIndex = 16;
+            this.grdPlaner.DragDrop += new System.Windows.Forms.DragEventHandler(this.grdPlaner_DragDrop);
+            this.grdPlaner.DragEnter += new System.Windows.Forms.DragEventHandler(this.grdPlaner_DragEnter);
             // 
             // btnCopy
             // 
@@ -486,30 +511,6 @@
             this.btnClose.Values.Text = "Zamknij";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // grdPlaner
-            // 
-            this.grdPlaner.AllowDrop = true;
-            this.grdPlaner.AllowUserToAddRows = false;
-            this.grdPlaner.AllowUserToDeleteRows = false;
-            this.grdPlaner.AllowUserToResizeColumns = false;
-            this.grdPlaner.AllowUserToResizeRows = false;
-            this.grdPlaner.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grdPlaner.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdPlaner.Location = new System.Drawing.Point(-1, 1);
-            this.grdPlaner.Name = "grdPlaner";
-            this.grdPlaner.ReadOnly = true;
-            this.grdPlaner.RowHeadersVisible = false;
-            this.grdPlaner.ShowCellErrors = false;
-            this.grdPlaner.ShowCellToolTips = false;
-            this.grdPlaner.ShowEditingIcon = false;
-            this.grdPlaner.ShowRowErrors = false;
-            this.grdPlaner.Size = new System.Drawing.Size(523, 591);
-            this.grdPlaner.TabIndex = 16;
-            this.grdPlaner.DragDrop += new System.Windows.Forms.DragEventHandler(this.grdPlaner_DragDrop);
-            this.grdPlaner.DragEnter += new System.Windows.Forms.DragEventHandler(this.grdPlaner_DragEnter);
-            // 
             // ScheduleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -532,6 +533,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2)).EndInit();
             this.kryptonHeaderGroup2.ResumeLayout(false);
             this.kryptonPanelEx4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdPlaner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).EndInit();
             this.kryptonHeaderGroup1.Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).EndInit();
@@ -540,7 +542,6 @@
             this.kryptonPanelEx3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdFlights)).EndInit();
             this.kryptonPanelEx2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdPlaner)).EndInit();
             this.ResumeLayout(false);
 
         }

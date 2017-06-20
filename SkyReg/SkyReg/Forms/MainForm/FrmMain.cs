@@ -27,6 +27,8 @@ namespace SkyReg
             tstrVersion.Text = String.Format("{0}  ", SkyRegUser.AppVer);
             tstrComputerName.Text = SkyRegUser.LocalMachineName;
             tstrLoggedUser.Text = SkyRegUser.UserLogin;
+
+
         }
 
         private void outlookBar1_ButtonClicked(object sender, EventArgs e)
@@ -191,7 +193,19 @@ namespace SkyReg
         private PassangerList PassangerList = null;
         private ReportedUsersList ReportedUsersList = null;
 
+
         #endregion
 
-
+        private void tsmSettings_Click(object sender, EventArgs e)
+        {
+            _panel = FormsOpened<PanelSettings>.IsOpened(_panel);
+            if(_panel.ShowDialog() == DialogResult.OK)
+            {
+                if (Application.OpenForms["PassangerList"] != null)
+                {
+                    (Application.OpenForms["PassangerList"] as PassangerList).GenerateDynamicControls();
+                }
+            }
+        }
+        PanelSettings _panel = null;
     } }

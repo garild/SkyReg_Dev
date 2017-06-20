@@ -267,7 +267,7 @@ namespace SkyReg
             return result;
         }
 
-        private bool checkBalances()
+        private bool checkBalances() // TODO Poprawić walidację Co jeśli nie wybiorę spadochron??!
         {
             using (SkyRegContext model = new SkyRegContext())
             {
@@ -345,21 +345,9 @@ namespace SkyReg
 
             using(var _ctx = new SkyRegContextRepository<User>())
             {
-                string[] userName = cmbName.Text.Split(' ');
-                string firstName = default(string);
-                string surName = default(string);
-                if(userName.Count() == 2)
-                {
-                    surName = userName[0];
-                    firstName = userName[1];
-                }
-                else
-                {
-                    surName = cmbName.Text;
-                    firstName = cmbName.Text;
-                }
+            
                 User usr = new User();
-                usr.Name = cmbName.SelectedText;
+                usr.Name = cmbName.Text;
                 var result = _ctx.InsertEntity(usr);
 
                 if(result.IsSuccess)

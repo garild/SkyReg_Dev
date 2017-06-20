@@ -416,7 +416,7 @@
             this.txtAirportId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAirportId.Location = new System.Drawing.Point(199, 208);
             this.txtAirportId.Name = "txtAirportId";
-            this.txtAirportId.Size = new System.Drawing.Size(168, 20);
+            this.txtAirportId.Size = new System.Drawing.Size(120, 20);
             this.txtAirportId.TabIndex = 27;
             // 
             // kryptonLabel3

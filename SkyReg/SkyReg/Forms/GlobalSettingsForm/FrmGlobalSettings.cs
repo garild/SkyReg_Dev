@@ -364,7 +364,7 @@ namespace SkyReg
 
 
                                 flight = new Flight();
-                                flight.Airplane = airplane;
+                                flight.Airplane_Id = airplane.Id;
                                 flight.Altitude = (int)numAltitude.Value;
                                 flight.FlyDateTime = dateCount.Date;
                                 flight.FlyStatus = (int)FlightsStatus.Opened;
