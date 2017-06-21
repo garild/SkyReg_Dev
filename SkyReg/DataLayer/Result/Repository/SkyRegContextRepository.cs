@@ -183,6 +183,38 @@ namespace DataLayer.Result.Repository
             }
         }
 
+        public ColletionResult<T> UpdateMany(List<T> entity)
+        {
+            try
+            {
+                if (entity == null)
+                {
+                    return new ColletionResult<T>() { Value = null };
+                }
+                entity.ForEach(p => context.Entry(p).State = EntityState.Modified );
+                this.context.SaveChanges();
+
+                return new ColletionResult<T>() { Value = entity };
+            }
+            catch (DbUpdateException ex)
+            {
+                errorMessage = ex.InnerException?.Message;
+                return new ColletionResult<T>() { Value = null, Error = errorMessage };
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        errorMessage += Environment.NewLine + string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                    }
+                }
+
+                return new ColletionResult<T>() { Value = null, Error = errorMessage };
+            }
+        }
+
         public ResultType<T> Delete(T entity)
         {
             try

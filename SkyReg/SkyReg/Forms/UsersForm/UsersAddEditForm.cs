@@ -13,6 +13,7 @@ using SkyReg.Common.Extensions;
 using SkyRegEnums;
 using DataLayer.Entities.DBContext;
 using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 
 namespace SkyReg
 {
@@ -281,17 +282,15 @@ namespace SkyReg
                 else // TODO UPDATE POPRAWIĆ
                 {
 
-                    usr.DefinedUserType.Clear();
+                    string query = $"DELETE FROM [dbo].[UsersType] WHERE User_Id = {usr.Id}";
+                    _ctxUser.Model.Database.ExecuteSqlCommand(query);
+
+                     
                     listType.ForEach(p =>
                     {
-                        p.User.Add(usr);
-                        usr.DefinedUserType.Add(p);
+                        query = $"INSERT INTO [dbo].[UsersType] SELECT {p.Id},{usr.Id}";
+                        _ctxUser.Model.Database.ExecuteSqlCommand(query);
                     });
-
-                    _ctxUser.Update(usr);
-
-
-                    
 
                 }
                 this.Close();

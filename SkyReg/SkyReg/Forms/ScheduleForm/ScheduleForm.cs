@@ -13,6 +13,7 @@ using SkyReg.Common.Extensions;
 using DataLayer.Result.Repository;
 using DataLayer.Entities.DBContext;
 using DataLayer.Models;
+using SkyReg.Forms.ScheduleForm;
 
 namespace SkyReg
 {
@@ -46,6 +47,7 @@ namespace SkyReg
                         .Select(p => new
                         {
                             Id = p.Id,
+                            UserId = p.User_Id,
                             Lp = p.Lp,
                             UserName = p.User == null ? p.TeamName : p.User.Name,
                                 //Type = p.User.DefinedUserType.Name,
@@ -63,35 +65,36 @@ namespace SkyReg
 
         private void SetPlanerListView()
         {
-                // grdPlaner.Columns["Name"].Visible = false;
-                grdPlaner.Columns["Id"].Visible = false;
-                grdPlaner.Columns["Color"].Visible = false;
+            //grdPlaner.Columns["Name"].Visible = false;
+            grdPlaner.Columns["Id"].Visible = false;
+            grdPlaner.Columns["Color"].Visible = false;
+            grdPlaner.Columns["UserId"].Visible = false;
 
-                grdPlaner.Columns["Lp"].Width = 40;
-                //grdPlaner.Columns["Type"].Width = 200;
-                grdPlaner.Columns["Parachute"].Width = 200;
-                grdPlaner.Columns["AssemblyType"].Width = 90;
-                grdPlaner.Columns["UserName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            grdPlaner.Columns["Lp"].Width = 40;
+            //grdPlaner.Columns["Type"].Width = 200;
+            grdPlaner.Columns["Parachute"].Width = 200;
+            grdPlaner.Columns["AssemblyType"].Width = 90;
+            grdPlaner.Columns["UserName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                //grdPlaner.Columns["Type"].HeaderText = "Typ skoczka";
-                grdPlaner.Columns["Parachute"].HeaderText = "Spadochron";
-                grdPlaner.Columns["AssemblyType"].HeaderText = "Typ układania";
-                grdPlaner.Columns["UserName"].HeaderText = "Nazwisko i imię";
+            //grdPlaner.Columns["Type"].HeaderText = "Typ skoczka";
+            grdPlaner.Columns["Parachute"].HeaderText = "Spadochron";
+            grdPlaner.Columns["AssemblyType"].HeaderText = "Typ układania";
+            grdPlaner.Columns["UserName"].HeaderText = "Nazwisko i imię";
 
-                grdPlaner.AllowUserToResizeRows = false;
-                grdPlaner.ReadOnly = true;
-                grdPlaner.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                grdPlaner.MultiSelect = false;
-                grdPlaner.RowHeadersVisible = false;
+            grdPlaner.AllowUserToResizeRows = false;
+            grdPlaner.ReadOnly = true;
+            grdPlaner.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+         
+            grdPlaner.RowHeadersVisible = false;
 
-                if (grdPlaner.Rows.Count > 0)
-                    foreach (DataGridViewRow item in grdPlaner.Rows)
+            if (grdPlaner.Rows.Count > 0)
+                foreach (DataGridViewRow item in grdPlaner.Rows)
+                {
+                    if (item != null)
                     {
-                        if (item != null)
-                        {
-                            item.DefaultCellStyle.BackColor = Color.FromName(item.Cells["Color"].Value.ToString());
-                        }
+                        item.DefaultCellStyle.BackColor = Color.FromName(item.Cells["Color"].Value.ToString());
                     }
+                }
         }
 
         private void RefreshFlightsList()
@@ -235,7 +238,7 @@ namespace SkyReg
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e) //TODO USUWANIE FlightElemParachute
         {
             using (var _ctx = new SkyRegContextRepository<FlightsElem>())
             using (var _ctxPayment = new SkyRegContextRepository<Payment>())
@@ -259,6 +262,9 @@ namespace SkyReg
 
                         FlightsElem fe = _ctx.GetById(idFlightElem);
                         _ctx.Delete(fe);
+
+                        string query = $"DELETE FROM [dbo].[FlightsElemParachutes] WHERE FlightsElem_Id = {idFlightElem}";
+                        _ctx.Model.Database.ExecuteSqlCommand(query);
 
                     }
                 }
@@ -323,30 +329,30 @@ namespace SkyReg
 
         private void btnCopyRecord_Click(object sender, EventArgs e)
         {
-            if (grdReportedUser.SelectedRows.Count > 0)
-            {
-                int rowCount = 0;
-                foreach (DataGridViewRow p in grdReportedUser.SelectedRows)
-                {
-                    rowCount = grdPlaner.Rows.Count;
-                    grdPlaner.Rows.Insert(rowCount > 0 ? rowCount - 1 : rowCount, p.Cells[0].Value);
-                    grdReportedUser.Rows.RemoveAt(p.Index);
-                }
-            }
+            //if (grdReportedUser.SelectedRows.Count > 0)
+            //{
+            //    int rowCount = 0;
+            //    foreach (DataGridViewRow p in grdReportedUser.SelectedRows)
+            //    {
+            //        rowCount = grdPlaner.Rows.Count;
+            //        grdPlaner.Rows.Insert(rowCount > 0 ? rowCount - 1 : rowCount, p.Cells[0].Value);
+            //        grdReportedUser.Rows.RemoveAt(p.Index);
+            //    }
+            //}
         }
 
         private void btnRightCopyRecord_Click(object sender, EventArgs e)
         {
-            if (grdPlaner.SelectedRows.Count > 0)
-            {
-                int rowCount = 0;
-                foreach (DataGridViewRow p in grdPlaner.SelectedRows)
-                {
-                    rowCount = grdReportedUser.Rows.Count;
-                    grdReportedUser.Rows.Insert(rowCount > 0 ? rowCount - 1 : rowCount, p.Cells[0].Value);
-                    grdPlaner.Rows.RemoveAt(p.Index);
-                }
-            }
+            //if (grdPlaner.SelectedRows.Count > 0)
+            //{
+            //    int rowCount = 0;
+            //    foreach (DataGridViewRow p in grdPlaner.SelectedRows)
+            //    {
+            //        rowCount = grdReportedUser.Rows.Count;
+            //        grdReportedUser.Rows.Insert(rowCount > 0 ? rowCount - 1 : rowCount, p.Cells[0].Value);
+            //        grdPlaner.Rows.RemoveAt(p.Index);
+            //    }
+            //}
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -418,5 +424,72 @@ namespace SkyReg
 
             }
         }
+
+        private void btnTransport_Click(object sender, EventArgs e)
+        {
+            _scheduleMoveCopyUsers = FormsOpened<ScheduleMoveCopyUsers>.IsShowDialog(_scheduleMoveCopyUsers);
+            _scheduleMoveCopyUsers.FormClosed += _scheduleMoveCopyUsers_FormClosed;
+            _scheduleMoveCopyUsers.Type = TransportData.Move;
+            if (grdPlaner.SelectedRows.Count > 0)
+            {
+                foreach(DataGridViewRow  row in grdPlaner.SelectedRows)
+                {
+                    _scheduleMoveCopyUsers.IdList.Add((int)row.Cells["UserId"].Value);
+                }
+                _scheduleMoveCopyUsers.ShowDialog();
+            }
+
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            _scheduleMoveCopyUsers = FormsOpened<ScheduleMoveCopyUsers>.IsShowDialog(_scheduleMoveCopyUsers);
+            _scheduleMoveCopyUsers.FormClosed += _scheduleMoveCopyUsers_FormClosed;
+            _scheduleMoveCopyUsers.Type = TransportData.Copy;
+            _scheduleMoveCopyUsers.Flight_Id = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
+            if (grdPlaner.SelectedRows.Count > 0)
+            {
+                foreach (DataGridViewRow row in grdPlaner.SelectedRows)
+                {
+                    _scheduleMoveCopyUsers.IdList.Add((int)row.Cells["Id"].Value);
+                }
+                _scheduleMoveCopyUsers.ShowDialog();
+            }
+        }
+
+        private void _scheduleMoveCopyUsers_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _scheduleMoveCopyUsers = null;
+            RefreshFlightsList();
+            RefreshPlanerList();
+        }
+
+       
+        private ScheduleMoveCopyUsers _scheduleMoveCopyUsers = null;
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            Tuple<List<int>, List<int>> dataList = new Tuple<List<int>, List<int>>(null,null);
+
+            using (var _ctx = new SkyRegContextRepository<FlightsElem>())
+            {
+               
+                if (grdPlaner.SelectedRows.Count > 0)
+                {
+                    foreach (DataGridViewRow row in grdPlaner.SelectedRows)
+                    {
+                        dataList.Item1.Add((int)row.Cells["Id"].Value);
+                        dataList.Item2.Add((int)row.Cells["Lp"].Value);
+                      
+                    }
+
+                    //var fe = _ctx.GetAll().Value.Join(dataList.Item1, p => p.User_Id, u => u, (p, u) => p).ToList();
+                    //int maxValue = dataList.Item2.Max();
+                    //int maxValue = dataList.Item2.Max();
+                }
+            }
+        }
+
+
     }
 }

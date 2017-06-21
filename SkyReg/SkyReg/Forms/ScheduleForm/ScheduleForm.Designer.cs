@@ -41,7 +41,7 @@
             this.kryptonPanelEx4 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.grdPlaner = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.btnCopy = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnRemove = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnTransport = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnDelete = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnAdd = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnPrint = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -146,6 +146,7 @@
             this.btnUp.TabIndex = 3;
             this.btnUp.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnUp.Values.Image")));
             this.btnUp.Values.Text = "";
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // kryptonHeaderGroup3
             // 
@@ -220,7 +221,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonPanelEx4.Controls.Add(this.grdPlaner);
             this.kryptonPanelEx4.Controls.Add(this.btnCopy);
-            this.kryptonPanelEx4.Controls.Add(this.btnRemove);
+            this.kryptonPanelEx4.Controls.Add(this.btnTransport);
             this.kryptonPanelEx4.Controls.Add(this.btnDelete);
             this.kryptonPanelEx4.Controls.Add(this.btnAdd);
             this.kryptonPanelEx4.Controls.Add(this.btnPrint);
@@ -250,6 +251,7 @@
             this.grdPlaner.Name = "grdPlaner";
             this.grdPlaner.ReadOnly = true;
             this.grdPlaner.RowHeadersVisible = false;
+            this.grdPlaner.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPlaner.ShowCellErrors = false;
             this.grdPlaner.ShowCellToolTips = false;
             this.grdPlaner.ShowEditingIcon = false;
@@ -271,19 +273,21 @@
             this.btnCopy.TabIndex = 15;
             this.btnCopy.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnCopy.Values.Image")));
             this.btnCopy.Values.Text = "&Kopiuj zaznaczonych";
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
-            // btnRemove
+            // btnTransport
             // 
-            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemove.Location = new System.Drawing.Point(4, 628);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.btnRemove.Size = new System.Drawing.Size(166, 25);
-            this.btnRemove.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
-            this.btnRemove.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnRemove.TabIndex = 14;
-            this.btnRemove.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnRemove.Values.Image")));
-            this.btnRemove.Values.Text = "&Przesuń zaznaczonych";
+            this.btnTransport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnTransport.Location = new System.Drawing.Point(4, 628);
+            this.btnTransport.Name = "btnTransport";
+            this.btnTransport.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnTransport.Size = new System.Drawing.Size(166, 25);
+            this.btnTransport.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
+            this.btnTransport.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnTransport.TabIndex = 14;
+            this.btnTransport.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnTransport.Values.Image")));
+            this.btnTransport.Values.Text = "&Przesuń zaznaczonych";
+            this.btnTransport.Click += new System.EventHandler(this.btnTransport_Click);
             // 
             // btnDelete
             // 
@@ -568,7 +572,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnLeftCopyRecord;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnDown;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnUp;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnRemove;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnTransport;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnDelete;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnAdd;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnPrint;
