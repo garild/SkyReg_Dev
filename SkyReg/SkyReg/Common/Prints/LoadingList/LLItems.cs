@@ -13,7 +13,7 @@ namespace SkyReg.Common.Prints.LoadingList
         public string JumpNr { get; set; }
         public string Status { get; set; }
         public string ParachuteType { get; set; }
-        public int ParachuteId { get; set; }
+        public string ParachuteId { get; set; }
         public string Altitude { get; set; }
         public string Note { get; set; }
     }

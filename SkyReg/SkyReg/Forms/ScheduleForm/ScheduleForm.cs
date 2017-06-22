@@ -442,18 +442,18 @@ namespace SkyReg
                     llh.FlightNr = fly.FlyNr;
                     llf.Header = llh;
 
-
-
-
                     llf.Items = result.Value.Where(p => p.Flight_Id == flyId)
+
+                        
+
                         .Select(p => new LLItems
                         {
                             Lp = p.Lp.ToString(),
                             Name = p.User.Name,
                             JumpNr = default(string),//TODO do poprawy
                             Status = default(string),//TODO do poprawy encja, brakuje tego elementu
-                            ParachuteType = default(string),//TODO do poprawy
-                            ParachuteId = _ctx.Model.Database.SqlQuery<int>("SELECT [Parachute_Id] FROM [SkyRegDB].[dbo].[FlightsElemParachutes] WHERE FlightsElem_Id = {0}", p.Id).FirstOrDefault(),
+                            ParachuteType = _ctx.Model.Database.SqlQuery<string>("select Parachute.Name from FlightsElemParachutes join Parachute on Parachute.Id = FlightsElemParachutes.Parachute_Id where FlightsElem_Id = {0}", p.Id).FirstOrDefault(),
+                            ParachuteId = _ctx.Model.Database.SqlQuery<string>("select Parachute.IdNr from FlightsElemParachutes join Parachute on Parachute.Id = FlightsElemParachutes.Parachute_Id where FlightsElem_Id = {0}", p.Id).FirstOrDefault(),
                             Altitude = p.Flight.Altitude.ToString()
                         })
                         .OrderBy(p => p.Lp)

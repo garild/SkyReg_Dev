@@ -149,6 +149,7 @@ namespace SkyReg
                 fe.Parachute.Add(_ctx.Model.Parachute.FirstOrDefault(p => p.Id == (int)cmbParachute.SelectedValue));
                 fe.User_Id = usrId;
                 fe.Color = btnColor.SelectedColor.ToArgb().ToString();
+                fe.UsersTypeId = (int)cmbUsersType.SelectedValue;
 
                 _ctx.InsertEntity(fe);
                 return fe;

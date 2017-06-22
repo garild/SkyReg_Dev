@@ -32,6 +32,8 @@ namespace DataLayer
 
         public int? User_Id { get; set; }
 
+        public int? UsersTypeId { get; set; }
+
         public virtual Flight Flight { get; set; }
 
         public virtual User User { get; set; }
