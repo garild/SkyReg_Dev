@@ -79,17 +79,17 @@ namespace SkyReg
                 
                 nrLotu = grdFlight.SelectedRows[0].Cells["Number"].Value.ToString();
                 if (parachuteRentPrice.Value > 0)
-                    payParachuteRent = SaveOneJump(usr.Id, parachuteRentPrice.Value, false, string.Format("Spadochron {0}", nrLotu), fe.Id);
+                    payParachuteRent = SaveOneJump(usr.Id, parachuteRentPrice.Value, false, string.Format("Spadochron {0}", nrLotu), fe.Id,ChargesTypes.ParachuteRent);
                 if (parachuteAssemblyPrice.Value > 0 && assemblySelf == false)
-                    payAssembly = SaveOneJump(usr.Id, parachuteAssemblyPrice, false, string.Format("Układanie {0}", nrLotu), fe.Id);
+                    payAssembly = SaveOneJump(usr.Id, parachuteAssemblyPrice, false, string.Format("Układanie {0}", nrLotu), fe.Id, ChargesTypes.ParachuteAssembly);
                 if (usersPackages > 0)
                 {
-                    packJump = SaveOneJump(usr.Id, 0, true, string.Format("Skok {0}", nrLotu), fe.Id);
+                    packJump = SaveOneJump(usr.Id, 0, true, string.Format("Skok {0}", nrLotu), fe.Id, ChargesTypes.Jump);
                     usersPackages -= 1;
                 }
                 else
                 {
-                    payJump = SaveOneJump(usr.Id, oneJumpPrice, false, string.Format("Skok {0}", nrLotu), fe.Id);
+                    payJump = SaveOneJump(usr.Id, oneJumpPrice, false, string.Format("Skok {0}", nrLotu), fe.Id, ChargesTypes.Jump);
                 }
 
 
@@ -103,17 +103,17 @@ namespace SkyReg
                         fe = SaveFlghtElemToDB(flightId, usr.Id);
 
                         if (parachuteRentPrice.Value > 0)
-                            payParachuteRent = SaveOneJump(usr.Id, parachuteRentPrice.Value, false, string.Format("Spadochron {0}", nrLotu), fe.Id);
+                            payParachuteRent = SaveOneJump(usr.Id, parachuteRentPrice.Value, false, string.Format("Spadochron {0}", nrLotu), fe.Id, ChargesTypes.ParachuteRent);
                         if (parachuteAssemblyPrice.Value > 0 && assemblySelf == false)
-                            payAssembly = SaveOneJump(usr.Id, parachuteAssemblyPrice, false, string.Format("Układanie {0}", nrLotu), fe.Id);
+                            payAssembly = SaveOneJump(usr.Id, parachuteAssemblyPrice, false, string.Format("Układanie {0}", nrLotu), fe.Id, ChargesTypes.ParachuteAssembly);
                         if (usersPackages > 0)
                         {
-                            packJump = SaveOneJump(usr.Id, 0, true, string.Format("Skok {0}", nrLotu), fe.Id);
+                            packJump = SaveOneJump(usr.Id, 0, true, string.Format("Skok {0}", nrLotu), fe.Id, ChargesTypes.Jump);
                             usersPackages -= 1;
                         }
                         else
                         {
-                            payJump = SaveOneJump(usr.Id, oneJumpPrice, false, string.Format("Skok {0}", nrLotu), fe.Id);
+                            payJump = SaveOneJump(usr.Id, oneJumpPrice, false, string.Format("Skok {0}", nrLotu), fe.Id, ChargesTypes.Jump);
                         }
                     }         
                 }
@@ -149,7 +149,7 @@ namespace SkyReg
 
 
 
-        private Payment SaveOneJump(int usrId, decimal? oneJumpPrice, bool count, string description, int flyElem)
+        private Payment SaveOneJump(int usrId, decimal? oneJumpPrice, bool count, string description, int flyElem,ChargesTypes chargeType)
         {
 
             //PaymentsSetting ps = model.PaymentsSetting.Where(p => p.Type == (short)SkyRegEnums.PaymentsTypes.Naleznosc).FirstOrDefault();
@@ -170,6 +170,7 @@ namespace SkyReg
                 pay.IsBooked = true;
                 pay.PaymentsSetting_Id = ps.Id;
                 pay.User_Id = user.Id;
+                pay.ChargeType = (int)chargeType;
                 pay.Value = oneJumpPrice.Value;
                 if (count == false)
                     pay.Count = 0;

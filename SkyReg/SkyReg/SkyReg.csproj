@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Enums\Actions.cs" />
+    <Compile Include="Common\Enums\ChargesTypes.cs" />
     <Compile Include="Common\Enums\EnumExtensions.cs" />
     <Compile Include="Common\Enums\FlightsStatus.cs" />
     <Compile Include="Common\Enums\TransportData.cs" />

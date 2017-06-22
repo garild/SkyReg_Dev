@@ -29,6 +29,8 @@ namespace DataLayer
 
         public int? FlightsElem_Id { get; set; }
 
+        public int? ChargeType { get; set; }
+
         public virtual FlightsElem FlightsElem { get; set; }
 
         public virtual PaymentsSetting PaymentsSetting { get; set; }

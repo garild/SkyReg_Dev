@@ -146,7 +146,7 @@ namespace SkyReg.Forms.ScheduleForm
                         }
                     }
 
-                     foreach (var item in addFlights)
+                  
 
                     fe.ForEach(p =>
                     {
