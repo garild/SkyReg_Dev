@@ -51,8 +51,8 @@ namespace SkyReg
                             UserId = p.User_Id,
                             Lp = p.Lp,
                             UserName = p.User == null ? p.TeamName : p.User.Name,
-                                //Type = p.User.DefinedUserType.Name,
-                                Parachute = p.Parachute.FirstOrDefault().IdNr + " " + p.Parachute.FirstOrDefault().Name,
+                            //Type = p.User.DefinedUserType.Name,
+                            Parachute = p.Parachute.FirstOrDefault().IdNr + " " + p.Parachute.FirstOrDefault().Name,
                             AssemblyType = p.AssemblySelf == true ? "Układa sam" : "Układalnia",
                             Color = p.Color
                         })
@@ -85,7 +85,7 @@ namespace SkyReg
             grdPlaner.AllowUserToResizeRows = false;
             grdPlaner.ReadOnly = true;
             grdPlaner.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-         
+
             grdPlaner.RowHeadersVisible = false;
 
             if (grdPlaner.Rows.Count > 0)
@@ -94,14 +94,14 @@ namespace SkyReg
                     if (item != null)
                     {
                         //item.DefaultCellStyle.BackColor = Color.FromName(item.Cells["Color"].Value.ToString());
-                        if(item.Cells["Color"].Value != null)
-                            item.DefaultCellStyle.BackColor = Color.FromArgb(int.Parse( item.Cells["Color"].Value.ToString()) );
+                        if (item.Cells["Color"].Value != null)
+                            item.DefaultCellStyle.BackColor = Color.FromArgb(int.Parse(item.Cells["Color"].Value.ToString()));
 
                     }
                 }
 
-            }
         }
+
 
         private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -121,7 +121,7 @@ namespace SkyReg
                         }
                     }
                 }
-        
+
 
                 RefreshPlanerList();
             }
@@ -442,9 +442,9 @@ namespace SkyReg
                     llh.FlightNr = fly.FlyNr;
                     llf.Header = llh;
 
-                   
-                   
-                    
+
+
+
                     llf.Items = result.Value.Where(p => p.Flight_Id == flyId)
                         .Select(p => new LLItems
                         {
@@ -454,7 +454,7 @@ namespace SkyReg
                             Status = default(string),//TODO do poprawy encja, brakuje tego elementu
                             ParachuteType = default(string),//TODO do poprawy
                             ParachuteId = _ctx.Model.Database.SqlQuery<int>("SELECT [Parachute_Id] FROM [SkyRegDB].[dbo].[FlightsElemParachutes] WHERE FlightsElem_Id = {0}", p.Id).FirstOrDefault(),
-                    Altitude = p.Flight.Altitude.ToString()
+                            Altitude = p.Flight.Altitude.ToString()
                         })
                         .OrderBy(p => p.Lp)
                         .ToList();
@@ -519,7 +519,7 @@ namespace SkyReg
             _scheduleMoveCopyUsers.Type = TransportData.Move;
             if (grdPlaner.SelectedRows.Count > 0)
             {
-                foreach(DataGridViewRow  row in grdPlaner.SelectedRows)
+                foreach (DataGridViewRow row in grdPlaner.SelectedRows)
                 {
                     _scheduleMoveCopyUsers.IdList.Add((int)row.Cells["UserId"].Value);
                 }
@@ -551,23 +551,23 @@ namespace SkyReg
             RefreshPlanerList();
         }
 
-       
+
         private ScheduleMoveCopyUsers _scheduleMoveCopyUsers = null;
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            Tuple<List<int>, List<int>> dataList = new Tuple<List<int>, List<int>>(null,null);
+            Tuple<List<int>, List<int>> dataList = new Tuple<List<int>, List<int>>(null, null);
 
             using (var _ctx = new SkyRegContextRepository<FlightsElem>())
             {
-               
+
                 if (grdPlaner.SelectedRows.Count > 0)
                 {
                     foreach (DataGridViewRow row in grdPlaner.SelectedRows)
                     {
                         dataList.Item1.Add((int)row.Cells["Id"].Value);
                         dataList.Item2.Add((int)row.Cells["Lp"].Value);
-                      
+
                     }
 
                     //var fe = _ctx.GetAll().Value.Join(dataList.Item1, p => p.User_Id, u => u, (p, u) => p).ToList();
@@ -580,3 +580,4 @@ namespace SkyReg
 
     }
 }
+

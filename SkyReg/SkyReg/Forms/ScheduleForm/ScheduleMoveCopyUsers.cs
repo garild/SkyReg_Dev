@@ -150,7 +150,7 @@ namespace SkyReg.Forms.ScheduleForm
 
                     fe.ForEach(p =>
                     {
-                        // 1. Dodać FlightElement 
+                        // 1. Dodać FlightElement z nowymi Id Flight
                         // 2. Na Podstawinie starego Id z Item1 wyciągnąć Payments i zrobić inserta z nowym FE id
                         // 3. Przepisać Opisy Skok,Układalnia itp. zmienić nazwy lotów - Item2
                         // 4. Zrobić inserta do [dbo].[FlightsElemParachutes]
