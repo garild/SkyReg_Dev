@@ -18,7 +18,15 @@ namespace SkyReg
         public static string AppVer { get; set; }
         public static string LocalMachineName { get; set; }
         public static bool IsDbExists { get; set; }
+
+        public static string GenerateFlightNr(int FlyNr, DateTime FlyDateTime)
+        {
+            return $"LOT {FlyDateTime.Year}/{FlyDateTime.Month}/{FlyDateTime.Day}/{FlyNr}";
+        }
+          
                
     }
+
+
 
 }

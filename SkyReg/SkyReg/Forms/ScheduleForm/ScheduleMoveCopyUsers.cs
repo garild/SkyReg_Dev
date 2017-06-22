@@ -14,12 +14,12 @@ namespace SkyReg.Forms.ScheduleForm
     public partial class ScheduleMoveCopyUsers : KryptonForm
     {
         public TransportData Type { get; set; } = TransportData.Copy;
-        public List<int> IdList { get; set; } = new List<int>();
-        public int Flight_Id { get; set; }
+        public List<int> UserIds { get; set; } = new List<int>();
+        public int FlightId { get; set; }
         public ScheduleMoveCopyUsers()
         {
             InitializeComponent();
-          
+
 
         }
 
@@ -33,16 +33,16 @@ namespace SkyReg.Forms.ScheduleForm
                 if (result.IsSuccess)
                 {
 
-                  grdFlights.DataSource = result.Value
-                     .Where(p => p.FlyDateTime >= datSinceFlights.Value.Date && p.FlyDateTime <= datToFlights.Value.Date)
-                     .OrderBy(p => p.FlyNr)
-                     .Select(p => new
-                     {
-                         Id = p.Id,
-                         Number = "LOT " + p.FlyDateTime.Year + @"/" + p.FlyDateTime.Month + @"/" + p.FlyDateTime.Day + @"/" + p.FlyNr,
-                         Places = p.Airplane.Seats - p.FlightsElem.Count,
-                         Status = p.FlyStatus
-                     }).ToList();
+                    grdFlights.DataSource = result.Value
+                       .Where(p => p.FlyDateTime >= datSinceFlights.Value.Date && p.FlyDateTime <= datToFlights.Value.Date)
+                       .OrderBy(p => p.FlyNr)
+                       .Select(p => new
+                       {
+                           Id = p.Id,
+                           Number = "LOT " + p.FlyDateTime.Year + @"/" + p.FlyDateTime.Month + @"/" + p.FlyDateTime.Day + @"/" + p.FlyNr,
+                           Places = p.Airplane.Seats - p.FlightsElem.Count,
+                           Status = p.FlyStatus
+                       }).ToList();
 
                     DataGridColumnsMap();
                 }
@@ -103,13 +103,13 @@ namespace SkyReg.Forms.ScheduleForm
                 int? seats = (int)grdFlights.SelectedRows[0].Cells["Places"].Value;
                 if (fligthId > 0)
                 {
-                    if (IdList.Count <= seats)
+                    if (UserIds.Count <= seats)
                         using (var _ctx = new SkyRegContextRepository<FlightsElem>())
                         {
                             var fe = _ctx.GetAll().Value;
                             var result = (from p in fe
-                                          join u in IdList on p.User_Id equals u
-                                          where p.Flight_Id == Flight_Id
+                                          join u in UserIds on p.User_Id equals u
+                                          where p.Flight_Id == FlightId
                                           select p).ToList();
 
                             result?.ForEach(x => x.Flight_Id = fligthId);
@@ -125,51 +125,122 @@ namespace SkyReg.Forms.ScheduleForm
             }
             else
             {
-                var addFlights = new Tuple<List<int>,List<string>>(null,null);
-                FlightsElem flyElem = null;
-                Payment pay = null;
-                using (var _ctxPay = new SkyRegContextRepository<Payment>())
-                using (var _ctxFe = new SkyRegContextRepository<FlightsElem>())
+                int userId = UserIds[0];
+                foreach (DataGridViewRow item in grdFlights.Rows)
                 {
-                    var fe = _ctxFe.GetAll().Value;
-                    var result = (from p in fe
-                                  join u in IdList on p.User_Id equals u
-                                  where p.Flight_Id == Flight_Id
-                                  select p).ToList();
-
-                    foreach (DataGridViewRow item in grdFlights.Rows)
+                    if (item.Cells["Checked"].Value != null && (int)item.Cells["Id"].Value != FlightId)
                     {
-                        if (item.Cells["Checked"].Value != null && (bool)item.Cells["Checked"].Value)
+                        //Zaznaczony LOT
+                        int? fligthId = (int)item.Cells["Id"].Value;
+                        //Iliość miejsca
+                        int? seats = (int)item.Cells["Places"].Value;
+                        //Nr lotu
+                        string flightNumber = $"{item.Cells["Number"].Value}";
+                        //Nr FlightElem dla bieżącego LOTU
+                        int Elem_Id = 0;
+
+                        FlightsElem Elem = new FlightsElem();
+                        Payment Pay = new Payment();
+                        Flight Flight = new Flight();
+
+                        if (fligthId > 0)
                         {
-                            addFlights.Item1.Add((int)item.Cells["Id"].Value);
-                            addFlights.Item2.Add($"{item.Cells["Number"].Value}");
+                            if (UserIds.Count <= seats)
+                            {
+                                // Szukam FlightElem dla danego usera i nr lotu
+                                using (var _ctx = new SkyRegContextRepository<FlightsElem>())
+                                {
+
+                                    var IsExists = _ctx.Table.Where(p => p.Flight_Id == fligthId && p.User_Id == userId).FirstOrDefault();
+
+                                    if (IsExists != null)
+                                    {
+                                        KryptonMessageBox.Show($"Wybrany użytkownik jets już zarezerwowany w wylocie o nr {flightNumber.ToUpper()}", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        continue;
+                                    }
+
+                                    var fe = _ctx.GetAll().Value;
+                                    Elem = (from p in fe
+                                            join u in UserIds on p.User_Id equals u
+                                            where p.Flight_Id == FlightId
+                                            select p).FirstOrDefault();
+
+                                    Elem_Id = Elem.Id;
+                                    Elem.Flight_Id = fligthId;
+
+                                    _ctx.InsertEntity(Elem);
+                                }
+
+                                //Sprawdzam jakie Payment ma ten FlightElem
+                                using (var _ctxPay = new SkyRegContextRepository<Payment>())
+                                {
+                                    var payList = _ctxPay.Table.Where(p => p.FlightsElem_Id == Elem_Id).ToList();
+                                    var pakage = _ctxPay.Table.Where(p => p.User_Id == userId && p.Count.Value > default(decimal)).FirstOrDefault();
+                                  
+
+                                    foreach (Payment p in payList)
+                                    {
+                                        var counFlyFromPakage = _ctxPay.GetAll().Value.Where(x => x.Count.Value > 0 && x.User_Id == userId && x.Value == default(decimal)).ToList().Sum(x => x.Count.Value);
+                                      
+                                        //jeśli posiada jakiś wolny pakiet
+                                        if ((pakage?.Count.Value - counFlyFromPakage) > 0)
+                                        {
+                                            Pay = new Payment();
+                                            Pay.IsBooked = true;
+                                            Pay.Date = DateTime.Now;
+                                            Pay.PaymentsSetting_Id = payList[0].PaymentsSetting_Id; // Czy ma być stały paymentSettingId ??
+                                            Pay.User_Id = pakage.User_Id;
+                                            Pay.Value = 0;
+                                            Pay.FlightsElem_Id = Elem.Id;
+                                            Pay.Description = "Skok " + flightNumber;
+                                            Pay.ChargeType = (int)ChargesTypes.Jump;
+                                            Pay.Count = 1;
+                                            _ctxPay.InsertEntity(Pay);
+
+                                            continue;
+                                        }
+                                        if (p.ChargeType.HasValue)
+                                            {
+                                                Pay = new Payment();
+                                                Pay.IsBooked = p.IsBooked;
+                                                Pay.Date = DateTime.Now;
+                                                Pay.PaymentsSetting_Id = p.PaymentsSetting_Id;
+                                                Pay.User_Id = p.User_Id;
+                                                Pay.Value = p.Value;
+                                                Pay.FlightsElem_Id = Elem.Id;
+                                                Pay.Count = 0;
+                                                switch (p.ChargeType.Value)
+                                                {
+                                                    case (int)ChargesTypes.Jump:
+
+                                                        Pay.Description = "Skok " + flightNumber;
+                                                        Pay.ChargeType = (int)ChargesTypes.Jump;
+                                                        _ctxPay.InsertEntity(Pay);
+                                                        break;
+                                                    case (int)ChargesTypes.ParachuteAssembly:
+
+                                                        Pay.Description = "Układanie " + flightNumber;
+                                                        Pay.ChargeType = (int)ChargesTypes.ParachuteAssembly;
+                                                        _ctxPay.InsertEntity(Pay);
+                                                        break;
+                                                    case (int)ChargesTypes.ParachuteRent:
+                                                        {
+                                                            var sqlQuery = $"INSERT INTO [dbo].[FlightsElemParachutes] SELECT {Elem.Id},[Parachute_Id]  FROM [SkyRegDB].[dbo].[FlightsElemParachutes] WHERE FlightsElem_Id = {Elem_Id}";
+
+                                                            Pay.Description = "Spadochron " + flightNumber;
+                                                            Pay.ChargeType = (int)ChargesTypes.ParachuteRent;
+                                                            _ctxPay.InsertEntity(Pay);
+
+                                                            _ctxPay.Model.Database.ExecuteSqlCommand(sqlQuery);
+                                                        }
+                                                        break;
+                                                }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
-
-                  
-
-                    fe.ForEach(p =>
-                    {
-                        // 1. Dodać FlightElement z nowymi Id Flight
-                        // 2. Na Podstawinie starego Id z Item1 wyciągnąć Payments i zrobić inserta z nowym FE id
-                        // 3. Przepisać Opisy Skok,Układalnia itp. zmienić nazwy lotów - Item2
-                        // 4. Zrobić inserta do [dbo].[FlightsElemParachutes]
-
-                        //addFlights.ForEach(x =>
-                        //{
-                        //    flyElem = new FlightsElem();
-                        //    flyElem = p;
-                        //    flyElem.Flight_Id = x;
-
-                        //    if(_ctxFe.InsertEntity(flyElem).IsSuccess)
-                        //    {
-                        //        pay = new Payment();
-                        //        pay
-                        //    }
-                        //});
-
-
-                    });
                 }
             }
         }

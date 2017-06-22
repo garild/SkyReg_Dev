@@ -517,11 +517,12 @@ namespace SkyReg
             _scheduleMoveCopyUsers = FormsOpened<ScheduleMoveCopyUsers>.IsShowDialog(_scheduleMoveCopyUsers);
             _scheduleMoveCopyUsers.FormClosed += _scheduleMoveCopyUsers_FormClosed;
             _scheduleMoveCopyUsers.Type = TransportData.Move;
+            _scheduleMoveCopyUsers.FlightId = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
             if (grdPlaner.SelectedRows.Count > 0)
             {
                 foreach (DataGridViewRow row in grdPlaner.SelectedRows)
                 {
-                    _scheduleMoveCopyUsers.IdList.Add((int)row.Cells["UserId"].Value);
+                    _scheduleMoveCopyUsers.UserIds.Add((int)row.Cells["UserId"].Value);
                 }
                 _scheduleMoveCopyUsers.ShowDialog();
             }
@@ -533,12 +534,12 @@ namespace SkyReg
             _scheduleMoveCopyUsers = FormsOpened<ScheduleMoveCopyUsers>.IsShowDialog(_scheduleMoveCopyUsers);
             _scheduleMoveCopyUsers.FormClosed += _scheduleMoveCopyUsers_FormClosed;
             _scheduleMoveCopyUsers.Type = TransportData.Copy;
-            _scheduleMoveCopyUsers.Flight_Id = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
+            _scheduleMoveCopyUsers.FlightId = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
             if (grdPlaner.SelectedRows.Count > 0)
             {
                 foreach (DataGridViewRow row in grdPlaner.SelectedRows)
                 {
-                    _scheduleMoveCopyUsers.IdList.Add((int)row.Cells["Id"].Value);
+                    _scheduleMoveCopyUsers.UserIds.Add((int)row.Cells["UserId"].Value);
                 }
                 _scheduleMoveCopyUsers.ShowDialog();
             }

@@ -142,5 +142,10 @@ namespace SkyReg
                 }
             }
         }
+
+        private void FlightsForm_Load(object sender, EventArgs e)
+        {
+            RefreshFlightsList();
+        }
     }
 }
