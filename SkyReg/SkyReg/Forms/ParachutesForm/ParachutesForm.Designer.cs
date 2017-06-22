@@ -167,12 +167,23 @@
             // 
             // grdParachute
             // 
+            this.grdParachute.AllowUserToAddRows = false;
+            this.grdParachute.AllowUserToDeleteRows = false;
+            this.grdParachute.AllowUserToResizeColumns = false;
+            this.grdParachute.AllowUserToResizeRows = false;
             this.grdParachute.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdParachute.CausesValidation = false;
             this.grdParachute.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdParachute.Location = new System.Drawing.Point(-1, 0);
             this.grdParachute.Name = "grdParachute";
+            this.grdParachute.ReadOnly = true;
+            this.grdParachute.RowHeadersVisible = false;
+            this.grdParachute.ShowCellErrors = false;
+            this.grdParachute.ShowCellToolTips = false;
+            this.grdParachute.ShowEditingIcon = false;
+            this.grdParachute.ShowRowErrors = false;
             this.grdParachute.Size = new System.Drawing.Size(747, 493);
             this.grdParachute.TabIndex = 1;
             this.grdParachute.DoubleClick += new System.EventHandler(this.btnEdit_Click);
@@ -222,7 +233,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnDelete;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnEdit;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnAdd;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView grdParachute;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView grdParachute;
     }
 }

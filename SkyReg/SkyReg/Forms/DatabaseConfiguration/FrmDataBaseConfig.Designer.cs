@@ -204,6 +204,7 @@
             this.btGenerateDataBase.TabIndex = 0;
             this.btGenerateDataBase.Values.Image = ((System.Drawing.Image)(resources.GetObject("btGenerateDataBase.Values.Image")));
             this.btGenerateDataBase.Values.Text = "Generuj Bazę";
+            this.btGenerateDataBase.Visible = false;
             this.btGenerateDataBase.Click += new System.EventHandler(this.btGenerateDataBase_Click);
             // 
             // StyleManager

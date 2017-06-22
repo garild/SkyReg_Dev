@@ -22,6 +22,7 @@ namespace SkyReg.MainForm
     public partial class FrmLogin : KryptonForm
     {
         private ErrorProvider validateControl = new ErrorProvider();
+        private BaseModel UserConfig { get; set; }
         private  bool IsDbExists = false;
 
         public FrmLogin()
@@ -80,9 +81,12 @@ namespace SkyReg.MainForm
                     using (StreamReader tr2 = new StreamReader(SkyRegUser.UserConfigFile, Encoding.GetEncoding("windows-1250")))
                     {
                         XmlSerializer deserializerUser = new XmlSerializer(typeof(BaseModel));
-                        var userData = (BaseModel)deserializerUser.Deserialize(tr2);
-                        if (userData != null)
-                            Txt_Login.Text = userData.Login;
+                        UserConfig = (BaseModel)deserializerUser.Deserialize(tr2);
+
+                        PassangerList.settings = UserConfig.BasicSettings;
+                        PanelSettings._basicSettings = UserConfig.BasicSettings;
+                        if (UserConfig != null)
+                            Txt_Login.Text = UserConfig.Login;
                     };
                 }
                 
@@ -154,7 +158,8 @@ namespace SkyReg.MainForm
                 XmlSerializer serializer = new XmlSerializer(typeof(BaseModel));
                 userConfig.Login = user.Login;
                 userConfig.UserId = user.Id;
-                userConfig.Roles = new List<UsersRole>() { new UsersRole() { Camera = true, Id = 2, Name = "Shit", SpecialType = 1, TandemPassenger = true, TandemPilot = true, Value = 1500.00 } }; //TODO Usunąć test dodać user.Roles
+                if (UserConfig.BasicSettings != null)
+                    userConfig.BasicSettings = UserConfig.BasicSettings;
                 serializer.Serialize(TW, userConfig);
             }
 

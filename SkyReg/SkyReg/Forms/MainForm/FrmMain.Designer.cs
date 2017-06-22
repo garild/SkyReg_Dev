@@ -65,8 +65,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -152,13 +151,12 @@
             outlookBarButton6.Tag1 = null;
             outlookBarButton6.Tag2 = null;
             outlookBarButton6.Text = "Samoloty";
-            outlookBarButton7.BuddyPage1 = "Orders";
+            outlookBarButton7.BuddyPage1 = "ReportedUsers";
             outlookBarButton7.BuddyPage2 = null;
             outlookBarButton7.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton7.Image")));
             outlookBarButton7.Tag1 = null;
             outlookBarButton7.Tag2 = null;
             outlookBarButton7.Text = "Zgłoszenia";
-            outlookBarButton7.Visible = false;
             outlookBarButton8.BuddyPage1 = "Moneys";
             outlookBarButton8.BuddyPage2 = null;
             outlookBarButton8.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton8.Image")));
@@ -200,7 +198,7 @@
             this.outlookBar.OutlookBarLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(83)))), ((int)(((byte)(92)))));
             this.outlookBar.Padding = new System.Windows.Forms.Padding(12);
             this.outlookBar.Renderer = AC.ExtendedRenderer.Navigator.Renderer.Krypton;
-            this.outlookBar.Size = new System.Drawing.Size(200, 328);
+            this.outlookBar.Size = new System.Drawing.Size(200, 360);
             this.outlookBar.TabIndex = 1;
             this.outlookBar.TabStop = false;
             this.outlookBar.Text = "outlookBar";
@@ -383,23 +381,17 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.customizeToolStripMenuItem,
-            this.optionsToolStripMenuItem});
+            this.tsmSettings});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.toolsToolStripMenuItem.Text = "&Tools";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.toolsToolStripMenuItem.Text = "&Ustawienia";
             // 
-            // customizeToolStripMenuItem
+            // tsmSettings
             // 
-            this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-            this.customizeToolStripMenuItem.Text = "&Customize";
-            // 
-            // optionsToolStripMenuItem
-            // 
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-            this.optionsToolStripMenuItem.Text = "&Options";
+            this.tsmSettings.Name = "tsmSettings";
+            this.tsmSettings.Size = new System.Drawing.Size(152, 22);
+            this.tsmSettings.Text = "&Preferencje";
+            this.tsmSettings.Click += new System.EventHandler(this.tsmSettings_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -592,8 +584,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem customizeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmSettings;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem indexToolStripMenuItem;

@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PassangerList));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmHelp = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +50,6 @@
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -60,25 +57,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1791, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // toolsToolStripMenuItem
-            // 
-            this.toolsToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmSettings});
-            this.toolsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("toolsToolStripMenuItem.Image")));
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-            this.toolsToolStripMenuItem.Text = "&Panel";
-            // 
-            // tsmSettings
-            // 
-            this.tsmSettings.Image = ((System.Drawing.Image)(resources.GetObject("tsmSettings.Image")));
-            this.tsmSettings.Name = "tsmSettings";
-            this.tsmSettings.Size = new System.Drawing.Size(131, 22);
-            this.tsmSettings.Text = "&Ustawienia";
-            this.tsmSettings.Click += new System.EventHandler(this.tsmSettings_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -102,7 +80,7 @@
             this.tsmHelp.Size = new System.Drawing.Size(131, 22);
             this.tsmHelp.Text = "&Informacja";
             // 
-            // FormOutlets
+            // PassangerList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -112,7 +90,7 @@
             this.HeaderStyle = ComponentFactory.Krypton.Toolkit.HeaderStyle.Calendar;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "FormOutlets";
+            this.Name = "PassangerList";
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lista Aktualnych Lotów";
@@ -125,14 +103,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tsmSettings;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem tsmHelp;
+        public  System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
 

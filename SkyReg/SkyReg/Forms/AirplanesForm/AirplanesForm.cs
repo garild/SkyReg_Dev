@@ -26,15 +26,6 @@ namespace SkyReg
             RefreshAirplanesList();
         }
 
-        //private void ParentFormSizeFromParentsWorkSpaceSize()
-        //{
-        //    Size s = new Size();
-        //    s.Height = this.Parent.Size.Height-10;
-        //    s.Width = this.Parent.Size.Width-10;
-        //    this.Size = s;
-        //    this.StartPosition = FormStartPosition.Manual;
-        //}
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();

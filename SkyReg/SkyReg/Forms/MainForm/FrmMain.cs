@@ -27,6 +27,8 @@ namespace SkyReg
             tstrVersion.Text = String.Format("{0}  ", SkyRegUser.AppVer);
             tstrComputerName.Text = SkyRegUser.LocalMachineName;
             tstrLoggedUser.Text = SkyRegUser.UserLogin;
+
+
         }
 
         private void outlookBar1_ButtonClicked(object sender, EventArgs e)
@@ -116,9 +118,18 @@ namespace SkyReg
                     PassangerList = new PassangerList();
                     PassangerList.WindowState = FormWindowState.Maximized;
                     PassangerList.BringToFront();
-
                     PassangerList.Show();
                     PassangerList.Activate();
+                    break;
+                case "ReportedUsers":
+                    ReportedUsersList = FormsOpened<ReportedUsersList>.IsOpened(ReportedUsersList);
+                    ReportedUsersList.MdiParent = this;
+                    ReportedUsersList.WindowState = FormWindowState.Maximized;
+                    ReportedUsersList.FormClosed += ReportedUsersList_FormClosed;
+                    ReportedUsersList.BringToFront();
+                    ReportedUsersList.TopLevel = false;
+                    ReportedUsersList.Show();
+                    ReportedUsersList.Activate();
                     break;
             }
         }
@@ -131,7 +142,7 @@ namespace SkyReg
         private void ScheduleForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             ScheduleForm = null;
-              
+
         }
 
         private void FlightsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -163,6 +174,10 @@ namespace SkyReg
         {
             UsersForm = null;
         }
+        private void ReportedUsersList_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ReportedUsersList = null;
+        }
 
 
         #region Forms
@@ -175,10 +190,22 @@ namespace SkyReg
         private FlightsForm FlightsForm = null;
         private ScheduleForm ScheduleForm = null;
         private PaymentsForm PaymentsForm = null;
-
         private PassangerList PassangerList = null;
-        
+        private ReportedUsersList ReportedUsersList = null;
+
+
         #endregion
 
-    }
-}
+        private void tsmSettings_Click(object sender, EventArgs e)
+        {
+            _panel = FormsOpened<PanelSettings>.IsOpened(_panel);
+            if(_panel.ShowDialog() == DialogResult.OK)
+            {
+                if (Application.OpenForms["PassangerList"] != null)
+                {
+                    (Application.OpenForms["PassangerList"] as PassangerList).GenerateDynamicControls();
+                }
+            }
+        }
+        PanelSettings _panel = null;
+    } }

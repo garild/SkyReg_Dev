@@ -2,7 +2,7 @@
 using SkyRegEnums;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -88,17 +88,17 @@ namespace SkyReg
 
                 nrLotu = grdFlight.SelectedRows[0].Cells["Number"].Value.ToString();
                 if (parachuteRentPrice.Value > 0)
-                    payParachuteRent = SaveOneJump(usr.Id, parachuteRentPrice.Value, false, string.Format("Spadochron {0}", nrLotu), fe.Id);
+                    payParachuteRent = SaveOneJump(usr.Id, parachuteRentPrice.Value, false, string.Format("Spadochron {0}", nrLotu), fe.Id,ChargesTypes.ParachuteRent);
                 if (parachuteAssemblyPrice.Value > 0 && assemblySelf == false)
-                    payAssembly = SaveOneJump(usr.Id, parachuteAssemblyPrice, false, string.Format("Układanie {0}", nrLotu), fe.Id);
+                    payAssembly = SaveOneJump(usr.Id, parachuteAssemblyPrice, false, string.Format("Układanie {0}", nrLotu), fe.Id, ChargesTypes.ParachuteAssembly);
                 if (usersPackages > 0)
                 {
-                    packJump = SaveOneJump(usr.Id, 0, true, string.Format("Skok {0}", nrLotu), fe.Id);
+                    packJump = SaveOneJump(usr.Id, 0, true, string.Format("Skok {0}", nrLotu), fe.Id, ChargesTypes.Jump);
                     usersPackages -= 1;
                 }
                 else
                 {
-                    payJump = SaveOneJump(usr.Id, oneJumpPrice, false, string.Format("Skok {0}", nrLotu), fe.Id);
+                    payJump = SaveOneJump(usr.Id, oneJumpPrice, false, string.Format("Skok {0}", nrLotu), fe.Id, ChargesTypes.Jump);
                 }
 
 
@@ -112,17 +112,17 @@ namespace SkyReg
                         fe = SaveFlghtElemToDB(flightId, usr.Id);
 
                         if (parachuteRentPrice.Value > 0)
-                            payParachuteRent = SaveOneJump(usr.Id, parachuteRentPrice.Value, false, string.Format("Spadochron {0}", nrLotu), fe.Id);
+                            payParachuteRent = SaveOneJump(usr.Id, parachuteRentPrice.Value, false, string.Format("Spadochron {0}", nrLotu), fe.Id, ChargesTypes.ParachuteRent);
                         if (parachuteAssemblyPrice.Value > 0 && assemblySelf == false)
-                            payAssembly = SaveOneJump(usr.Id, parachuteAssemblyPrice, false, string.Format("Układanie {0}", nrLotu), fe.Id);
+                            payAssembly = SaveOneJump(usr.Id, parachuteAssemblyPrice, false, string.Format("Układanie {0}", nrLotu), fe.Id, ChargesTypes.ParachuteAssembly);
                         if (usersPackages > 0)
                         {
-                            packJump = SaveOneJump(usr.Id, 0, true, string.Format("Skok {0}", nrLotu), fe.Id);
+                            packJump = SaveOneJump(usr.Id, 0, true, string.Format("Skok {0}", nrLotu), fe.Id, ChargesTypes.Jump);
                             usersPackages -= 1;
                         }
                         else
                         {
-                            payJump = SaveOneJump(usr.Id, oneJumpPrice, false, string.Format("Skok {0}", nrLotu), fe.Id);
+                            payJump = SaveOneJump(usr.Id, oneJumpPrice, false, string.Format("Skok {0}", nrLotu), fe.Id, ChargesTypes.Jump);
                         }
                     }
                 }
@@ -158,7 +158,7 @@ namespace SkyReg
 
 
 
-        private Payment SaveOneJump(int usrId, decimal? oneJumpPrice, bool count, string description, int flyElem)
+        private Payment SaveOneJump(int usrId, decimal? oneJumpPrice, bool count, string description, int flyElem,ChargesTypes chargeType)
         {
 
             //PaymentsSetting ps = model.PaymentsSetting.Where(p => p.Type == (short)SkyRegEnums.PaymentsTypes.Naleznosc).FirstOrDefault();
@@ -179,6 +179,7 @@ namespace SkyReg
                 pay.IsBooked = true;
                 pay.PaymentsSetting_Id = ps.Id;
                 pay.User_Id = user.Id;
+                pay.ChargeType = (int)chargeType;
                 pay.Value = oneJumpPrice.Value;
                 if (count == false)
                     pay.Count = 0;
@@ -323,7 +324,7 @@ namespace SkyReg
             return result;
         }
 
-        private bool checkBalances()
+        private bool checkBalances() // TODO Poprawić walidację Co jeśli nie wybiorę spadochron??!
         {
             using (SkyRegContext model = new SkyRegContext())
             {
@@ -407,21 +408,9 @@ namespace SkyReg
 
             using (var _ctx = new SkyRegContextRepository<User>())
             {
-                string[] userName = cmbName.Text.Split(' ');
-                string firstName = default(string);
-                string surName = default(string);
-                if (userName.Count() == 2)
-                {
-                    surName = userName[0];
-                    firstName = userName[1];
-                }
-                else
-                {
-                    surName = cmbName.Text;
-                    firstName = cmbName.Text;
-                }
+            
                 User usr = new User();
-                usr.Name = cmbName.SelectedText;
+                usr.Name = cmbName.Text;
                 var result = _ctx.InsertEntity(usr);
 
                 if (result.IsSuccess)

@@ -106,8 +106,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Enums\Actions.cs" />
+    <Compile Include="Common\Enums\ChargesTypes.cs" />
     <Compile Include="Common\Enums\EnumExtensions.cs" />
     <Compile Include="Common\Enums\FlightsStatus.cs" />
+    <Compile Include="Common\Enums\TransportData.cs" />
     <Compile Include="Common\Extensions\FormsOpened.cs" />
     <Compile Include="Common\Extensions\PrimitiveTypeExtensions.cs" />
     <Compile Include="Common\Prints\LoadingList\LLHeader.cs" />
@@ -118,6 +120,7 @@
     <Compile Include="Common\Prints\LoadingList\LoadingListForm.Designer.cs">
       <DependentUpon>LoadingListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Helper\SkyRegUser.cs" />
     <Compile Include="Forms\AirplanesForm\AirplanesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,7 +214,6 @@
     <Compile Include="Forms\ParachutesForm\ParachutesForm.Designer.cs">
       <DependentUpon>ParachutesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PassangerList\BasicSettings.cs" />
     <Compile Include="Forms\PassangerList\PassangerList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +238,18 @@
     <Compile Include="Forms\PaymentsForm\PaymentsForm.Designer.cs">
       <DependentUpon>PaymentsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ReportedUsersList\ReportedUsersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReportedUsersList\ReportedUsersList.Designer.cs">
+      <DependentUpon>ReportedUsersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ReportedUsersList\ReportedUserAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReportedUsersList\ReportedUserAddEdit.Designer.cs">
+      <DependentUpon>ReportedUserAddEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ScheduleForm\ScheduleAddEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,6 +264,12 @@
     </Compile>
     <Compile Include="Forms\ScheduleForm\ScheduleForm.Designer.cs">
       <DependentUpon>ScheduleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ScheduleForm\ScheduleMoveCopyUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ScheduleForm\ScheduleMoveCopyUsers.Designer.cs">
+      <DependentUpon>ScheduleMoveCopyUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SplashScreen\SplashScreen.cs">
       <SubType>Form</SubType>
@@ -344,11 +364,20 @@
     <EmbeddedResource Include="Forms\PaymentsForm\PaymentsForm.resx">
       <DependentUpon>PaymentsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReportedUsersList\ReportedUsersList.resx">
+      <DependentUpon>ReportedUsersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReportedUsersList\ReportedUserAddEdit.resx">
+      <DependentUpon>ReportedUserAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScheduleForm\ScheduleAddEditForm.resx">
       <DependentUpon>ScheduleAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScheduleForm\ScheduleForm.resx">
       <DependentUpon>ScheduleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ScheduleForm\ScheduleMoveCopyUsers.resx">
+      <DependentUpon>ScheduleMoveCopyUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SplashScreen\SplashScreen.af.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
