@@ -170,6 +170,8 @@ namespace SkyReg
                     txtUserName.Text = usr.Name;
                     txtZipCode.Text = usr.ZipCode;
                     dateCertDate.Value = usr.CertDate.HasValue ? usr.CertDate.Value : dateCertDate.MaxDate;
+                    txtInsuranceNr.Text = usr.InsuranceNr;
+                    datInsuranceExpire.Value = usr.InsuranceExpire != null  ? usr.InsuranceExpire : datInsuranceExpire.MaxDate.Date;
                 }
             }
         }
@@ -257,7 +259,7 @@ namespace SkyReg
                 if (txtCertyfikate.Text.HasValue())
                     usr.CertDate = dateCertDate.Value.Date;
                 else
-                    usr.CertDate = dateCertDate.MaxDate;
+                    usr.CertDate = dateCertDate.MaxDate.Date;
 
                 usr.Certificate = txtCertyfikate.Text;
                 usr.City = txtCity.Text;
@@ -271,6 +273,11 @@ namespace SkyReg
                 usr.StreetNr = txtStreetNr.Text;
                 usr.Name = txtUserName.Text;
                 usr.ZipCode = txtZipCode.Text;
+                usr.InsuranceNr = txtInsuranceNr.Text;
+                if (txtInsuranceNr.Text.HasValue())
+                    usr.InsuranceExpire = datInsuranceExpire.Value.Date;
+                else
+                    usr.InsuranceExpire = datInsuranceExpire.MaxDate.Date;
 
                 if (FormState == FormState.Add)
                 {
@@ -289,10 +296,6 @@ namespace SkyReg
                     });
 
                     _ctxUser.Update(usr);
-
-
-                    
-
                 }
                 this.Close();
 

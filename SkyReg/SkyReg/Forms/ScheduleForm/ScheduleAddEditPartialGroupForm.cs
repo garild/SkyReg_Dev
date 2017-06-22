@@ -39,7 +39,7 @@ namespace SkyReg
                             for (int n = 0; n < numUsersCount.Value; n++)
                             {
                                 FlightsElem fe = new FlightsElem();
-                                fe.Color = btnColorGroup.SelectedColor.Name;
+                                fe.Color = btnColorGroup.SelectedColor.ToArgb().ToString();
                                 fe.Flight_Id = fly.Id;
                                 fe.Lp = _ctx.Model.FlightsElem.Where(p => p.Flight.Id == idFly).ToList().Count + 1;
                                 fe.TeamName = txtGroupName.Text;

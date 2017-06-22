@@ -69,6 +69,28 @@
       <HintPath>..\packages\MetroFramework.Fonts.1.2.0.3\lib\net40\MetroFramework.Fonts.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -88,6 +110,14 @@
     <Compile Include="Common\Enums\FlightsStatus.cs" />
     <Compile Include="Common\Extensions\FormsOpened.cs" />
     <Compile Include="Common\Extensions\PrimitiveTypeExtensions.cs" />
+    <Compile Include="Common\Prints\LoadingList\LLHeader.cs" />
+    <Compile Include="Common\Prints\LoadingList\LLItems.cs" />
+    <Compile Include="Common\Prints\LoadingList\LoadingListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Prints\LoadingList\LoadingListForm.Designer.cs">
+      <DependentUpon>LoadingListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AirplanesForm\AirplanesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,7 +265,6 @@
       <DependentUpon>UsersAddEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\Extensions\CommonMethods.cs" />
     <Compile Include="Forms\UsersForm\UsersForm.cs">
       <SubType>Form</SubType>
@@ -255,6 +284,11 @@
     <Compile Include="Forms\UsersTypesForm\UserTypeAddEdit.Designer.cs">
       <DependentUpon>UserTypeAddEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="Common\Prints\LoadingList\LoadingListForm.resx">
+      <DependentUpon>LoadingListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Prints\LoadingList\reportLoadingList.rdlc" />
     <EmbeddedResource Include="Forms\AirplanesForm\AirplanesForm.resx">
       <DependentUpon>AirplanesForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -343,6 +377,8 @@
     <None Include="Common\Resources\EF_dll.reg" />
     <None Include="Instalator\Install.iss" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\SkyReg.Common.Prints.LoadingList.LLHeader.datasource" />
+    <None Include="Properties\DataSources\SkyReg.Common.Prints.LoadingList.LLItems.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -462,6 +498,19 @@
     <Content Include="Resources\dlmodel.edmx.sql" />
     <Content Include="Instalator\Install_P.iss" />
     <Content Include="SkyReg.ico" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\Create_DataBase.sql" />
     <None Include="Common\Resources\logo_opacity.png" />
     <None Include="Common\Resources\logo_.png" />
@@ -475,7 +524,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\FluentValidator\" />
-    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

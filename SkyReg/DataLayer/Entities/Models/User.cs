@@ -58,6 +58,13 @@ namespace DataLayer
         [StringLength(500)]
         public string FaceBook { get; set; }
 
+        [StringLength(500)]
+        public string InsuranceNr { get; set; }
+
+        [Column(TypeName ="Date")]
+        public DateTime InsuranceExpire { get; set; }
+
+
         public int? Group_Id { get; set; }
 
         public virtual ICollection<FlightsElem> FlightsElem { get; set; }

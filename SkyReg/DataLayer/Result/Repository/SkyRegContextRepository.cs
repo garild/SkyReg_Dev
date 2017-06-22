@@ -42,8 +42,6 @@ namespace DataLayer.Result.Repository
 
                 if (!Attached)
                     this.Entities.Add(entity);
-                else
-                    this.Entities.Attach(entity);
 
                 this.context.SaveChanges();
 

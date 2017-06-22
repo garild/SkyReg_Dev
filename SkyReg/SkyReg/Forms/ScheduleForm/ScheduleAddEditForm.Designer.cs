@@ -56,6 +56,7 @@
             this.kryptonPanelEx3 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.btnColorGroup = new ComponentFactory.Krypton.Toolkit.KryptonColorButton();
             this.grdFlightsForGroup = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.CheckColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.kryptonLabel9 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.numUsersCount = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             this.kryptonLabel8 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
@@ -64,7 +65,6 @@
             this.btnSaveCfg = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.CheckColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.kryptonTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.kryptonPanelEx2.SuspendLayout();
@@ -156,6 +156,7 @@
             this.cmbName.Size = new System.Drawing.Size(209, 21);
             this.cmbName.TabIndex = 25;
             this.cmbName.Text = "Brak";
+            this.cmbName.SelectedIndexChanged += new System.EventHandler(this.cmbName_SelectedIndexChanged_1);
             // 
             // kryptonGroup1
             // 
@@ -290,8 +291,6 @@
             // 
             this.btnColor.Location = new System.Drawing.Point(113, 145);
             this.btnColor.Name = "btnColor";
-            this.btnColor.SchemeStandard = ComponentFactory.Krypton.Toolkit.ColorScheme.Basic16;
-            this.btnColor.SchemeThemes = ComponentFactory.Krypton.Toolkit.ColorScheme.None;
             this.btnColor.SelectedColor = System.Drawing.Color.White;
             this.btnColor.Size = new System.Drawing.Size(96, 25);
             this.btnColor.TabIndex = 20;
@@ -393,8 +392,6 @@
             // 
             this.btnColorGroup.Location = new System.Drawing.Point(131, 76);
             this.btnColorGroup.Name = "btnColorGroup";
-            this.btnColorGroup.SchemeStandard = ComponentFactory.Krypton.Toolkit.ColorScheme.Basic16;
-            this.btnColorGroup.SchemeThemes = ComponentFactory.Krypton.Toolkit.ColorScheme.None;
             this.btnColorGroup.SelectedColor = System.Drawing.Color.White;
             this.btnColorGroup.Size = new System.Drawing.Size(96, 25);
             this.btnColorGroup.TabIndex = 25;
@@ -420,6 +417,16 @@
             this.grdFlightsForGroup.Size = new System.Drawing.Size(336, 358);
             this.grdFlightsForGroup.TabIndex = 24;
             this.grdFlightsForGroup.MouseClick += new System.Windows.Forms.MouseEventHandler(this.grdFlightsForGroup_MouseClick);
+            // 
+            // CheckColumn
+            // 
+            this.CheckColumn.FalseValue = "false";
+            this.CheckColumn.HeaderText = "Wybór";
+            this.CheckColumn.IndeterminateValue = "false";
+            this.CheckColumn.Name = "CheckColumn";
+            this.CheckColumn.ReadOnly = true;
+            this.CheckColumn.TrueValue = "true";
+            this.CheckColumn.Width = 50;
             // 
             // kryptonLabel9
             // 
@@ -505,16 +512,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // CheckColumn
-            // 
-            this.CheckColumn.FalseValue = "False";
-            this.CheckColumn.HeaderText = "Wybór";
-            this.CheckColumn.IndeterminateValue = "False";
-            this.CheckColumn.Name = "CheckColumn";
-            this.CheckColumn.ReadOnly = true;
-            this.CheckColumn.TrueValue = "True";
-            this.CheckColumn.Width = 50;
             // 
             // ScheduleAddEditForm
             // 

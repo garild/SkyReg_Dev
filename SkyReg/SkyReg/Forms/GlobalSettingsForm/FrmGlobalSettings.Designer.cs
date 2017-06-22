@@ -378,7 +378,7 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(321, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(161, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(179, 173);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -416,7 +416,7 @@
             this.txtAirportId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAirportId.Location = new System.Drawing.Point(199, 208);
             this.txtAirportId.Name = "txtAirportId";
-            this.txtAirportId.Size = new System.Drawing.Size(168, 20);
+            this.txtAirportId.Size = new System.Drawing.Size(168, 23);
             this.txtAirportId.TabIndex = 27;
             // 
             // kryptonLabel3

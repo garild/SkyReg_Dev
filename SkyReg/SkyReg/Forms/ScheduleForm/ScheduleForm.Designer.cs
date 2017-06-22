@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleForm));
             this.kryptonPanelEx1 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.btnRightCopyRecord = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -45,6 +46,8 @@
             this.btnAdd = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnPrint = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.grdPlaner = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.kryptonHeaderGroup1 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.kryptonPanelEx3 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.btnNext = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -59,6 +62,9 @@
             this.txtAirplane = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonContextMenuItems1 = new ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems();
+            this.kryptonContextMenuItem1 = new ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.kryptonPanelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3.Panel)).BeginInit();
@@ -72,6 +78,7 @@
             this.kryptonHeaderGroup2.SuspendLayout();
             this.kryptonPanelEx4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPlaner)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).BeginInit();
             this.kryptonHeaderGroup1.Panel.SuspendLayout();
@@ -311,7 +318,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdPlaner.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdPlaner.Location = new System.Drawing.Point(0, 0);
+            this.grdPlaner.ContextMenuStrip = this.contextMenuStrip1;
+            this.grdPlaner.Location = new System.Drawing.Point(4, 0);
             this.grdPlaner.Name = "grdPlaner";
             this.grdPlaner.ReadOnly = true;
             this.grdPlaner.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -323,6 +331,21 @@
             this.grdPlaner.TabIndex = 0;
             this.grdPlaner.DragDrop += new System.Windows.Forms.DragEventHandler(this.grdPlaner_DragDrop);
             this.grdPlaner.DragEnter += new System.Windows.Forms.DragEventHandler(this.grdPlaner_DragEnter);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(139, 26);
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
+            this.toolStripMenuItem1.Text = "Zmień kolor";
             // 
             // kryptonHeaderGroup1
             // 
@@ -463,7 +486,7 @@
             this.txtAltitude.Location = new System.Drawing.Point(83, 33);
             this.txtAltitude.Name = "txtAltitude";
             this.txtAltitude.ReadOnly = true;
-            this.txtAltitude.Size = new System.Drawing.Size(175, 20);
+            this.txtAltitude.Size = new System.Drawing.Size(175, 23);
             this.txtAltitude.TabIndex = 1;
             // 
             // txtAirplane
@@ -473,7 +496,7 @@
             this.txtAirplane.Location = new System.Drawing.Point(83, 4);
             this.txtAirplane.Name = "txtAirplane";
             this.txtAirplane.ReadOnly = true;
-            this.txtAirplane.Size = new System.Drawing.Size(175, 20);
+            this.txtAirplane.Size = new System.Drawing.Size(175, 23);
             this.txtAirplane.TabIndex = 0;
             // 
             // kryptonPanelEx2
@@ -506,6 +529,16 @@
             this.btnClose.Values.Text = "Zamknij";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // kryptonContextMenuItem1
+            // 
+            this.kryptonContextMenuItem1.Text = "Menu Item";
+            // 
+            // colorDialog1
+            // 
+            this.colorDialog1.AllowFullOpen = false;
+            this.colorDialog1.AnyColor = true;
+            this.colorDialog1.SolidColorOnly = true;
+            // 
             // ScheduleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -530,6 +563,7 @@
             this.kryptonHeaderGroup2.ResumeLayout(false);
             this.kryptonPanelEx4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPlaner)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).EndInit();
             this.kryptonHeaderGroup1.Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).EndInit();
@@ -574,5 +608,10 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnPreview;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnRightCopyRecord;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnCopy;
+        private ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems kryptonContextMenuItems1;
+        private ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem kryptonContextMenuItem1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }

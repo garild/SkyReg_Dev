@@ -85,6 +85,8 @@ namespace SkyReg
             grdUsers.Columns["Phone"].Visible = false;
             grdUsers.Columns["Email"].Visible = false;
             grdUsers.Columns["FaceBook"].Visible = false;
+            grdUsers.Columns["InsuranceNr"].Visible = false;
+            
           
             grdUsers.Columns["DefinedUserType"].Visible = false;
             grdUsers.Columns["Operator"].Visible = false;
@@ -93,17 +95,22 @@ namespace SkyReg
             grdUsers.Columns["Order"].Visible = false;
             grdUsers.Columns["Group_Id"].Visible = false;
             grdUsers.Columns["Group"].Visible = false;
+            grdUsers.Columns["Payment"].Visible = false;
 
             grdUsers.Columns["City"].DisplayIndex = 2;
             grdUsers.Columns["CertDate"].DisplayIndex = 3;
 
    
             grdUsers.Columns["City"].Width = 200;
-            grdUsers.Columns["CertDate"].Width = 200;
+            grdUsers.Columns["CertDate"].Width = 150;
+            grdUsers.Columns["InsuranceExpire"].Width = 150;
+            grdUsers.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
       
             grdUsers.Columns["City"].HeaderText = "Miasto";
             grdUsers.Columns["CertDate"].HeaderText = "Data wygaśnięcia licencji";
+            grdUsers.Columns["Name"].HeaderText = "Nazwisko i imię";
+            grdUsers.Columns["InsuranceExpire"].HeaderText = "Data wygaśnięcia ubezpiecz.";
 
 
             grdUsers.ReadOnly = true;

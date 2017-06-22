@@ -33,20 +33,18 @@ namespace SkyReg
             LoadFlightsOnGrid();
             LoadFlightsOnGridGroup();
             LoadParachutes();
-            LoadUsers();
-
-            if (FormState == FormState.Edit)
-            {
-                //TODO do zrobienia ps
-            }
+            LoadUsers();            
         }
 
         private void SaveToBaseAdd()
         {
-            using(SkyRegContext model = new SkyRegContext())
+            using (SkyRegContext model = new SkyRegContext())
             {
                 int selUserType = (int)cmbUsersType.SelectedValue;
-                int selParachute = (int)cmbParachute.SelectedValue;
+                int? selParachute = null;
+
+                if (cmbParachute.SelectedValue != null && (int)cmbParachute.SelectedValue != 0)
+                    selParachute = (int)cmbParachute.SelectedValue;
                 bool assemblySelf = false;
 
                 User usr = model.User.Where(p => p.Id == selectedUserId).FirstOrDefault();
@@ -59,8 +57,13 @@ namespace SkyReg
                 decimal usersMoney = numBalanceMoney.Value + numCashIncome.Value;
                 decimal usersPackages = numBalancePackage.Value;
                 decimal? oneJumpPrice = model.DefinedUserType.Where(p => p.Id == (int)cmbUsersType.SelectedValue).Select(p => p.Value).FirstOrDefault();
-                decimal? parachuteRentPrice = model.Parachute.Where(p => p.Id == (int)cmbParachute.SelectedValue).Select(p => p.RentValue).FirstOrDefault();
-                decimal? parachuteAssemblyPrice = model.Parachute.AsNoTracking().Where(p => p.Id == (int)cmbParachute.SelectedValue).Select(p => p.AssemblyValue).FirstOrDefault();
+                decimal? parachuteRentPrice = null;
+                decimal? parachuteAssemblyPrice = null;
+                if (selParachute != null)
+                {
+                    parachuteRentPrice = model.Parachute.Where(p => p.Id == (int)cmbParachute.SelectedValue).Select(p => p.RentValue).FirstOrDefault();
+                    parachuteAssemblyPrice = model.Parachute.AsNoTracking().Where(p => p.Id == (int)cmbParachute.SelectedValue).Select(p => p.AssemblyValue).FirstOrDefault();
+                }
                 int currentFlightId = (int)grdFlight.SelectedRows[0].Cells["Id"].Value;
 
                 //TODO dodać bieżący skok
@@ -76,7 +79,13 @@ namespace SkyReg
                 //Bieżący skok
                 flightId = (int)grdFlight.SelectedRows[0].Cells["Id"].Value;
                 FlightsElem fe = SaveFlghtElemToDB(flightId, usr.Id);
-                
+
+
+                if (parachuteRentPrice == null)
+                    parachuteRentPrice = 0;
+                if (parachuteAssemblyPrice == null)
+                    parachuteAssemblyPrice = 0;
+
                 nrLotu = grdFlight.SelectedRows[0].Cells["Number"].Value.ToString();
                 if (parachuteRentPrice.Value > 0)
                     payParachuteRent = SaveOneJump(usr.Id, parachuteRentPrice.Value, false, string.Format("Spadochron {0}", nrLotu), fe.Id);
@@ -115,7 +124,7 @@ namespace SkyReg
                         {
                             payJump = SaveOneJump(usr.Id, oneJumpPrice, false, string.Format("Skok {0}", nrLotu), fe.Id);
                         }
-                    }         
+                    }
                 }
             }
 
@@ -125,7 +134,7 @@ namespace SkyReg
 
         private FlightsElem SaveFlghtElemToDB(int flightId, int usrId)
         {
-            using(var _ctx = new SkyRegContextRepository<FlightsElem>())
+            using (var _ctx = new SkyRegContextRepository<FlightsElem>())
             {
                 FlightsElem fe = new FlightsElem();
 
@@ -136,15 +145,15 @@ namespace SkyReg
                 else
                     fe.AssemblySelf = false;
 
-                fe.Lp = _ctx.Model.FlightsElem.Where(p=>p.Flight.Id == flightId).ToList().Count + 1;
+                fe.Lp = _ctx.Model.FlightsElem.Where(p => p.Flight.Id == flightId).ToList().Count + 1;
                 fe.Parachute.Add(_ctx.Model.Parachute.FirstOrDefault(p => p.Id == (int)cmbParachute.SelectedValue));
                 fe.User_Id = usrId;
-                fe.Color = btnColor.SelectedColor.Name;
+                fe.Color = btnColor.SelectedColor.ToArgb().ToString();
 
                 _ctx.InsertEntity(fe);
                 return fe;
             }
-            
+
         }
 
 
@@ -157,7 +166,7 @@ namespace SkyReg
             using (var _paySettings = new SkyRegContextRepository<PaymentsSetting>())
             using (var _user = new SkyRegContextRepository<User>())
             using (var _pay = new SkyRegContextRepository<Payment>())
-            using( var _FlyElem = new SkyRegContextRepository<FlightsElem>())
+            using (var _FlyElem = new SkyRegContextRepository<FlightsElem>())
             {
                 pay = new Payment();
                 PaymentsSetting ps = _paySettings.Table.Where(p => p.Type == (short)SkyRegEnums.PaymentsTypes.Naleznosc).FirstOrDefault();
@@ -186,6 +195,7 @@ namespace SkyReg
         {
             bool result = true;
             int idUser = default(int);
+            string errorMessage = default(string);
 
             errorProvider1.Clear();
 
@@ -217,7 +227,7 @@ namespace SkyReg
                     selectedUserId = idUser;
                 }
             }
-            if(result == true)
+            if (result == true)
             {
                 if (checkBalances() == false)
                     result = false;
@@ -236,7 +246,7 @@ namespace SkyReg
             //Sprawdzam wolne miejsca
             string message = default(string);
 
-            if(result == true)
+            if (result == true)
             {
                 if (FormState == FormState.Add)
                 {
@@ -259,9 +269,55 @@ namespace SkyReg
                             }
                         }
                     }
-                    if (message != default(string))
-                        KryptonMessageBox.Show(message, "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    errorMessage += message + "\n";
                 }
+            }
+
+            //Sprawdzanie czy użytkownik nie występuje na wybranych wylotach
+            if (result == true)
+            {
+                List<int> idUsersOfSelectedFlights = new List<int>();
+
+                using (SkyRegContext ctx = new SkyRegContext())
+                {
+                    //Bieżący lot
+                    int? selFlightId = (int)grdFlight.SelectedRows[0].Cells["Id"].Value;
+
+                    if (selFlightId != null)
+                    {
+                        idUsersOfSelectedFlights = ctx.FlightsElem
+                            .Include("Flight")
+                            .Include("User")
+                            .Where(p => p.Flight.Id == selFlightId.Value)
+                            .Select(p => p.User.Id)
+                            .ToList();
+                        //Wyloty z list na formatce dodawania
+                        foreach (DataGridViewRow item in grdFlightsListSelectedForUser.Rows)
+                        {
+                            if (item.Cells["Check"].Value != null)
+                            {
+                                selFlightId = (int)item.Cells["Id"].Value;
+
+                                idUsersOfSelectedFlights.AddRange(ctx.FlightsElem
+                                        .Include("Flight")
+                                        .Include("User")
+                                        .Where(p => p.Flight.Id == selFlightId.Value)
+                                        .Select(p => p.User.Id)
+                                        .ToList());
+                            }
+                        }
+                        if( idUsersOfSelectedFlights.Any(p=>p == idUser))
+                        {
+                            result = false;
+                            errorMessage += "Wybrany użytkownik jest już dodany do wybranych wylotów!";
+                        }
+                    }
+                }
+            }
+
+            if(result == false)
+            {
+                KryptonMessageBox.Show(errorMessage, "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
 
             return result;
@@ -283,11 +339,17 @@ namespace SkyReg
                 int currentFlightId = (int)grdFlight.SelectedRows[0].Cells["Id"].Value;
 
                 decimal needJumps = 1;
-                foreach(DataGridViewRow item in grdFlightsListSelectedForUser.Rows)
+                foreach (DataGridViewRow item in grdFlightsListSelectedForUser.Rows)
                 {
                     if (item.Cells["Check"].Value != null && (int)item.Cells["Id"].Value != currentFlightId)
                         needJumps += 1;
                 }
+
+                //muszą być zera gdy to brak spadochronu w przypadku pasażera tandemu
+                if (parachuteRentPrice == null)
+                    parachuteRentPrice = 0;
+                if (parachuteAssemblyPrice == null)
+                    parachuteAssemblyPrice = 0;
 
                 //wypożyczenie liczę za wszystkie skoki przed pomniejszeniem za pakiety
                 decimal needMoneyForRentPar = needJumps * parachuteRentPrice.Value;
@@ -303,9 +365,9 @@ namespace SkyReg
 
                 decimal needMoneyForAll = needMoneyForJumps + needMoneyForRentPar + needMoneyForAssembly;
 
-                if(numBalanceMoney.Value < needMoneyForAll)
+                if (numBalanceMoney.Value < needMoneyForAll)
                 {
-                    if(KryptonMessageBox.Show($"Potrzeba {needMoneyForAll}, a saldo wynosi {usersMoney}. Czy zezwolić na kredyt?", "Kredyt?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    if (KryptonMessageBox.Show($"Potrzeba {needMoneyForAll}, a saldo wynosi {usersMoney}. Czy zezwolić na kredyt?", "Kredyt?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     {
                         return false;
                     }
@@ -343,12 +405,12 @@ namespace SkyReg
         {
             int userId = 0;
 
-            using(var _ctx = new SkyRegContextRepository<User>())
+            using (var _ctx = new SkyRegContextRepository<User>())
             {
                 string[] userName = cmbName.Text.Split(' ');
                 string firstName = default(string);
                 string surName = default(string);
-                if(userName.Count() == 2)
+                if (userName.Count() == 2)
                 {
                     surName = userName[0];
                     firstName = userName[1];
@@ -362,7 +424,7 @@ namespace SkyReg
                 usr.Name = cmbName.SelectedText;
                 var result = _ctx.InsertEntity(usr);
 
-                if(result.IsSuccess)
+                if (result.IsSuccess)
                     userId = result.Value.Id;
             }
             return userId;
@@ -392,6 +454,9 @@ namespace SkyReg
 
                     var allParachutes = _contextParachute.Table.OrderBy(p => p.IdNr).ToList();
                     List<Parachute> avaliableParachutes = new List<Parachute>();
+                    Parachute par = new Parachute();
+                    par.IdNr = "Brak";
+                    avaliableParachutes.Add(par);
                     foreach (var item in allParachutes)
                     {
                         if (!parachuteNotAvaliable.Any(p => p.Id == item.Id))
@@ -421,7 +486,7 @@ namespace SkyReg
         {
             using (var _ctx = new SkyRegContextRepository<User>())
             {
-                var result = _ctx.GetAll(Tuple.Create(nameof(DefinedUserType),"",""));
+                var result = _ctx.GetAll(Tuple.Create(nameof(DefinedUserType), "", ""));
                 if (result.IsSuccess)
                 {
                     int selectedUser = 0;
@@ -429,16 +494,16 @@ namespace SkyReg
                         selectedUser = (int)cmbName.SelectedValue;
 
                     List<DefinedUserType> usersTypesList = null;
-                    if (selectedUser > 0 )
+                    if (selectedUser > 0)
                     {
                         var user = result.Value.Where(p => p.Id == selectedUser).FirstOrDefault();
-                        if (user.DefinedUserType?.Count > 0 )
+                        if (user.DefinedUserType?.Count > 0)
                             usersTypesList = new List<DefinedUserType>(user.DefinedUserType);
                         else
                             usersTypesList = _ctx.Model.DefinedUserType.OrderBy(p => p.Name).ToList();
                     }
-                    
-                    if(usersTypesList?.Count > 0)
+
+                    if (usersTypesList?.Count > 0)
                     {
                         cmbUsersType.DataSource = usersTypesList;
                         cmbUsersType.DisplayMember = "Name";
@@ -460,7 +525,7 @@ namespace SkyReg
                         Id = p.Id
                     }).ToList();
 
-                if(users.Count > 0)
+                if (users.Count > 0)
                 {
                     cmbName.DataSource = users;
                     cmbName.DisplayMember = "Name";
@@ -511,9 +576,9 @@ namespace SkyReg
                 cmbParachute.DisplayMember = "IdNr";
                 cmbParachute.ValueMember = "Id";
 
-                if (cmbParachute.SelectedValue != null)
+                if (cmbParachute.SelectedValue != null && (int)cmbParachute.SelectedValue != 0)
                 {
-                    var parachute = _ctx.GetAll(Tuple.Create(nameof(User),"","")).Value?.Where(p => p.Id == (int)cmbParachute.SelectedValue).FirstOrDefault();
+                    var parachute = _ctx.GetAll(Tuple.Create(nameof(User), "", "")).Value?.Where(p => p.Id == (int)cmbParachute.SelectedValue).FirstOrDefault();
                     if (parachute.User != null)
                     {
                         cmbAssemblyType.Items.Add("Układam sam");
@@ -523,7 +588,8 @@ namespace SkyReg
                         cmbAssemblyType.Items.Add("Układalnia");
                 }
             }
-            cmbAssemblyType.SelectedIndex = 0;
+
+            cmbAssemblyType.SelectedItem = "Układalnia";
         }
 
         private void SetFlightsUserView()
@@ -544,7 +610,7 @@ namespace SkyReg
             LoadBalance();
         }
 
-         private void LoadBalance()
+        private void LoadBalance()
         {
             using (var _ctx = new SkyRegContextRepository<Payment>())
             {
@@ -555,33 +621,33 @@ namespace SkyReg
                     var dataUser = _ctx.GetAll(Tuple.Create(nameof(User), nameof(PaymentsSetting), "")).Value?.Where(p => p.User_Id == userId).ToList();
 
                     var incomeM = dataUser
-                        .Where(p=> p.Count == 0 
-                        && (p.PaymentsSetting.Type == 0 
-                        || p.PaymentsSetting.Type == 2 
-                        || p.PaymentsSetting.Type == 6) )
+                        .Where(p => p.Count == 0
+                        && (p.PaymentsSetting.Type == 0
+                        || p.PaymentsSetting.Type == 2
+                        || p.PaymentsSetting.Type == 6))
                         .ToList();
                     var incomeMoney = incomeM.Sum(p => p.Value);
 
                     var outcomeM = dataUser
-                        .Where(p => p.Count == 0 
-                        && (p.PaymentsSetting.Type == 1 
-                        || p.PaymentsSetting.Type == 4 
+                        .Where(p => p.Count == 0
+                        && (p.PaymentsSetting.Type == 1
+                        || p.PaymentsSetting.Type == 4
                         || p.PaymentsSetting.Type == 5))
                         .ToList();
                     var outcomeMoney = outcomeM.Sum(p => p.Value);
 
                     var incomeP = dataUser
-                        .Where(p => p.Count != 0 
-                        && (p.PaymentsSetting.Type == 0 
-                        || p.PaymentsSetting.Type == 2 
+                        .Where(p => p.Count != 0
+                        && (p.PaymentsSetting.Type == 0
+                        || p.PaymentsSetting.Type == 2
                         || p.PaymentsSetting.Type == 6))
                         .ToList();
                     var incomePackage = incomeP.Sum(p => p.Count);
 
                     var outcomeP = dataUser
-                        .Where(p => p.Count != 0 
-                        && (p.PaymentsSetting.Type == 1 
-                        || p.PaymentsSetting.Type == 4 
+                        .Where(p => p.Count != 0
+                        && (p.PaymentsSetting.Type == 1
+                        || p.PaymentsSetting.Type == 4
                         || p.PaymentsSetting.Type == 5))
                         .ToList();
                     var outcomePackage = outcomeP.Sum(p => p.Count);
@@ -641,7 +707,6 @@ namespace SkyReg
         }
 
 
-
         private void grdFlightsForGroup_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left && grdFlightsForGroup.SelectedRows.Count == 1)
@@ -659,6 +724,32 @@ namespace SkyReg
                 else
                     grdFlightsForGroup.SelectedRows[0].Cells[0].Value = true;
 
+            }
+        }
+
+        private void cmbName_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            cmbName.ValueMember = "Id";
+            if (cmbParachute.SelectedItem != null && cmbName.SelectedItem != null)
+            {
+                using (SkyRegContext ctx = new SkyRegContext())
+                {
+                    int? userId = (int)cmbName.SelectedValue;
+
+                    if (userId != null)
+                    {
+                        var parach = ctx.Parachute.Include("User").Where(p => p.User.Id == userId.Value).FirstOrDefault();
+                        if (parach != null)
+                        {
+
+                            foreach (Parachute item in cmbParachute.Items)
+                            {
+                                if (item.Id == parach.Id)
+                                    cmbParachute.SelectedIndex = cmbParachute.Items.IndexOf(item);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

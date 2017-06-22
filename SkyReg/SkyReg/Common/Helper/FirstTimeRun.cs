@@ -65,10 +65,10 @@ namespace SkyReg
                             Name ="Dev",
                             Group = gpSkoczkowie
                         };
-
+                        _contextUser.InsertEntity(usr);
                         var opr = new Operator()
                         {
-                            User = usr,
+                            User_Id = usr.Id,
                             Type = (int)OperatorTypes.Operator
                         };
 

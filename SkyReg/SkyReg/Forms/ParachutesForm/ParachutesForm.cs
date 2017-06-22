@@ -50,7 +50,7 @@ namespace SkyReg
             grdParachute.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             grdParachute.Columns["RentValue"].Width = 150;
             grdParachute.Columns["AssemblyValue"].Width = 150;
-            grdParachute.Columns["OwnerName"].Width = 300;
+            grdParachute.Columns["OwnerName"].Width = 200;
 
             grdParachute.Columns["IdNr"].HeaderText = "Numer idetyfikacyjny";
             grdParachute.Columns["Name"].HeaderText = "Nazwa spadochronu";

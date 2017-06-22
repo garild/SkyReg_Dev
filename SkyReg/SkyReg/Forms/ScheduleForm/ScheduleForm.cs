@@ -12,6 +12,7 @@ using SkyRegEnums;
 using SkyReg.Common.Extensions;
 using DataLayer.Result.Repository;
 using DataLayer.Entities.DBContext;
+using SkyReg.Common.Prints.LoadingList;
 
 namespace SkyReg
 {
@@ -85,17 +86,43 @@ namespace SkyReg
                 grdPlaner.AllowUserToResizeRows = false;
                 grdPlaner.ReadOnly = true;
                 grdPlaner.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                grdPlaner.MultiSelect = false;
+                grdPlaner.MultiSelect = true;
                 grdPlaner.RowHeadersVisible = false;
 
                 foreach (DataGridViewRow item in grdPlaner.Rows)
                 {
                     if (item != null)
                     {
-                        item.DefaultCellStyle.BackColor = Color.FromName(item.Cells["Color"].Value.ToString());
+                        //item.DefaultCellStyle.BackColor = Color.FromName(item.Cells["Color"].Value.ToString());
+                        if(item.Cells["Color"].Value != null)
+                            item.DefaultCellStyle.BackColor = Color.FromArgb(int.Parse( item.Cells["Color"].Value.ToString()) );
+
                     }
                 }
 
+            }
+        }
+
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            using (SkyRegContext model = new SkyRegContext())
+            {
+                if (colorDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (DataGridViewRow item in grdPlaner.SelectedRows)
+                    {
+                        int flightId = (int)item.Cells["Id"].Value;
+                        var flyElem = model.FlightsElem.Where(p => p.Id == flightId).FirstOrDefault();
+                        if (flyElem != null)
+                        {
+                            flyElem.Color = colorDialog1.Color.ToArgb().ToString();
+                            model.Entry(flyElem).State = System.Data.Entity.EntityState.Modified;
+                            model.SaveChanges();
+                        }
+                    }
+                }
+
+                RefreshPlanerList();
             }
         }
 
@@ -131,28 +158,30 @@ namespace SkyReg
 
         private void SetFlightsListView()
         {
-            grdFlights.Columns["Id"].Visible = false;
-            grdFlights.Columns["Status"].Visible = false;
-            grdFlights.RowHeadersVisible = false;
-
-            grdFlights.Columns["Places"].Width = 50;
-            grdFlights.Columns["Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            grdFlights.Columns["Number"].HeaderText = "Numer lotu";
-            grdFlights.Columns["Places"].HeaderText = "Wolne";
-
-            grdFlights.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            grdFlights.MultiSelect = false;
-            grdFlights.AllowUserToResizeRows = false;
-
-            foreach (DataGridViewRow item in grdFlights.Rows)
+            if (grdFlights.Rows.Count > 0)
             {
-                if (int.Parse(item.Cells["Status"].Value.ToString()) == (int)FlightsStatus.Executed)
-                    item.DefaultCellStyle.BackColor = Color.LightGreen;
-                if (int.Parse(item.Cells["Status"].Value.ToString()) == (int)FlightsStatus.Canceled)
-                    item.DefaultCellStyle.BackColor = Color.LightPink;
-            }
+                grdFlights.Columns["Id"].Visible = false;
+                grdFlights.Columns["Status"].Visible = false;
+                grdFlights.RowHeadersVisible = false;
 
+                grdFlights.Columns["Places"].Width = 50;
+                grdFlights.Columns["Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                grdFlights.Columns["Number"].HeaderText = "Numer lotu";
+                grdFlights.Columns["Places"].HeaderText = "Wolne";
+
+                grdFlights.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                grdFlights.MultiSelect = false;
+                grdFlights.AllowUserToResizeRows = false;
+
+                foreach (DataGridViewRow item in grdFlights.Rows)
+                {
+                    if (int.Parse(item.Cells["Status"].Value.ToString()) == (int)FlightsStatus.Executed)
+                        item.DefaultCellStyle.BackColor = Color.LightGreen;
+                    if (int.Parse(item.Cells["Status"].Value.ToString()) == (int)FlightsStatus.Canceled)
+                        item.DefaultCellStyle.BackColor = Color.LightPink;
+                }
+            }
 
         }
 
@@ -242,7 +271,11 @@ namespace SkyReg
                     ScheduleAddEditForm.grdPlaner = grdPlaner;
                     if (ScheduleAddEditForm.ShowDialog() == DialogResult.OK)
                     {
+                        int lastSelectedFlight = grdFlights.SelectedRows[0].Index;
+
                         RefreshFlightsList();
+
+                        grdFlights.Rows[lastSelectedFlight].Selected = true;
                     }
                 }
             }
@@ -378,12 +411,62 @@ namespace SkyReg
                         if (KryptonMessageBox.Show("Zmienić status lotu na zrealizowany?", "Zmienić?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             fly.FlyStatus = (int)FlightsStatus.Executed;
+                            model.Entry(fly).State = System.Data.Entity.EntityState.Modified;
                             model.SaveChanges();
                             RefreshFlightsList();
                             RefreshPlanerList();
+
+                            PrintDataAndForm();
                         }
                     }
 
+                }
+            }
+        }
+
+        private void PrintDataAndForm()
+        {
+            using (var _ctxFly = new SkyRegContextRepository<Flight>())
+            using (var _ctx = new SkyRegContextRepository<FlightsElem>())
+            {
+
+                int flyId = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
+                var result = _ctx.GetAll(Tuple.Create(nameof(User), nameof(Flight), ""));
+                if (result.IsSuccess)
+                {
+                    var fly = _ctxFly.GetAll(Tuple.Create(nameof(Airplane), "", "")).Value.Where(p => p.Id == flyId).FirstOrDefault();
+                    GlobalSetting gs = _ctx.Model.GlobalSetting.Where(p => p.Id == 1).FirstOrDefault();
+
+                    LoadingListForm llf = new LoadingListForm();
+                    LLHeader llh = new LLHeader();
+                    llh.Airplane = string.Format("{0} {1}", fly.Airplane.Name, fly.Airplane.RegNr);
+                    if (gs != null)
+                        llh.Airport = gs.AirportsName;
+                    else
+                        llh.Airport = default(string);
+                    llh.Date = fly.FlyDateTime.ToString("yyyy-MM-dd");
+                    llh.FlightNr = fly.FlyNr;
+                    llf.Header = llh;
+
+                   
+                   
+                    
+                    llf.Items = result.Value.Where(p => p.Flight_Id == flyId)
+                        .Select(p => new LLItems
+                        {
+                            Lp = p.Lp.ToString(),
+                            Name = p.User.Name,
+                            JumpNr = default(string),//TODO do poprawy
+                            Status = default(string),//TODO do poprawy encja, brakuje tego elementu
+                            ParachuteType = default(string),//TODO do poprawy
+                            ParachuteId = _ctx.Model.Database.SqlQuery<int>("SELECT [Parachute_Id] FROM [SkyRegDB].[dbo].[FlightsElemParachutes] WHERE FlightsElem_Id = {0}", p.Id).FirstOrDefault(),
+                    Altitude = p.Flight.Altitude.ToString()
+                        })
+                        .OrderBy(p => p.Lp)
+                        .ToList();
+
+
+                    llf.ShowDialog();
                 }
             }
         }
@@ -392,5 +475,7 @@ namespace SkyReg
         {
             this.Close();
         }
+
+
     }
 }
