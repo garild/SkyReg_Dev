@@ -33,6 +33,7 @@ namespace SkyReg
         {
             RefreshFlightsList();
             RefreshDataList();
+
         }
 
         private void RefreshPlanerList()
@@ -440,18 +441,17 @@ namespace SkyReg
                         llh.Airport = default(string);
                     llh.Date = fly.FlyDateTime.ToString("yyyy-MM-dd");
                     llh.FlightNr = fly.FlyNr;
+                    llh.Organizer = "Skyvan Service";
                     llf.Header = llh;
 
                     llf.Items = result.Value.Where(p => p.Flight_Id == flyId)
-
-                        
 
                         .Select(p => new LLItems
                         {
                             Lp = p.Lp.ToString(),
                             Name = p.User.Name,
-                            JumpNr = default(string),//TODO do poprawy
-                            Status = default(string),//TODO do poprawy encja, brakuje tego elementu
+                            JumpNr = default(string),//TODO do ustalenia co tu ma być
+                            Status = _ctx.Model.Database.SqlQuery<string>("select Name from DefinedUserType where Id = {0}", p.UsersTypeId).FirstOrDefault(),
                             ParachuteType = _ctx.Model.Database.SqlQuery<string>("select Parachute.Name from FlightsElemParachutes join Parachute on Parachute.Id = FlightsElemParachutes.Parachute_Id where FlightsElem_Id = {0}", p.Id).FirstOrDefault(),
                             ParachuteId = _ctx.Model.Database.SqlQuery<string>("select Parachute.IdNr from FlightsElemParachutes join Parachute on Parachute.Id = FlightsElemParachutes.Parachute_Id where FlightsElem_Id = {0}", p.Id).FirstOrDefault(),
                             Altitude = p.Flight.Altitude.ToString()
@@ -577,7 +577,10 @@ namespace SkyReg
             }
         }
 
-
+        private void ScheduleForm_Shown(object sender, EventArgs e)
+        {
+            SetFlightsListView();
+        }
     }
 }
 

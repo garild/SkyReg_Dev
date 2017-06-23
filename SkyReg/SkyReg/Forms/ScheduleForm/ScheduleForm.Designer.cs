@@ -41,14 +41,13 @@
             this.kryptonHeaderGroup2 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.kryptonPanelEx4 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.grdPlaner = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCopy = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnTransport = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnDelete = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnAdd = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnPrint = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.grdPlaner = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.kryptonHeaderGroup1 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.kryptonPanelEx3 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.btnNext = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -255,7 +254,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdPlaner.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdPlaner.Location = new System.Drawing.Point(-1, 1);
+            this.grdPlaner.ContextMenuStrip = this.contextMenuStrip1;
+            this.grdPlaner.Location = new System.Drawing.Point(4, 0);
             this.grdPlaner.Name = "grdPlaner";
             this.grdPlaner.ReadOnly = true;
             this.grdPlaner.RowHeadersVisible = false;
@@ -264,10 +264,25 @@
             this.grdPlaner.ShowCellToolTips = false;
             this.grdPlaner.ShowEditingIcon = false;
             this.grdPlaner.ShowRowErrors = false;
-            this.grdPlaner.Size = new System.Drawing.Size(523, 591);
-            this.grdPlaner.TabIndex = 16;
+            this.grdPlaner.Size = new System.Drawing.Size(518, 592);
+            this.grdPlaner.TabIndex = 0;
             this.grdPlaner.DragDrop += new System.Windows.Forms.DragEventHandler(this.grdPlaner_DragDrop);
             this.grdPlaner.DragEnter += new System.Windows.Forms.DragEventHandler(this.grdPlaner_DragEnter);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(139, 26);
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
+            this.toolStripMenuItem1.Text = "Zmień kolor";
             // 
             // btnCopy
             // 
@@ -338,44 +353,6 @@
             this.btnPrint.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Values.Image")));
             this.btnPrint.Values.Text = "&Drukuj";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // grdPlaner
-            // 
-            this.grdPlaner.AllowDrop = true;
-            this.grdPlaner.AllowUserToAddRows = false;
-            this.grdPlaner.AllowUserToDeleteRows = false;
-            this.grdPlaner.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grdPlaner.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdPlaner.ContextMenuStrip = this.contextMenuStrip1;
-            this.grdPlaner.Location = new System.Drawing.Point(4, 0);
-            this.grdPlaner.Name = "grdPlaner";
-            this.grdPlaner.ReadOnly = true;
-            this.grdPlaner.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPlaner.ShowCellErrors = false;
-            this.grdPlaner.ShowCellToolTips = false;
-            this.grdPlaner.ShowEditingIcon = false;
-            this.grdPlaner.ShowRowErrors = false;
-            this.grdPlaner.Size = new System.Drawing.Size(557, 592);
-            this.grdPlaner.TabIndex = 0;
-            this.grdPlaner.DragDrop += new System.Windows.Forms.DragEventHandler(this.grdPlaner_DragDrop);
-            this.grdPlaner.DragEnter += new System.Windows.Forms.DragEventHandler(this.grdPlaner_DragEnter);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(139, 26);
-            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
-            this.toolStripMenuItem1.Text = "Zmień kolor";
             // 
             // kryptonHeaderGroup1
             // 
@@ -581,6 +558,7 @@
             this.Name = "ScheduleForm";
             this.Text = "ScheduleForm";
             this.Load += new System.EventHandler(this.ScheduleForm_Load);
+            this.Shown += new System.EventHandler(this.ScheduleForm_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3.Panel)).EndInit();
             this.kryptonHeaderGroup3.Panel.ResumeLayout(false);

@@ -208,4 +208,16 @@ namespace SkyReg
             }
         }
         PanelSettings _panel = null;
+
+        private void dodajKluczToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LicenceAddKeyForm lakf = new LicenceAddKeyForm();
+            lakf.ShowDialog();
+        }
+
+        private void informacjeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LicenceInfoForm lif = new LicenceInfoForm();
+            lif.ShowDialog();
+        }
     } }

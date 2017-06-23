@@ -19,20 +19,24 @@ namespace SkyReg
         [STAThread]
         static void Main()
         {
-            var expDate = Settings.Default.Properties["ExpDate"].DefaultValue.ToString();
+            //var expDate = Settings.Default.Properties["ExpDate"].DefaultValue.ToString();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             //try
             //{
-            if (DateTime.Now < Convert.ToDateTime(expDate))
-            {
-                _splashScreen = FormsOpened<SplashScreen>.IsOpened(_splashScreen);
-                _splashScreen.WindowState = FormWindowState.Normal;
-                _splashScreen.StartPosition = FormStartPosition.CenterScreen;
+            //if (DateTime.Now < Convert.ToDateTime(expDate))
+            //{
+            _splashScreen = FormsOpened<SplashScreen>.IsOpened(_splashScreen);
+            _splashScreen.WindowState = FormWindowState.Normal;
+            _splashScreen.StartPosition = FormStartPosition.CenterScreen;
 
-                if (_splashScreen.ShowDialog() == DialogResult.OK)
+            if (_splashScreen.ShowDialog() == DialogResult.OK)
+            {
+
+                if (Licence() == true)
                 {
+
                     FrmLogin frm = new FrmLogin();
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
@@ -43,10 +47,17 @@ namespace SkyReg
                     else
                         Application.Exit();
                 }
-
+                else
+                {
+                    MessageBox.Show("Brak licencji.\nProszę wprowadzić klucz\n lub kontakt z nr tel. 502-333-661", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    LicenceAddKeyForm lakf = new LicenceAddKeyForm();
+                    lakf.ShowDialog();
+                }
             }
-            else
-                Msg.Show("Termin wersji demo SkyReg upłynął", "Informacja!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            //}
+            //else
+            //    Msg.Show("Termin wersji demo SkyReg upłynął", "Informacja!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             //}
             //catch (Exception ex)
             //{
@@ -56,6 +67,17 @@ namespace SkyReg
             //    Application.Exit();
             //}
 
+        }
+
+        private static bool Licence()
+        {
+            bool result = false;
+            if (Settings.Default.LicenceKey == "0okm)OKM" && DateTime.Now.Date <= DateTime.Parse("2017-07-31"))
+                result = true;
+            if (Settings.Default.LicenceKey == "ZAQ12wsx")
+                result = true;
+
+            return result;
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
