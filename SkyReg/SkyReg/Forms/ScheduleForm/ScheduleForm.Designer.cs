@@ -560,7 +560,6 @@
             this.Name = "ScheduleForm";
             this.Text = "ScheduleForm";
             this.Load += new System.EventHandler(this.ScheduleForm_Load);
-            this.Shown += new System.EventHandler(this.ScheduleForm_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3.Panel)).EndInit();
             this.kryptonHeaderGroup3.Panel.ResumeLayout(false);

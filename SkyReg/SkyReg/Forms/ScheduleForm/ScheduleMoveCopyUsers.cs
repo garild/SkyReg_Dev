@@ -130,6 +130,7 @@ namespace SkyReg.Forms.ScheduleForm
                 {
                     if (item.Cells["Checked"].Value != null && (int)item.Cells["Id"].Value != FlightId)
                     {
+                        bool usedPacked = false;
                         //Zaznaczony LOT
                         int? fligthId = (int)item.Cells["Id"].Value;
                         //Ilość miejsca
@@ -200,7 +201,7 @@ namespace SkyReg.Forms.ScheduleForm
                                             Pay.Count = 1;
                                             _ctxPay.InsertEntity(Pay);
 
-                                            continue;
+                                            usedPacked = true;
                                         }
 
                                         userType = _ctxPay.Model.DefinedUserType.FirstOrDefault(x => x.Id == Elem.UsersTypeId);
@@ -212,6 +213,7 @@ namespace SkyReg.Forms.ScheduleForm
                                         Pay.User_Id = p.User_Id;
                                         Pay.FlightsElem_Id = Elem.Id;
                                         Pay.Count = 0;
+
                                         //jeśli ma wzięty spdachron
                                         if (parachuteId > 0)
                                         {
@@ -226,7 +228,13 @@ namespace SkyReg.Forms.ScheduleForm
                                                         Pay.Value = userType.Value;
                                                         Pay.Description = "Skok " + flightNumber;
                                                         Pay.ChargeType = (int)ChargesTypes.Jump;
-                                                        _ctxPay.InsertEntity(Pay);
+                                                        if (usedPacked)
+                                                            _ctxPay.InsertEntity(Pay);
+                                                        else
+                                                        {
+                                                            Pay.Value = userType.Value;
+                                                            _ctxPay.InsertEntity(Pay);
+                                                        }
                                                         break;
                                                     case (int)ChargesTypes.ParachuteAssembly:
 
@@ -247,6 +255,7 @@ namespace SkyReg.Forms.ScheduleForm
                                                         break;
                                                 }
                                             }
+
                                         }
                                         else
                                         {
@@ -258,6 +267,10 @@ namespace SkyReg.Forms.ScheduleForm
                                                 _ctxPay.InsertEntity(Pay);
                                             }
                                         }
+
+                                      
+
+                                        usedPacked = false;
                                     }
                                 }
                             }
@@ -265,6 +278,7 @@ namespace SkyReg.Forms.ScheduleForm
                     }
                 }
             }
+            this.Close();
         }
 
         private void ScheduleMoveCopyUsers_Load(object sender, EventArgs e)
