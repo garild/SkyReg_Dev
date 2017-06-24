@@ -200,6 +200,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1133, 634);
             this.Controls.Add(this.kryptonHeaderGroup1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PaymentsForm";
             this.Text = "Finanse";
             this.Load += new System.EventHandler(this.PaymentsForm_Load);

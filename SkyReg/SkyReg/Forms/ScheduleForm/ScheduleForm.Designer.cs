@@ -556,6 +556,7 @@
             this.ClientSize = new System.Drawing.Size(1219, 729);
             this.Controls.Add(this.kryptonPanelEx2);
             this.Controls.Add(this.kryptonPanelEx1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ScheduleForm";
             this.Text = "ScheduleForm";
             this.Load += new System.EventHandler(this.ScheduleForm_Load);

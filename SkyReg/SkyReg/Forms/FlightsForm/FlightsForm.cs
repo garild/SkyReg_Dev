@@ -11,6 +11,7 @@ using DataLayer;
 using SkyReg.Common.Extensions;
 using SkyRegEnums;
 using DataLayer.Entities.DBContext;
+using System.Data.Entity.Infrastructure;
 
 namespace SkyReg
 {
@@ -128,15 +129,26 @@ namespace SkyReg
             {
                 using (SkyRegContext model = new SkyRegContext())
                 {
-                    int idFlight = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
-                    Flight fly = model.Flight.Where(p => p.Id == idFlight).FirstOrDefault();
-                    if (fly != null)
+                    try
                     {
-                        if (KryptonMessageBox.Show("Usunąć zaznaczoną pozycję?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        int idFlight = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
+                        Flight fly = model.Flight.Where(p => p.Id == idFlight).FirstOrDefault();
+                        if (fly != null)
                         {
-                            model.Flight.Remove(fly);
-                            model.SaveChanges();
-                            RefreshFlightsList();
+                            if (KryptonMessageBox.Show("Usunąć zaznaczoną pozycję?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                model.Flight.Remove(fly);
+                                model.SaveChanges();
+                                RefreshFlightsList();
+                            }
+                        }
+                    }
+                    catch (DbUpdateException ex)
+                    {
+
+                        if (ErrorInterceptor.IsForeignKeyError(ex))
+                        {
+                            KryptonMessageBox.Show("Aby usunąć LOT należy usunąć najpierw wszystkich użytkowników przypietych do tego LOTU!", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
                     }
                 }

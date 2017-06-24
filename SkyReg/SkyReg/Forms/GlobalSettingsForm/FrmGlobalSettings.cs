@@ -13,6 +13,7 @@ using System.Globalization;
 using SkyRegEnums;
 using DataLayer.Result.Repository;
 using DataLayer.Entities.DBContext;
+using System.Data.Entity.Infrastructure;
 
 namespace SkyReg
 {
@@ -210,19 +211,30 @@ namespace SkyReg
             {
                 if (KryptonMessageBox.Show("Usunąć zaznaczoną pozycję?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    foreach (DataGridViewRow item in grdPayment.SelectedRows)
+                    try
                     {
-                        using (SkyRegContext model = new SkyRegContext())
+                        foreach (DataGridViewRow item in grdPayment.SelectedRows)
                         {
-                            int IDps = (int)item.Cells["Id"].Value;
-                            var paySetToDelete = model.PaymentsSetting.Where(p => p.Id == IDps).FirstOrDefault();
-                            if (paySetToDelete != null)
+                            using (SkyRegContext model = new SkyRegContext())
                             {
-                                model.PaymentsSetting.Remove(paySetToDelete);
-                                model.SaveChanges();
-                                PaymentsTypesLoad();
-                                PaymentViewSettings();
+                                int IDps = (int)item.Cells["Id"].Value;
+                                var paySetToDelete = model.PaymentsSetting.Where(p => p.Id == IDps).FirstOrDefault();
+                                if (paySetToDelete != null)
+                                {
+                                    model.PaymentsSetting.Remove(paySetToDelete);
+                                    model.SaveChanges();
+                                    PaymentsTypesLoad();
+                                    PaymentViewSettings();
+                                }
                             }
+                        }
+                    }
+                    catch (DbUpdateException ex) //GT
+                    {
+
+                        if (ErrorInterceptor.IsForeignKeyError(ex))
+                        {
+                            KryptonMessageBox.Show("Nie można usunąć tego typu płatności gdyż posiada on elementy relatywne!", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
                     }
                 }

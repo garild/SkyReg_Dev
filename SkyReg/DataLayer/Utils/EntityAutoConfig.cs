@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity.Core.EntityClient;
-using System.Linq;
-using System.Text;
 
 namespace DataLayer.Utils
 {
@@ -43,5 +40,8 @@ namespace DataLayer.Utils
                 //TODO: Handle exception
             }
         }
+
+      
+      
     }
 }
