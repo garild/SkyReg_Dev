@@ -127,8 +127,6 @@ ClientBin/
 modulesbin/
 tempbin/
 
-# EPiServer Site file (VPP)
-AppData/
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -206,3 +204,5 @@ obj
 bin
 .vs/
 *.suo
+*.exe
+/SkyReg/SkyReg/Instalator/SkyReg.exe

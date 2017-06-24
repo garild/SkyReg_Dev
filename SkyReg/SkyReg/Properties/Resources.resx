@@ -118,28 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="logo_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo_.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Create_DataBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Create_DataBase.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
   </data>
-  <data name="logo_opacity" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo_opacity.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="parachute" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\AppData\parachute.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="parachute2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\AppData\parachute2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="userstypes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\AppData\userstypes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Setting VF1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\AppData\Setting VF1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="airplane" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\AppData\airplane.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="skydiver" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\AppData\skydiver.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DLModel_edmx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dlmodel.edmx.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
   </data>
 </root>

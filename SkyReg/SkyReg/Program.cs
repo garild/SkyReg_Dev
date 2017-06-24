@@ -3,6 +3,9 @@ using SkyReg.MainForm;
 using SkyReg.Utils;
 using System;
 using System.Windows.Forms;
+using SkyReg.Common.Extensions;
+using SkyReg.Forms.SplashScreen;
+using SkyReg.Properties;
 
 namespace SkyReg
 {
@@ -16,47 +19,52 @@ namespace SkyReg
         [STAThread]
         static void Main()
         {
-
+            var expDate = Settings.Default.Properties["ExpDate"].DefaultValue.ToString();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            if (CommonMethods.isNetworkWorking())
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            //try
+            //{
+            if (DateTime.Now < Convert.ToDateTime(expDate))
             {
-                //    if (System.Diagnostics.Process.GetProcessesByName("EMnet").Length > 1 && hasRestart)
-                //    {
-                //        KryptonMessageBox.Show("Aplikacja została już wcześniej uruchomiona !", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //        return;
-                //    }
+                _splashScreen = FormsOpened<SplashScreen>.IsOpened(_splashScreen);
+                _splashScreen.WindowState = FormWindowState.Normal;
+                _splashScreen.StartPosition = FormStartPosition.CenterScreen;
 
-                AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-                Application.ApplicationExit += Application_ApplicationExit;
-                FirstTimeRun.CheckAndAdd();
-                FrmLogin frm = new FrmLogin();
-                if (frm.ShowDialog() == DialogResult.OK)
+                if (_splashScreen.ShowDialog() == DialogResult.OK)
                 {
-                    frm.Close();
-                    Application.Run(new FrmMain());
-                    
+                    FrmLogin frm = new FrmLogin();
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        frm.Close();
+                        _frmMain = FormsOpened<FrmMain>.IsOpened(_frmMain);
+                        Application.Run(_frmMain);
+                    }
+                    else
+                        Application.Exit();
                 }
-                else
-                    Application.Exit();
+
             }
             else
-                Msg.Show("Brak połaczenia z internetem", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
-        private static void Application_ApplicationExit(object sender, EventArgs e)
-        {
-            if (hasRestart)
-                Application.Restart();
-            else
-                Application.ExitThread();
+                Msg.Show("Termin wersji demo SkyReg upłynął", "Informacja!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //}
+            //catch (Exception ex)
+            //{
+            //    _splashScreen.Close();
+            //    Msg.Show("Wystąpił błąd, treść : " + ex.Message, "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            //    Application.Exit();
+            //}
+
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            //ExceptionLogger.UnhandledException(e, "Program - Main()");
-            Msg.Show("Wystąpił błąd - zresetuj połączenie sieciowe i spróbuj ponownie uruchomić program", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            return;
+            Msg.Show($"Wystąpił błąd w {nameof(Program)}, treść : {(e.ExceptionObject as Exception).Message}", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            Application.Exit();
         }
+
+        public static FrmMain _frmMain = null;
+        public static SplashScreen _splashScreen = null;
     }
 }

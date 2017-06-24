@@ -61,82 +61,47 @@ namespace SkyReg.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to DECLARE @result bit = 0
+        ///
+        ///IF db_id(&apos;DataBaseName&apos;) IS NOT NULL
+        ///BEGIN
+        ///	set @result = 0
+        ///END
+        ///ELSE
+        ///BEGIN
+        ///	CREATE DATABASE DataBaseName
+        ///	set @result = 1
+        ///END
+        ///
+        ///SELECT @Result.
         /// </summary>
-        internal static System.Drawing.Bitmap airplane {
+        internal static string Create_DataBase {
             get {
-                object obj = ResourceManager.GetObject("airplane", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("Create_DataBase", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to 
+        ///-- --------------------------------------------------
+        ///-- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
+        ///-- --------------------------------------------------
+        ///-- Date Created: 06/15/2017 20:03:10
+        ///-- Generated from EDMX file: F:\Projekty 2017\Repozytorium2\SkyReg_Dev\SkyReg\DataLayer\DLModel.edmx
+        ///-- --------------------------------------------------
+        ///
+        ///SET QUOTED_IDENTIFIER OFF;
+        ///GO
+        ///USE [SkyRegDB];
+        ///GO
+        ///IF SCHEMA_ID(N&apos;dbo&apos;) IS NULL EXECUTE(N&apos;CREATE SCHEMA [dbo]&apos;);
+        ///GO
+        ///
+        ///-- ----- [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static System.Drawing.Bitmap logo_ {
+        internal static string DLModel_edmx {
             get {
-                object obj = ResourceManager.GetObject("logo_", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap logo_opacity {
-            get {
-                object obj = ResourceManager.GetObject("logo_opacity", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap parachute {
-            get {
-                object obj = ResourceManager.GetObject("parachute", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap parachute2 {
-            get {
-                object obj = ResourceManager.GetObject("parachute2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Setting_VF1 {
-            get {
-                object obj = ResourceManager.GetObject("Setting VF1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap skydiver {
-            get {
-                object obj = ResourceManager.GetObject("skydiver", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap userstypes {
-            get {
-                object obj = ResourceManager.GetObject("userstypes", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("DLModel_edmx", resourceCulture);
             }
         }
     }
