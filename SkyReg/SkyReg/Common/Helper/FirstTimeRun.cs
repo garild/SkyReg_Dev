@@ -63,7 +63,7 @@ namespace SkyReg
                             Login = "admin",
                             Password = "s7PNTS7UQzg=",
                             Name ="Dev",
-                            Group = gpSkoczkowie
+                            Group_Id = gpSkoczkowie.Id
                         };
                         _contextUser.InsertEntity(usr);
                         var opr = new Operator()

@@ -37,7 +37,7 @@
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cMSDatabase = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnDatabaseCfg = new System.Windows.Forms.ToolStripMenuItem();
             this.Txt_Pasword = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.Txt_Login = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
@@ -45,7 +45,7 @@
             this.kryptonPanelEx1.SuspendLayout();
             this.kryptonPanelEx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
+            this.cMSDatabase.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonPanelEx1
@@ -132,7 +132,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.ContextMenuStrip = this.contextMenuStrip1;
+            this.pictureBox2.ContextMenuStrip = this.cMSDatabase;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(12, 12);
             this.pictureBox2.Name = "pictureBox2";
@@ -141,13 +141,14 @@
             this.pictureBox2.TabIndex = 21;
             this.pictureBox2.TabStop = false;
             // 
-            // contextMenuStrip1
+            // cMSDatabase
             // 
-            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cMSDatabase.DropShadowEnabled = false;
+            this.cMSDatabase.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.cMSDatabase.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnDatabaseCfg});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 26);
+            this.cMSDatabase.Name = "contextMenuStrip1";
+            this.cMSDatabase.Size = new System.Drawing.Size(173, 48);
             // 
             // btnDatabaseCfg
             // 
@@ -207,7 +208,7 @@
             this.kryptonPanelEx2.ResumeLayout(false);
             this.kryptonPanelEx2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.cMSDatabase.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -222,7 +223,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox Txt_Pasword;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox Txt_Login;
         private ComponentFactory.Krypton.Toolkit.KryptonManager StyleManager;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ContextMenuStrip cMSDatabase;
         private System.Windows.Forms.ToolStripMenuItem btnDatabaseCfg;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;

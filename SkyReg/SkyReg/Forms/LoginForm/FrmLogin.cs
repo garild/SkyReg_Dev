@@ -29,7 +29,17 @@ namespace SkyReg.MainForm
         {
             InitializeComponent();
             LoadSettings();
+            //AllowDbConfig();
         }
+
+        //private void AllowDbConfig()
+        //{
+        //    if (Txt_Login.Text.ToLower() == "@ps")
+        //        if (Txt_Pasword.Text.ToLower() == "barev")
+        //            btnDatabaseCfg.Visible = true;
+        //        else
+        //            btnDatabaseCfg.Visible = false;
+        //}
 
         private bool ValidateControls()
         {
@@ -206,5 +216,6 @@ namespace SkyReg.MainForm
         }
 
         private FrmDataBaseConfig frmDataBaseConfig = null;
+
     }
 }

@@ -168,7 +168,7 @@
             // 
             this.txtInsuranceNr.Location = new System.Drawing.Point(731, 174);
             this.txtInsuranceNr.Name = "txtInsuranceNr";
-            this.txtInsuranceNr.Size = new System.Drawing.Size(208, 23);
+            this.txtInsuranceNr.Size = new System.Drawing.Size(208, 20);
             this.txtInsuranceNr.TabIndex = 38;
             // 
             // numBalanceMoney
@@ -291,7 +291,7 @@
             // 
             this.txtFacebook.Location = new System.Drawing.Point(434, 203);
             this.txtFacebook.Name = "txtFacebook";
-            this.txtFacebook.Size = new System.Drawing.Size(138, 23);
+            this.txtFacebook.Size = new System.Drawing.Size(138, 20);
             this.txtFacebook.TabIndex = 13;
             // 
             // kryptonLabel13
@@ -307,7 +307,7 @@
             // 
             this.txtEmail.Location = new System.Drawing.Point(434, 174);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(138, 23);
+            this.txtEmail.Size = new System.Drawing.Size(138, 20);
             this.txtEmail.TabIndex = 12;
             // 
             // kryptonLabel12
@@ -323,7 +323,7 @@
             // 
             this.txtPhone.Location = new System.Drawing.Point(434, 145);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(138, 23);
+            this.txtPhone.Size = new System.Drawing.Size(138, 20);
             this.txtPhone.TabIndex = 9;
             // 
             // kryptonLabel11
@@ -348,14 +348,14 @@
             // 
             this.txtCity.Location = new System.Drawing.Point(207, 174);
             this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(144, 23);
+            this.txtCity.Size = new System.Drawing.Size(144, 20);
             this.txtCity.TabIndex = 11;
             // 
             // txtZipCode
             // 
             this.txtZipCode.Location = new System.Drawing.Point(65, 174);
             this.txtZipCode.Name = "txtZipCode";
-            this.txtZipCode.Size = new System.Drawing.Size(80, 23);
+            this.txtZipCode.Size = new System.Drawing.Size(80, 20);
             this.txtZipCode.TabIndex = 10;
             // 
             // kryptonLabel8
@@ -371,7 +371,7 @@
             // 
             this.txtStreetNr.Location = new System.Drawing.Point(287, 145);
             this.txtStreetNr.Name = "txtStreetNr";
-            this.txtStreetNr.Size = new System.Drawing.Size(64, 23);
+            this.txtStreetNr.Size = new System.Drawing.Size(64, 20);
             this.txtStreetNr.TabIndex = 8;
             // 
             // kryptonLabel7
@@ -396,7 +396,7 @@
             // 
             this.txtStreet.Location = new System.Drawing.Point(65, 145);
             this.txtStreet.Name = "txtStreet";
-            this.txtStreet.Size = new System.Drawing.Size(183, 23);
+            this.txtStreet.Size = new System.Drawing.Size(183, 20);
             this.txtStreet.TabIndex = 7;
             // 
             // dateCertDate
@@ -431,7 +431,7 @@
             // 
             this.txtCertyfikate.Location = new System.Drawing.Point(168, 102);
             this.txtCertyfikate.Name = "txtCertyfikate";
-            this.txtCertyfikate.Size = new System.Drawing.Size(183, 23);
+            this.txtCertyfikate.Size = new System.Drawing.Size(183, 20);
             this.txtCertyfikate.TabIndex = 5;
             // 
             // btnCheckLogin
@@ -469,7 +469,7 @@
             this.txtPassword.Location = new System.Drawing.Point(168, 73);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '●';
-            this.txtPassword.Size = new System.Drawing.Size(183, 23);
+            this.txtPassword.Size = new System.Drawing.Size(183, 20);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -477,14 +477,14 @@
             // 
             this.txtLogin.Location = new System.Drawing.Point(168, 44);
             this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(183, 23);
+            this.txtLogin.Size = new System.Drawing.Size(183, 20);
             this.txtLogin.TabIndex = 2;
             // 
             // txtUserName
             // 
             this.txtUserName.Location = new System.Drawing.Point(168, 15);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(183, 23);
+            this.txtUserName.Size = new System.Drawing.Size(183, 20);
             this.txtUserName.TabIndex = 0;
             // 
             // kryptonLabel1
@@ -548,6 +548,7 @@
             this.Controls.Add(this.kryptonPanelEx2);
             this.Controls.Add(this.kryptonPanelEx1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UsersAddEditForm";

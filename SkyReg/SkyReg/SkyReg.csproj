@@ -304,6 +304,7 @@
     <Compile Include="Forms\UsersTypesForm\UserTypeAddEdit.Designer.cs">
       <DependentUpon>UserTypeAddEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="Common\Prints\LoadingList\LoadingListForm.resx">
       <DependentUpon>LoadingListForm.cs</DependentUpon>
