@@ -142,7 +142,7 @@ namespace SkyReg.Forms.ScheduleForm
                         FlightsElem Elem = new FlightsElem();
                         Payment Pay = new Payment();
                         Flight Flight = new Flight();
-
+                        DefinedUserType userType = new DefinedUserType();
                         if (fligthId > 0)
                         {
                             if (UserIds.Count <= seats)
@@ -180,6 +180,13 @@ namespace SkyReg.Forms.ScheduleForm
 
                                     foreach (Payment p in payList)
                                     {
+                                        var sql = $"SELECT [Parachute_Id]  FROM [SkyRegDB].[dbo].[FlightsElemParachutes] WHERE FlightsElem_Id = {Elem_Id}";
+                                        var parachuteId = _ctxPay.Model.Database.ExecuteSqlCommand(sql);
+
+                                     
+                                      
+
+
                                         var counFlyFromPakage = _ctxPay.GetAll().Value.Where(x => x.Count.Value > 0 && x.User_Id == userId && x.Value == default(decimal)).ToList().Sum(x => x.Count.Value);
                                       
                                         //jeśli posiada jakiś wolny pakiet
@@ -199,7 +206,11 @@ namespace SkyReg.Forms.ScheduleForm
 
                                             continue;
                                         }
-                                        if (p.ChargeType.HasValue)
+
+                                        //jeśli ma wzięty spdachron
+                                        if (parachuteId > 0)
+                                        {
+                                            if (p.ChargeType.HasValue)
                                             {
                                                 Pay = new Payment();
                                                 Pay.IsBooked = p.IsBooked;
@@ -235,6 +246,7 @@ namespace SkyReg.Forms.ScheduleForm
                                                         }
                                                         break;
                                                 }
+                                            }
                                         }
                                     }
                                 }

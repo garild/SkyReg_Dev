@@ -32,6 +32,7 @@ namespace DataLayer.Entities.DBContext
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Airplane>()
                 .HasMany(e => e.Flight)
                 .WithOptional(e => e.Airplane)
