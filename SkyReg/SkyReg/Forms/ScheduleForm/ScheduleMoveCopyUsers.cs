@@ -132,17 +132,19 @@ namespace SkyReg.Forms.ScheduleForm
                     {
                         //Zaznaczony LOT
                         int? fligthId = (int)item.Cells["Id"].Value;
-                        //Iliość miejsca
+                        //Ilość miejsca
                         int? seats = (int)item.Cells["Places"].Value;
                         //Nr lotu
                         string flightNumber = $"{item.Cells["Number"].Value}";
                         //Nr FlightElem dla bieżącego LOTU
                         int Elem_Id = 0;
 
+                        //Encja lokalne
                         FlightsElem Elem = new FlightsElem();
                         Payment Pay = new Payment();
                         Flight Flight = new Flight();
                         DefinedUserType userType = new DefinedUserType();
+
                         if (fligthId > 0)
                         {
                             if (UserIds.Count <= seats)
@@ -150,7 +152,6 @@ namespace SkyReg.Forms.ScheduleForm
                                 // Szukam FlightElem dla danego usera i nr lotu
                                 using (var _ctx = new SkyRegContextRepository<FlightsElem>())
                                 {
-
                                     var IsExists = _ctx.Table.Where(p => p.Flight_Id == fligthId && p.User_Id == userId).FirstOrDefault();
 
                                     if (IsExists != null)
@@ -176,17 +177,12 @@ namespace SkyReg.Forms.ScheduleForm
                                 {
                                     var payList = _ctxPay.Table.Where(p => p.FlightsElem_Id == Elem_Id).ToList();
                                     var pakage = _ctxPay.Table.Where(p => p.User_Id == userId && p.Count.Value > default(decimal)).FirstOrDefault();
-                                  
+
+                                    var sql = $"SELECT [Parachute_Id]  FROM [dbo].[FlightsElemParachutes] WHERE FlightsElem_Id = {Elem_Id}";
+                                    int parachuteId = _ctxPay.Model.Database.SqlQuery<int>(sql).FirstOrDefault();
 
                                     foreach (Payment p in payList)
                                     {
-                                        var sql = $"SELECT [Parachute_Id]  FROM [SkyRegDB].[dbo].[FlightsElemParachutes] WHERE FlightsElem_Id = {Elem_Id}";
-                                        var parachuteId = _ctxPay.Model.Database.ExecuteSqlCommand(sql);
-
-                                     
-                                      
-
-
                                         var counFlyFromPakage = _ctxPay.GetAll().Value.Where(x => x.Count.Value > 0 && x.User_Id == userId && x.Value == default(decimal)).ToList().Sum(x => x.Count.Value);
                                       
                                         //jeśli posiada jakiś wolny pakiet
@@ -207,23 +203,27 @@ namespace SkyReg.Forms.ScheduleForm
                                             continue;
                                         }
 
+                                        userType = _ctxPay.Model.DefinedUserType.FirstOrDefault(x => x.Id == Elem.UsersTypeId);
+
+                                        Pay = new Payment();
+                                        Pay.IsBooked = p.IsBooked;
+                                        Pay.Date = DateTime.Now;
+                                        Pay.PaymentsSetting_Id = p.PaymentsSetting_Id;
+                                        Pay.User_Id = p.User_Id;
+                                        Pay.FlightsElem_Id = Elem.Id;
+                                        Pay.Count = 0;
                                         //jeśli ma wzięty spdachron
                                         if (parachuteId > 0)
                                         {
                                             if (p.ChargeType.HasValue)
                                             {
-                                                Pay = new Payment();
-                                                Pay.IsBooked = p.IsBooked;
-                                                Pay.Date = DateTime.Now;
-                                                Pay.PaymentsSetting_Id = p.PaymentsSetting_Id;
-                                                Pay.User_Id = p.User_Id;
                                                 Pay.Value = p.Value;
-                                                Pay.FlightsElem_Id = Elem.Id;
-                                                Pay.Count = 0;
+                                              
                                                 switch (p.ChargeType.Value)
                                                 {
                                                     case (int)ChargesTypes.Jump:
 
+                                                        Pay.Value = userType.Value;
                                                         Pay.Description = "Skok " + flightNumber;
                                                         Pay.ChargeType = (int)ChargesTypes.Jump;
                                                         _ctxPay.InsertEntity(Pay);
@@ -246,6 +246,16 @@ namespace SkyReg.Forms.ScheduleForm
                                                         }
                                                         break;
                                                 }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if(userType != null)
+                                            {
+                                                Pay.Value = userType.Value;
+                                                Pay.Description = "Skok " + flightNumber;
+                                                Pay.ChargeType = (int)ChargesTypes.Jump;
+                                                _ctxPay.InsertEntity(Pay);
                                             }
                                         }
                                     }

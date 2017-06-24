@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using DataLayer;
 using DataLayer.Result.Repository;
 using DataLayer.Entities.DBContext;
+using SkyReg.Common.Extensions;
 
 namespace SkyReg
 {
@@ -317,7 +318,7 @@ namespace SkyReg
                 }
             }
 
-            if(result == false)
+            if(result == false && errorMessage.HasValue())
             {
                 KryptonMessageBox.Show(errorMessage, "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }

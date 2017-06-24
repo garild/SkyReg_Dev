@@ -256,6 +256,7 @@
             this.grdPlaner.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdPlaner.ContextMenuStrip = this.contextMenuStrip1;
             this.grdPlaner.Location = new System.Drawing.Point(4, 0);
+            this.grdPlaner.MultiSelect = false;
             this.grdPlaner.Name = "grdPlaner";
             this.grdPlaner.ReadOnly = true;
             this.grdPlaner.RowHeadersVisible = false;

@@ -92,8 +92,10 @@
             // 
             // fontDialog1
             // 
+            this.fontDialog1.AllowScriptChange = false;
+            this.fontDialog1.AllowVectorFonts = false;
+            this.fontDialog1.AllowVerticalFonts = false;
             this.fontDialog1.FixedPitchOnly = true;
-            this.fontDialog1.FontMustExist = true;
             this.fontDialog1.ScriptsOnly = true;
             this.fontDialog1.ShowApply = true;
             this.fontDialog1.ShowColor = true;

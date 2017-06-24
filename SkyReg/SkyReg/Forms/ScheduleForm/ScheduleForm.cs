@@ -148,6 +148,7 @@ namespace SkyReg
 
                 grdFlights.Refresh();
                 SetFlightsListView();
+                UpdatePasagerList();
             }
         }
 
@@ -263,17 +264,21 @@ namespace SkyReg
                         int lastSelectedFlight = grdFlights.SelectedRows[0].Index;
 
                         RefreshFlightsList();
-                        if (Application.OpenForms["PassangerList"] != null)
-                        {
-                            (Application.OpenForms["PassangerList"] as PassangerList).GenerateDynamicControls();
-                        }
                         grdFlights.Rows[lastSelectedFlight].Selected = true;
-
+                       
                     }
                 }
             }
         }
 
+        private void UpdatePasagerList()
+        {
+            if (Application.OpenForms["PassangerList"] != null)
+            {
+                (Application.OpenForms["PassangerList"] as PassangerList).GenerateDynamicControls();
+            }
+
+        }
 
         private void btnDelete_Click(object sender, EventArgs e) //TODO USUWANIE FlightElemParachute
         {
@@ -504,13 +509,7 @@ namespace SkyReg
 
         #endregion
 
-        private void btnDown_Click(object sender, EventArgs e)
-        {
-            if (grdPlaner.SelectedRows?.Count > 0)
-            {
-
-            }
-        }
+      
 
         private void btnTransport_Click(object sender, EventArgs e)
         {
@@ -557,27 +556,74 @@ namespace SkyReg
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            Tuple<List<int>, List<int>> dataList = new Tuple<List<int>, List<int>>(null, null);
-
             using (var _ctx = new SkyRegContextRepository<FlightsElem>())
             {
 
                 if (grdPlaner.SelectedRows.Count > 0)
                 {
-                    foreach (DataGridViewRow row in grdPlaner.SelectedRows)
-                    {
-                        dataList.Item1.Add((int)row.Cells["Id"].Value);
-                        dataList.Item2.Add((int)row.Cells["Lp"].Value);
+                    var flightId = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
+                    var userId = (int)grdPlaner.SelectedRows[0].Cells["UserId"].Value;
 
+                    var allFlightElems = _ctx.Table.Where(p => p.Flight_Id == flightId).OrderBy(p => p.Lp).ToList();
+                    var userFlightElem = _ctx.Table.Where(p => p.Flight_Id == flightId && p.User_Id == userId).FirstOrDefault();
+                    if (allFlightElems.Count > 1)
+                    {
+                        var userIndex = allFlightElems.IndexOf(userFlightElem);
+                        if (userIndex > 0 && allFlightElems.Count >= userIndex)
+                        {
+                            int userLp = userFlightElem.Lp.Value;
+                            var moveTo = userIndex - 1;
+                            var moveItem = allFlightElems[moveTo];
+
+                            userFlightElem.Lp = moveItem.Lp;
+                            moveItem.Lp = userLp;
+
+                            _ctx.Update(userFlightElem);
+                            _ctx.Update(moveItem);
+                            RefreshFlightsList();
+                        }
                     }
 
-                    //var fe = _ctx.GetAll().Value.Join(dataList.Item1, p => p.User_Id, u => u, (p, u) => p).ToList();
-                    //int maxValue = dataList.Item2.Max();
-                    //int maxValue = dataList.Item2.Max();
                 }
             }
         }
 
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            if (grdPlaner.SelectedRows?.Count > 0)
+            {
+                using (var _ctx = new SkyRegContextRepository<FlightsElem>())
+                {
+
+                    if (grdPlaner.SelectedRows.Count > 0)
+                    {
+                        var flightId = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
+                        var userId = (int)grdPlaner.SelectedRows[0].Cells["UserId"].Value;
+
+                        var allFlightElems = _ctx.Table.Where(p => p.Flight_Id == flightId).OrderBy(p => p.Lp).ToList();
+                        var userFlightElem = _ctx.Table.Where(p => p.Flight_Id == flightId && p.User_Id == userId).FirstOrDefault();
+                        if (allFlightElems.Count > 1)
+                        {
+                            var userIndex = allFlightElems.IndexOf(userFlightElem);
+                            if (userIndex >= 0 && allFlightElems.Count >= userIndex)
+                            {
+                                int userLp = userFlightElem.Lp.Value;
+                                var moveTo = userIndex + 1;
+                                var moveItem = allFlightElems[moveTo];
+
+                                userFlightElem.Lp = moveItem.Lp;
+                                moveItem.Lp = userLp;
+
+                                _ctx.Update(userFlightElem);
+                                _ctx.Update(moveItem);
+                                RefreshFlightsList();
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
     }
 }
