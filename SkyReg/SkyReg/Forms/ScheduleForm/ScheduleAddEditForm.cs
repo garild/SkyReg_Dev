@@ -292,8 +292,8 @@ namespace SkyReg
                             .Include("Flight")
                             .Include("User")
                             .Where(p => p.Flight.Id == selFlightId.Value)
-                            .Select(p => p.User.Id)
-                            .ToList();
+                                .ToList().Where(p => p.User != null).Select(p => p.User.Id).ToList();
+                         
                         //Wyloty z list na formatce dodawania
                         foreach (DataGridViewRow item in grdFlightsListSelectedForUser.Rows)
                         {
@@ -396,7 +396,7 @@ namespace SkyReg
                 pay.Description = "Szybka wpłata";
                 pay.IsBooked = false;
                 pay.PaymentsSetting = ps;
-                pay.User = usr;
+                pay.User_Id = usr.Id;
                 pay.Value = value;
                 pay.Count = 0;
 

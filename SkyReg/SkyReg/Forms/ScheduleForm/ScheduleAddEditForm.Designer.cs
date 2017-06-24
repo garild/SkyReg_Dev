@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleAddEditForm));
             this.kryptonTabControl1 = new AC.ExtendedRenderer.Navigator.KryptonTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -254,9 +254,9 @@
             // 
             // Check
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = false;
-            this.Check.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = false;
+            this.Check.DefaultCellStyle = dataGridViewCellStyle1;
             this.Check.FalseValue = "false";
             this.Check.HeaderText = "Wybór";
             this.Check.IndeterminateValue = "false";

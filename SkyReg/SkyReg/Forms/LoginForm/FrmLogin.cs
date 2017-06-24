@@ -168,7 +168,7 @@ namespace SkyReg.MainForm
                 XmlSerializer serializer = new XmlSerializer(typeof(BaseModel));
                 userConfig.Login = user.Login;
                 userConfig.UserId = user.Id;
-                if (UserConfig.BasicSettings != null)
+                if (UserConfig?.BasicSettings != null)
                     userConfig.BasicSettings = UserConfig.BasicSettings;
                 serializer.Serialize(TW, userConfig);
             }
