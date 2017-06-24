@@ -232,7 +232,7 @@
             this.kryptonPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonPanel3.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanel3.Name = "kryptonPanel3";
-            this.kryptonPanel3.Size = new System.Drawing.Size(1779, 792);
+            this.kryptonPanel3.Size = new System.Drawing.Size(1676, 792);
             this.kryptonPanel3.StateCommon.Color1 = System.Drawing.SystemColors.ActiveCaption;
             this.kryptonPanel3.StateNormal.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.kryptonPanel3.TabIndex = 18;
@@ -240,14 +240,14 @@
             // kryptonHeaderGroup4
             // 
             this.kryptonHeaderGroup4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
-            this.kryptonHeaderGroup4.GroupBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ButtonAlternate;
+            this.kryptonHeaderGroup4.GroupBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ButtonStandalone;
             this.kryptonHeaderGroup4.GroupBorderStyle = ComponentFactory.Krypton.Toolkit.PaletteBorderStyle.ButtonAlternate;
             this.kryptonHeaderGroup4.HeaderStylePrimary = ComponentFactory.Krypton.Toolkit.HeaderStyle.Calendar;
             this.kryptonHeaderGroup4.HeaderVisibleSecondary = false;
             this.kryptonHeaderGroup4.Location = new System.Drawing.Point(1264, 5);
             this.kryptonHeaderGroup4.Margin = new System.Windows.Forms.Padding(0);
             this.kryptonHeaderGroup4.Name = "kryptonHeaderGroup4";
-            this.kryptonHeaderGroup4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.kryptonHeaderGroup4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.SparkleBlue;
             // 
             // kryptonHeaderGroup4.Panel
             // 
@@ -720,7 +720,7 @@
             this.StatusBar.Location = new System.Drawing.Point(0, 731);
             this.StatusBar.Name = "StatusBar";
             this.StatusBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.StatusBar.Size = new System.Drawing.Size(1779, 22);
+            this.StatusBar.Size = new System.Drawing.Size(1676, 22);
             this.StatusBar.SizingGrip = false;
             this.StatusBar.TabIndex = 75;
             this.StatusBar.Text = "statusStrip1";
@@ -753,7 +753,7 @@
             this.kryptonPanelEx1.Location = new System.Drawing.Point(0, 753);
             this.kryptonPanelEx1.Name = "kryptonPanelEx1";
             this.kryptonPanelEx1.PersistentColors = false;
-            this.kryptonPanelEx1.Size = new System.Drawing.Size(1779, 39);
+            this.kryptonPanelEx1.Size = new System.Drawing.Size(1676, 39);
             this.kryptonPanelEx1.TabIndex = 74;
             // 
             // BtnDelete
@@ -976,7 +976,7 @@
             this.txtPassword.MaxLength = 40;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '•';
-            this.txtPassword.Size = new System.Drawing.Size(115, 20);
+            this.txtPassword.Size = new System.Drawing.Size(115, 23);
             this.txtPassword.TabIndex = 19;
             // 
             // btGenerateDataBase
@@ -995,7 +995,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1779, 792);
+            this.ClientSize = new System.Drawing.Size(1676, 792);
             this.Controls.Add(this.kryptonPanel3);
             this.Name = "Examples";
             this.Text = "Exsamples";

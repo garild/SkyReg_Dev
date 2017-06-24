@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton1 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
             AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton2 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
             AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton3 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
@@ -39,9 +40,9 @@
             AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton8 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
             AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton9 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
             AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton10 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.StyleManager = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.outlookBar = new AC.ExtendedRenderer.Navigator.OutlookBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,6 +67,9 @@
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.licencjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dodajKluczToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informacjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,11 +86,10 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tstrComputerName = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // StyleManager
@@ -102,6 +105,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 455);
             this.panel1.TabIndex = 3;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 355);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(200, 97);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // outlookBar
             // 
@@ -211,6 +226,7 @@
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.toolsToolStripMenuItem,
+            this.licencjaToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -389,9 +405,32 @@
             // tsmSettings
             // 
             this.tsmSettings.Name = "tsmSettings";
-            this.tsmSettings.Size = new System.Drawing.Size(152, 22);
+            this.tsmSettings.Size = new System.Drawing.Size(133, 22);
             this.tsmSettings.Text = "&Preferencje";
             this.tsmSettings.Click += new System.EventHandler(this.tsmSettings_Click);
+            // 
+            // licencjaToolStripMenuItem
+            // 
+            this.licencjaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dodajKluczToolStripMenuItem,
+            this.informacjeToolStripMenuItem});
+            this.licencjaToolStripMenuItem.Name = "licencjaToolStripMenuItem";
+            this.licencjaToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.licencjaToolStripMenuItem.Text = "Licencja";
+            // 
+            // dodajKluczToolStripMenuItem
+            // 
+            this.dodajKluczToolStripMenuItem.Name = "dodajKluczToolStripMenuItem";
+            this.dodajKluczToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dodajKluczToolStripMenuItem.Text = "Dodaj klucz";
+            this.dodajKluczToolStripMenuItem.Click += new System.EventHandler(this.dodajKluczToolStripMenuItem_Click);
+            // 
+            // informacjeToolStripMenuItem
+            // 
+            this.informacjeToolStripMenuItem.Name = "informacjeToolStripMenuItem";
+            this.informacjeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.informacjeToolStripMenuItem.Text = "Informacje";
+            this.informacjeToolStripMenuItem.Click += new System.EventHandler(this.informacjeToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -518,18 +557,6 @@
             this.toolStripStatusLabel6.Size = new System.Drawing.Size(16, 17);
             this.toolStripStatusLabel6.Text = "   ";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 355);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 97);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -549,11 +576,11 @@
             this.Text = "SkyReg";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -603,6 +630,9 @@
         private System.Windows.Forms.ToolStripStatusLabel tstrComputerName;
         public AC.ExtendedRenderer.Navigator.OutlookBar outlookBar;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem licencjaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dodajKluczToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem informacjeToolStripMenuItem;
     }
 }
 

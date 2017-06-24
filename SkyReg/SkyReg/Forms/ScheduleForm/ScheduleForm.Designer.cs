@@ -265,7 +265,7 @@
             this.grdPlaner.ShowCellToolTips = false;
             this.grdPlaner.ShowEditingIcon = false;
             this.grdPlaner.ShowRowErrors = false;
-            this.grdPlaner.Size = new System.Drawing.Size(515, 592);
+            this.grdPlaner.Size = new System.Drawing.Size(518, 592);
             this.grdPlaner.TabIndex = 0;
             this.grdPlaner.DragDrop += new System.Windows.Forms.DragEventHandler(this.grdPlaner_DragDrop);
             this.grdPlaner.DragEnter += new System.Windows.Forms.DragEventHandler(this.grdPlaner_DragEnter);
@@ -560,6 +560,7 @@
             this.Name = "ScheduleForm";
             this.Text = "ScheduleForm";
             this.Load += new System.EventHandler(this.ScheduleForm_Load);
+            this.Shown += new System.EventHandler(this.ScheduleForm_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3.Panel)).EndInit();
             this.kryptonHeaderGroup3.Panel.ResumeLayout(false);
