@@ -38,6 +38,8 @@ Source: ..\bin\Debug\FluentValidation.dll; DestDir: {app}; Flags: replacesamever
 Source: ..\bin\Debug\MetroFramework.Design.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\bin\Debug\MetroFramework.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\bin\Debug\MetroFramework.Fonts.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\SqlServerTypes\x86\msvcr120.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\SqlServerTypes\x86\SqlServerSpatial140.dll; DestDir: {app}; Flags: replacesameversion
 
 
 [Icons]
