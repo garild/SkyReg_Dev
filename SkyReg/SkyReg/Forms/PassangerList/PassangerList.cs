@@ -62,7 +62,7 @@ namespace SkyReg
                             if (p.FlightsElem?.Count > 0)
                             {
                                 index = 1;
-                                headerString = $"LOT: {p.Airplane.RegNr} Nr: {p.FlyNr} Pułap: {p.Altitude} m  Wolnych Miejsc: {p.Airplane.Seats - p.FlightsElem.Count}";
+                                headerString = $"LOT: {p.Airplane.RegNr} Nr: {p.FlyNr} Pułap: {p.Altitude} m  Wolnych: {p.Airplane.Seats - p.FlightsElem.Count}";
 
                                 controls = new KryptonVirtualListBox();
                                 controls.BackStyle = PaletteBackStyle.ControlGroupBox;
