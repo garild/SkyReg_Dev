@@ -15,6 +15,9 @@ using DataLayer.Entities.DBContext;
 using DataLayer.Models;
 using SkyReg.Forms.ScheduleForm;
 using SkyReg.Common.Prints.LoadingList;
+using SkyRegHtml;
+using SkyReg.Utils;
+using SkyReg.Forms.HtmlDocker;
 
 namespace SkyReg
 {
@@ -244,7 +247,7 @@ namespace SkyReg
                 int flyStatus = int.Parse(grdFlights.SelectedRows[0].Cells["Status"].Value.ToString());
                 bool allowShowForm = true;
 
-                if (flyStatus == (int)SkyRegEnums.FlightsStatus.Executed || flyStatus == (int)SkyRegEnums.FlightsStatus.Canceled)
+                if (flyStatus == (int)FlightsStatus.Executed || flyStatus == (int)FlightsStatus.Canceled)
                 {
                     allowShowForm = false;
                     if (KryptonMessageBox.Show("Zaznaczony lot posiada status zrealizowany lub anulowany.\nCzy kontynuować?", "Kontynuować?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -258,8 +261,11 @@ namespace SkyReg
                     ScheduleAddEditForm = FormsOpened<ScheduleAddEditForm>.IsOpened(ScheduleAddEditForm);
                     ScheduleAddEditForm.FormState = FormState.Add;
                     ScheduleAddEditForm.IdScheduleElem = default(int);
+
+                    //TOTO Kod Janusza - przekazywanie obiektu jako grida bardzo inteligentnie
                     ScheduleAddEditForm.grdFlight = grdFlights;
                     ScheduleAddEditForm.grdPlaner = grdPlaner;
+
                     if (ScheduleAddEditForm.ShowDialog() == DialogResult.OK)
                     {
                         int lastSelectedFlight = grdFlights.SelectedRows[0].Index;
@@ -466,8 +472,51 @@ namespace SkyReg
 
 
                     llf.ShowDialog();
+
+                    //TEST Print HTML
+                    GenerateHtml(llh);
+
                 }
             }
+        }
+
+        private void GenerateHtml(LLHeader header)
+        {
+            var htmlBuilder = new StringBuilder();
+            
+            if(header != new LLHeader())
+            {
+                var userList = new { Name = "Garib Tigranyan", Parachute = "Saber #0003", Typ = "Instruktor" };
+                string userData = "";
+
+                for (int i = 1; i <= 5; i++)
+                {
+                    userData += HtmlTemplate.singleRow.FormatWith(new
+                    {
+                        Lp = $"{i}",
+                        UserName = userList.Name,
+                        ParachuteType = userList.Parachute,
+                        UserType = userList.Typ
+                    });
+                }
+
+                htmlBuilder.AppendLine(
+                    HtmlTemplate.TempalteHtml.FormatWith(new
+                    {
+                        FlightNr = header.FlightNr,
+                        Airplane = header.Airplane,
+                        Airport = header.Airport,
+                        FlyDate = header.Date,
+                        singleRow = userData
+                    }
+                    ));
+
+                htmlBuilder.AppendLine(HtmlTemplate.style);
+
+                PrintPreview prntView = new PrintPreview(htmlBuilder.ToString());
+                prntView.ShowDialog();
+            }
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -521,7 +570,8 @@ namespace SkyReg
             {
                 foreach (DataGridViewRow row in grdPlaner.SelectedRows)
                 {
-                    _scheduleMoveCopyUsers.UserIds.Add((int)row.Cells["UserId"].Value);
+                    if (row.Cells["UserId"].Value != null)
+                        _scheduleMoveCopyUsers.UserIds.Add((int)row.Cells["UserId"].Value);
                 }
                 _scheduleMoveCopyUsers.ShowDialog();
             }
@@ -538,7 +588,8 @@ namespace SkyReg
             {
                 foreach (DataGridViewRow row in grdPlaner.SelectedRows)
                 {
-                    _scheduleMoveCopyUsers.UserIds.Add((int)row.Cells["UserId"].Value);
+                    if (row.Cells["UserId"].Value != null)
+                        _scheduleMoveCopyUsers.UserIds.Add((int)row.Cells["UserId"].Value);
                 }
                 _scheduleMoveCopyUsers.ShowDialog();
             }
@@ -551,7 +602,6 @@ namespace SkyReg
             RefreshPlanerList();
         }
 
-
         private ScheduleMoveCopyUsers _scheduleMoveCopyUsers = null;
 
         private void btnUp_Click(object sender, EventArgs e)
@@ -561,29 +611,34 @@ namespace SkyReg
 
                 if (grdPlaner.SelectedRows.Count > 0)
                 {
-                    var flightId = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
-                    var userId = (int)grdPlaner.SelectedRows[0].Cells["UserId"].Value;
+                    int? userId = default(int);
+                    int? flightId = (int)grdFlights.SelectedRows[0]?.Cells["Id"].Value;
+                    if (grdPlaner.SelectedRows[0].Cells["UserId"]?.Value != null)
+                        userId = (int)grdPlaner.SelectedRows[0].Cells["UserId"].Value;
 
-                    var allFlightElems = _ctx.Table.Where(p => p.Flight_Id == flightId).OrderBy(p => p.Lp).ToList();
-                    var userFlightElem = _ctx.Table.Where(p => p.Flight_Id == flightId && p.User_Id == userId).FirstOrDefault();
-                    if (allFlightElems.Count > 1)
+                    if (userId.Value > 0 && flightId > 0)
                     {
-                        var userIndex = allFlightElems.IndexOf(userFlightElem);
-                        if (userIndex > 0 && allFlightElems.Count >= userIndex)
+                        var allFlightElems = _ctx.Table.Where(p => p.Flight_Id == flightId).OrderBy(p => p.Lp).ToList();
+                        var userFlightElem = _ctx.Table.Where(p => p.Flight_Id == flightId && p.User_Id == userId).FirstOrDefault();
+                        if (allFlightElems.Count > 1)
                         {
-                            int userLp = userFlightElem.Lp.Value;
-                            var moveTo = userIndex - 1;
-                            var moveItem = allFlightElems[moveTo];
+                            var userIndex = allFlightElems.IndexOf(userFlightElem);
+                            if (userIndex > 0 && allFlightElems.Count >= userIndex)
+                            {
+                                int userLp = userFlightElem.Lp.Value;
+                                var moveTo = userIndex - 1;
+                                var moveItem = allFlightElems[moveTo];
 
-                            userFlightElem.Lp = moveItem.Lp;
-                            moveItem.Lp = userLp;
+                                userFlightElem.Lp = moveItem.Lp;
+                                moveItem.Lp = userLp;
 
-                            _ctx.Update(userFlightElem);
-                            _ctx.Update(moveItem);
-                            RefreshFlightsList();
+                                _ctx.Update(userFlightElem);
+                                _ctx.Update(moveItem);
+                                RefreshFlightsList();
+                            }
                         }
                     }
-
+                    grdPlaner.Rows[grdPlaner.Rows.Cast<DataGridViewRow>().Where(p => p.Cells["UserId"].Value != null && (int)p.Cells["UserId"].Value == userId).Select(p => p.Index).FirstOrDefault()].Selected = true;
                 }
             }
         }
@@ -595,30 +650,38 @@ namespace SkyReg
             {
                 using (var _ctx = new SkyRegContextRepository<FlightsElem>())
                 {
-
                     if (grdPlaner.SelectedRows.Count > 0)
                     {
+                        int? userId = default(int);
                         var flightId = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
-                        var userId = (int)grdPlaner.SelectedRows[0].Cells["UserId"].Value;
+                       
+                        if (grdPlaner.SelectedRows[0].Cells["UserId"]?.Value != null)
+                            userId = (int)grdPlaner.SelectedRows[0].Cells["UserId"].Value;
 
-                        var allFlightElems = _ctx.Table.Where(p => p.Flight_Id == flightId).OrderBy(p => p.Lp).ToList();
-                        var userFlightElem = _ctx.Table.Where(p => p.Flight_Id == flightId && p.User_Id == userId).FirstOrDefault();
-                        if (allFlightElems.Count > 1)
+                        if (userId.Value > 0 && flightId > 0)
                         {
-                            var userIndex = allFlightElems.IndexOf(userFlightElem);
-                            if (userIndex >= 0 && allFlightElems.Count >= userIndex)
+                            var allFlightElems = _ctx.Table.Where(p => p.Flight_Id == flightId).OrderBy(p => p.Lp).ToList();
+                            var userFlightElem = _ctx.Table.Where(p => p.Flight_Id == flightId && p.User_Id == userId).FirstOrDefault();
+
+                            if (allFlightElems.Count > 1)
                             {
-                                int userLp = userFlightElem.Lp.Value;
-                                var moveTo = userIndex + 1;
-                                var moveItem = allFlightElems[moveTo];
+                                var userIndex = allFlightElems.IndexOf(userFlightElem);
+                                if (userIndex >= 0 && allFlightElems.Count >= userIndex)
+                                {
+                                    int userLp = userFlightElem.Lp.Value;
+                                    var moveTo = userIndex + 1;
+                                    var moveItem = allFlightElems[moveTo];
 
-                                userFlightElem.Lp = moveItem.Lp;
-                                moveItem.Lp = userLp;
+                                    userFlightElem.Lp = moveItem.Lp;
+                                    moveItem.Lp = userLp;
 
-                                _ctx.Update(userFlightElem);
-                                _ctx.Update(moveItem);
-                                RefreshFlightsList();
+                                    _ctx.Update(userFlightElem);
+                                    _ctx.Update(moveItem);
+                                    RefreshFlightsList();
+                                }
                             }
+
+                            grdPlaner.Rows[grdPlaner.Rows.Cast<DataGridViewRow>().Where(p => p.Cells["UserId"].Value != null && (int)p.Cells["UserId"].Value == userId).Select(p => p.Index).FirstOrDefault()].Selected = true;
                         }
                     }
                 }

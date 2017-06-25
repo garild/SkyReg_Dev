@@ -140,7 +140,7 @@ namespace SkyReg.Forms.ScheduleForm
                         //Nr FlightElem dla bieżącego LOTU
                         int Elem_Id = 0;
 
-                        //Encja lokalne
+                        //Encje lokalne
                         FlightsElem Elem = new FlightsElem();
                         Payment Pay = new Payment();
                         Flight Flight = new Flight();
@@ -192,7 +192,7 @@ namespace SkyReg.Forms.ScheduleForm
                                             Pay = new Payment();
                                             Pay.IsBooked = true;
                                             Pay.Date = DateTime.Now;
-                                            Pay.PaymentsSetting_Id = payList[0].PaymentsSetting_Id; // Czy ma być stały paymentSettingId ??
+                                            Pay.PaymentsSetting_Id = payList[0].PaymentsSetting_Id;
                                             Pay.User_Id = pakage.User_Id;
                                             Pay.Value = 0;
                                             Pay.FlightsElem_Id = Elem.Id;
@@ -228,6 +228,7 @@ namespace SkyReg.Forms.ScheduleForm
                                                         Pay.Value = userType.Value;
                                                         Pay.Description = "Skok " + flightNumber;
                                                         Pay.ChargeType = (int)ChargesTypes.Jump;
+
                                                         if (usedPacked)
                                                             _ctxPay.InsertEntity(Pay);
                                                         else
@@ -235,6 +236,7 @@ namespace SkyReg.Forms.ScheduleForm
                                                             Pay.Value = userType.Value;
                                                             _ctxPay.InsertEntity(Pay);
                                                         }
+
                                                         break;
                                                     case (int)ChargesTypes.ParachuteAssembly:
 
@@ -248,9 +250,9 @@ namespace SkyReg.Forms.ScheduleForm
 
                                                             Pay.Description = "Spadochron " + flightNumber;
                                                             Pay.ChargeType = (int)ChargesTypes.ParachuteRent;
-                                                            _ctxPay.InsertEntity(Pay);
 
-                                                            _ctxPay.Model.Database.ExecuteSqlCommand(sqlQuery);
+                                                           if(_ctxPay.InsertEntity(Pay).IsSuccess)
+                                                                _ctxPay.Model.Database.ExecuteSqlCommand(sqlQuery);
                                                         }
                                                         break;
                                                 }
@@ -267,8 +269,6 @@ namespace SkyReg.Forms.ScheduleForm
                                                 _ctxPay.InsertEntity(Pay);
                                             }
                                         }
-
-                                      
 
                                         usedPacked = false;
                                     }

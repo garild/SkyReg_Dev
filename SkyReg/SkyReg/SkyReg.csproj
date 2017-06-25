@@ -121,6 +121,7 @@
       <DependentUpon>LoadingListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Helper\SkyRegUser.cs" />
+    <Compile Include="Common\ReportsTemplate\Exsample\HtmlTemplate.cs" />
     <Compile Include="Forms\AirplanesForm\AirplanesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +177,12 @@
       <DependentUpon>FrmGlobalSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Helper\GroupId.cs" />
+    <Compile Include="Forms\HtmlDocker\PrintPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HtmlDocker\PrintPreview.Designer.cs">
+      <DependentUpon>PrintPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm\FrmMain.cs">
       <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -350,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GlobalSettingsForm\FrmGlobalSettings.resx">
       <DependentUpon>FrmGlobalSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HtmlDocker\PrintPreview.resx">
+      <DependentUpon>PrintPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
