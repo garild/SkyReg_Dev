@@ -369,7 +369,8 @@ namespace SkyReg
 
                 decimal needMoneyForAll = needMoneyForJumps + needMoneyForRentPar + needMoneyForAssembly;
 
-                if (numBalanceMoney.Value < needMoneyForAll)
+                //if (numBalanceMoney.Value < needMoneyForAll)
+                if (usersMoney < needMoneyForAll)
                 {
                     if (KryptonMessageBox.Show($"Potrzeba {needMoneyForAll}, a saldo wynosi {usersMoney}. Czy zezwolić na kredyt?", "Kredyt?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     {
@@ -409,11 +410,16 @@ namespace SkyReg
         {
             int userId = 0;
 
+            using(var _groupsCtx = new SkyRegContextRepository<Group>())
             using (var _ctx = new SkyRegContextRepository<User>())
             {
-            
+                var jumperGroup = _groupsCtx.Model.Group.Where(p => p.Name == "Skoczkowie").FirstOrDefault();
+
                 User usr = new User();
                 usr.Name = cmbName.Text;
+                if (jumperGroup != null)
+                    usr.Group_Id = jumperGroup.Id;
+
                 var result = _ctx.InsertEntity(usr);
 
                 if (result.IsSuccess)

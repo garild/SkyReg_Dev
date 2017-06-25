@@ -317,8 +317,13 @@ namespace SkyReg
 
                     }
                 }
+
+                int flySelectedIndex = grdFlights.SelectedRows[0].Index;
+
                 RefreshFlightsList();
                 RefreshPlanerList();
+
+                grdFlights.Rows[flySelectedIndex].Selected = true;
             }
         }
 
@@ -411,6 +416,8 @@ namespace SkyReg
                 if (grdFlights.SelectedRows.Count > 0)
                 {
                     int flyId = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
+                    int flySelectedIndex = grdFlights.SelectedRows[0].Index;
+
                     Flight fly = model.Flight.Where(p => p.Id == flyId).FirstOrDefault();
                     if (fly != null)
                     {
@@ -419,8 +426,11 @@ namespace SkyReg
                             fly.FlyStatus = (int)FlightsStatus.Executed;
                             model.Entry(fly).State = System.Data.Entity.EntityState.Modified;
                             model.SaveChanges();
+
                             RefreshFlightsList();
                             RefreshPlanerList();
+
+                            grdFlights.Rows[flySelectedIndex].Selected = true;
 
                             PrintDataAndForm();
                         }
@@ -455,20 +465,27 @@ namespace SkyReg
                     llh.Organizer = "Skyvan Service";
                     llf.Header = llh;
 
-                    llf.Items = result.Value.Where(p => p.Flight_Id == flyId)
-
-                        .Select(p => new LLItems
-                        {
-                            Lp = p.Lp.ToString(),
-                            Name = p.User.Name,
-                            JumpNr = default(string),//TODO do ustalenia co tu ma być
+                    try
+                    {
+                        llf.Items = result.Value.Where(p => p.Flight_Id == flyId)
+                            .Select(p => new LLItems
+                            {
+                                Lp = p.Lp.ToString(),
+                                Name = p.User.Name,
+                                JumpNr = default(string),//TODO do ustalenia co tu ma być
                             Status = _ctx.Model.Database.SqlQuery<string>("select Name from DefinedUserType where Id = {0}", p.UsersTypeId).FirstOrDefault(),
-                            ParachuteType = _ctx.Model.Database.SqlQuery<string>("select Parachute.Name from FlightsElemParachutes join Parachute on Parachute.Id = FlightsElemParachutes.Parachute_Id where FlightsElem_Id = {0}", p.Id).FirstOrDefault(),
-                            ParachuteId = _ctx.Model.Database.SqlQuery<string>("select Parachute.IdNr from FlightsElemParachutes join Parachute on Parachute.Id = FlightsElemParachutes.Parachute_Id where FlightsElem_Id = {0}", p.Id).FirstOrDefault(),
-                            Altitude = p.Flight.Altitude.ToString()
-                        })
-                        .OrderBy(p => p.Lp)
-                        .ToList();
+                                ParachuteType = _ctx.Model.Database.SqlQuery<string>("select Parachute.Name from FlightsElemParachutes join Parachute on Parachute.Id = FlightsElemParachutes.Parachute_Id where FlightsElem_Id = {0}", p.Id).FirstOrDefault(),
+                                ParachuteId = _ctx.Model.Database.SqlQuery<string>("select Parachute.IdNr from FlightsElemParachutes join Parachute on Parachute.Id = FlightsElemParachutes.Parachute_Id where FlightsElem_Id = {0}", p.Id).FirstOrDefault(),
+                                Altitude = p.Flight.Altitude.ToString()
+                            })
+                            .OrderBy(p => p.Lp)
+                            .ToList();
+                        llf.ShowDialog();
+                    }
+                    catch
+                    {
+                        KryptonMessageBox.Show("Nie można drukować listy załądunkowej gdy na liście są anonimowe elementy grupy", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
 
 
                     llf.ShowDialog();
