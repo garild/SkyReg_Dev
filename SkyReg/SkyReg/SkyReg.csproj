@@ -233,16 +233,16 @@
     <Compile Include="Forms\ParachutesForm\ParachutesForm.Designer.cs">
       <DependentUpon>ParachutesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PassangerList\PassangerList.cs">
+    <Compile Include="Forms\PassagerList\PassangerList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PassangerList\PassangerList.Designer.cs">
+    <Compile Include="Forms\PassagerList\PassangerList.Designer.cs">
       <DependentUpon>PassangerList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PassangerList\PanelSettings.cs">
+    <Compile Include="Forms\PassagerList\PanelSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PassangerList\PanelSettings.Designer.cs">
+    <Compile Include="Forms\PassagerList\PanelSettings.Designer.cs">
       <DependentUpon>PanelSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\PaymentsForm\PaymentsAddEditForm.cs">
@@ -386,10 +386,10 @@
     <EmbeddedResource Include="Forms\ParachutesForm\ParachutesForm.resx">
       <DependentUpon>ParachutesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PassangerList\PassangerList.resx">
+    <EmbeddedResource Include="Forms\PassagerList\PassangerList.resx">
       <DependentUpon>PassangerList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PassangerList\PanelSettings.resx">
+    <EmbeddedResource Include="Forms\PassagerList\PanelSettings.resx">
       <DependentUpon>PanelSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PaymentsForm\PaymentsAddEditForm.resx">
