@@ -705,6 +705,16 @@ namespace SkyReg
             }
         }
 
+        private void ScheduleForm_Shown(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow item in grdFlights.Rows)
+            {
+                if (int.Parse(item.Cells["Status"].Value.ToString()) == (int)FlightsStatus.Executed)
+                    item.DefaultCellStyle.BackColor = Color.LightGreen;
+                if (int.Parse(item.Cells["Status"].Value.ToString()) == (int)FlightsStatus.Canceled)
+                    item.DefaultCellStyle.BackColor = Color.LightPink;
+            }
+        }
     }
 }
 
