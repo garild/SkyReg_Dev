@@ -195,6 +195,8 @@
             // numBalancePackage
             // 
             this.numBalancePackage.DecimalPlaces = 2;
+            this.numBalancePackage.Enabled = false;
+            this.numBalancePackage.InterceptArrowKeys = false;
             this.numBalancePackage.Location = new System.Drawing.Point(198, 12);
             this.numBalancePackage.Maximum = new decimal(new int[] {
             9999999,
@@ -461,7 +463,7 @@
             // 
             this.txtGroupName.Location = new System.Drawing.Point(131, 18);
             this.txtGroupName.Name = "txtGroupName";
-            this.txtGroupName.Size = new System.Drawing.Size(189, 23);
+            this.txtGroupName.Size = new System.Drawing.Size(189, 20);
             this.txtGroupName.TabIndex = 0;
             // 
             // kryptonPanelEx1

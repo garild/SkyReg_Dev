@@ -147,7 +147,8 @@ namespace SkyReg
                     fe.AssemblySelf = false;
 
                 //TODO do POPRAWY
-                fe.Lp = _ctx.Model.FlightsElem.Max(p => p.Lp).Value + 1;
+                var lp = _ctx.Model.FlightsElem.Max(p => p.Lp);
+                fe.Lp = lp.HasValue ? lp.Value + 1 : 1;
                 fe.Parachute.Add(_ctx.Model.Parachute.FirstOrDefault(p => p.Id == (int)cmbParachute.SelectedValue));
                 fe.User_Id = usrId;
                 fe.Color = btnColor.SelectedColor.ToArgb().ToString();
@@ -750,5 +751,6 @@ namespace SkyReg
                 }
             }
         }
+
     }
 }
