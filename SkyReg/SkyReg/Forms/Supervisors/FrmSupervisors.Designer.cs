@@ -217,6 +217,7 @@
             this.Name = "FrmSupervisors";
             this.Text = "Lista Instruktorów";
             this.Load += new System.EventHandler(this.FrmSupervisors_Load);
+            this.Shown += new System.EventHandler(this.FrmSupervisors_Shown);
             this.kryptonPanelEx1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).EndInit();
             this.kryptonHeaderGroup1.Panel.ResumeLayout(false);

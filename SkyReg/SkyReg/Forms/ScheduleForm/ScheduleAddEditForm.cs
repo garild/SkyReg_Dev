@@ -44,6 +44,10 @@ namespace SkyReg
                 int selUserType = (int)cmbUsersType.SelectedValue;
                 int? selParachute = null;
 
+                int? supervisor_Id = null;
+                if (cmbSupervisorList.Items.Count > 0)
+                    supervisor_Id = (int)cmbSupervisorList.SelectedValue;
+
                 if (cmbParachute.SelectedValue != null && (int)cmbParachute.SelectedValue != 0)
                     selParachute = (int)cmbParachute.SelectedValue;
                 bool assemblySelf = false;
@@ -79,7 +83,7 @@ namespace SkyReg
 
                 //Bieżący skok
                 flightId = (int)grdFlight.SelectedRows[0].Cells["Id"].Value;
-                FlightsElem fe = SaveFlghtElemToDB(flightId, usr.Id);
+                FlightsElem fe = SaveFlghtElemToDB(flightId, usr.Id, supervisor_Id);
 
 
                 if (parachuteRentPrice == null)
@@ -110,7 +114,7 @@ namespace SkyReg
                     {
                         nrLotu = item.Cells["Nr"].Value.ToString();
                         flightId = (int)item.Cells["Id"].Value;
-                        fe = SaveFlghtElemToDB(flightId, usr.Id);
+                        fe = SaveFlghtElemToDB(flightId, usr.Id, supervisor_Id);
 
                         if (parachuteRentPrice.Value > 0)
                             payParachuteRent = SaveOneJump(usr.Id, parachuteRentPrice.Value, false, string.Format("Spadochron {0}", nrLotu), fe.Id, ChargesTypes.ParachuteRent);
@@ -133,7 +137,7 @@ namespace SkyReg
             this.Close();
         }
 
-        private FlightsElem SaveFlghtElemToDB(int flightId, int usrId)
+        private FlightsElem SaveFlghtElemToDB(int flightId, int usrId, int? supervisorId = null)
         {
             using (var _ctx = new SkyRegContextRepository<FlightsElem>())
             {
@@ -153,6 +157,7 @@ namespace SkyReg
                 fe.User_Id = usrId;
                 fe.Color = btnColor.SelectedColor.ToArgb().ToString();
                 fe.UsersTypeId = (int)cmbUsersType.SelectedValue;
+                fe.Supervisor_Id = supervisorId;
 
                 _ctx.InsertEntity(fe);
                 return fe;
@@ -504,9 +509,41 @@ namespace SkyReg
 
                     if (usersTypesList?.Count > 0)
                     {
-                        cmbUsersType.DataSource = usersTypesList;
                         cmbUsersType.DisplayMember = "Name";
                         cmbUsersType.ValueMember = "Id";
+                        cmbUsersType.DataSource = usersTypesList;
+                    }
+                }
+            }
+        }
+
+        private void CmbUsersType_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cmbUsersType.Items.Count > 0)
+            {
+                using (var _ctx = new SkyRegContextRepository<Supervisors>())
+                {
+                    var supervisor = _ctx.Model.DefinedUserType.Find((int)cmbUsersType.SelectedValue);
+                    if (supervisor.RequiredSupervisor)
+                    {
+                        var result = _ctx.GetAll();
+                        if (result.IsSuccess)
+                        {
+                            cmbSupervisorList.Enabled = true;
+                            cmbSupervisorList.DataSource = result.Value.Where(p => p.IsUpToDate).Select(p => new { Name = p.UserName, Value = p.Id }).ToList();
+                            cmbSupervisorList.DisplayMember = "Name";
+                            cmbSupervisorList.ValueMember = "Value";
+                        }
+                        else
+                        {
+                            cmbSupervisorList.Enabled = false;
+                        }
+                    }
+                    else
+                    {
+                        cmbSupervisorList.DataSource = null;
+                        cmbSupervisorList.Text = "Brak";
+                        cmbSupervisorList.Enabled = false;
                     }
                 }
             }
@@ -751,6 +788,7 @@ namespace SkyReg
                 }
             }
         }
-
+      
     }
 }
+

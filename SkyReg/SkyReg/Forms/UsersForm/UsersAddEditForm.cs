@@ -28,6 +28,7 @@ namespace SkyReg
         public UsersAddEditForm()
         {
             InitializeComponent();
+            dtSurveyDate.Value = DateTime.Now;
             dateCertDate.Value = DateTime.Now;
             datInsuranceExpire.Value = DateTime.Now;
         }
@@ -275,6 +276,9 @@ namespace SkyReg
                 usr.Name = txtUserName.Text;
                 usr.ZipCode = txtZipCode.Text;
                 usr.InsuranceNr = txtInsuranceNr.Text;
+                usr.SurveyNr = txtSurveyNr.Text.Trim();
+                usr.SurveyExpirateDate = dtSurveyDate.Value.Date;
+
                 if (txtInsuranceNr.Text.HasValue())
                     usr.InsuranceExpire = datInsuranceExpire.Value.Date;
                 else

@@ -34,6 +34,7 @@
             this.kryptonTabControl1 = new AC.ExtendedRenderer.Navigator.KryptonTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
+            this.cmbSupervisorList = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.cmbName = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.kryptonGroup1 = new ComponentFactory.Krypton.Toolkit.KryptonGroup();
             this.numBalanceMoney = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
@@ -50,6 +51,7 @@
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.cmbParachute = new System.Windows.Forms.ComboBox();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel10 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.cmbUsersType = new System.Windows.Forms.ComboBox();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -65,11 +67,10 @@
             this.btnSaveCfg = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.kryptonLabel10 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.cmbSupervisorList = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.kryptonTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.kryptonPanelEx2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbSupervisorList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroup1.Panel)).BeginInit();
@@ -81,7 +82,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdFlightsForGroup)).BeginInit();
             this.kryptonPanelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbSupervisorList)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonTabControl1
@@ -149,6 +149,20 @@
             this.kryptonPanelEx2.PersistentColors = false;
             this.kryptonPanelEx2.Size = new System.Drawing.Size(342, 490);
             this.kryptonPanelEx2.TabIndex = 0;
+            // 
+            // cmbSupervisorList
+            // 
+            this.cmbSupervisorList.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbSupervisorList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbSupervisorList.DropDownWidth = 175;
+            this.cmbSupervisorList.Enabled = false;
+            this.cmbSupervisorList.Location = new System.Drawing.Point(113, 116);
+            this.cmbSupervisorList.Name = "cmbSupervisorList";
+            this.cmbSupervisorList.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
+            this.cmbSupervisorList.Size = new System.Drawing.Size(209, 21);
+            this.cmbSupervisorList.TabIndex = 25;
+            this.cmbSupervisorList.Text = "Brak";
+            this.cmbSupervisorList.SelectedIndexChanged += new System.EventHandler(this.cmbName_SelectedIndexChanged_1);
             // 
             // cmbName
             // 
@@ -346,6 +360,14 @@
             this.kryptonLabel2.TabIndex = 15;
             this.kryptonLabel2.Values.Text = "Typ:";
             // 
+            // kryptonLabel10
+            // 
+            this.kryptonLabel10.Location = new System.Drawing.Point(41, 116);
+            this.kryptonLabel10.Name = "kryptonLabel10";
+            this.kryptonLabel10.Size = new System.Drawing.Size(66, 20);
+            this.kryptonLabel10.TabIndex = 13;
+            this.kryptonLabel10.Values.Text = "Instruktor:";
+            // 
             // cmbUsersType
             // 
             this.cmbUsersType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -354,6 +376,7 @@
             this.cmbUsersType.Name = "cmbUsersType";
             this.cmbUsersType.Size = new System.Drawing.Size(209, 21);
             this.cmbUsersType.TabIndex = 14;
+            this.cmbUsersType.SelectedValueChanged += new System.EventHandler(this.CmbUsersType_SelectedValueChanged);
             // 
             // kryptonLabel1
             // 
@@ -370,7 +393,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 39);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(342, 469);
+            this.tabPage2.Size = new System.Drawing.Size(342, 490);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Tag = false;
             this.tabPage2.Text = "Grupa";
@@ -392,7 +415,7 @@
             this.kryptonPanelEx3.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanelEx3.Name = "kryptonPanelEx3";
             this.kryptonPanelEx3.PersistentColors = false;
-            this.kryptonPanelEx3.Size = new System.Drawing.Size(342, 469);
+            this.kryptonPanelEx3.Size = new System.Drawing.Size(342, 490);
             this.kryptonPanelEx3.TabIndex = 0;
             // 
             // btnColorGroup
@@ -421,7 +444,7 @@
             this.grdFlightsForGroup.Name = "grdFlightsForGroup";
             this.grdFlightsForGroup.ReadOnly = true;
             this.grdFlightsForGroup.RowHeadersVisible = false;
-            this.grdFlightsForGroup.Size = new System.Drawing.Size(336, 358);
+            this.grdFlightsForGroup.Size = new System.Drawing.Size(336, 379);
             this.grdFlightsForGroup.TabIndex = 24;
             this.grdFlightsForGroup.MouseClick += new System.Windows.Forms.MouseEventHandler(this.grdFlightsForGroup_MouseClick);
             // 
@@ -520,28 +543,6 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // kryptonLabel10
-            // 
-            this.kryptonLabel10.Location = new System.Drawing.Point(41, 116);
-            this.kryptonLabel10.Name = "kryptonLabel10";
-            this.kryptonLabel10.Size = new System.Drawing.Size(66, 20);
-            this.kryptonLabel10.TabIndex = 13;
-            this.kryptonLabel10.Values.Text = "Instruktor:";
-            // 
-            // cmbSupervisorList
-            // 
-            this.cmbSupervisorList.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cmbSupervisorList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbSupervisorList.DropDownWidth = 175;
-            this.cmbSupervisorList.Enabled = false;
-            this.cmbSupervisorList.Location = new System.Drawing.Point(113, 116);
-            this.cmbSupervisorList.Name = "cmbSupervisorList";
-            this.cmbSupervisorList.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Silver;
-            this.cmbSupervisorList.Size = new System.Drawing.Size(209, 21);
-            this.cmbSupervisorList.TabIndex = 25;
-            this.cmbSupervisorList.Text = "Brak";
-            this.cmbSupervisorList.SelectedIndexChanged += new System.EventHandler(this.cmbName_SelectedIndexChanged_1);
-            // 
             // ScheduleAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -560,6 +561,7 @@
             this.tabPage1.ResumeLayout(false);
             this.kryptonPanelEx2.ResumeLayout(false);
             this.kryptonPanelEx2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbSupervisorList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroup1.Panel)).EndInit();
             this.kryptonGroup1.Panel.ResumeLayout(false);
@@ -573,7 +575,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdFlightsForGroup)).EndInit();
             this.kryptonPanelEx1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbSupervisorList)).EndInit();
             this.ResumeLayout(false);
 
         }

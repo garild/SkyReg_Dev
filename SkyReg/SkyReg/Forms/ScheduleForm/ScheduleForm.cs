@@ -652,10 +652,13 @@ namespace SkyReg
                                 _ctx.Update(userFlightElem);
                                 _ctx.Update(moveItem);
                                 RefreshFlightsList();
+
+                                grdFlights.Rows[grdFlights.Rows.Cast<DataGridViewRow>().Where(p => p.Cells["Id"].Value != null && (int)p.Cells["Id"].Value == flightId).Select(p => p.Index).FirstOrDefault()].Selected = true;
                             }
                         }
+                        grdPlaner.Rows[grdPlaner.Rows.Cast<DataGridViewRow>().Where(p => p.Cells["UserId"].Value != null && (int)p.Cells["UserId"].Value == userId).Select(p => p.Index).FirstOrDefault()].Selected = true;
                     }
-                    grdPlaner.Rows[grdPlaner.Rows.Cast<DataGridViewRow>().Where(p => p.Cells["UserId"].Value != null && (int)p.Cells["UserId"].Value == userId).Select(p => p.Index).FirstOrDefault()].Selected = true;
+                    
                 }
             }
         }
@@ -695,9 +698,11 @@ namespace SkyReg
                                     _ctx.Update(userFlightElem);
                                     _ctx.Update(moveItem);
                                     RefreshFlightsList();
+
+                                   
+                                    grdFlights.Rows[grdFlights.Rows.Cast<DataGridViewRow>().Where(p => p.Cells["Id"].Value != null && (int)p.Cells["Id"].Value == flightId).Select(p => p.Index).FirstOrDefault()].Selected = true;
                                 }
                             }
-
                             grdPlaner.Rows[grdPlaner.Rows.Cast<DataGridViewRow>().Where(p => p.Cells["UserId"].Value != null && (int)p.Cells["UserId"].Value == userId).Select(p => p.Index).FirstOrDefault()].Selected = true;
                         }
                     }

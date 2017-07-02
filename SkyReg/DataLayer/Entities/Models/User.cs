@@ -35,7 +35,14 @@ namespace DataLayer
         [StringLength(500)]
         public string Certificate { get; set; }
 
+        [Column(TypeName = "Date")]
         public DateTime? CertDate { get; set; }
+
+        [StringLength(500)]
+        public string SurveyNr { get; set; }
+
+        [Column(TypeName ="Date")]
+        public DateTime? SurveyExpirateDate { get; set; }
 
         [StringLength(500)]
         public string City { get; set; }

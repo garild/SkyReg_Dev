@@ -36,8 +36,9 @@ namespace SkyReg.Forms.SupervisorsForm
                 var result = _ctx.GetAll();
                 if (result.IsSuccess)
                 {
-                    grdSupervisor.DataSource = result.Value.Where(p => p.IsUpToDate).ToList();
+                    grdSupervisor.DataSource = result.Value.ToList();
                     MapColumns();
+                    ColorGrid();
                 }
             }
         }
@@ -121,6 +122,22 @@ namespace SkyReg.Forms.SupervisorsForm
                     LoadData();
                 }
             }
+        }
+
+        private void ColorGrid()
+        {
+            if (grdSupervisor.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow item in grdSupervisor.Rows)
+                {
+                    item.DefaultCellStyle.BackColor = (bool)item.Cells["IsUpToDate"].Value ? Color.Empty : Color.Red;
+                }
+            }
+        }
+
+        private void FrmSupervisors_Shown(object sender, EventArgs e)
+        {
+            ColorGrid();
         }
     }
 }
