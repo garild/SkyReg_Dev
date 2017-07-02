@@ -25,48 +25,19 @@ namespace SkyReg
             InitializeComponent();
         }
 
-        private void UsersForm_Load(object sender, EventArgs e)
-        {
-            LoadGroupToCmbGroup();
-        }
-
-        private void LoadGroupToCmbGroup()
-        {
-            using (SkyRegContextRepository<Group> _contextGroup = new SkyRegContextRepository<Group>())
-            {
-                var allGroup = _contextGroup.GetAll().Value;
-
-                cmbGroup.DataSource = allGroup.Select(p => p).OrderBy(p => p.Id).ToList();
-                cmbGroup.ValueMember = "Id";
-                cmbGroup.DisplayMember = "Name";
-
-                cmbGroup.SelectedIndexChanged += cmbGroup_SelectedIndexChanged;
-
-
-                if (cmbGroup.Items.Count > 0)
-                    cmbGroup.SelectedIndex = 0;
-
-                if (cmbGroup.Items.Count > 0)
-                    RefreshUsersList();
-            }
-        }
-
         private void RefreshUsersList()
         {
             using (var _ctx = new SkyRegContextRepository<User>())
             {
-                int selectedGroupId = default(int);
-                int.TryParse(cmbGroup.SelectedValue.ToString(), out selectedGroupId);
 
                 //var users = model.User.AsNoTracking().OrderBy(p => p.SurName).ThenBy(p => p.FirstName).ToList();
                 //grdUsers.DataSource = users;
-                var result = _ctx.GetAll().Value.Where(p => p.Group_Id == selectedGroupId).OrderBy(p => p.Name).ToList();
-                if (result.Count > 0)
+                var result = _ctx.GetAll();
+                if (result.IsSuccess)
                 {
-                    grdUsers.DataSource = result;
+                    grdUsers.DataSource = result.Value.ToList(); ;
                     UsersSetListView();
                 }
-              
                     
             }
 
@@ -136,7 +107,7 @@ namespace SkyReg
             UsersAddEditForm.TopMost = true;
             UsersAddEditForm.FormState = FormState.Add;
             UsersAddEditForm.IdUser = default(int);
-            UsersAddEditForm.UserGroup = (int)cmbGroup.SelectedValue;
+            //UsersAddEditForm.UserGroup = (int)cmbGroup.SelectedValue;
             UsersAddEditForm.ShowDialog();
         }
 
@@ -161,7 +132,7 @@ namespace SkyReg
                  UsersAddEditForm.FormClosed += UsersAddEditForm_FormClosed;
                 UsersAddEditForm.FormState = FormState.Edit;
                 UsersAddEditForm.IdUser = idUsr;
-                UsersAddEditForm.UserGroup = (int)cmbGroup.SelectedValue;
+                //UsersAddEditForm.UserGroup = (int)cmbGroup.SelectedValue;
                 UsersAddEditForm.ShowDialog();
             }
         }
@@ -190,6 +161,11 @@ namespace SkyReg
 
                 }
             }
+        }
+
+        private void UsersForm_Load(object sender, EventArgs e)
+        {
+            RefreshUsersList();
         }
     }
 }

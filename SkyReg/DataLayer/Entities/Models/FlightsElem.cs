@@ -1,10 +1,8 @@
 namespace DataLayer
-{ 
-    using System;
+{
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("FlightsElem")]
     public partial class FlightsElem
@@ -35,11 +33,16 @@ namespace DataLayer
         [ForeignKey("DefinedUserType")]
         public int? UsersTypeId { get; set; }
 
+        [ForeignKey("Supervisors")]
+        public int? Supervisor_Id { get; set; }
+
         public virtual Flight Flight { get; set; }
 
         public virtual User User { get; set; }
 
         public virtual DefinedUserType DefinedUserType { get; set; }
+
+        public virtual Supervisors Supervisors { get; set; }
 
         public virtual ICollection<Payment> Payment { get; set; }
 

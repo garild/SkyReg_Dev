@@ -27,12 +27,12 @@ namespace DataLayer.Entities.DBContext
         public virtual DbSet<PaymentsSetting> PaymentsSetting { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<ReportedUsers> ReportedUsers { get; set; }
-        
+        public virtual DbSet<Supervisors> Supervisors { get; set; }
+
         //public virtual DbSet<UsersType> UsersType { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<Airplane>()
                 .HasMany(e => e.Flight)
                 .WithOptional(e => e.Airplane)
@@ -134,5 +134,6 @@ namespace DataLayer.Entities.DBContext
                 .HasForeignKey(e => e.User_Id)
                 .WillCascadeOnDelete(false);
         }
+
     }
 }

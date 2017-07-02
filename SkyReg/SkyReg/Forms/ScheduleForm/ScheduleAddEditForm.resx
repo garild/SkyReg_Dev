@@ -138,6 +138,9 @@
         ys53kkprpojEYvLfG8szB7jbJeZ3NnIDuMHcHf/o2ofWZpkh+gkx4tZyXo9TTgAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="Check.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="btnColorGroup.Values.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAsFJREFUOE+t
@@ -155,6 +158,9 @@
         ys53kkprpojEYvLfG8szB7jbJeZ3NnIDuMHcHf/o2ofWZpkh+gkx4tZyXo9TTgAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="CheckColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="CheckColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

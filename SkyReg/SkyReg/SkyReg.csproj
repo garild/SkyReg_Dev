@@ -296,6 +296,18 @@
     <Compile Include="Forms\SplashScreen\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Supervisors\FrmSupervisors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Supervisors\FrmSupervisors.Designer.cs">
+      <DependentUpon>FrmSupervisors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Supervisors\SupervisorAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Supervisors\SupervisorAddEdit.Designer.cs">
+      <DependentUpon>SupervisorAddEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UsersForm\UsersFinances.cs" />
     <Compile Include="Forms\UsersForm\UsersAddEditForm.cs">
       <SubType>Form</SubType>
@@ -418,6 +430,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SplashScreen\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Supervisors\FrmSupervisors.resx">
+      <DependentUpon>FrmSupervisors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Supervisors\SupervisorAddEdit.resx">
+      <DependentUpon>SupervisorAddEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UsersForm\UsersAddEditForm.resx">
       <DependentUpon>UsersAddEditForm.cs</DependentUpon>

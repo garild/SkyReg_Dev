@@ -41,6 +41,7 @@
             this.btnCancel = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnSave = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.chkNeedSupervisor = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.kryptonPanelEx1.SuspendLayout();
             this.kryptonPanelEx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -51,6 +52,7 @@
             this.kryptonPanelEx1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonPanelEx1.Controls.Add(this.chkNeedSupervisor);
             this.kryptonPanelEx1.Controls.Add(this.chkCam);
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel3);
             this.kryptonPanelEx1.Controls.Add(this.kryptonLabel2);
@@ -65,7 +67,7 @@
             this.kryptonPanelEx1.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanelEx1.Name = "kryptonPanelEx1";
             this.kryptonPanelEx1.PersistentColors = false;
-            this.kryptonPanelEx1.Size = new System.Drawing.Size(492, 124);
+            this.kryptonPanelEx1.Size = new System.Drawing.Size(492, 128);
             this.kryptonPanelEx1.TabIndex = 0;
             // 
             // chkCam
@@ -146,7 +148,7 @@
             this.kryptonPanelEx2.GradientUseBlend = false;
             this.kryptonPanelEx2.Image = null;
             this.kryptonPanelEx2.ImageLocation = new System.Drawing.Point(4, 4);
-            this.kryptonPanelEx2.Location = new System.Drawing.Point(0, 122);
+            this.kryptonPanelEx2.Location = new System.Drawing.Point(0, 126);
             this.kryptonPanelEx2.Name = "kryptonPanelEx2";
             this.kryptonPanelEx2.PersistentColors = false;
             this.kryptonPanelEx2.Size = new System.Drawing.Size(492, 38);
@@ -180,11 +182,23 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // chkNeedSupervisor
+            // 
+            this.chkNeedSupervisor.LabelStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.NormalControl;
+            this.chkNeedSupervisor.Location = new System.Drawing.Point(176, 96);
+            this.chkNeedSupervisor.Name = "chkNeedSupervisor";
+            this.chkNeedSupervisor.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.chkNeedSupervisor.Size = new System.Drawing.Size(140, 20);
+            this.chkNeedSupervisor.StateNormal.ShortText.Color1 = System.Drawing.Color.White;
+            this.chkNeedSupervisor.TabIndex = 2;
+            this.chkNeedSupervisor.Text = "Wymagany instruktor";
+            this.chkNeedSupervisor.Values.Text = "Wymagany instruktor";
+            // 
             // UserTypeAddEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(492, 160);
+            this.ClientSize = new System.Drawing.Size(492, 164);
             this.Controls.Add(this.kryptonPanelEx2);
             this.Controls.Add(this.kryptonPanelEx1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -218,5 +232,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancel;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSave;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private ComponentFactory.Krypton.Toolkit.KryptonCheckBox chkNeedSupervisor;
     }
 }

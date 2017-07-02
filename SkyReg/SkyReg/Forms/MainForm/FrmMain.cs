@@ -3,6 +3,7 @@ using DataLayer;
 using SkyReg.Common.Extensions;
 using SkyReg.Forms;
 using SkyReg.Forms.SplashScreen;
+using SkyReg.Forms.SupervisorsForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -131,7 +132,24 @@ namespace SkyReg
                     ReportedUsersList.Show();
                     ReportedUsersList.Activate();
                     break;
+
+                case "Supervisors":
+                    FrmSupervisors = FormsOpened<FrmSupervisors>.IsOpened(FrmSupervisors);
+                    FrmSupervisors.MdiParent = this;
+                    FrmSupervisors.WindowState = FormWindowState.Maximized;
+                    FrmSupervisors.FormClosed += FrmSupervisors_FormClosed;
+                    FrmSupervisors.BringToFront();
+                    FrmSupervisors.TopLevel = false;
+                    FrmSupervisors.Show();
+                    FrmSupervisors.Activate();
+                    break;
+                    
             }
+        }
+
+        private void FrmSupervisors_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            FrmSupervisors = null;
         }
 
         private void PaymentsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -192,14 +210,14 @@ namespace SkyReg
         private PaymentsForm PaymentsForm = null;
         private PassangerList PassangerList = null;
         private ReportedUsersList ReportedUsersList = null;
-
-
+        private PanelSettings PanelSettings = null;
+        private FrmSupervisors FrmSupervisors = null;
         #endregion
 
         private void tsmSettings_Click(object sender, EventArgs e)
         {
-            _panel = FormsOpened<PanelSettings>.IsOpened(_panel);
-            if(_panel.ShowDialog() == DialogResult.OK)
+            PanelSettings = FormsOpened<PanelSettings>.IsOpened(PanelSettings);
+            if(PanelSettings.ShowDialog() == DialogResult.OK)
             {
                 if (Application.OpenForms["PassangerList"] != null)
                 {
@@ -207,7 +225,7 @@ namespace SkyReg
                 }
             }
         }
-        PanelSettings _panel = null;
+       
 
         private void dodajKluczToolStripMenuItem_Click(object sender, EventArgs e)
         {

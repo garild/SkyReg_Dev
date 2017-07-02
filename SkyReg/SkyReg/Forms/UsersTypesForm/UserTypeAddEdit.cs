@@ -45,7 +45,7 @@ namespace SkyReg
                 ut.Name = txtName.Text;
                 ut.Value = numValue.Value;
                 ut.IsCam = chkCam.Checked;
-
+                ut.RequiredSupervisor = chkNeedSupervisor.Checked;
                 if (_formState == FormState.Add)
                     _ctx.InsertEntity(ut);
                 else

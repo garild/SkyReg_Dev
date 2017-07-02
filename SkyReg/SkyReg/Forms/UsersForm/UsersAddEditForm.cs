@@ -28,7 +28,8 @@ namespace SkyReg
         public UsersAddEditForm()
         {
             InitializeComponent();
-            dateCertDate.MaxDate = DateTime.Now.AddYears(2);
+            dateCertDate.Value = DateTime.Now;
+            datInsuranceExpire.Value = DateTime.Now;
         }
 
         private void UsersAddEditForm_Load(object sender, EventArgs e)
@@ -189,7 +190,6 @@ namespace SkyReg
                 {
                     if (FormState == FormState.Edit)
                     {
-
                         allUserTypes.Value?.ForEach(item =>
                         {
                             if (currentUserTypes.DefinedUserType.Any(p => p.Id == item.Id))
@@ -218,7 +218,7 @@ namespace SkyReg
                 var userExist = model.GetAll().Value?.Where(p => p.Name == txtUserName.Text).FirstOrDefault();
                 if (userExist == null)
                 {
-                    KryptonMessageBox.Show("Login wolny.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    KryptonMessageBox.Show("Login wolny.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 else
                 {
@@ -266,7 +266,7 @@ namespace SkyReg
                 usr.City = txtCity.Text;
                 usr.Email = txtEmail.Text;
                 usr.FaceBook = txtFacebook.Text;
-                usr.Group_Id = _ctxUser.Model.Group.Where(p => p.Id == UserGroup).FirstOrDefault().Id;
+                //usr.Group_Id = _ctxUser.Model.Group.Where(p => p.Id == UserGroup).FirstOrDefault().Id;
                 usr.Login = txtLogin.Text;
                 usr.Password = txtPassword.Text;
                 usr.Phone = txtPhone.Text;
