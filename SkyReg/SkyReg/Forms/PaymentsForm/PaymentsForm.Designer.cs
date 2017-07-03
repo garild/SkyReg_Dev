@@ -39,6 +39,7 @@
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.grdPayments = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnPrint = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).BeginInit();
             this.kryptonHeaderGroup1.Panel.SuspendLayout();
@@ -68,6 +69,7 @@
             // 
             this.kryptonPanelEx2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonPanelEx2.Controls.Add(this.btnPrint);
             this.kryptonPanelEx2.Controls.Add(this.BtnDelete);
             this.kryptonPanelEx2.Controls.Add(this.btnAdd);
             this.kryptonPanelEx2.Controls.Add(this.BtnEdit);
@@ -194,6 +196,20 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPrint.Location = new System.Drawing.Point(320, 11);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
+            this.btnPrint.Size = new System.Drawing.Size(152, 25);
+            this.btnPrint.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
+            this.btnPrint.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnPrint.TabIndex = 10;
+            this.btnPrint.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Values.Image")));
+            this.btnPrint.Values.Text = "Zestawienie za okres";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // PaymentsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,5 +247,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton BtnDelete;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnAdd;
         private ComponentFactory.Krypton.Toolkit.KryptonButton BtnEdit;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnPrint;
     }
 }

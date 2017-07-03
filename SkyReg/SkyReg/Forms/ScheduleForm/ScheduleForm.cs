@@ -473,7 +473,7 @@ namespace SkyReg
                                 Lp = p.Lp.ToString(),
                                 Name = p.User.Name,
                                 JumpNr = default(string),//TODO do ustalenia co tu ma być
-                            Status = _ctx.Model.Database.SqlQuery<string>("select Name from DefinedUserType where Id = {0}", p.UsersTypeId).FirstOrDefault(),
+                                Status = _ctx.Model.Database.SqlQuery<string>("select Name from DefinedUserType where Id = {0}", p.UsersTypeId).FirstOrDefault(),
                                 ParachuteType = _ctx.Model.Database.SqlQuery<string>("select Parachute.Name from FlightsElemParachutes join Parachute on Parachute.Id = FlightsElemParachutes.Parachute_Id where FlightsElem_Id = {0}", p.Id).FirstOrDefault(),
                                 ParachuteId = _ctx.Model.Database.SqlQuery<string>("select Parachute.IdNr from FlightsElemParachutes join Parachute on Parachute.Id = FlightsElemParachutes.Parachute_Id where FlightsElem_Id = {0}", p.Id).FirstOrDefault(),
                                 Altitude = p.Flight.Altitude.ToString()
@@ -488,53 +488,11 @@ namespace SkyReg
                     }
 
 
-                    llf.ShowDialog();
-
-                    //TEST Print HTML
-                    GenerateHtml(llh);
-
+                   // llf.ShowDialog();
                 }
             }
         }
 
-        private void GenerateHtml(LLHeader header)
-        {
-            var htmlBuilder = new StringBuilder();
-            
-            if(header != new LLHeader())
-            {
-                var userList = new { Name = "Garib Tigranyan", Parachute = "Saber #0003", Typ = "Instruktor" };
-                string userData = "";
-
-                for (int i = 1; i <= 5; i++)
-                {
-                    userData += HtmlTemplate.singleRow.FormatWith(new
-                    {
-                        Lp = $"{i}",
-                        UserName = userList.Name,
-                        ParachuteType = userList.Parachute,
-                        UserType = userList.Typ
-                    });
-                }
-
-                htmlBuilder.AppendLine(
-                    HtmlTemplate.TempalteHtml.FormatWith(new
-                    {
-                        FlightNr = header.FlightNr,
-                        Airplane = header.Airplane,
-                        Airport = header.Airport,
-                        FlyDate = header.Date,
-                        singleRow = userData
-                    }
-                    ));
-
-                htmlBuilder.AppendLine(HtmlTemplate.style);
-
-                PrintPreview prntView = new PrintPreview(htmlBuilder.ToString());
-                prntView.ShowDialog();
-            }
-
-        }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
