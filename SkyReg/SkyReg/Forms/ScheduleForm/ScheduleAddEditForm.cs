@@ -34,7 +34,7 @@ namespace SkyReg
             LoadFlightsOnGrid();
             LoadFlightsOnGridGroup();
             LoadParachutes();
-            LoadUsers();            
+            LoadUsers();
         }
 
         private void SaveToBaseAdd()
@@ -89,7 +89,7 @@ namespace SkyReg
 
                 nrLotu = grdFlight.SelectedRows[0].Cells["Number"].Value.ToString();
                 if (parachuteRentPrice.Value > 0)
-                    payParachuteRent = SaveOneJump(usr.Id, parachuteRentPrice.Value, false, string.Format("Spadochron {0}", nrLotu), fe.Id,ChargesTypes.ParachuteRent);
+                    payParachuteRent = SaveOneJump(usr.Id, parachuteRentPrice.Value, false, string.Format("Spadochron {0}", nrLotu), fe.Id, ChargesTypes.ParachuteRent);
                 if (parachuteAssemblyPrice.Value > 0 && assemblySelf == false)
                     payAssembly = SaveOneJump(usr.Id, parachuteAssemblyPrice, false, string.Format("Układanie {0}", nrLotu), fe.Id, ChargesTypes.ParachuteAssembly);
                 if (usersPackages > 0)
@@ -146,8 +146,7 @@ namespace SkyReg
                 else
                     fe.AssemblySelf = false;
 
-                //TODO do POPRAWY
-                var lp = _ctx.Model.FlightsElem.Max(p => p.Lp);
+                var lp = _ctx.Model.FlightsElem.Where(p => p.Flight_Id == flightId).Max(p => p.Lp);
                 fe.Lp = lp.HasValue ? lp.Value + 1 : 1;
                 fe.Parachute.Add(_ctx.Model.Parachute.FirstOrDefault(p => p.Id == (int)cmbParachute.SelectedValue));
                 fe.User_Id = usrId;
@@ -162,7 +161,7 @@ namespace SkyReg
 
 
 
-        private Payment SaveOneJump(int usrId, decimal? oneJumpPrice, bool count, string description, int flyElem,ChargesTypes chargeType)
+        private Payment SaveOneJump(int usrId, decimal? oneJumpPrice, bool count, string description, int flyElem, ChargesTypes chargeType)
         {
 
             //PaymentsSetting ps = model.PaymentsSetting.Where(p => p.Type == (short)SkyRegEnums.PaymentsTypes.Naleznosc).FirstOrDefault();
@@ -178,7 +177,7 @@ namespace SkyReg
                 var user = _user.Table.Where(p => p.Id == usrId).FirstOrDefault();
 
                 pay.FlightsElem_Id = flightElem.Id;
-                pay.Date = DateTime.Now;
+                pay.Date = DateTime.Now.Date;
                 pay.Description = description;
                 pay.IsBooked = true;
                 pay.PaymentsSetting_Id = ps.Id;
@@ -295,7 +294,9 @@ namespace SkyReg
                             .Include("User")
                             .Where(p => p.Flight.Id == selFlightId.Value)
                                 .ToList().Where(p => p.User != null).Select(p => p.User.Id).ToList();
-                         
+
+                        var curentFlightId = selFlightId;
+
                         //Wyloty z list na formatce dodawania
                         foreach (DataGridViewRow item in grdFlightsListSelectedForUser.Rows)
                         {
@@ -303,15 +304,34 @@ namespace SkyReg
                             {
                                 selFlightId = (int)item.Cells["Id"].Value;
 
-                                idUsersOfSelectedFlights.AddRange(ctx.FlightsElem
-                                        .Include("Flight")
-                                        .Include("User")
-                                        .Where(p => p.Flight.Id == selFlightId.Value)
-                                        .Select(p => p.User.Id)
-                                        .ToList());
+                                if (curentFlightId != selFlightId)
+                                {
+                                    List<FlightsElem> usersIdsTEMP = ctx.FlightsElem
+                                            .Include("Flight")
+                                            .Include("User")
+                                            .Where(p => p.Flight.Id == selFlightId.Value)
+                                            //.Select(p => p.User.Id)
+                                            .ToList();
+                                    //kombinacja ale nie działało gdy do wylotu była podpięta grupa
+                                    foreach(FlightsElem fe in usersIdsTEMP)
+                                    {
+                                        if(fe.User_Id != null)
+                                        {
+                                            idUsersOfSelectedFlights.Add(fe.User_Id.Value);
+                                        }
+
+                                    }
+                                    
+                                    //if (usersIdsTEMP != null)
+                                    //{
+                                    //    var usersIds = usersIdsTEMP.Select(p => p.User_Id.Value).ToList();
+                                    //    if (usersIds != null)
+                                    //        idUsersOfSelectedFlights.AddRange(usersIds);
+                                    //}
+                                }
                             }
                         }
-                        if( idUsersOfSelectedFlights.Any(p=>p == idUser))
+                        if (idUsersOfSelectedFlights.Any(p => p == idUser))
                         {
                             result = false;
                             errorMessage += "Wybrany użytkownik jest już dodany do wybranych wylotów!";
@@ -320,7 +340,7 @@ namespace SkyReg
                 }
             }
 
-            if(result == false && errorMessage.HasValue())
+            if (result == false && errorMessage.HasValue())
             {
                 KryptonMessageBox.Show(errorMessage, "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
@@ -395,14 +415,15 @@ namespace SkyReg
                 PaymentsSetting ps = _ps.Table.Where(p => p.Id == 1).FirstOrDefault();
                 User usr = _usr.Table.Where(p => p.Id == idUser).FirstOrDefault();
 
-                pay.Date = DateTime.Now;
+                pay.Date = DateTime.Now.Date;
                 pay.Description = "Szybka wpłata";
                 pay.IsBooked = false;
                 pay.PaymentsSetting = ps;
                 pay.User_Id = usr.Id;
                 pay.Value = value;
                 pay.Count = 0;
-
+                _pay.Entry(pay).State = System.Data.Entity.EntityState.Added;
+                _pay.Entry(ps).State = System.Data.Entity.EntityState.Detached;
                 _pay.InsertEntity(pay);
             }
         }
@@ -411,7 +432,7 @@ namespace SkyReg
         {
             int userId = 0;
 
-            using(var _groupsCtx = new SkyRegContextRepository<Group>())
+            using (var _groupsCtx = new SkyRegContextRepository<Group>())
             using (var _ctx = new SkyRegContextRepository<User>())
             {
                 var jumperGroup = _groupsCtx.Model.Group.Where(p => p.Name == "Skoczkowie").FirstOrDefault();

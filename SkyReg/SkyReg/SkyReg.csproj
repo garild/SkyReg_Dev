@@ -112,6 +112,22 @@
     <Compile Include="Common\Enums\TransportData.cs" />
     <Compile Include="Common\Extensions\FormsOpened.cs" />
     <Compile Include="Common\Extensions\PrimitiveTypeExtensions.cs" />
+    <Compile Include="Common\Prints\DaysSum\AssemblyByPriceOnTally.cs" />
+    <Compile Include="Common\Prints\DaysSum\DaysSumForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Prints\DaysSum\DaysSumForm.Designer.cs">
+      <DependentUpon>DaysSumForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Prints\DaysSum\DaysSumSettForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Prints\DaysSum\DaysSumSettForm.Designer.cs">
+      <DependentUpon>DaysSumSettForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Prints\DaysSum\HtmlTemplate.cs" />
+    <Compile Include="Common\Prints\DaysSum\PilotsOnTally.cs" />
+    <Compile Include="Common\Prints\DaysSum\UsersTypesOnTally.cs" />
     <Compile Include="Common\Prints\LoadingList\LLHeader.cs" />
     <Compile Include="Common\Prints\LoadingList\LLItems.cs" />
     <Compile Include="Common\Prints\LoadingList\LoadingListForm.cs">
@@ -330,6 +346,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="Common\Prints\DaysSum\DaysSumForm.resx">
+      <DependentUpon>DaysSumForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Prints\DaysSum\DaysSumSettForm.resx">
+      <DependentUpon>DaysSumSettForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Prints\LoadingList\LoadingListForm.resx">
       <DependentUpon>LoadingListForm.cs</DependentUpon>
     </EmbeddedResource>

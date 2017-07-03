@@ -160,5 +160,11 @@ namespace SkyReg
         {
             this.Close();
         }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            Common.Prints.DaysSum.DaysSumSettForm dssf = new Common.Prints.DaysSum.DaysSumSettForm();
+            dssf.ShowDialog();
+        }
     }
 }

@@ -268,6 +268,7 @@ namespace SkyReg
                     gs.CamPrice = numCamPrice.Value;
                     gs.AirportsName = txtAirportId.Text;
                     gs.CertExpired = (short)numDaysExpiredCert.Value;
+                    model.Entry(gs).State = System.Data.Entity.EntityState.Added;
                     model.GlobalSetting.Add(gs);
                 }
                 else
@@ -275,7 +276,9 @@ namespace SkyReg
                     gs.CamPrice = numCamPrice.Value;
                     gs.AirportsName = txtAirportId.Text;
                     gs.CertExpired = (short)numDaysExpiredCert.Value;
+                    model.Entry(gs).State = System.Data.Entity.EntityState.Modified;
                 }
+                
                 model.SaveChanges();
             }
         }
