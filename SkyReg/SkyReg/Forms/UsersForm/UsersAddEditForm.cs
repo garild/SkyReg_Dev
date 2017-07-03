@@ -305,9 +305,6 @@ namespace SkyReg
 
                     _ctxUser.Update(usr);
 
-
-                    
-
                 }
                 this.Close();
 
