@@ -117,6 +117,7 @@ namespace SkyReg
                     txtName.Text = ut.Name;
                     numValue.Value = ut.Value;
                     chkCam.Checked = ut.IsCam;
+                    chkNeedSupervisor.Checked = ut.RequiredSupervisor;
                 }
             }
         }
