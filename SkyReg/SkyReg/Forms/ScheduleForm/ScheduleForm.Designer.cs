@@ -65,6 +65,11 @@
             this.kryptonContextMenuItems1 = new ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems();
             this.kryptonContextMenuItem1 = new ComponentFactory.Krypton.Toolkit.KryptonContextMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.btnStatus = new ComponentFactory.Krypton.Toolkit.KryptonDropButton();
+            this.kryptonContextMenuItems2 = new ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems();
+            this.statusCtxMnuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Opened = new System.Windows.Forms.ToolStripMenuItem();
+            this.Executed = new System.Windows.Forms.ToolStripMenuItem();
             this.kryptonPanelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup3.Panel)).BeginInit();
@@ -86,6 +91,7 @@
             this.kryptonPanelEx3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdFlights)).BeginInit();
             this.kryptonPanelEx2.SuspendLayout();
+            this.statusCtxMnuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonPanelEx1
@@ -372,6 +378,7 @@
             // 
             // kryptonPanelEx3
             // 
+            this.kryptonPanelEx3.Controls.Add(this.btnStatus);
             this.kryptonPanelEx3.Controls.Add(this.btnNext);
             this.kryptonPanelEx3.Controls.Add(this.btnPreview);
             this.kryptonPanelEx3.Controls.Add(this.btnRefreshFlights);
@@ -398,10 +405,10 @@
             // btnNext
             // 
             this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNext.Location = new System.Drawing.Point(158, 628);
+            this.btnNext.Location = new System.Drawing.Point(167, 628);
             this.btnNext.Name = "btnNext";
             this.btnNext.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.btnNext.Size = new System.Drawing.Size(92, 25);
+            this.btnNext.Size = new System.Drawing.Size(83, 25);
             this.btnNext.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
             this.btnNext.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnNext.TabIndex = 11;
@@ -415,7 +422,7 @@
             this.btnPreview.Location = new System.Drawing.Point(10, 628);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2007Blue;
-            this.btnPreview.Size = new System.Drawing.Size(92, 25);
+            this.btnPreview.Size = new System.Drawing.Size(89, 25);
             this.btnPreview.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
             this.btnPreview.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnPreview.TabIndex = 10;
@@ -452,7 +459,7 @@
             this.datSinceFlights.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.datSinceFlights.Location = new System.Drawing.Point(10, 602);
             this.datSinceFlights.Name = "datSinceFlights";
-            this.datSinceFlights.Size = new System.Drawing.Size(92, 21);
+            this.datSinceFlights.Size = new System.Drawing.Size(89, 21);
             this.datSinceFlights.TabIndex = 5;
             // 
             // grdFlights
@@ -496,7 +503,7 @@
             this.txtAltitude.Location = new System.Drawing.Point(83, 33);
             this.txtAltitude.Name = "txtAltitude";
             this.txtAltitude.ReadOnly = true;
-            this.txtAltitude.Size = new System.Drawing.Size(175, 20);
+            this.txtAltitude.Size = new System.Drawing.Size(175, 23);
             this.txtAltitude.TabIndex = 1;
             // 
             // txtAirplane
@@ -506,7 +513,7 @@
             this.txtAirplane.Location = new System.Drawing.Point(83, 4);
             this.txtAirplane.Name = "txtAirplane";
             this.txtAirplane.ReadOnly = true;
-            this.txtAirplane.Size = new System.Drawing.Size(175, 20);
+            this.txtAirplane.Size = new System.Drawing.Size(175, 23);
             this.txtAirplane.TabIndex = 0;
             // 
             // kryptonPanelEx2
@@ -549,6 +556,39 @@
             this.colorDialog1.AnyColor = true;
             this.colorDialog1.SolidColorOnly = true;
             // 
+            // btnStatus
+            // 
+            this.btnStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnStatus.ContextMenuStrip = this.statusCtxMnuStrip;
+            this.btnStatus.Location = new System.Drawing.Point(105, 628);
+            this.btnStatus.Name = "btnStatus";
+            this.btnStatus.Size = new System.Drawing.Size(56, 25);
+            this.btnStatus.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnStatus.TabIndex = 16;
+            this.btnStatus.Values.Text = "Status";
+            // 
+            // statusCtxMnuStrip
+            // 
+            this.statusCtxMnuStrip.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.statusCtxMnuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Opened,
+            this.Executed});
+            this.statusCtxMnuStrip.Name = "statusCtxMnuStrip";
+            this.statusCtxMnuStrip.Size = new System.Drawing.Size(153, 70);
+            this.statusCtxMnuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusCtxMnuStrip_ItemClicked);
+            // 
+            // Opened
+            // 
+            this.Opened.Name = "Opened";
+            this.Opened.Size = new System.Drawing.Size(152, 22);
+            this.Opened.Text = "Otwarty";
+            // 
+            // Executed
+            // 
+            this.Executed.Name = "Executed";
+            this.Executed.Size = new System.Drawing.Size(152, 22);
+            this.Executed.Text = "Zrealizowany";
+            // 
             // ScheduleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -583,6 +623,7 @@
             this.kryptonPanelEx3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdFlights)).EndInit();
             this.kryptonPanelEx2.ResumeLayout(false);
+            this.statusCtxMnuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -624,5 +665,10 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView grdPlaner;
+        private ComponentFactory.Krypton.Toolkit.KryptonDropButton btnStatus;
+        private ComponentFactory.Krypton.Toolkit.KryptonContextMenuItems kryptonContextMenuItems2;
+        private System.Windows.Forms.ContextMenuStrip statusCtxMnuStrip;
+        private System.Windows.Forms.ToolStripMenuItem Opened;
+        private System.Windows.Forms.ToolStripMenuItem Executed;
     }
 }

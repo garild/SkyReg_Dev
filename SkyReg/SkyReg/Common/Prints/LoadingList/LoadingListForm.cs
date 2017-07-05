@@ -29,5 +29,6 @@ namespace SkyReg.Common.Prints.LoadingList
             this.rvLoadingList.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);
             this.rvLoadingList.RefreshReport();
         }
+
     }
 }

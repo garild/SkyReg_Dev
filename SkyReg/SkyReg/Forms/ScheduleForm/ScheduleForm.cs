@@ -472,6 +472,7 @@ namespace SkyReg
                             {
                                 Lp = p.Lp.ToString(),
                                 Name = p.User.Name,
+                                Supervisor = _ctx.Model.Supervisors.Where(q => q.Id == p.Supervisor_Id).Select(q=>q.UserName).FirstOrDefault(),
                                 JumpNr = default(string),//TODO do ustalenia co tu ma być
                                 Status = _ctx.Model.Database.SqlQuery<string>("select Name from DefinedUserType where Id = {0}", p.UsersTypeId).FirstOrDefault(),
                                 ParachuteType = _ctx.Model.Database.SqlQuery<string>("select Parachute.Name from FlightsElemParachutes join Parachute on Parachute.Id = FlightsElemParachutes.Parachute_Id where FlightsElem_Id = {0}", p.Id).FirstOrDefault(),
@@ -677,6 +678,48 @@ namespace SkyReg
                 if (int.Parse(item.Cells["Status"].Value.ToString()) == (int)FlightsStatus.Canceled)
                     item.DefaultCellStyle.BackColor = Color.LightPink;
             }
+        }
+
+        private void statusCtxMnuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            int newStatus = default(int);
+
+            if(grdFlights.SelectedRows.Count > 0)
+            {
+                int flightId = (int)grdFlights.SelectedRows[0].Cells["Id"].Value;
+                switch (e.ClickedItem.Name)
+                {
+                    case "Opened":
+                        if (KryptonMessageBox.Show("Zmienić status lotu na otwarty?", "Zmienić?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            newStatus = (int)SkyRegEnums.FlightsStatus.Opened;
+                        }
+                        break;
+                    case "Executed":
+                        if (KryptonMessageBox.Show("Zmienić status lotu na zrealizowany?", "Zmienić?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            newStatus = (int)SkyRegEnums.FlightsStatus.Executed;
+                        }
+                        break;
+                }
+
+                if (newStatus != default(int))
+                {
+                    using (SkyRegContext ctx = new SkyRegContext())
+                    {
+                        var flight = ctx.Flight.Where(p => p.Id == flightId).FirstOrDefault();
+                        if(flight!= null)
+                        {
+                            flight.FlyStatus = (short)newStatus;
+                            ctx.Entry(flight).State = System.Data.Entity.EntityState.Modified;
+                            ctx.SaveChanges();
+                            RefreshFlightsList();
+                        }
+                    }
+                }
+                
+            }
+            
         }
     }
 }
