@@ -238,4 +238,9 @@ namespace SkyReg
             LicenceInfoForm lif = new LicenceInfoForm();
             lif.ShowDialog();
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     } }

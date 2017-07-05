@@ -411,15 +411,33 @@ namespace SkyReg
 
         private void AddPaymentForUser(int idUser, decimal value)
         {
-            using (var _pay = new SkyRegContextRepository<Payment>())
-            using (var _ps = new SkyRegContextRepository<PaymentsSetting>())
-            using (var _usr = new SkyRegContextRepository<User>())
+            //using (var _pay = new SkyRegContextRepository<Payment>())
+            //using (var _ps = new SkyRegContextRepository<PaymentsSetting>())
+            //using (var _usr = new SkyRegContextRepository<User>())
+            //{
+            //    Payment pay = new Payment();
+
+            //    PaymentsSetting ps = _ps.Table.Where(p => p.Id == 1).FirstOrDefault();
+            //    User usr = _usr.Table.Where(p => p.Id == idUser).FirstOrDefault();
+
+            //    pay.Date = DateTime.Now.Date;
+            //    pay.Description = "Szybka wpłata";
+            //    pay.IsBooked = false;
+            //    pay.PaymentsSetting = ps;
+            //    pay.User_Id = usr.Id;
+            //    pay.Value = value;
+            //    pay.Count = 0;
+            //    //TODO UWAGA WYWALAŁO BŁĄD
+            //    //_pay.Entry(pay).State = System.Data.Entity.EntityState.Added;
+            //    //_pay.Entry(ps).State = System.Data.Entity.EntityState.Detached;
+            //    _pay.InsertEntity(pay);
+            //}
+
+            using(SkyRegContext ctx = new SkyRegContext())
             {
                 Payment pay = new Payment();
-
-                PaymentsSetting ps = _ps.Table.Where(p => p.Id == 1).FirstOrDefault();
-                User usr = _usr.Table.Where(p => p.Id == idUser).FirstOrDefault();
-
+                PaymentsSetting ps = ctx.PaymentsSetting.Where(p => p.Id == 1).FirstOrDefault();
+                User usr = ctx.User.Where(p => p.Id == idUser).FirstOrDefault();
                 pay.Date = DateTime.Now.Date;
                 pay.Description = "Szybka wpłata";
                 pay.IsBooked = false;
@@ -427,10 +445,14 @@ namespace SkyReg
                 pay.User_Id = usr.Id;
                 pay.Value = value;
                 pay.Count = 0;
-                _pay.Entry(pay).State = System.Data.Entity.EntityState.Added;
-                _pay.Entry(ps).State = System.Data.Entity.EntityState.Detached;
-                _pay.InsertEntity(pay);
+                ctx.Entry(pay).State = System.Data.Entity.EntityState.Added;
+                ctx.Entry(ps).State = System.Data.Entity.EntityState.Detached;
+                ctx.Payment.Add(pay);
+                ctx.SaveChanges();
             }
+
+
+
         }
 
         private int AddNewUserToBase()

@@ -166,7 +166,10 @@ namespace SkyReg
                     txtEmail.Text = usr.Email;
                     txtFacebook.Text = usr.FaceBook;
                     txtLogin.Text = usr.Login;
-                    txtPassword.Text = usr.Password;
+                    //txtPassword.Text = usr.Password;
+
+                    txtPassword.Text = DataLayer.Utils.Security.DecryptString(usr.Password);
+                    
                     txtPhone.Text = usr.Phone;
                     txtStreet.Text = usr.Street;
                     txtStreetNr.Text = usr.StreetNr;
@@ -269,7 +272,11 @@ namespace SkyReg
                 usr.FaceBook = txtFacebook.Text;
                 //usr.Group_Id = _ctxUser.Model.Group.Where(p => p.Id == UserGroup).FirstOrDefault().Id;
                 usr.Login = txtLogin.Text;
-                usr.Password = txtPassword.Text;
+                //usr.Password = txtPassword.Text;
+
+                usr.Password = DataLayer.Utils.Security.EncryptString(txtPassword.Text);
+
+
                 usr.Phone = txtPhone.Text;
                 usr.Street = txtStreet.Text;
                 usr.StreetNr = txtStreetNr.Text;
