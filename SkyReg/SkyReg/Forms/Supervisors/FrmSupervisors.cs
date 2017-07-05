@@ -54,6 +54,9 @@ namespace SkyReg.Forms.SupervisorsForm
             grdSupervisor.Columns["SurveyNr"].HeaderText = "Nr badania";
             grdSupervisor.Columns["SurveyExpirateDate"].HeaderText = "Termin ważności badania";
             grdSupervisor.Columns["IsUpToDate"].HeaderText = "Aktualny";
+
+            grdSupervisor.Columns["UserName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)

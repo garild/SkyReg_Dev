@@ -340,22 +340,22 @@
               <Width>0.9512cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.26588cm</Width>
+              <Width>4.94838cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.46875cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.53125cm</Width>
+              <Width>2.88242cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.94979cm</Width>
+              <Width>4.47175cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>3.06979cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.85657cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -803,21 +803,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox16">
+                    <Textbox Name="Supervisor">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Fields!Supervisor.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox16</rd:DefaultName>
+                      <rd:DefaultName>Supervisor</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -981,7 +981,7 @@
         <DataSetName>DataSetLLItems</DataSetName>
         <Top>1.72889cm</Top>
         <Height>2.04667cm</Height>
-        <Width>25.82525cm</Width>
+        <Width>26.73745cm</Width>
         <ZIndex>11</ZIndex>
         <Style>
           <Border>
@@ -1156,11 +1156,15 @@
           <DataField>Status</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Supervisor">
+          <DataField>Supervisor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>SkyReg.Common.Prints.LoadingList</rd:DataSetName>
         <rd:TableName>LLItems</rd:TableName>
-        <rd:ObjectDataSourceType>SkyReg.Common.Prints.LoadingList.LLItems, SkyReg, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>SkyReg.Common.Prints.LoadingList.LLItems, SkyReg, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

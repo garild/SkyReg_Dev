@@ -29,30 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.rvLoadingList = new Microsoft.Reporting.WinForms.ReportViewer();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.LLHeaderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.LLItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.rvLoadingList = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.LLHeaderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LLItemsBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // rvLoadingList
-            // 
-            this.rvLoadingList.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource3.Name = "DataSetLLHeader";
-            reportDataSource3.Value = this.LLHeaderBindingSource;
-            reportDataSource4.Name = "DataSetLLItems";
-            reportDataSource4.Value = this.LLItemsBindingSource;
-            this.rvLoadingList.LocalReport.DataSources.Add(reportDataSource3);
-            this.rvLoadingList.LocalReport.DataSources.Add(reportDataSource4);
-            this.rvLoadingList.LocalReport.ReportEmbeddedResource = "SkyReg.Common.Prints.LoadingList.reportLoadingList.rdlc";
-            this.rvLoadingList.Location = new System.Drawing.Point(0, 0);
-            this.rvLoadingList.Name = "rvLoadingList";
-            this.rvLoadingList.ServerReport.BearerToken = null;
-            this.rvLoadingList.Size = new System.Drawing.Size(732, 407);
-            this.rvLoadingList.TabIndex = 0;
             // 
             // LLHeaderBindingSource
             // 
@@ -61,6 +45,22 @@
             // LLItemsBindingSource
             // 
             this.LLItemsBindingSource.DataSource = typeof(SkyReg.Common.Prints.LoadingList.LLItems);
+            // 
+            // rvLoadingList
+            // 
+            this.rvLoadingList.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource1.Name = "DataSetLLHeader";
+            reportDataSource1.Value = this.LLHeaderBindingSource;
+            reportDataSource2.Name = "DataSetLLItems";
+            reportDataSource2.Value = this.LLItemsBindingSource;
+            this.rvLoadingList.LocalReport.DataSources.Add(reportDataSource1);
+            this.rvLoadingList.LocalReport.DataSources.Add(reportDataSource2);
+            this.rvLoadingList.LocalReport.ReportEmbeddedResource = "SkyReg.Common.Prints.LoadingList.reportLoadingList.rdlc";
+            this.rvLoadingList.Location = new System.Drawing.Point(0, 0);
+            this.rvLoadingList.Name = "rvLoadingList";
+            this.rvLoadingList.ServerReport.BearerToken = null;
+            this.rvLoadingList.Size = new System.Drawing.Size(732, 407);
+            this.rvLoadingList.TabIndex = 0;
             // 
             // LoadingListForm
             // 

@@ -261,7 +261,7 @@ namespace SkyReg
                 if (txtCertyfikate.Text.HasValue())
                     usr.CertDate = dateCertDate.Value.Date;
                 else
-                    usr.CertDate = dateCertDate.MaxDate.Date;
+                    usr.CertDate = DateTime.Now.Date; ;
 
                 usr.Certificate = txtCertyfikate.Text;
                 usr.City = txtCity.Text;
@@ -282,7 +282,7 @@ namespace SkyReg
                 if (txtInsuranceNr.Text.HasValue())
                     usr.InsuranceExpire = datInsuranceExpire.Value.Date;
                 else
-                    usr.InsuranceExpire = datInsuranceExpire.MaxDate.Date;
+                    usr.InsuranceExpire = DateTime.Now.Date;
 
                 if (FormState == FormState.Add)
                 {

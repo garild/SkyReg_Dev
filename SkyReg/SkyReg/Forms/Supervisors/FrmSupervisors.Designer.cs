@@ -39,6 +39,7 @@
             this.grdSupervisor = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonPanelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).BeginInit();
@@ -182,6 +183,7 @@
             // 
             this.kryptonPanelEx2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonPanelEx2.Controls.Add(this.kryptonLabel1);
             this.kryptonPanelEx2.Controls.Add(this.pictureBox1);
             this.kryptonPanelEx2.GradientDirection = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.kryptonPanelEx2.GradientToogleColors = false;
@@ -199,12 +201,20 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(27, 22);
+            this.pictureBox1.Location = new System.Drawing.Point(59, 20);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(250, 256);
+            this.pictureBox1.Size = new System.Drawing.Size(200, 320);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // kryptonLabel1
+            // 
+            this.kryptonLabel1.Location = new System.Drawing.Point(24, 348);
+            this.kryptonLabel1.Name = "kryptonLabel1";
+            this.kryptonLabel1.Size = new System.Drawing.Size(204, 36);
+            this.kryptonLabel1.TabIndex = 1;
+            this.kryptonLabel1.Values.Text = "Kartoteka zawiera listę instruktorów \r\noraz osób nadzorujących";
             // 
             // FrmSupervisors
             // 
@@ -226,6 +236,7 @@
             this.kryptonPanelEx3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdSupervisor)).EndInit();
             this.kryptonPanelEx2.ResumeLayout(false);
+            this.kryptonPanelEx2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -243,5 +254,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView grdSupervisor;
         private AC.ExtendedRenderer.Toolkit.KryptonPanelEx kryptonPanelEx2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
     }
 }
