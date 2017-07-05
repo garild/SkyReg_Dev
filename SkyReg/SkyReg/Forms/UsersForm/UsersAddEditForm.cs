@@ -172,9 +172,9 @@ namespace SkyReg
                     txtStreetNr.Text = usr.StreetNr;
                     txtUserName.Text = usr.Name;
                     txtZipCode.Text = usr.ZipCode;
-                    dateCertDate.Value = usr.CertDate.HasValue ? usr.CertDate.Value : dateCertDate.MaxDate;
+                    dateCertDate.Value = usr.CertDate.HasValue ? usr.CertDate.Value : DateTime.Now;
                     txtInsuranceNr.Text = usr.InsuranceNr;
-                    datInsuranceExpire.Value = usr.InsuranceExpire != null  ? usr.InsuranceExpire : datInsuranceExpire.MaxDate.Date;
+                    datInsuranceExpire.Value = usr.InsuranceExpire != null  ? usr.InsuranceExpire : DateTime.Now;
                 }
             }
         }
