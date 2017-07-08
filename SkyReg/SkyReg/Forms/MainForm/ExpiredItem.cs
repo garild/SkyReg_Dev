@@ -9,8 +9,8 @@ namespace SkyReg
     public class ExpiredItem
     {
         public string Name { get; set; }
-        public DateTime CertExpire { get; set; }
-        public DateTime SurveyExpire { get; set; }
-        public DateTime InsuranceExpire { get; set; }
+        public DateTime? CertExpire { get; set; }
+        public DateTime? SurveyExpire { get; set; }
+        public DateTime? InsuranceExpire { get; set; }
     }
 }

@@ -30,16 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExpiredItemsForm));
             this.kryptonPanelEx2 = new AC.ExtendedRenderer.Toolkit.KryptonPanelEx();
+            this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonHeaderGroup1 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
             this.kryptonHeaderGroup2 = new ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup();
-            this.btnClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.grdUserEx = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.grdSupervisorsEx = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.kryptonPanelEx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).BeginInit();
+            this.kryptonHeaderGroup1.Panel.SuspendLayout();
             this.kryptonHeaderGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2.Panel)).BeginInit();
+            this.kryptonHeaderGroup2.Panel.SuspendLayout();
             this.kryptonHeaderGroup2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdUserEx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSupervisorsEx)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonPanelEx2
@@ -58,29 +64,6 @@
             this.kryptonPanelEx2.Size = new System.Drawing.Size(782, 43);
             this.kryptonPanelEx2.TabIndex = 1;
             // 
-            // kryptonHeaderGroup1
-            // 
-            this.kryptonHeaderGroup1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonHeaderGroup1.HeaderVisibleSecondary = false;
-            this.kryptonHeaderGroup1.Location = new System.Drawing.Point(0, 0);
-            this.kryptonHeaderGroup1.Name = "kryptonHeaderGroup1";
-            this.kryptonHeaderGroup1.Size = new System.Drawing.Size(782, 208);
-            this.kryptonHeaderGroup1.TabIndex = 2;
-            this.kryptonHeaderGroup1.ValuesPrimary.Heading = "Użytkownicy z nieważnymi dokumentami";
-            // 
-            // kryptonHeaderGroup2
-            // 
-            this.kryptonHeaderGroup2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonHeaderGroup2.HeaderVisibleSecondary = false;
-            this.kryptonHeaderGroup2.Location = new System.Drawing.Point(0, 208);
-            this.kryptonHeaderGroup2.Name = "kryptonHeaderGroup2";
-            this.kryptonHeaderGroup2.Size = new System.Drawing.Size(782, 182);
-            this.kryptonHeaderGroup2.TabIndex = 3;
-            this.kryptonHeaderGroup2.ValuesPrimary.Heading = "Nadzorujący z nieważnymi dokumentami";
-            // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -95,6 +78,55 @@
             this.btnClose.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Values.Image")));
             this.btnClose.Values.Text = "Zamknij";
             // 
+            // kryptonHeaderGroup1
+            // 
+            this.kryptonHeaderGroup1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonHeaderGroup1.HeaderVisibleSecondary = false;
+            this.kryptonHeaderGroup1.Location = new System.Drawing.Point(0, 0);
+            this.kryptonHeaderGroup1.Name = "kryptonHeaderGroup1";
+            // 
+            // kryptonHeaderGroup1.Panel
+            // 
+            this.kryptonHeaderGroup1.Panel.Controls.Add(this.grdUserEx);
+            this.kryptonHeaderGroup1.Size = new System.Drawing.Size(782, 208);
+            this.kryptonHeaderGroup1.TabIndex = 2;
+            this.kryptonHeaderGroup1.ValuesPrimary.Heading = "Użytkownicy z nieważnymi dokumentami";
+            // 
+            // kryptonHeaderGroup2
+            // 
+            this.kryptonHeaderGroup2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonHeaderGroup2.HeaderVisibleSecondary = false;
+            this.kryptonHeaderGroup2.Location = new System.Drawing.Point(0, 208);
+            this.kryptonHeaderGroup2.Name = "kryptonHeaderGroup2";
+            // 
+            // kryptonHeaderGroup2.Panel
+            // 
+            this.kryptonHeaderGroup2.Panel.Controls.Add(this.grdSupervisorsEx);
+            this.kryptonHeaderGroup2.Size = new System.Drawing.Size(782, 182);
+            this.kryptonHeaderGroup2.TabIndex = 3;
+            this.kryptonHeaderGroup2.ValuesPrimary.Heading = "Nadzorujący z nieważnymi dokumentami";
+            // 
+            // grdUserEx
+            // 
+            this.grdUserEx.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdUserEx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdUserEx.Location = new System.Drawing.Point(0, 0);
+            this.grdUserEx.Name = "grdUserEx";
+            this.grdUserEx.Size = new System.Drawing.Size(780, 176);
+            this.grdUserEx.TabIndex = 0;
+            // 
+            // grdSupervisorsEx
+            // 
+            this.grdSupervisorsEx.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdSupervisorsEx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdSupervisorsEx.Location = new System.Drawing.Point(0, 0);
+            this.grdSupervisorsEx.Name = "grdSupervisorsEx";
+            this.grdSupervisorsEx.Size = new System.Drawing.Size(780, 150);
+            this.grdSupervisorsEx.TabIndex = 0;
+            // 
             // ExpiredItemsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -104,14 +136,20 @@
             this.Controls.Add(this.kryptonHeaderGroup1);
             this.Controls.Add(this.kryptonPanelEx2);
             this.Name = "ExpiredItemsForm";
-            this.Text = "Nieeważne dokumenty";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Nieważne dokumenty";
+            this.Load += new System.EventHandler(this.ExpiredItemsForm_Load);
             this.kryptonPanelEx2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1.Panel)).EndInit();
+            this.kryptonHeaderGroup1.Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup1)).EndInit();
             this.kryptonHeaderGroup1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2.Panel)).EndInit();
+            this.kryptonHeaderGroup2.Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonHeaderGroup2)).EndInit();
             this.kryptonHeaderGroup2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdUserEx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSupervisorsEx)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -122,5 +160,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup kryptonHeaderGroup1;
         private ComponentFactory.Krypton.Toolkit.KryptonHeaderGroup kryptonHeaderGroup2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnClose;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView grdUserEx;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView grdSupervisorsEx;
     }
 }

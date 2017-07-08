@@ -281,8 +281,8 @@ namespace SkyReg
                     .Select(p => new ExpiredItem
                     {
                         Name = p.UserName,
-                        SurveyExpire = p.SurveyExpirateDate.Date,
-                        CertExpire = p.CertificateExpirateDate.Date
+                        SurveyExpire = p.SurveyExpirateDate,
+                        CertExpire = p.CertificateExpirateDate
                     }).ToList();
 
                 if( usersExpired.Count >0 || supervisorExpired.Count > 0)

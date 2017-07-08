@@ -466,9 +466,9 @@ namespace SkyReg
 
                 User usr = new User();
                 usr.Name = cmbName.Text;
-                usr.CertDate = DateTime.MaxValue;
-                usr.SurveyExpirateDate = DateTime.MaxValue;
-                usr.InsuranceExpire = DateTime.MaxValue;
+                usr.CertDate = DateTime.Parse("2050-12-31");
+                usr.SurveyExpirateDate = DateTime.Parse("2050-12-31");
+                usr.InsuranceExpire = DateTime.Parse("2050-12-31");
                 if (jumperGroup != null)
                     usr.Group_Id = jumperGroup.Id;
 

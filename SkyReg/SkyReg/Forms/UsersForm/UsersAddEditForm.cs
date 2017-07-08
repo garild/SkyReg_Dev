@@ -52,9 +52,9 @@ namespace SkyReg
 
         private void SetMaxDates()
         {
-            dtSurveyDate.Value = DateTime.MaxValue;
-            dateCertDate.Value = DateTime.MaxValue;
-            datInsuranceExpire.Value = DateTime.MaxValue;
+            dtSurveyDate.Value = DateTime.Parse("2050-12-31");
+            dateCertDate.Value = DateTime.Parse("2050-12-31");
+            datInsuranceExpire.Value = DateTime.Parse("2050-12-31");
         }
 
         private void LoadUsersFinancesList()
@@ -273,7 +273,6 @@ namespace SkyReg
             using (var _ctxDefineUser = new SkyRegContextRepository<DefinedUserType>())
             {
                 User usr = FormState == FormState.Add ? new User() : _ctxUser.GetAll(Tuple.Create(nameof(DefinedUserType), "", "")).Value?.FirstOrDefault(p => p.Id == IdUser);
-                bool result = false;
 
 
                 DefinedUserType dut;
@@ -286,10 +285,8 @@ namespace SkyReg
                     listType.Add(dut);
                 }
 
-                if (txtCertyfikate.Text.HasValue())
-                    usr.CertDate = dateCertDate.Value.Date;
-                else
-                    usr.CertDate = DateTime.Now.Date; ;
+
+                usr.CertDate = dateCertDate.Value.Date;
 
                 usr.Certificate = txtCertyfikate.Text;
                 usr.City = txtCity.Text;
@@ -311,10 +308,9 @@ namespace SkyReg
                 usr.SurveyNr = txtSurveyNr.Text.Trim();
                 usr.SurveyExpirateDate = dtSurveyDate.Value.Date;
 
-                if (txtInsuranceNr.Text.HasValue())
-                    usr.InsuranceExpire = datInsuranceExpire.Value.Date;
-                else
-                    usr.InsuranceExpire = DateTime.Now.Date;
+                
+                usr.InsuranceExpire = datInsuranceExpire.Value.Date;
+ 
 
                 if (FormState == FormState.Add)
                 {
