@@ -44,6 +44,17 @@ namespace SkyReg
                 LoadUsersFinancesList();
                 LoadBalance();
             }
+            else
+            {
+                SetMaxDates();
+            }
+        }
+
+        private void SetMaxDates()
+        {
+            dtSurveyDate.Value = DateTime.MaxValue;
+            dateCertDate.Value = DateTime.MaxValue;
+            datInsuranceExpire.Value = DateTime.MaxValue;
         }
 
         private void LoadUsersFinancesList()
@@ -217,10 +228,23 @@ namespace SkyReg
 
         private void btnCheckLogin_Click(object sender, EventArgs e)
         {
-            using (var model = new SkyRegContextRepository<User>())
+            //using (var model = new SkyRegContextRepository<User>())
+            //{
+            //    var userExist = model.GetAll().Value?.Where(p => p.Name == txtUserName.Text).FirstOrDefault();
+            //    if (userExist == null)
+            //    {
+            //        KryptonMessageBox.Show("Login wolny.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            //    }
+            //    else
+            //    {
+            //        KryptonMessageBox.Show("Ten login jest już w użyciu!", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            //    }
+            //}
+
+            using (SkyRegContext ctx = new SkyRegContext())
             {
-                var userExist = model.GetAll().Value?.Where(p => p.Name == txtUserName.Text).FirstOrDefault();
-                if (userExist == null)
+                var userexist = ctx.User.Any(p => p.Login == txtLogin.Text);
+                if (userexist == false)
                 {
                     KryptonMessageBox.Show("Login wolny.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
@@ -229,6 +253,7 @@ namespace SkyReg
                     KryptonMessageBox.Show("Ten login jest już w użyciu!", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
             }
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

@@ -12,6 +12,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DataLayer;
+using DataLayer.Entities.DBContext;
 
 namespace SkyReg
 {
@@ -242,5 +244,54 @@ namespace SkyReg
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FrmMain_Shown(object sender, EventArgs e)
+        {
+            TryExpireDates();
+        }
+
+        private void TryExpireDates()
+        {
+            DateTime expireDate = DateTime.Now;
+
+            using( SkyRegContext ctx = new SkyRegContext())
+            {
+                var daysPlus = ctx.GlobalSetting.Where(p => p.Id == 1).Select(p => p.CertExpired).FirstOrDefault();
+                if(daysPlus != null)
+                {
+                    expireDate = DateTime.Now.AddDays(daysPlus.Value);
+                }
+
+                var usersExpired = ctx.User
+                    .Where(p => p.CertDate <= expireDate ||
+                    p.SurveyExpirateDate <= expireDate ||
+                    p.InsuranceExpire <= expireDate)
+                    .Select(p => new ExpiredItem
+                    {
+                        Name = p.Name,
+                        CertExpire = p.CertDate.Value,
+                        SurveyExpire = p.SurveyExpirateDate.Value,
+                        InsuranceExpire = p.InsuranceExpire
+                    }).ToList();
+
+                var supervisorExpired = ctx.Supervisors
+                    .Where(p => p.SurveyExpirateDate <= expireDate ||
+                    p.CertificateExpirateDate <= expireDate)
+                    .Select(p => new ExpiredItem
+                    {
+                        Name = p.UserName,
+                        SurveyExpire = p.SurveyExpirateDate.Date,
+                        CertExpire = p.CertificateExpirateDate.Date
+                    }).ToList();
+
+                if( usersExpired.Count >0 || supervisorExpired.Count > 0)
+                {
+                    ExpiredItemsForm eif = new ExpiredItemsForm();
+                    eif.UsersExpiredList = usersExpired;
+                    eif.SupervisorsExpiredList = supervisorExpired;
+                    eif.ShowDialog();
+                }
+            }
         }
     } }

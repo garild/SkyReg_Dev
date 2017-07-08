@@ -160,15 +160,35 @@ namespace SkyReg
                 if (KryptonMessageBox.Show("Usunąć zaznaczoną pozycję?", "Usunąć?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int idUsr = (int)grdUsers.SelectedRows[0].Cells["Id"].Value;
-                    using(var _ctx = new SkyRegContextRepository<User>())
+                    //using(var _ctx = new SkyRegContextRepository<User>())
+                    //{
+                    //    User usr = _ctx.GetById(idUsr);
+                    //    if (usr != null)
+                    //    {
+                    //        _ctx.Delete(usr);
+                    //        RefreshUsersList();
+                    //    }
+                    //}
+
+                    using(var ctx = new SkyRegContext())
                     {
-                        User usr = _ctx.GetById(idUsr);
-                        if (usr != null)
+                        User usr = ctx.User.Where(p => p.Id == idUsr).FirstOrDefault();
+                        if(usr != null)
                         {
-                            _ctx.Delete(usr);
+                            try
+                            {
+                                ctx.User.Remove(usr);
+                                ctx.SaveChanges();
+                            }
+                            catch
+                            {
+                                KryptonMessageBox.Show("Użytkownik posiada powiązanie, usuń najpierw wszystki powiązania użytkownika i spróbuj ponownie.");
+                            }
                             RefreshUsersList();
                         }
                     }
+
+
 
                 }
             }

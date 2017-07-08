@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleAddEditForm));
             this.kryptonTabControl1 = new AC.ExtendedRenderer.Navigator.KryptonTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -176,6 +176,7 @@
             this.cmbName.TabIndex = 25;
             this.cmbName.Text = "Brak";
             this.cmbName.SelectedIndexChanged += new System.EventHandler(this.cmbName_SelectedIndexChanged_1);
+            this.cmbName.TextChanged += new System.EventHandler(this.cmbName_TextChanged);
             // 
             // kryptonGroup1
             // 
@@ -275,9 +276,9 @@
             // 
             // Check
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.NullValue = false;
-            this.Check.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = false;
+            this.Check.DefaultCellStyle = dataGridViewCellStyle1;
             this.Check.FalseValue = "false";
             this.Check.HeaderText = "Wybór";
             this.Check.IndeterminateValue = "false";
@@ -491,7 +492,7 @@
             // 
             this.txtGroupName.Location = new System.Drawing.Point(131, 18);
             this.txtGroupName.Name = "txtGroupName";
-            this.txtGroupName.Size = new System.Drawing.Size(189, 20);
+            this.txtGroupName.Size = new System.Drawing.Size(189, 23);
             this.txtGroupName.TabIndex = 0;
             // 
             // kryptonPanelEx1

@@ -199,6 +199,13 @@
     <Compile Include="Forms\HtmlDocker\PrintPreview.Designer.cs">
       <DependentUpon>PrintPreview.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MainForm\ExpiredItem.cs" />
+    <Compile Include="Forms\MainForm\ExpiredItemsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm\ExpiredItemsForm.Designer.cs">
+      <DependentUpon>ExpiredItemsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm\FrmMain.cs">
       <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -394,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\HtmlDocker\PrintPreview.resx">
       <DependentUpon>PrintPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm\ExpiredItemsForm.resx">
+      <DependentUpon>ExpiredItemsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
