@@ -112,7 +112,7 @@ namespace SkyReg
                                     users = _cxtFlightEl.GetAll(Tuple.Create(nameof(User), "", "")).Value?.Where(o => o.Id == f.Id).FirstOrDefault();
 
                                     if (users.User != null)
-                                        itemString = $"{index++.ToString("00")} - {users.User.Name}";
+                                        itemString = $"{index++.ToString("00")} - {UserNameReplace(users.User.Name)}";
                                     else
                                         itemString = $"{index++.ToString("00")} - {users.TeamName}";
 
@@ -129,7 +129,10 @@ namespace SkyReg
            
         }
 
-      
+      public string UserNameReplace(string userName)
+        {
+            return userName.ToLower().Replace("zz", "");
+        }
 
         
     }
