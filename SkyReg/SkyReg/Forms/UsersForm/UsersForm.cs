@@ -27,21 +27,29 @@ namespace SkyReg
 
         private void RefreshUsersList()
         {
-            using (var _ctx = new SkyRegContextRepository<User>())
-            {
+            //using (var _ctx = new SkyRegContextRepository<User>())
+            //{
 
-                //var users = model.User.AsNoTracking().OrderBy(p => p.SurName).ThenBy(p => p.FirstName).ToList();
-                //grdUsers.DataSource = users;
-                var result = _ctx.GetAll();
-                if (result.IsSuccess)
+            //    //var users = model.User.AsNoTracking().OrderBy(p => p.SurName).ThenBy(p => p.FirstName).ToList();
+            //    //grdUsers.DataSource = users;
+            //    var result = _ctx.GetAll();
+            //    if (result.IsSuccess)
+            //    {
+            //        grdUsers.DataSource = result.Value.ToList(); ;
+            //        UsersSetListView();
+            //    }
+                    
+            //}
+
+            using( SkyRegContext ctx = new SkyRegContext())
+            {
+                var result = ctx.User.OrderBy(p => p.Name).ToList();
+                if(result != null)
                 {
-                    grdUsers.DataSource = result.Value.ToList(); ;
+                    grdUsers.DataSource = result;
                     UsersSetListView();
                 }
-                    
-            }
-
-           
+            }     
         }
 
         private void UsersSetListView()

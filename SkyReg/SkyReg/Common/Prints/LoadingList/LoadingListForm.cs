@@ -23,6 +23,8 @@ namespace SkyReg.Common.Prints.LoadingList
 
         private void LoadingListForm_Load(object sender, EventArgs e)
         {
+            ChangingLpItems();
+
             LLHeaderBindingSource.DataSource = Header;
             LLItemsBindingSource.DataSource = Items;
 
@@ -30,5 +32,14 @@ namespace SkyReg.Common.Prints.LoadingList
             this.rvLoadingList.RefreshReport();
         }
 
+        private void ChangingLpItems()
+        {
+            int lp = 0;
+            foreach(var item in Items)
+            {
+                lp++;
+                item.Lp = lp.ToString();
+            }
+        }
     }
 }

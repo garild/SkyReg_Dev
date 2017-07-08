@@ -30,42 +30,27 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton1 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
-            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton2 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
-            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton3 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
-            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton4 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
-            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton5 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
-            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton6 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
-            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton7 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
-            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton8 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
-            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton9 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
-            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton10 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
-            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton11 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
+            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton23 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
+            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton24 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
+            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton25 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
+            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton26 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
+            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton27 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
+            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton28 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
+            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton29 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
+            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton30 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
+            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton31 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
+            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton32 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
+            AC.ExtendedRenderer.Navigator.OutlookBarButton outlookBarButton33 = new AC.ExtendedRenderer.Navigator.OutlookBarButton();
             this.StyleManager = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.outlookBar = new AC.ExtendedRenderer.Navigator.OutlookBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.licencjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -131,83 +116,83 @@
             this.outlookBar.ButtonColorSelectedBottom = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(195)))), ((int)(((byte)(108)))));
             this.outlookBar.ButtonColorSelectedTop = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(122)))), ((int)(((byte)(5)))));
             this.outlookBar.ButtonHeight = 35;
-            outlookBarButton1.BuddyPage1 = "Planer";
-            outlookBarButton1.BuddyPage2 = null;
-            outlookBarButton1.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton1.Image")));
-            outlookBarButton1.Tag1 = null;
-            outlookBarButton1.Tag2 = null;
-            outlookBarButton1.Text = "Planówka";
-            outlookBarButton2.BuddyPage1 = "Flights";
-            outlookBarButton2.BuddyPage2 = null;
-            outlookBarButton2.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton2.Image")));
-            outlookBarButton2.Tag1 = null;
-            outlookBarButton2.Tag2 = null;
-            outlookBarButton2.Text = "Wyloty";
-            outlookBarButton3.BuddyPage1 = "Jumpers";
-            outlookBarButton3.BuddyPage2 = null;
-            outlookBarButton3.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton3.Image")));
-            outlookBarButton3.Tag1 = null;
-            outlookBarButton3.Tag2 = null;
-            outlookBarButton3.Text = "Skoczkowie";
-            outlookBarButton4.BuddyPage1 = "Supervisors";
-            outlookBarButton4.BuddyPage2 = null;
-            outlookBarButton4.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton4.Image")));
-            outlookBarButton4.Tag1 = null;
-            outlookBarButton4.Tag2 = null;
-            outlookBarButton4.Text = "Instruktorzy/nadzorujący";
-            outlookBarButton5.BuddyPage1 = "Parachutes";
-            outlookBarButton5.BuddyPage2 = null;
-            outlookBarButton5.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton5.Image")));
-            outlookBarButton5.Tag1 = null;
-            outlookBarButton5.Tag2 = null;
-            outlookBarButton5.Text = "Spadochrony";
-            outlookBarButton6.BuddyPage1 = "Jumpers_types";
-            outlookBarButton6.BuddyPage2 = null;
-            outlookBarButton6.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton6.Image")));
-            outlookBarButton6.Tag1 = null;
-            outlookBarButton6.Tag2 = null;
-            outlookBarButton6.Text = "Typy skoczków";
-            outlookBarButton7.BuddyPage1 = "Airplanes";
-            outlookBarButton7.BuddyPage2 = null;
-            outlookBarButton7.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton7.Image")));
-            outlookBarButton7.Tag1 = null;
-            outlookBarButton7.Tag2 = null;
-            outlookBarButton7.Text = "Samoloty";
-            outlookBarButton8.BuddyPage1 = "ReportedUsers";
-            outlookBarButton8.BuddyPage2 = null;
-            outlookBarButton8.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton8.Image")));
-            outlookBarButton8.Tag1 = null;
-            outlookBarButton8.Tag2 = null;
-            outlookBarButton8.Text = "Zgłoszenia";
-            outlookBarButton9.BuddyPage1 = "Moneys";
-            outlookBarButton9.BuddyPage2 = null;
-            outlookBarButton9.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton9.Image")));
-            outlookBarButton9.Tag1 = null;
-            outlookBarButton9.Tag2 = null;
-            outlookBarButton9.Text = "Finanse";
-            outlookBarButton10.BuddyPage1 = "Settings";
-            outlookBarButton10.BuddyPage2 = null;
-            outlookBarButton10.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton10.Image")));
-            outlookBarButton10.Tag1 = null;
-            outlookBarButton10.Tag2 = null;
-            outlookBarButton10.Text = "Ustawienia";
-            outlookBarButton11.BuddyPage1 = "PassangerList";
-            outlookBarButton11.BuddyPage2 = "PassangerList";
-            outlookBarButton11.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton11.Image")));
-            outlookBarButton11.Tag1 = null;
-            outlookBarButton11.Tag2 = null;
-            outlookBarButton11.Text = "Lista Pasażerów";
-            this.outlookBar.Buttons.Add(outlookBarButton1);
-            this.outlookBar.Buttons.Add(outlookBarButton2);
-            this.outlookBar.Buttons.Add(outlookBarButton3);
-            this.outlookBar.Buttons.Add(outlookBarButton4);
-            this.outlookBar.Buttons.Add(outlookBarButton5);
-            this.outlookBar.Buttons.Add(outlookBarButton6);
-            this.outlookBar.Buttons.Add(outlookBarButton7);
-            this.outlookBar.Buttons.Add(outlookBarButton8);
-            this.outlookBar.Buttons.Add(outlookBarButton9);
-            this.outlookBar.Buttons.Add(outlookBarButton10);
-            this.outlookBar.Buttons.Add(outlookBarButton11);
+            outlookBarButton23.BuddyPage1 = "Planer";
+            outlookBarButton23.BuddyPage2 = null;
+            outlookBarButton23.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton23.Image")));
+            outlookBarButton23.Tag1 = null;
+            outlookBarButton23.Tag2 = null;
+            outlookBarButton23.Text = "Planówka";
+            outlookBarButton24.BuddyPage1 = "Flights";
+            outlookBarButton24.BuddyPage2 = null;
+            outlookBarButton24.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton24.Image")));
+            outlookBarButton24.Tag1 = null;
+            outlookBarButton24.Tag2 = null;
+            outlookBarButton24.Text = "Wyloty";
+            outlookBarButton25.BuddyPage1 = "Jumpers";
+            outlookBarButton25.BuddyPage2 = null;
+            outlookBarButton25.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton25.Image")));
+            outlookBarButton25.Tag1 = null;
+            outlookBarButton25.Tag2 = null;
+            outlookBarButton25.Text = "Skoczkowie";
+            outlookBarButton26.BuddyPage1 = "Supervisors";
+            outlookBarButton26.BuddyPage2 = null;
+            outlookBarButton26.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton26.Image")));
+            outlookBarButton26.Tag1 = null;
+            outlookBarButton26.Tag2 = null;
+            outlookBarButton26.Text = "Instruktorzy/nadzorujący";
+            outlookBarButton27.BuddyPage1 = "Parachutes";
+            outlookBarButton27.BuddyPage2 = null;
+            outlookBarButton27.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton27.Image")));
+            outlookBarButton27.Tag1 = null;
+            outlookBarButton27.Tag2 = null;
+            outlookBarButton27.Text = "Spadochrony";
+            outlookBarButton28.BuddyPage1 = "Jumpers_types";
+            outlookBarButton28.BuddyPage2 = null;
+            outlookBarButton28.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton28.Image")));
+            outlookBarButton28.Tag1 = null;
+            outlookBarButton28.Tag2 = null;
+            outlookBarButton28.Text = "Typy skoczków";
+            outlookBarButton29.BuddyPage1 = "Airplanes";
+            outlookBarButton29.BuddyPage2 = null;
+            outlookBarButton29.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton29.Image")));
+            outlookBarButton29.Tag1 = null;
+            outlookBarButton29.Tag2 = null;
+            outlookBarButton29.Text = "Samoloty";
+            outlookBarButton30.BuddyPage1 = "ReportedUsers";
+            outlookBarButton30.BuddyPage2 = null;
+            outlookBarButton30.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton30.Image")));
+            outlookBarButton30.Tag1 = null;
+            outlookBarButton30.Tag2 = null;
+            outlookBarButton30.Text = "Zgłoszenia";
+            outlookBarButton31.BuddyPage1 = "Moneys";
+            outlookBarButton31.BuddyPage2 = null;
+            outlookBarButton31.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton31.Image")));
+            outlookBarButton31.Tag1 = null;
+            outlookBarButton31.Tag2 = null;
+            outlookBarButton31.Text = "Finanse";
+            outlookBarButton32.BuddyPage1 = "Settings";
+            outlookBarButton32.BuddyPage2 = null;
+            outlookBarButton32.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton32.Image")));
+            outlookBarButton32.Tag1 = null;
+            outlookBarButton32.Tag2 = null;
+            outlookBarButton32.Text = "Ustawienia";
+            outlookBarButton33.BuddyPage1 = "PassangerList";
+            outlookBarButton33.BuddyPage2 = "PassangerList";
+            outlookBarButton33.Image = ((System.Drawing.Icon)(resources.GetObject("outlookBarButton33.Image")));
+            outlookBarButton33.Tag1 = null;
+            outlookBarButton33.Tag2 = null;
+            outlookBarButton33.Text = "Lista Pasażerów";
+            this.outlookBar.Buttons.Add(outlookBarButton23);
+            this.outlookBar.Buttons.Add(outlookBarButton24);
+            this.outlookBar.Buttons.Add(outlookBarButton25);
+            this.outlookBar.Buttons.Add(outlookBarButton26);
+            this.outlookBar.Buttons.Add(outlookBarButton27);
+            this.outlookBar.Buttons.Add(outlookBarButton28);
+            this.outlookBar.Buttons.Add(outlookBarButton29);
+            this.outlookBar.Buttons.Add(outlookBarButton30);
+            this.outlookBar.Buttons.Add(outlookBarButton31);
+            this.outlookBar.Buttons.Add(outlookBarButton32);
+            this.outlookBar.Buttons.Add(outlookBarButton33);
             this.outlookBar.CausesValidation = false;
             this.outlookBar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.outlookBar.Dock = System.Windows.Forms.DockStyle.Top;
@@ -232,7 +217,6 @@
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.licencjaToolStripMenuItem,
             this.helpToolStripMenuItem});
@@ -245,162 +229,35 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
-            this.openToolStripMenuItem,
             this.toolStripSeparator,
-            this.saveToolStripMenuItem,
-            this.saveAsToolStripMenuItem,
             this.toolStripSeparator1,
-            this.printToolStripMenuItem,
-            this.printPreviewToolStripMenuItem,
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "&File";
-            // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
-            this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.newToolStripMenuItem.Text = "&New";
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
-            this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.openToolStripMenuItem.Text = "&Open";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.fileToolStripMenuItem.Text = "&Program";
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
-            this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.saveToolStripMenuItem.Text = "&Save";
-            // 
-            // saveAsToolStripMenuItem
-            // 
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.saveAsToolStripMenuItem.Text = "Save &As";
+            this.toolStripSeparator.Size = new System.Drawing.Size(149, 6);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
-            // 
-            // printToolStripMenuItem
-            // 
-            this.printToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripMenuItem.Image")));
-            this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.printToolStripMenuItem.Text = "&Print";
-            // 
-            // printPreviewToolStripMenuItem
-            // 
-            this.printPreviewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printPreviewToolStripMenuItem.Image")));
-            this.printPreviewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
-            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.printPreviewToolStripMenuItem.Text = "Print Pre&view";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.exitToolStripMenuItem.Text = "E&xit";
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.undoToolStripMenuItem,
-            this.redoToolStripMenuItem,
-            this.toolStripSeparator3,
-            this.cutToolStripMenuItem,
-            this.copyToolStripMenuItem,
-            this.pasteToolStripMenuItem,
-            this.toolStripSeparator4,
-            this.selectAllToolStripMenuItem});
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "&Edit";
-            // 
-            // undoToolStripMenuItem
-            // 
-            this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-            this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.undoToolStripMenuItem.Text = "&Undo";
-            // 
-            // redoToolStripMenuItem
-            // 
-            this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-            this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.redoToolStripMenuItem.Text = "&Redo";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(141, 6);
-            // 
-            // cutToolStripMenuItem
-            // 
-            this.cutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripMenuItem.Image")));
-            this.cutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.cutToolStripMenuItem.Text = "Cu&t";
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripMenuItem.Image")));
-            this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.copyToolStripMenuItem.Text = "&Copy";
-            // 
-            // pasteToolStripMenuItem
-            // 
-            this.pasteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripMenuItem.Image")));
-            this.pasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.pasteToolStripMenuItem.Text = "&Paste";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(141, 6);
-            // 
-            // selectAllToolStripMenuItem
-            // 
-            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.selectAllToolStripMenuItem.Text = "Select &All";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "&Zamknij";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -413,7 +270,7 @@
             // tsmSettings
             // 
             this.tsmSettings.Name = "tsmSettings";
-            this.tsmSettings.Size = new System.Drawing.Size(133, 22);
+            this.tsmSettings.Size = new System.Drawing.Size(152, 22);
             this.tsmSettings.Text = "&Preferencje";
             this.tsmSettings.Click += new System.EventHandler(this.tsmSettings_Click);
             // 
@@ -424,7 +281,7 @@
             this.informacjeToolStripMenuItem});
             this.licencjaToolStripMenuItem.Name = "licencjaToolStripMenuItem";
             this.licencjaToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
-            this.licencjaToolStripMenuItem.Text = "Licencja";
+            this.licencjaToolStripMenuItem.Text = "&Licencja";
             // 
             // dodajKluczToolStripMenuItem
             // 
@@ -449,8 +306,8 @@
             this.toolStripSeparator5,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "&Help";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.helpToolStripMenuItem.Text = "P&omoc";
             // 
             // contentsToolStripMenuItem
             // 
@@ -599,25 +456,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem printPreviewToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem undoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmSettings;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;

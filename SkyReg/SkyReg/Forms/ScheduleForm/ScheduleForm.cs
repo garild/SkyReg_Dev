@@ -74,8 +74,9 @@ namespace SkyReg
             grdPlaner.Columns["Id"].Visible = false;
             grdPlaner.Columns["Color"].Visible = false;
             grdPlaner.Columns["UserId"].Visible = false;
+            grdPlaner.Columns["Lp"].Visible = false;
 
-            grdPlaner.Columns["Lp"].Width = 40;
+            //grdPlaner.Columns["Lp"].Width = 40;
             //grdPlaner.Columns["Type"].Width = 200;
             grdPlaner.Columns["Parachute"].Width = 200;
             grdPlaner.Columns["AssemblyType"].Width = 90;
@@ -481,6 +482,12 @@ namespace SkyReg
                             })
                             .OrderBy(p => p.Lp)
                             .ToList();
+
+
+
+
+
+
                         llf.ShowDialog();
                     }
                     catch
