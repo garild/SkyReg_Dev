@@ -466,6 +466,9 @@ namespace SkyReg
 
                 User usr = new User();
                 usr.Name = cmbName.Text;
+                usr.CertDate = DateTime.MaxValue;
+                usr.SurveyExpirateDate = DateTime.MaxValue;
+                usr.InsuranceExpire = DateTime.MaxValue;
                 if (jumperGroup != null)
                     usr.Group_Id = jumperGroup.Id;
 
@@ -531,6 +534,10 @@ namespace SkyReg
 
         private void LoadUserTypes()
         {
+            cmbName.DisplayMember = "Name";
+            cmbName.ValueMember = "Id";
+
+
             using (var _ctx = new SkyRegContextRepository<User>())
             {
                 var result = _ctx.GetAll(Tuple.Create(nameof(DefinedUserType), "", ""));
@@ -538,7 +545,9 @@ namespace SkyReg
                 {
                     int selectedUser = 0;
                     if (cmbName.SelectedValue != null)
+                    {
                         selectedUser = (int)cmbName.SelectedValue;
+                    }
 
                     List<DefinedUserType> usersTypesList = null;
                     if (selectedUser > 0)
@@ -548,6 +557,10 @@ namespace SkyReg
                             usersTypesList = new List<DefinedUserType>(user.DefinedUserType);
                         else
                             usersTypesList = _ctx.Model.DefinedUserType.OrderBy(p => p.Name).ToList();
+                    }
+                    else
+                    {
+                        usersTypesList = _ctx.Model.DefinedUserType.OrderBy(p => p.Name).ToList();
                     }
 
                     if (usersTypesList?.Count > 0)
@@ -831,7 +844,12 @@ namespace SkyReg
                 }
             }
         }
-      
+
+        private void cmbName_TextChanged(object sender, EventArgs e)
+        {
+            LoadUserTypes();
+            LoadBalance();
+        }
     }
 }
 

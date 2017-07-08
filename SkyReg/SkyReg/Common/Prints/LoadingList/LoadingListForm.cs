@@ -39,6 +39,7 @@ namespace SkyReg.Common.Prints.LoadingList
             {
                 lp++;
                 item.Lp = lp.ToString();
+                item.Name = item.Name.ToUpper().Replace("ZZ", "");
             }
         }
     }
