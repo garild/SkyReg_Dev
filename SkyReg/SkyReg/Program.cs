@@ -5,6 +5,7 @@ using System;
 using System.Windows.Forms;
 using SkyReg.Common.Extensions;
 using SkyReg.Forms.SplashScreen;
+using SkyReg.Properties;
 
 namespace SkyReg
 {
@@ -18,13 +19,13 @@ namespace SkyReg
         [STAThread]
         static void Main()
         {
-
+            var expDate = Settings.Default.Properties["ExpDate"].DefaultValue.ToString();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             //try
             //{
-                if (CommonMethods.isNetworkWorking())
+                if (DateTime.Now < Convert.ToDateTime(expDate))
                 {
                     _splashScreen = FormsOpened<SplashScreen>.IsOpened(_splashScreen);
                     _splashScreen.WindowState = FormWindowState.Normal;
@@ -45,7 +46,7 @@ namespace SkyReg
 
                 }
                 else
-                    Msg.Show("Brak połaczenia z internetem", "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    Msg.Show("Termin wersji demo SkyReg upłynął", "Informacja!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             //}
             //catch (Exception ex)
             //{
