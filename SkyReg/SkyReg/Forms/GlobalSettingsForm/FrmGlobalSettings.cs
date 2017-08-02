@@ -331,7 +331,8 @@ namespace SkyReg
             var flight = new Flight();
             var days = (int)Math.Ceiling((dateTo.Value.AddDays(1) - dateFrom.Value).TotalDays);
             int getYear = DateTime.Now.Year;
-
+            int maxCount = 0;
+            string flyString = "";
             if (dayOfWeeks.Count > 0 && ValidateData())
             {
                 using (DLModelRepository<Airplane> _ctxAirplane = new DLModelRepository<Airplane>())
@@ -339,19 +340,33 @@ namespace SkyReg
                 {
                     var airplane = _ctxAirplane.GetById((int)cmbAirplane.SelectedValue);
 
+                    var toDay = _ctxFlight.Table.OrderByDescending(p => p.FlyNr).ToList();
+
                     for (int i = 1; i < days + 1; i++)
                     {
                         dateCount = dateCount.AddDays(1);
-
+                        
                         if (dayOfWeeks.Contains(dateCount.DayOfWeek))
                         {
+                            var dataResult = toDay.Where(p => p.FlyDateTime.Date == dateCount.Date).OrderByDescending(p => p.FlyNr).FirstOrDefault();
+                            int.TryParse(dataResult?.FlyNr, out maxCount);
+
                             for (int a = 1; a < flightsPerDay.Value + 1; a++)
                             {
+                                if (maxCount > 0)
+                                {
+                                    maxCount += 1;
+                                    flyString = maxCount.ToString("00");
+                                }
+                                else
+                                    flyString = a.ToString("00");
+
+
                                 flight = new Flight();
                                 flight.Airplane = airplane;
-                                flight.FlyDateTime = dateCount;
+                                flight.FlyDateTime = dateCount.Date;
                                 flight.FlyStatus = (int)FlightsStatus.Opened;
-                                flight.FlyNr = $"LOT /{dateCount.ToString(@"yy\/MM\/dd")}/{a.ToString("00")}";
+                                flight.FlyNr = flyString;
 
                                 listFlights.Add(flight);
                             }
